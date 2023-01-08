@@ -5,6 +5,7 @@ import auth from '../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from '../Components/Loading';
 import SocialLogin from './SocialLogin';
+
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
@@ -16,7 +17,7 @@ const Register = () => {
       const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
   const navigate=useNavigate();
   const onSubmit =async data => {
-    console.log(data);
+    // console.log(data);
     await createUserWithEmailAndPassword(data.email,data.password);
      await updateProfile({ displayName:data.name });
      navigate("/");
@@ -28,13 +29,6 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || Uerror?.messag
   }
   if (loading || updating) {
     return <Loading/>;
-  }
-  if (user) {
-    return (
-      <div>
-       
-      </div>
-    );
   }
      return (
          
@@ -126,6 +120,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || Uerror?.messag
             </div>
                   </div>
               </div>
+
           </div>
      );
 };

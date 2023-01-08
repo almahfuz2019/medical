@@ -1,150 +1,193 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
+import { ToastContainer, toast } from 'react-toastify';
+
+import auth from '../firebase.init';
+import Loading from './Loading';
 const Checkout = () => {
+  const [user, loading, error] = useAuthState(auth);
+  // if(loading){
+  //   return <Loading/>
+  // }
+  // if(error){
+  //   return <p>{error}</p>
+  // }
+  const time= new Date().toLocaleString();
+  const {x,total}=UseUserSpacifiqData();
+  // console.log(x);
+  const checkOut=(event)=>{
+    event.preventDefault();
+    const name=event.target.name.value;
+    const phone=event.target.phone.value;
+    const email=event.target.email.value;
+    const address=event.target.address.value;
+    const message=event.target.message.value;
+    const bkishID=event.target.bkishID.value;
+    const userData=x;
+    const TotalPrice=total;
+    const dateAndTime=time;
+    let status="wating";
+    const checkOut={name,phone,email,address,message,bkishID,dateAndTime,userData,TotalPrice,status};
+    // console.log(checkOut);
+  fetch('http://localhost:5000/itemorder', {
+ method: 'POST', // or 'PUT'
+ headers: {
+   'Content-Type': 'application/json',
+ },
+ body: JSON.stringify(checkOut),
+})
+ .then((res) => res.json())
+ .then((data) => {
+  toast.success('Submitted Successfully', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "colored",
+    });
+  //  event.target.reset();
+ })
+    }
      return (
           <div>
                
 <section className='mt-12'>
-  <h1 class="text-center font-bold text-4xl mb-5">Checkout</h1>
+  <h1 className="text-center font-bold text-4xl mb-5">Checkout</h1>
 
-  <div class="grid grid-cols-1 mx-auto max-w-screen-2xl md:grid-cols-2">
-    <div class="py-12 bg-gray-100 md:py-24 border-primary  border-r-0 border border-2">
-      <div class="max-w-lg px-4 mx-auto space-y-8 lg:px-8">
-        <div class="flex items-center">
-          <span class="w-10 h-10 bg-blue-700 rounded-full"></span>
+  <div className="grid grid-cols-1 mx-auto max-w-screen-2xl md:grid-cols-2">
+    <div className="py-12 bg-gray-100 md:py-24 border-primary  border-r-0 border border-2">
+      <div className="max-w-lg px-4 mx-auto space-y-8 lg:px-8">
+        <div className="flex items-center">
+          <span className="w-10 h-10 bg-blue-700 rounded-full"></span>
 
-          <h2 class="ml-4 font-medium text-gray-900">Medical</h2>
+          <h2 className="ml-4 font-medium text-gray-900">Medical</h2>
         </div>
 
         <div>
-          <p class="text-2xl tracking-tight text-primary font-bold">
-            $99.99
+          <p className="text-2xl tracking-tight text-primary font-bold">
+            ${total}
           </p>
 
-          <p class="mt-1 text-sm text-gray-600">For the purchase of</p>
+          <p className="mt-1 text-sm text-gray-600">For the purchase of</p>
         </div>
 
         <div>
-          <div class="flow-root">
-            <ul class="-my-4 divide-y divide-gray-100">
-              <li class="flex items-center py-4 border-t-2 border-primary">
-                <img
-                  src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80"
-                  alt=""
-                  class="object-cover w-16 h-16 rounded"
-                />
+          <div className="flow-root">
+       
+          <div className="avatar-group -space-x-6">
+          {x?.map(data=>
+          <div className="avatar">
+            <div className="w-12">
+              <img  src={data?.product?.image} />
+            </div>
+          </div>
+        
+        )}
 
-                <div class="ml-4">
-                  <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
-
-                  <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
-                    <div>
-                      <dt class="inline">Size:</dt>
-                      <dd class="inline">XXS</dd>
-                    </div>
-
-                    <div>
-                      <dt class="inline">Color:</dt>
-                      <dd class="inline">White</dd>
-                    </div>
-                  </dl>
-                </div>
-              </li>
-              
-            
-
-             
-            </ul>
+          <div className="avatar placeholder">
+            <div className="w-12 bg-neutral-focus text-neutral-content">
+              <span>+99</span>
+            </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="py-12  md:py-24 border border-l-0 border-2 border-primary">
-      <div class="max-w-lg px-4 mx-auto lg:px-8">
-        <form class="grid grid-cols-6 gap-4">
-          <div class="col-span-3">
-            <label
-              for="FirstName"
-              class="block text-xs font-medium text-gray-700"
-            >
-              First Name
-            </label>
+    <div className="py-12  md:py-24 border border-l-0 border-2 border-primary">
+      <div className="max-w-lg px-4 mx-auto lg:px-8">
+        <form onSubmit={checkOut} className="grid grid-cols-6 gap-4">
 
-            <input
-              type="text"
-              id="FirstName"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
-          </div>
 
-          <div class="col-span-3">
+          <div className="col-span-6">
             <label
               for="LastName"
-              class="block text-xs font-medium text-gray-700"
+              className="block text-xs font-medium text-gray-700"
             >
-              Last Name
+              Name
             </label>
 
-            <input
+            <input required
               type="text"
               id="LastName"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              name='name'
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
             />
           </div>
 
-          <div class="col-span-6">
-            <label for="Email" class="block text-xs font-medium text-gray-700">
-              Email
+          <div className="col-span-6">
+            <label for="Email" className="block text-xs font-medium text-gray-700">
+              Email address
             </label>
 
-            <input
+            <input required
               type="email"
               id="Email"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              value=  {user?.email}
+              name="email"
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
             />
           </div>
 
-          <div class="col-span-6">
-            <label for="Phone" class="block text-xs font-medium text-gray-700">
+          <div className="col-span-6">
+            <label for="Phone" className="block text-xs font-medium text-gray-700">
               Phone
             </label>
 
-            <input
+            <input required
               type="tel"
               id="Phone"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              name='phone'
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
             />
           </div>
-
-          <div class="col-span-6">
-            <label for="Phone" class="block text-xs font-medium text-gray-700">
+          <div className="col-span-6">
+            <label for="Phone" className="block text-xs font-medium text-gray-700">
               address
             </label>
 
-            <input
+            <input required
               type="tel"
               id="Phone"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              name='address'
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
             />
           </div>
-          <div class="col-span-6">
-            <label for="Phone" class="block text-xs font-medium text-gray-700">
+
+          <div className="col-span-6">
+            <label for="Phone" className="block text-xs font-medium text-gray-700">
+              message
+            </label>
+             <textarea name='message'
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              placeholder="Message"
+              rows="8"
+              id="message"
+            ></textarea>
+          </div>
+          <div className="col-span-6">
+            <label for="Phone" className="block text-xs font-medium text-gray-700">
               Bkish transition ID
             </label>
-
-            <input
-              type="tel"
+            <input required
+              type="tex" 
+              placeholder='Optional'
               id="Phone"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              name='bkishID'
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
 
-          <div class="col-span-6">
-            <button
-              class="block w-full rounded-md btn-primary p-2.5 text-sm font-semibold text-white transition hover:shadow-lg"
-            >
-              Submit 
-            </button>
+          <div className="col-span-6">
+            <input type="submit"
+              className="block w-full rounded-md btn-primary p-2.5 text-sm font-semibold text-white transition hover:shadow-lg"
+            value="submit"/>
+              
           </div>
         </form>
       </div>

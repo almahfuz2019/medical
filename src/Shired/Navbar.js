@@ -3,10 +3,12 @@ import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import UseProducts from '../Deshboard/Hooks/UseProducts';
+import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import auth from '../firebase.init';
 const Navbar = () => {
-  const {cart,products}=UseProducts();
-  console.log(cart);
+  const {x,total}=UseUserSpacifiqData();
+  const {cart}=UseProducts();
+  // console.log(cart);
   const [user, loading, error] = useAuthState(auth);
   const [signOut, SignOutLoading, SignOutError] = useSignOut(auth);
   if (SignOutError) {
@@ -24,7 +26,7 @@ const Navbar = () => {
     <li><Link to="/">Home</Link></li>
     <li><Link to="/all-Products">Products</Link></li>
     <li><Link to="/home/trams-and-condition">TC</Link></li>
-    <li><Link to="/home/faq">QNA {cart.length}</Link></li>
+    <li><Link to="/home/faq">QNA</Link></li>
     <li><Link to="/home/about">About US</Link></li>
     <li><Link to="/home/contact">Contact US</Link></li>
    <li tabIndex={0} className="z-20 ">
@@ -83,13 +85,13 @@ const Navbar = () => {
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-          <span className="badge badge-sm indicator-item">{cart.length}</span>
+          <span className="badge badge-sm indicator-item">{x?.length}</span>
         </div>
       </label>
       <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
         <div className="card-body">
-          <span className="font-bold text-lg">{cart.length} Items</span>
-          <span className="text-info">Subtotal: ${cart.length}</span>
+          <span className="font-bold text-lg">{x?.length} Items</span>
+          <span className="text-info">Total: ${total}</span>
           <div className="card-actions">
             <Link to="view-cart" className="btn btn-primary btn-block">View cart</Link>
           </div>
@@ -99,8 +101,8 @@ const Navbar = () => {
    {user?  <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className=" rounded-full">
-        <div className="avatar placeholder">
-  <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+        <div className="avatar placeholder online">
+  <div className="bg-neutral-focus text-neutral-content rounded-full w-12  ">
     <span>{(user?.displayName.slice(0,2))}</span>
   </div>
 </div> 

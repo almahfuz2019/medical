@@ -4,6 +4,7 @@ import Login from './Authentication/Login';
 import Register from './Authentication/Register';
 import AboutUs from './Components/AboutUs';
 import ContactUs from './Components/ContactUs';
+import 'react-toastify/dist/ReactToastify.css';
 import Faq from './Components/Faq';
 import MainPage from './Components/MainPage';
 import ProductDetails from './Components/ProductDetails';
@@ -17,12 +18,9 @@ import BasicInfo from './Deshboard/Components/BasicInfo';
 import LoadProducts from './Deshboard/Components/LoadProducts';
 import AddProducts from './Deshboard/Components/AddProducts';
 import CreateCatagory from './Deshboard/Components/CreateCatagory';
-import SingleProduct from './Components/SingleProduct';
-import { FaShoppingBag } from 'react-icons/fa';
 import ShopingCart from './Components/ShopingCart';
 import Checkout from './Components/Checkout';
 import Test from './Deshboard/Components/Test';
-import AllProducts from './Components/AllProducts';
 import Notfound from './Components/Notfound';
 import UpdateProduct from './Deshboard/Components/UpdateProduct';
 import UpdateCatagory from './Deshboard/Components/UpdateCatagory';
@@ -30,16 +28,25 @@ import Copen from '../src/Components/Copen';
 import UpdateCopen from './Deshboard/Components/UpdateCopen';
 import RequireAuth from './Authentication/RequireAuth';
 import auth from './firebase.init';
+import Orders from './Deshboard/Components/Orders';
+import SingleItemorder from './Deshboard/Components/SingleItemorder';
+import OrderStatusUpdate from './Deshboard/OrderStatusUpdate';
+import UserSlefOrderInfo from './Deshboard/Components/UserSelfInfo/UserSlefOrderInfo';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
         
   return (
    <div className='md:px-6'>
    <Navbar/>
- 
 <Routes>
   <Route path='/login' element={<Login/>}/>
-  <Route path='update/:id' element={<RequireAuth><UpdateProduct/></RequireAuth>}/>
+  <Route path='update/:id' element={<RequireAuth>
+      <UpdateProduct/></RequireAuth>}/>
+  <Route path='itemorderdelete/:id' element={<RequireAuth>
+      <OrderStatusUpdate/></RequireAuth>}/>
+  <Route path='itemorder/:id' element={<RequireAuth>
+      <SingleItemorder/></RequireAuth>}/>
   <Route path='updatecatagory/:id' element={<RequireAuth><UpdateCatagory/></RequireAuth>}/>
   <Route path='/updatecopen/:id' element={<RequireAuth><UpdateCopen/></RequireAuth>}/>
   <Route path='/deshboard' element={
@@ -52,6 +59,7 @@ function App() {
  <BasicInfo/>
    </RequireAuth>
   }/>
+          <Route path='UserSlefOrderInfo' element={<RequireAuth><UserSlefOrderInfo/></RequireAuth>}/>
           <Route path='basic-info' element={<RequireAuth><BasicInfo/></RequireAuth>}/>
           <Route path='products' element={<RequireAuth>
                 <LoadProducts/>
@@ -62,6 +70,9 @@ function App() {
           <Route path='catagory' element={<RequireAuth><CreateCatagory/></RequireAuth>}/>
           <Route path='copne' element={<RequireAuth>
                 <Copen/>
+          </RequireAuth>}/>
+          <Route path='orders' element={<RequireAuth>
+                <Orders/>
           </RequireAuth>}/>
 
   </Route>
@@ -74,7 +85,7 @@ function App() {
   <Route path='/checkout' element={<Checkout/>}/>
   <Route path='/test' element={<Test/>}/>
   <Route path='/' element={<Home/>}/>
-  <Route path='/all-Products' element={<AllProducts/>}/>
+
   <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='/home/about' element={<AboutUs/>}/>
           <Route path='/home/faq' element={<Faq/>}/>
@@ -90,6 +101,7 @@ function App() {
 <Route path='*' element={<Notfound/>}/>
 </Routes>
 <Footer/>
+<ToastContainer />
    </div>
   );
 }

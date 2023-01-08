@@ -1,9 +1,11 @@
 
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import UseCatagory from '../Hooks/UseCatagory';
 const UpdateProduct = () => {
     const {catagorys}=UseCatagory();
+    // const time= new Date().toLocaleString();
     const [selectCatagory,setSelectCatagory]=useState();
      // Update item
      const[item,setItem]=useState([]);
@@ -40,8 +42,8 @@ useEffect(()=>{
         console.log(updateImage);
     }
     const handleCatagoryChange = e => {
-        const updateCatagory = selectCatagory;
-        const updateNewCatagory = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:item.image, catagorys:updateCatagory}
+        const updateCatagory = e.target.value;
+        const updateNewCatagory = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:item.image, catagory:updateCatagory}
         setItem(updateNewCatagory);
         console.log(updateNewCatagory);
     }
@@ -56,13 +58,22 @@ useEffect(()=>{
         fetch(url, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type':'application/json'
             },
             body: JSON.stringify(item)
         })
             .then(res => res.json())
             .then(data => {
-                    alert('Update Successful');
+              toast.success('Update Successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "colored",
+                });
                     e.target.reset();
             })
         e.preventDefault();
@@ -70,27 +81,27 @@ useEffect(()=>{
      return (
      <div> 
 <form onSubmit={handleUpdateProduct}>
-     <section class="text-gray-600 body-font relative ">
-     <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
-    <div class="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
-      <h2 class="text-gray-900 text-lg mb-1 
+     <section className="text-gray-600 body-font relative ">
+     <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
+    <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
+      <h2 className="text-gray-900 text-lg mb-1 
      title-font font-semibold">Add a product</h2>
       
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
-        <input type="text" id="name" name="name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.name} onChange={handleNameChange}/>
+      <div className="relative mb-4">
+        <label for="name" className="leading-7 text-sm text-gray-600">Name</label>
+        <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.name} onChange={handleNameChange}/>
       </div>
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-600">Price</label>
-        <input type="text" id="name" name="name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.price} onChange={handlePriceChange}/>
+      <div className="relative mb-4">
+        <label for="name" className="leading-7 text-sm text-gray-600">Price</label>
+        <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.price} onChange={handlePriceChange}/>
       </div>
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-600">Previce Price</label>
-        <input type="text" id="name" name="name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.previcePrice} onChange={handlePrevicePriceChange}/>
+      <div className="relative mb-4">
+        <label for="name" className="leading-7 text-sm text-gray-600">Previce Price</label>
+        <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.previcePrice} onChange={handlePrevicePriceChange}/>
       </div>
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-600">Catagory</label>
-        <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={e=>setSelectCatagory(e.target.value)}>
+      <div className="relative mb-4">
+        <label for="name" className="leading-7 text-sm text-gray-600">Catagory</label>
+        <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={handleCatagoryChange}>
           {
                catagorys.map(p=>
                     <option
@@ -101,21 +112,21 @@ useEffect(()=>{
           }
         </select>
       </div>
-      {/* <div class="relative mb-4">
+      {/* <div className="relative mb-4">
        
         <input type="file" className="file-input file-input-bordered w-full max-w-xs" />
       </div> */}
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-600">Image Link</label>
-        <input type="text"  class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.image} onChange={handleImageChange}/>
+      <div className="relative mb-4">
+        <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
+        <input type="text"  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.image} onChange={handleImageChange}/>
       </div>
       
-      <div class="relative mb-4">
-        <label for="message" class="leading-7 text-sm text-gray-600">Description</label>
-        <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" value={item.details} onChange={handleDetailsChange}></textarea>
+      <div className="relative mb-4">
+        <label for="message" className="leading-7 text-sm text-gray-600">Description</label>
+        <textarea id="message" name="message" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" value={item.details} onChange={handleDetailsChange}></textarea>
       </div>
-      <input class="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="save" type="submit"/>
-      <p class="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
+      <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="save" type="submit"/>
+      <p className="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
     </div>
   </div>
 </section>

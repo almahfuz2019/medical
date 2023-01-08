@@ -29,8 +29,8 @@ const LoadProducts = () => {
          <tr className='border'>
            <th>{index+1}</th>
            <td>
-           <div class="avatar border border-primary rounded border-2">
-              <div class="mask mask-squircle w-12 h-12 ">
+           <div className="avatar border border-primary rounded border-2">
+              <div className="mask mask-squircle w-12 h-12 ">
                 {
                 product?.image?
     <img  src={product?.image} alt="image"/>:
@@ -40,8 +40,11 @@ const LoadProducts = () => {
             </div>
            </td>
            <td>{product?.name}</td>
-           <td>{product?.catagory} <br />
+           <td>{product?.catagory} 
+           <br />
            price: {product?.price}
+           <br/>
+           {product?.dateAndTime}
            </td>
            <td className='flex gap-3 text-2xl'>
             <Link to={`/update/${product._id}`}>

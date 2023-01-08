@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useQuery } from "react-query";
  const UseProducts = () => {
 const[cart,setCart]=useState([]);
-     const { isLoading:productLoading, error, data:products } = useQuery( 'repoData', () =>
-     fetch('http://localhost:5000/products').then(res =>
+     const { isLoading:productLoading, error, data:products } = useQuery( 'repoDatsa', () =>
+      fetch('http://localhost:5000/products').then(res =>
        res.json()
  )
    )
@@ -29,9 +29,19 @@ const handleAddToCart=(product)=>{
      const newCart=[...cart,product];
      setCart(newCart)
    }
+//    let shippingCharge=0;
+//    let total=0;
+//    let discount=0;
+//    let sum=0;
+//    for(let product of cart){
+//      total+= parseInt(product.price);
+//      shippingCharge=total+100;
+//      discount=(shippingCharge-(5/100).toFixed(2));
+//      discount=(discount.toFixed(2));
+//    }
+//   console.log(cart);
   
-     return {products,productLoading,handleProductDelete,error,handleAddToCart,cart};
-     
+  return {products,productLoading,handleProductDelete,error,handleAddToCart,cart};
 };
 
 export default UseProducts;
