@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import auth from '../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import SocialLogin from './SocialLogin';
 import Loading from '../Components/Loading';
+import UseToken from '../Deshboard/Hooks/UseToken';
 const Login = () => {
     const navigate=useNavigate();
     let location = useLocation();
@@ -22,19 +23,20 @@ const Login = () => {
   const onSubmit = data => {
     signInWithEmailAndPassword(data.email,data.password);
   }
+  const [token]=UseToken(user);
   let signInErrorMessage;
+  
+   useEffect(()=>{
+     if (token) {
+       navigate(from, { replace: true });
+     }
+   },[token,from,navigate])
   if(error){
     
 signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
   }
   if (loading) {
     return <Loading/>;
-  }
- 
-  
-  if (user) {
-    navigate(from, { replace: true });
-  
   }
      return (
          

@@ -6,19 +6,24 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import Loading from '../../../Components/Loading';
 import auth from '../../../firebase.init';
-import UseUserSpacifiqData from '../../Hooks/UseUserSpacifiqData';
 const UserSlefOrderInfo = () => {
      const [user]=useAuthState(auth);
      const { isLoading:productLoading, error, data:orders } = useQuery( 'userSelfOrder', () =>
      fetch(`http://localhost:5000/userselforder?email=${user.email}`).then(res =>
        res.json()
  )
-   )
+   ) 
+  //  const y=orders[0];
    if(productLoading){
      return <Loading/>
    }
      return (
           <div>
+            {/* {
+              y.map(x=>
+                <p>{x._id}</p>
+                )
+            } */}
           <div className="overflow-x-auto">
           <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {orders.length}</span></div>
           <table className="table w-full">

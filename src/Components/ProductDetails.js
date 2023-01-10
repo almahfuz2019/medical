@@ -368,6 +368,7 @@ const ProductDetails = () => {
               <input
                 type="number"
                 min="1"
+                defaultValue={1}
                 
                 className="w-12 rounded border-gray-200 py-3 text-center text-xs border border-3"
                 name='productQuentity' required

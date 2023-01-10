@@ -7,9 +7,11 @@ import { AiFillEye } from "react-icons/ai";
 import userEvent from '@testing-library/user-event';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
+import UseAdmin from './Hooks/UseAdmin';
 const Deshboard = () => {
     const  {products,productLoading}=UseProducts()
     const [user]=useAuthState(auth);
+    const [admin]=UseAdmin(user);
     // const  {catagorys}=UseCatagory();
     if(productLoading){
         return <Loading/>
@@ -40,8 +42,8 @@ const Deshboard = () => {
                         </div>
                        
  
-        <li className=' text-white bg-gray-500 mt-2 '>
-       <Link to="UserSlefOrderInfo" className="flex items-center  active:bg-red-700 ">
+        {admin? "":<li className=' text-white bg-gray-500 mt-2 '>
+       <Link to="#" className="flex items-center  active:bg-red-700 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -49,9 +51,9 @@ const Deshboard = () => {
                                     <rect x={4} y={14} width={6} height={6} rx={1} />
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
-                                <span className="text-sm  ml-2">UserSlefOrderInfo</span>
-                            </Link></li>
-        <li className=' text-white bg-gray-500 mt-2 '>
+                                <span className="text-sm  ml-2">Orders</span>
+                            </Link></li>}
+                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
        <Link to="basic-info" className="flex items-center  active:bg-red-700 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -61,10 +63,10 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Basic Info</span>
-                            </Link></li>
+                            </Link></li>}
                        
        
-      <li className=' text-white bg-gray-500 mt-2 '>
+                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <Link to="products" className="flex items-center  active:bg-red-700 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -74,8 +76,8 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Products <span className='bg-primary rounded p-2 text-white font-bold text-end'>{products.length}</span></span>
-                            </Link></li>
-      <li className=' text-white bg-gray-500 mt-2 '>
+                            </Link></li>}
+                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <Link to="add-product" className="flex items-center  active:bg-red-700 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -85,8 +87,8 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Add Product</span>
-                            </Link></li>
-      <li className=' text-white bg-gray-500 mt-2 '>
+                            </Link></li>}
+                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <Link to="catagory" className="flex items-center  active:bg-red-700 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -96,8 +98,8 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>32</span></span>
-                            </Link></li>
-      <li className=' text-white bg-gray-500 mt-2 '>
+                            </Link></li>}
+                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <Link to="copne" className="flex items-center  active:bg-red-700 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -107,12 +109,17 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Copone </span>
-                            </Link></li>
-                            <li className=' text-white bg-gray-500 mt-2 '>
+                            </Link></li>}
+                            {admin &&<li className=' text-white bg-gray-500 mt-2 '>
         <Link to="orders" className="flex items-center  active:bg-red-700 ">
                                 <AiFillEye/>
                                 <span className="text-sm  ml-2">Orders </span>
-                            </Link></li>
+                            </Link></li>}
+                            {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
+     <Link to="users" className="flex items-center  active:bg-red-700 ">
+                                <AiFillEye/>
+                                <span className="text-sm  ml-2">users </span>
+                            </Link></li>}
     </ul>
   
   </div>

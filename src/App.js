@@ -33,46 +33,52 @@ import SingleItemorder from './Deshboard/Components/SingleItemorder';
 import OrderStatusUpdate from './Deshboard/OrderStatusUpdate';
 import UserSlefOrderInfo from './Deshboard/Components/UserSelfInfo/UserSlefOrderInfo';
 import { ToastContainer } from 'react-toastify';
+import Users from './Deshboard/Components/Users';
+import RequireAdmin from './Authentication/RequireAdmin';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import UseAdmin from './Deshboard/Hooks/UseAdmin';
 
 function App() {
-        
+      const [user]=useAuthState(auth);
+      const [admin]=UseAdmin(user);
   return (
    <div className='md:px-6'>
    <Navbar/>
 <Routes>
   <Route path='/login' element={<Login/>}/>
   <Route path='update/:id' element={<RequireAuth>
-      <UpdateProduct/></RequireAuth>}/>
+      <RequireAdmin><UpdateProduct/></RequireAdmin></RequireAuth>}/>
   <Route path='itemorderdelete/:id' element={<RequireAuth>
-      <OrderStatusUpdate/></RequireAuth>}/>
+      <RequireAdmin><OrderStatusUpdate/></RequireAdmin></RequireAuth>}/>
   <Route path='itemorder/:id' element={<RequireAuth>
       <SingleItemorder/></RequireAuth>}/>
-  <Route path='updatecatagory/:id' element={<RequireAuth><UpdateCatagory/></RequireAuth>}/>
-  <Route path='/updatecopen/:id' element={<RequireAuth><UpdateCopen/></RequireAuth>}/>
+  <Route path='updatecatagory/:id' element={<RequireAuth><RequireAdmin><UpdateCatagory/></RequireAdmin></RequireAuth>}/>
+  <Route path='/updatecopen/:id' element={<RequireAuth><RequireAdmin><UpdateCopen/></RequireAdmin></RequireAuth>}/>
   <Route path='/deshboard' element={
   <RequireAuth>
  <Deshboard/>
   </RequireAuth>
   }>
-  <Route index  element={
+  {admin? <Route index  element={
   <RequireAuth>
- <BasicInfo/>
+<RequireAdmin> <BasicInfo/></RequireAdmin>
    </RequireAuth>
-  }/>
-          <Route path='UserSlefOrderInfo' element={<RequireAuth><UserSlefOrderInfo/></RequireAuth>}/>
-          <Route path='basic-info' element={<RequireAuth><BasicInfo/></RequireAuth>}/>
+  }/>: <Route index element={<RequireAuth><UserSlefOrderInfo/></RequireAuth>}/>}
+         
+          <Route path='basic-info' element={<RequireAuth><RequireAdmin><BasicInfo/></RequireAdmin></RequireAuth>}/>
+          <Route path='users' element={<RequireAuth>{<RequireAdmin><Users/></RequireAdmin>}</RequireAuth>}/>
           <Route path='products' element={<RequireAuth>
-                <LoadProducts/>
+                <RequireAdmin><LoadProducts/></RequireAdmin>
           </RequireAuth>}/>
           <Route path='add-product' element={<RequireAuth>
-                <AddProducts/>
+              <RequireAdmin>  <AddProducts/></RequireAdmin>
           </RequireAuth>}/>
-          <Route path='catagory' element={<RequireAuth><CreateCatagory/></RequireAuth>}/>
+          <Route path='catagory' element={<RequireAuth><RequireAdmin><CreateCatagory/></RequireAdmin></RequireAuth>}/>
           <Route path='copne' element={<RequireAuth>
-                <Copen/>
+         <RequireAdmin>  <Copen/></RequireAdmin>
           </RequireAuth>}/>
           <Route path='orders' element={<RequireAuth>
-                <Orders/>
+               <RequireAdmin> <Orders/></RequireAdmin>
           </RequireAuth>}/>
 
   </Route>

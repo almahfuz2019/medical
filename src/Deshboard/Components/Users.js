@@ -1,65 +1,56 @@
 import React from 'react';
-import { FaEdit, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { AiFillEye } from 'react-icons/ai';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { AiFillEye } from "react-icons/ai";
+import { toast } from 'react-toastify';
 import Loading from '../../Components/Loading';
-import UseOrder from '../Hooks/UseOrder';
-const Orders = () => {
-     const {orderLoading,error1,orderItem,handleOrderDelete}=UseOrder();
+import auth from '../../firebase.init';
+import UserRow from './UserRow';
+const Users = () => {
 
-     const time= new Date().toLocaleString();
-     if(orderLoading){
-          return <Loading/>
-     }
+     const { isLoading, error, data:users,refetch } = useQuery( 'users', () =>
+     fetch('http://localhost:5000/user',{
+          method:"GET",
+          headers:{
+               authorization:`Bearer ${localStorage.getItem('accessToken')}`
+          }
+     }).then(res =>
+      res.json()
+)
+  )
+  // console.log(users);
+  if(isLoading){
+     return <Loading/>
+  }
+
+  
      return (
           <div>
-          <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {orderItem.length}</span></div>
+             <div className="overflow-x-auto">
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {users?.length}</span></div>
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
               <tr>
                 <th>No</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>Delevary Date</th>
-                <th>Action</th>
+                <th>Email</th>
+                <th>Make Admin</th>
+                <th>Remove Admin</th>
               </tr>
             </thead>
-                
-         {orderItem.map((order,index)=>
-      
+    
+         
             <tbody>
-              <tr className='border'>
-                <th>{index+1}</th>
-                <th>{order.dateAndTime}</th>
-                <td>
-                  {order.status==="wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">done</button>}
-               
-                </td>
-                <td>TK ${order?.TotalPrice} <br />
-                Total Item: {order?.userData?.length}
-                </td>
+             {users.map(user=><UserRow
+             key={user._id}
+             refetch={refetch}
+             user={user}
+             >
 
-               <td>
-                    {order.dateAndTime}
-               </td>
-                <td className='flex gap-3 text-2xl'>
-                 
-                 <Link to={`/itemorderdelete/${order._id}`}>
-                 <FaEdit/>
-                 </Link>
-                 <Link  onClick={()=>handleOrderDelete(order._id)}>
-                 <FaRegTrashAlt/>
-                 </Link>
-                 <Link to={`/itemorder/${order._id}`} >
-                 <AiFillEye/>
-                 </Link>
-                </td>
-              </tr>
+             </UserRow>)}
             </tbody>
-          )}
+  
           </table>
         </div>
         <div className="flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4">
@@ -92,7 +83,7 @@ const Orders = () => {
                          </div>
                      </div>
                  </div>
-               </div>
+          </div>
      );
 };
-export default Orders;
+export default Users;

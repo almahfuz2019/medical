@@ -14,7 +14,7 @@ const Checkout = () => {
   //   return <p>{error}</p>
   // }
   const time= new Date().toLocaleString();
-  const {x,total}=UseUserSpacifiqData();
+  const {usdata,total}=UseUserSpacifiqData();
   // console.log(x);
   const checkOut=(event)=>{
     event.preventDefault();
@@ -24,7 +24,7 @@ const Checkout = () => {
     const address=event.target.address.value;
     const message=event.target.message.value;
     const bkishID=event.target.bkishID.value;
-    const userData=x;
+    const userData=usdata;
     const TotalPrice=total;
     const dateAndTime=time;
     let status="wating";
@@ -79,7 +79,7 @@ const Checkout = () => {
           <div className="flow-root">
        
           <div className="avatar-group -space-x-6">
-          {x?.map(data=>
+          {usdata?.map(data=>
           <div className="avatar">
             <div className="w-12">
               <img  src={data?.product?.image} />
