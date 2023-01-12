@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import Loading from '../Components/Loading';
 // import UseCatagory from './Hooks/UseCatagory';
@@ -8,11 +8,27 @@ import userEvent from '@testing-library/user-event';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import UseAdmin from './Hooks/UseAdmin';
+import UseCopen from './Hooks/UseCopen';
+import UseCatagory from './Hooks/UseCatagory';
+import UseOrder from './Hooks/UseOrder';
+import { useQuery } from 'react-query';
+
 const Deshboard = () => {
     const  {products,productLoading}=UseProducts()
     const [user]=useAuthState(auth);
     const [admin]=UseAdmin(user);
-    // const  {catagorys}=UseCatagory();
+    const  {catagorys}=UseCatagory();
+    const  {copone}=UseCopen();
+    const  {orderItem}=UseOrder();
+    const [userlength,setUserLength]=useState([]);
+    useEffect(()=>{
+        fetch("http://localhost:5000/user")
+        .then(res=>res.json())
+        .then(data=>setUserLength(data))
+        console.log(userlength);
+
+    },[])
+    
     if(productLoading){
         return <Loading/>
     }
@@ -97,7 +113,7 @@ const Deshboard = () => {
                                     <rect x={4} y={14} width={6} height={6} rx={1} />
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
-                                <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>32</span></span>
+                                <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>{catagorys.length}</span></span>
                             </Link></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <Link to="copne" className="flex items-center  active:bg-red-700 ">
@@ -108,17 +124,17 @@ const Deshboard = () => {
                                     <rect x={4} y={14} width={6} height={6} rx={1} />
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
-                                <span className="text-sm  ml-2">Copone </span>
+                                <span className="text-sm  ml-2">Copone <span className='bg-primary rounded p-2 text-white font-bold text-end'>{copone.length}</span></span>
                             </Link></li>}
                             {admin &&<li className=' text-white bg-gray-500 mt-2 '>
         <Link to="orders" className="flex items-center  active:bg-red-700 ">
                                 <AiFillEye/>
-                                <span className="text-sm  ml-2">Orders </span>
+                                <span className="text-sm  ml-2">Orders <span className='bg-primary rounded p-2 text-white font-bold text-end'>{orderItem.length}</span></span>
                             </Link></li>}
                             {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
      <Link to="users" className="flex items-center  active:bg-red-700 ">
                                 <AiFillEye/>
-                                <span className="text-sm  ml-2">users </span>
+                                <span className="text-sm  ml-2">users <span>{userlength.length}</span></span>
                             </Link></li>}
     </ul>
   

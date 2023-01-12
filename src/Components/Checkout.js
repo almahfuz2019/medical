@@ -174,7 +174,7 @@ const Checkout = () => {
             <label for="Phone" className="block text-xs font-medium text-gray-700">
               Bkish transition ID
             </label>
-            <input required
+            <input
               type="tex" 
               placeholder='Optional'
               id="Phone"

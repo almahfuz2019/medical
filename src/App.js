@@ -37,12 +37,17 @@ import Users from './Deshboard/Components/Users';
 import RequireAdmin from './Authentication/RequireAdmin';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import UseAdmin from './Deshboard/Hooks/UseAdmin';
+import { useState } from 'react';
+import DarkMode from './Deshboard/Hooks/DarkMode';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function App() {
       const [user]=useAuthState(auth);
       const [admin]=UseAdmin(user);
+//    const {dark,setDark}=DarkMode()
   return (
    <div className='md:px-6'>
+     {/* <input onClick={()=>setDark(!dark)}  type="checkbox"/> */}
    <Navbar/>
 <Routes>
   <Route path='/login' element={<Login/>}/>
@@ -90,7 +95,10 @@ function App() {
   </RequireAuth>}/>
   <Route path='/checkout' element={<Checkout/>}/>
   <Route path='/test' element={<Test/>}/>
+
+
   <Route path='/' element={<Home/>}/>
+
 
   <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='/home/about' element={<AboutUs/>}/>

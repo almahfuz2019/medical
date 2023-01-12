@@ -1,8 +1,20 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
  const UseProducts = () => {
 const[cart,setCart]=useState([]);
+const[pageCount,setPageCount]=useState(0);
+const[page,setPage]=useState(0);
+const[size,setSize]=useState(10);
+useEffect(()=>{
+     fetch("http://localhost:5000/productCount")
+     .then(res=>res.json())
+     .then(data=>{
+          const count=data.count;
+          const pages=Math.ceil(count/size);
+          setPageCount(pages)
+     })
+},[])
      const { isLoading:productLoading, error, data:products } = useQuery( 'repoDatsa', () =>
       fetch('http://localhost:5000/products').then(res =>
        res.json()
@@ -41,7 +53,7 @@ const handleAddToCart=(product)=>{
 //    }
 //   console.log(cart);
   
-  return {products,productLoading,handleProductDelete,error,handleAddToCart,cart};
+  return {products,productLoading,handleProductDelete,error,handleAddToCart,cart,pageCount,page,setPage,size,setSize,setPageCount};
 };
 
 export default UseProducts;

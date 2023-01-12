@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 
 const ShopingCart = () => {
-const {usdata,handleUserDelete,total}=UseUserSpacifiqData();
+const {usdata,handleUserDelete,total,products,subTotal,shippingCharge}=UseUserSpacifiqData();
+console.log(usdata);
 // console.log(data);
      return (
           <div>
@@ -82,22 +83,26 @@ const {usdata,handleUserDelete,total}=UseUserSpacifiqData();
             <dl className="space-y-0.5 text-sm text-gray-700">
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>Subtotal</dt>
-                <dd className='font-bold'>$ {total}</dd>
+                <dd className='font-bold'>$ {subTotal}</dd>
               </div>
 
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>VAT</dt>
                 <dd className='font-bold'>$ 0.00</dd>
               </div>
+              <div className="flex justify-between border-b-2 text-xl">
+                <dt>Shipping chirge</dt>
+                <dd className='font-bold'>$ {shippingCharge}</dd>
+              </div>
 
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>Discount</dt>
-                <dd className='font-bold'>-$20</dd>
+                <dd className='font-bold'>-$000</dd>
               </div>
 
               <div className="flex justify-between border-b-2  text-xl ">
                 <dt >Total</dt>
-                <dd className='font-bold text-xl'>£200</dd>
+                <dd className='font-bold text-xl'>${total}</dd>
               </div>
             </dl>
 
@@ -120,7 +125,7 @@ const {usdata,handleUserDelete,total}=UseUserSpacifiqData();
                 />
                 </svg>
 
-                <p className="text-xs whitespace-nowrap">2 Discounts Applied</p>
+                <p className="text-xs whitespace-nowrap">No Discounts Applied</p>
               </span>
             </div>
 

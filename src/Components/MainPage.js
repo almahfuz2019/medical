@@ -13,15 +13,15 @@ const MainPage = () => {
                <SecondNav/> */}
           <div className="divider text-xl sm:text-4xl  font-bold my-10">Best Selling Products</div>
 
-               <Products/>
-               <HomePageCatagory/>
+               {/* <Products/>
+               <HomePageCatagory/> */}
                
                <div className="divider text-xl sm:text-4xl  font-bold my-10 ">All Products</div>
-               <Products/>
-               <div className=" text-center mt-10">
-               <Link to="all-Products" className=' btn btn-primary px-10'>Load More</Link>
-               </div>
-               <Discount/>
+               {/* <Products/> */}
+               {/* <div className=" text-center mt-10">
+               <Link to="all-Products" className=' btn btn-primary px-10'>Load More</Link> */}
+               {/* </div> */}
+               {/* <Discount/> */}
           </div>
      );
 };

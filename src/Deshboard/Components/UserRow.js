@@ -12,7 +12,6 @@ const UserRow = ({user,refetch}) => {
           .then(res=>{
                if(res.status=== 403){
                     toast.error("Failed to make an admin")
-                    // you can remove token and sign out 
                }
               return res.json()})
           .then(data=>{

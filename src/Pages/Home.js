@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaCartPlus } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import Discount from '../Components/Discount';
@@ -6,10 +7,23 @@ import Loading from '../Components/Loading';
 import SecondNav from '../Components/SecondNav';
 import UseProducts from '../Deshboard/Hooks/UseProducts';
 const Home = () => {
- const {products,productLoading,error}=UseProducts();
+  const {pageCount,page,setPage,size,setSize}=UseProducts();
+  const[productLoading,setProductLoading]=useState(true);
+  const[products,setProducts]=useState([]);
+  useEffect(()=>{
+    fetch(`http://localhost:5000/products?page=${page}&size=${size}`)
+    .then(res=>res.json())
+    .then(data=>setProducts(data))
+    setProductLoading(false)
+  },[page,size])
+//   const { isLoading:productLoading, error, data:products } = useQuery( 'repoDatsa', () =>
+//       fetch(`http://localhost:5000/products?page=${page}&size=${size}`).then(res =>
+//        res.json()
+//  )
+//    )
+
 if (productLoading){
    return <Loading/>};
-if (error) return 'An error has occurred: ' + error.message;
      return (
           <div>
                  {/* <Banner/> */}
@@ -376,11 +390,13 @@ if (error) return 'An error has occurred: ' + error.message;
     </select>
   </div>
 </div>
-<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-5 mx-5-2 sm:mx-5'>
+
+<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  gap-5 mx-5-2 sm:mx-5'>
+  
       {products?.map(product=>
 <>
-        <div className=" light:bg-red-700 dark:bg-gray-100   shadow-lg border-2 border rounded-2xl">
-       <div className="h-28 sm:h-40 w-full bg-gray-300 flex flex-col rounded-t-2xl justify-between p-4 bg-cover bg-center border-b-2 border-primary"    style={{backgroundImage: `url(${product.image})`  }}>
+        <div className=" light:bg-red-700 dark:bg-gray-100   shadow-lg border-2  border ">
+       <div className="h-28 sm:h-40 w-full bg-gray-300 flex flex-col  justify-between p-4 bg-cover bg-center border-b-2 border-primary"    style={{backgroundImage: `url(${product.image})`  }}>
          <div className="flex justify-between">
           </div>
        <div className='flex'>
@@ -393,12 +409,45 @@ if (error) return 'An error has occurred: ' + error.message;
             <div className="p-2  items-center"> <p className="text-gray-500 font-light text-xs text-center">{product?.catagory}</p>
             <div className='text-center'>
             <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline hover:text-primary" >{product.name}</Link>
-            </div>    <p className="text-center text-gray-800 mt-1">€{product.price}</p>        
-            {/* <button onClick={()=>handleAddToCart(product)}  className="py-2 px-4 text-white rounded disabled:opacity-50 mt-4 w-full flex items-center justify-center btn-primary" >   Add to order <svg        xmlns="http://www.w3.org/2000/svg"className="h-6 w-6 ml-2" fill="none"  viewBox="0 0 24 24"  stroke="currentColor"> <path          strokeLinecap="round"          strokeLinejoin="round"  strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>  </svg></button>   */}
-            </div></div>
+            </div>    <p className="text-center text-gray-800 mt-1">€{product.price}</p>    
+            
+            </div>
+            <div className=' mx-auto text-center mt-auto'>
+            <input
+                type="number"
+                min="1"
+                defaultValue={1}
+                
+                className="w-16 rounded  py-1 text-center text-xs border border-3 mx-auto border-primary text-primary"
+                name='productQuentity' required
+              /> 
+            <button   className="py-1 px-4 text-white rounded disabled:opacity-50 mt-2 w-full flex items-center justify-center btn-primary" >   Add to order <span className='ml-2'><FaCartPlus/></span></button> </div> 
+            </div>
+            
             </>
         )}
+        
         </div>
+        {/* <div className="btn-group border-primary border">
+        {
+          [...Array(pageCount).keys()]
+          .map(number=><button className="btn"
+              onClick={()=>setPage(number)}>{number+1}</button>)
+        }
+</div> */}
+        
+        {
+          [...Array(pageCount).keys()]
+          .map(number=><button
+             className={page===number?'bg-green-900 p-3 mx-2':"bg-red-300 p-3 mx-2"} onClick={()=>setPage(number)}>{number}</button>)
+        }
+        {size}
+        <select onChange={e=>setSize(e.target.value)} >
+          <option selected value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+     
           </div>
      );
 };

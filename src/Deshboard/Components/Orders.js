@@ -29,14 +29,12 @@ const Orders = () => {
             </thead>
                 
          {orderItem.map((order,index)=>
-      
             <tbody>
               <tr className='border'>
                 <th>{index+1}</th>
                 <th>{order.dateAndTime}</th>
                 <td>
-                  {order.status==="wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">done</button>}
-               
+                  {order.status==="Waiting"? <button className="btn loading">Wating</button>:<button className="btn disabled">Confirm</button>}
                 </td>
                 <td>TK ${order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}

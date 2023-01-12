@@ -1,4 +1,8 @@
 .active{
      color: #176F6B;
+     background-color: white;
      font-weight: 700;
+}
+.pagination .selected{
+     background-color: aqua !important;
 }

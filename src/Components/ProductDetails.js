@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const ProductDetails = () => {
   const navigate=useNavigate();
   const [user]=useAuthState(auth);
+  
   const handleAddtocart=(event)=>{
     event.preventDefault();
     const productQuentity=event.target.productQuentity.value;

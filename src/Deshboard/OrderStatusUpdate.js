@@ -1,44 +1,54 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from "axios";
 const OrderStatusUpdate = () => {
-     const[item,setItem]=useState([]);
-     const { id } = useParams();
-     const handleCatagoryChange = e => {
-          const updateCatagory = e.target.value;
-          const status =updateCatagory;
-          setItem(status);
-          console.log(status);
-      }
-     const handleUpdateProduct = e => {
-          const url = `http://localhost:5000/itemorderUpdate/${id}`;
-          fetch(url, {
-              method: 'PUT',
-              headers: {
-                  'content-type': 'application/json'
-              },
-              body: JSON.stringify(item)
-          })
-              .then(res => res.json())
-              .then(data => {
-                toast.success('Addedd Successfully', {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: false,
-                  progress: undefined,
-                  theme: "colored",
-                  });
-                      e.target.reset();
-              })
-          e.preventDefault();
-      } 
+     
+      const[item,setItem]=useState("");
+      console.log(item);
+      const { id } = useParams();
+  // useEffect(()=>{
+  //      const url=`http://localhost:5000/copone/${id}`
+  //      fetch(url)
+  //      .then(res=>res.json())
+  //      .then(data=>setItem(data))
+  //      console.log(url);
+  // },[])
+  const handleNameChange = e => {
+       const updateName = e.target.value;
+       setItem(updateName);
+      //  console.log(updateName);
+   }
+   const handleUpdateProduct = async(e) => {
+       const url = `http://localhost:5000/itemorderUpdate/${id}`;
+       e.preventDefault();
+       const res=await axios.put(url,item)
+       
+      //  fetch(url, {
+      //      method: 'PUT',
+      //      headers: {
+      //          'content-type': 'application/json'
+      //      },
+      //      body: JSON.stringify(item)
+      //  })
+  //          .then(res => res.json())
+  //          .then(data => {
+  //           toast.success('Update Successfully', {
+  //             position: "top-right",
+  //             autoClose: 5000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: false,
+  //             progress: undefined,
+  //             theme: "colored",
+  //             });
+  //                  e.target.reset();
+  //          })
+   } 
     
      return (
           <div>
-    
 
         <form onSubmit={handleUpdateProduct}>
      <section className="text-gray-600 body-font relative ">
@@ -49,8 +59,8 @@ const OrderStatusUpdate = () => {
       
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Name</label>
-        <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={handleCatagoryChange}>
-          <option>Done</option>
+        <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={handleNameChange}>
+          <option selected>Done</option>
           <option>Wating</option>
         </select>
       </div>

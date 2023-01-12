@@ -4,17 +4,19 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { set } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../Components/Loading';
 import auth from '../../firebase.init';
 const UseUserSpacifiqData = () => {
      const [user]=useAuthState(auth);
      const[usdata,setUsdata]=useState([]);
+     // console.log(usdata);
     const navigate=useNavigate()
      useEffect(()=>{
          if(user){
           fetch(`http://localhost:5000/notess?useremail=${user.email}`,{
                method:"GET",
                headers:{
-                    'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+                    authorization:`Bearer ${localStorage.getItem('accessToken')}`
                }
           })
           .then(res=>{
@@ -32,7 +34,7 @@ const UseUserSpacifiqData = () => {
                setUsdata(data)
           })
          }
-     },[usdata,user])
+     },[user,usdata])
      const handleUserDelete=id=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
@@ -57,17 +59,24 @@ const UseUserSpacifiqData = () => {
        res.json()
  )
    )
-     let shippingCharge=0;
-   let total=0;
-   let discount=0;
-   let sum=0;
-   for(let products of usdata){
-     total+= parseInt(products.product.price*products.productQuentity);
-     shippingCharge=total+100;
-     discount=(shippingCharge-(5/100).toFixed(2));
-     discount=(discount.toFixed(2));
-     // console.log(products);
+   if(productLoading){
+     return <Loading/>
    }
-     return {usdata,handleUserDelete,total,productLoading,products};
+   if(error){
+     return <p>{error}</p>
+   }
+   let total=0;
+   let subTotal=0;
+   let shippingCharge=0;
+   if(Array.isArray(usdata)){
+     for(let products of usdata){
+ 
+       subTotal+=parseInt(products.product.price)*(products.productQuentity);
+       shippingCharge=100;
+       total=subTotal+shippingCharge;
+      
+     }
+   }
+     return {usdata,handleUserDelete,total,productLoading,products,subTotal,error,shippingCharge};
 };
 export default UseUserSpacifiqData;
