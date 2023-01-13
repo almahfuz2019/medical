@@ -135,3 +135,45 @@ useEffect(()=>{
      );
 };
 export default UpdateProduct;
+
+// const[item,setItem]=useState([]);
+// const[name,setName]=useState([]);
+// const[price,setPrice]=useState([]);
+// const[details,setDetails]=useState([]);
+// const[catagory,setCatagory]=useState([]);
+// const[firstImage,setFirstImage]=useState([]);
+// const[previcePrice,setPrevicePrice]=useState([]);
+// const { id } = useParams();
+// useEffect(()=>{
+// const url=`http://localhost:5000/product/${id}`
+// fetch(url)
+// .then(res=>res.json())
+// .then(data=>setItem(data))
+// console.log(url);
+// },[])
+// const handleNameChange = e => {
+//    const updateName = e.target.value;
+//    setName(updateName);
+// }
+// const handlePriceChange = e => {
+//    const updatePrice = e.target.value;
+
+//    setPrice(updatePrice);
+// }
+// const handlePrevicePriceChange = e => {
+//    const updatePrevicePrice = e.target.value;
+//    setPrevicePrice(updatePrevicePrice);
+// }
+// const handleImageChange = e => {
+//    const updatePrevicePrice = e.target.value;
+//    setFirstImage(updatePrevicePrice);
+// }
+// const handleCatagoryChange = e => {
+//    const updateCatagory = e.target.value;
+//    setCatagory(updateCatagory);
+// }
+// const handleDetailsChange = e => {
+//    const updateDetail = e.target.value;
+   
+//    setDetails(updateDetail);
+// }

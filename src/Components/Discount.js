@@ -2,40 +2,54 @@ import React from 'react';
 
 const Discount = () => {
      return (
-          <div>
-               <section className="relative overflow-hidden rounded-lg pb-80 shadow-2xl lg:pb-0 border-2 my-12">
-  <div className="ml-auto p-8 text-center sm:p-12 lg:w-2/3">
-    <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-      Run with the pack
-    </p>
+      <div className="p-6 py-12 border-primary border mt-5 shadow text-primary shadow-primary">
+	<div className="container mx-auto">
+		<div className="flex  flex-row items-center justify-between">
+			<h2 className="text-center text-6xl tracking-tighter font-bold">Up to
+				<br className="sm:hidden"/>10% Off
+			</h2>
+			<div className="space-x-2 text-center py-2 lg:py-0">
+				<span>Plus free shipping! Use code:</span>
+				<span className="font-bold text-lg">MAMBA</span>
+			</div>
+			<a href="#" rel="noreferrer noopener" className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block bg-primary text-white ">Shop Now</a>
+		</div>
+	</div>
+</div>
+//           <div>
+//                <section className="relative overflow-hidden rounded-lg pb-80 shadow-2xl lg:pb-0 border-2 my-12">
+//   <div className="ml-auto p-8 text-center sm:p-12 lg:w-2/3">
+//     <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+//       Run with the pack
+//     </p>
 
-    <h2 className="mt-6 text-primary uppercase">
-      <span className="text-5xl text-primary sm:text-6xl">Get 20% off</span>
-      <span className="mt-2 block  text-sm">On your next order over $50</span>
-    </h2>
+//     <h2 className="mt-6 text-primary uppercase">
+//       <span className="text-5xl text-primary sm:text-6xl">Get 20% off</span>
+//       <span className="mt-2 block  text-sm">On your next order over $50</span>
+//     </h2>
 
-    <a
-      className="mt-8 inline-block w-full bg-primary py-4 text-sm font-bold uppercase tracking-widest text-white"
-      href=""
-    >
-      Get Discount
-    </a>
+//     <a
+//       className="mt-8 inline-block w-full bg-primary py-4 text-sm font-bold uppercase tracking-widest text-white"
+//       href=""
+//     >
+//       Get Discount
+//     </a>
 
-    <p className="mt-12 text-xs font-medium uppercase text-gray-400">
-      Offer valid until 24th March, 2021 *
-    </p>
-  </div>
+//     <p className="mt-12 text-xs font-medium uppercase text-gray-400">
+//       Offer valid until 24th March, 2021 *
+//     </p>
+//   </div>
 
-  <div className="absolute bottom-0 left-0 h-80 w-full lg:h-full lg:w-1/3">
-    <img
-      alt="Trainer"
-      src="https://cdn.medistorebd.com/wp-content/uploads/2020/12/unnamed-510x510.jpg"
-      className="absolute inset-0 h-full w-full object-cover "
-    />
-  </div>
-</section>
+//   <div className="absolute bottom-0 left-0 h-80 w-full lg:h-full lg:w-1/3">
+//     <img
+//       alt="Trainer"
+//       src="https://cdn.medistorebd.com/wp-content/uploads/2020/12/unnamed-510x510.jpg"
+//       className="absolute inset-0 h-full w-full object-cover "
+//     />
+//   </div>
+// </section>
 
-          </div>
+//           </div>
      );
 };
 

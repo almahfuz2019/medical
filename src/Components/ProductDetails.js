@@ -219,7 +219,7 @@ const ProductDetails = () => {
         </details>
 
         <form onSubmit={handleAddtocart} className="mt-8">
-          <fieldset>
+          {/* <fieldset>
             <legend className="mb-1 text-sm font-medium">Color</legend>
 
             <div className="flow-root">
@@ -270,8 +270,8 @@ const ProductDetails = () => {
                 </label>
               </div>
             </div>
-          </fieldset>
-
+          </fieldset> */}
+{/* 
           <fieldset className="mt-4">
             <legend className="mb-1 text-sm font-medium">Size</legend>
 
@@ -353,7 +353,7 @@ const ProductDetails = () => {
                 </label>
               </div>
             </div>
-          </fieldset>
+          </fieldset> */}
         <div className="flex items-center text-gray-500 gap-2 my-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />

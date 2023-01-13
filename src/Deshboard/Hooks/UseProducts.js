@@ -3,23 +3,24 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
  const UseProducts = () => {
 const[cart,setCart]=useState([]);
-const[pageCount,setPageCount]=useState(0);
+// const[pageCount,setPageCount]=useState(0);
 const[page,setPage]=useState(0);
 const[size,setSize]=useState(10);
-useEffect(()=>{
-     fetch("http://localhost:5000/productCount")
-     .then(res=>res.json())
-     .then(data=>{
-          const count=data.count;
-          const pages=Math.ceil(count/size);
-          setPageCount(pages)
-     })
-},[])
+// useEffect(()=>{
+//      fetch("http://localhost:5000/productCount")
+//      .then(res=>res.json())
+//      .then(data=>{
+//           const count=data.count;
+//           const pages=Math.ceil(count/size);
+//           setPageCount(pages)
+//      })
+// },[])
      const { isLoading:productLoading, error, data:products } = useQuery( 'repoDatsa', () =>
       fetch('http://localhost:5000/products').then(res =>
        res.json()
  )
    )
+   console.log(products);
    const handleProductDelete=id=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
@@ -53,7 +54,7 @@ const handleAddToCart=(product)=>{
 //    }
 //   console.log(cart);
   
-  return {products,productLoading,handleProductDelete,error,handleAddToCart,cart,pageCount,page,setPage,size,setSize,setPageCount};
+  return {products,productLoading,handleProductDelete,error,handleAddToCart,cart,page,setPage,size,setSize};
 };
 
 export default UseProducts;
