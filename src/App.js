@@ -46,7 +46,7 @@ function App() {
       const [admin]=UseAdmin(user);
 //    const {dark,setDark}=DarkMode()
   return (
-   <div className='md:px-6'>
+   <div className='md:px-6 bg-gray-100'>
      {/* <input onClick={()=>setDark(!dark)}  type="checkbox"/> */}
    <Navbar/>
 <Routes>

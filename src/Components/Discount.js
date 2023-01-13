@@ -2,17 +2,17 @@ import React from 'react';
 
 const Discount = () => {
      return (
-      <div className="p-6 py-12 border-primary border mt-5 shadow text-primary shadow-primary">
+      <div className="sm:p-6 py-2 mx-2  p-0  bg-white border rounded mt-5  text-primary ">
 	<div className="container mx-auto">
-		<div className="flex  flex-row items-center justify-between">
-			<h2 className="text-center text-6xl tracking-tighter font-bold">Up to
-				<br className="sm:hidden"/>10% Off
+		<div className="sm:flex  sm:flex-row items-center justify-between">
+			<h2 className="text-center text-3xl font-bold sm:text-6xl tracking-tighter font-bold">Up to
+				10% Off
 			</h2>
 			<div className="space-x-2 text-center py-2 lg:py-0">
 				<span>Plus free shipping! Use code:</span>
 				<span className="font-bold text-lg">MAMBA</span>
 			</div>
-			<a href="#" rel="noreferrer noopener" className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block bg-primary text-white ">Shop Now</a>
+			<a href="#" rel="noreferrer noopener" className="px-5 sm:mt-4 lg:mt-0 sm:py-3 py-1 rounded-md border text-center block bg-primary text-white ">Shop Now</a>
 		</div>
 	</div>
 </div>

@@ -20,9 +20,10 @@ const OrderStatusUpdate = () => {
       //  console.log(updateName);
    }
    const handleUpdateProduct = async(e) => {
-       const url = `http://localhost:5000/itemorderUpdate/${id}`;
-       e.preventDefault();
-       const res=await axios.put(url,item)
+     e.preventDefault();
+     console.log(item);
+     const url = `http://localhost:5000/itemorderUpdate/${id}`;
+       const res=await axios.post(url,{status:item})
        
       //  fetch(url, {
       //      method: 'PUT',
@@ -60,7 +61,7 @@ const OrderStatusUpdate = () => {
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Name</label>
         <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={handleNameChange}>
-          <option selected>Done</option>
+          <option selected>Confirm</option>
           <option>Wating</option>
         </select>
       </div>

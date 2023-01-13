@@ -24,11 +24,12 @@ const Checkout = () => {
     const address=event.target.address.value;
     const message=event.target.message.value;
     const bkishID=event.target.bkishID.value;
+    const bkishNumber=event.target.bkishNumber.value;
     const userData=usdata;
     const TotalPrice=total;
     const dateAndTime=time;
     let status="wating";
-    const checkOut={name,phone,email,address,message,bkishID,dateAndTime,userData,TotalPrice,status};
+    const checkOut={name,phone,email,address,message,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
     // console.log(checkOut);
   fetch('http://localhost:5000/itemorder', {
  method: 'POST', // or 'PUT'
@@ -170,7 +171,16 @@ const Checkout = () => {
               id="message"
             ></textarea>
           </div>
-          <div className="col-span-6">
+          
+
+          <div className="flex flex-col w-full border-opacity-50 col-span-6">
+          <div className='flex w-full col-span-6'>
+<input type="radio" name="radio-1" className="radio radio-primary"  checked/>
+<span className='ml-3'>Chash on delevery</span>
+
+</div>
+  <div className="divider">OR</div>
+  <div className="col-span-6">
             <label for="Phone" className="block text-xs font-medium text-gray-700">
               Bkish transition ID
             </label>
@@ -182,6 +192,21 @@ const Checkout = () => {
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
+          <div className="col-span-6">
+            <label for="Phone" className="block text-xs font-medium text-gray-700">
+              Bkish phone number
+            </label>
+            <input
+              type="tex" 
+              placeholder='Optional'
+              id="Phone"
+              name='bkishNumber'
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          </div>
+</div>
+
+          
 
           <div className="col-span-6">
             <input type="submit"

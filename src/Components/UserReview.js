@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserReview = () => {
      return (
-      <div className="flex flex-col max-w-xl p-8 rounded-xl lg:p-12 border-2 shadow-2xl dark:text-gray-100">
+      <div className="flex flex-col max-w-xl p-8 rounded-xl lg:p-12 border-2 shadow-2xl bg-white">
 	<div className="flex flex-col w-full">
 		<h2 className="text-3xl font-semibold text-center">Customer reviews</h2>
 		<div className="flex flex-wrap items-center mt-2 mb-1 space-x-2">

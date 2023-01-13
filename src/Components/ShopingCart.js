@@ -16,14 +16,14 @@ console.log(usdata);
         <h1 className="text-xl font-bold  sm:text-4xl">Your Cart items</h1>
       </header>
 
-      <div className="my-10  border border-spacing-2 p-5 rounded-md bg-gray-100">
+      <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white">
         <ul className="space-y-4 ">
           {usdata?.map(data=>
         <li className="flex items-center border-primary border-b-2 p-2">
         <img
           src={data?.product?.image}
           alt=""
-          className="object-cover w-16 h-16 rounded"
+          className="object-cover w-16 h-16 rounded border-primary border"
         />
 
         <div className="ml-4">

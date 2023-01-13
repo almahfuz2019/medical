@@ -34,7 +34,7 @@ const Orders = () => {
                 <th>{index+1}</th>
                 <th>{order.dateAndTime}</th>
                 <td>
-                  {order.status==="Waiting"? <button className="btn loading">Wating</button>:<button className="btn disabled">Confirm</button>}
+                  {order.status==="Wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">Confirm</button>}
                 </td>
                 <td>TK ${order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}

@@ -35,7 +35,7 @@ const SingleItemorder = () => {
     <h1 className='text-2xl font-bold'>Invoice</h1>
      <p className=''><span className='font-semibold'>Order Number</span> #{singleUserOrder.phone?.slice(3, 9)*2}</p>
      <p className=''><span className='font-semibold'>Delevery Date And Time:</span> {time}</p>
-     <p className=''><span className='font-semibold'>Payment Method:</span> {singleUserOrder.bkishID===""?<span>Cash on delivery</span>: <span>{singleUserOrder.bkishID} (Bkish)</span>}</p>
+     <p className=''><span className='font-semibold'>Payment Method:</span> {singleUserOrder.bkishID==="" || singleUserOrder.bkishNumber===""?<span>Cash on delivery</span>: <span>Bkish <br />phone: {singleUserOrder.bkishNumber} <br />Trans ID: {singleUserOrder.bkishID} </span>}</p>
      <h1 className=''>Issued By: <br />
      <span className='font-semibold'>Medical Shop</span> <br />
      <span>01864210567</span>

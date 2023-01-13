@@ -34,8 +34,34 @@ const LoadProducts = () => {
      }
      return (
           <div>
+            
      <div className="overflow-x-auto">
      <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {products.length}</span></div>
+     <div className="flex mx-5 space-x-1 dark:text-gray-100 my-10">
+	<button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary">
+		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
+			<polyline points="15 18 9 12 15 6"></polyline>
+		</svg>
+	</button>
+	{
+          [...Array(pageCount).keys()]
+          .map(number=><button
+          count={pageCount}
+             className={page===number?'inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary':"inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary"} onClick={()=>setPage(number)}>{number+1}</button>)
+        }
+	<button  type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary">
+		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
+			<polyline points="9 18 15 12 9 6"></polyline>
+		</svg>
+	</button>
+  <select className='inline-flex items-center justify-center w-20 h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary' onChange={e=>setSize(e.target.value)} >
+          <option  value="5">5</option>
+          <option  value="10">10</option>
+          <option value="15">15</option>
+          <option selected value="20">20</option>
+          <option value="30">30</option>
+        </select>  
+</div>
      <table className="table w-full">
        {/* <!-- head --> */}
        <thead>
@@ -83,36 +109,7 @@ const LoadProducts = () => {
      )}
      </table>
    </div>
-   <div className="flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4">
-                <div className="lg:w-3/5 w-full  flex items-center justify-between border-t border-gray-200">
-                    <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
-                        <svg width={14} height={8} viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.1665 4H12.8332" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M1.1665 4L4.49984 7.33333" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M1.1665 4.00002L4.49984 0.666687" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <p className="text-sm ml-3 font-medium leading-none ">Previous</p>
-                    </div>
-                    <div className="sm:flex hidden">
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">1</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">2</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">3</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-indigo-700 border-t border-indigo-400 pt-3 mr-4 px-2">4</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">5</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">6</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">7</p>
-                        <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">8</p>
-                    </div>
-                    <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
-                        <p className="text-sm font-medium leading-none mr-3">Next</p>
-                        <svg width={14} height={8} viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.1665 4H12.8332" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M9.5 7.33333L12.8333 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M9.5 0.666687L12.8333 4.00002" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
+
             <div className="flex justify-center space-x-1 dark:text-gray-100 my-10">
 	<button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
