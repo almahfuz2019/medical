@@ -45,7 +45,7 @@ const UserSlefOrderInfo = () => {
                 <th>{index+1}</th>
                 <th>{order.dateAndTime}</th>
                 <td>
-                  {order.status==="wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">done</button>}
+                  {order.status==="Wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">Confirem</button>}
                
                 </td>
                 <td>TK ${order?.TotalPrice} <br />

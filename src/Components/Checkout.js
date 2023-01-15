@@ -22,14 +22,14 @@ const Checkout = () => {
     const phone=event.target.phone.value;
     const email=event.target.email.value;
     const address=event.target.address.value;
-    const message=event.target.message.value;
+    // const message=event.target.message.value;
     const bkishID=event.target.bkishID.value;
     const bkishNumber=event.target.bkishNumber.value;
     const userData=usdata;
     const TotalPrice=total;
     const dateAndTime=time;
-    let status="wating";
-    const checkOut={name,phone,email,address,message,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
+    let status="Wating";
+    const checkOut={name,phone,email,address,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
     // console.log(checkOut);
   fetch('http://localhost:5000/itemorder', {
  method: 'POST', // or 'PUT'
@@ -59,8 +59,8 @@ const Checkout = () => {
 <section className='mt-12'>
   <h1 className="text-center font-bold text-4xl mb-5">Checkout</h1>
 
-  <div className="grid grid-cols-1 mx-auto max-w-screen-2xl md:grid-cols-2">
-    <div className="py-12 bg-gray-100 md:py-24 border-primary  border-r-0 border border-2">
+  <div className="grid grid-cols-1 mx-auto max-w-screen-2xl md:grid-cols-2 ">
+    <div className="py-12  md:py-24 border border-2  bg-white border-primary">
       <div className="max-w-lg px-4 mx-auto space-y-8 lg:px-8">
         <div className="flex items-center">
           <span className="w-10 h-10 bg-blue-700 rounded-full"></span>
@@ -79,11 +79,11 @@ const Checkout = () => {
         <div>
           <div className="flow-root">
        
-          <div className="avatar-group -space-x-6">
+          <div className="avatar-group -space-x-6 bg-primary p-2">
           {usdata?.map(data=>
           <div className="avatar">
-            <div className="w-12">
-              <img  src={data?.product?.image} />
+            <div className="w-12 ">
+              <img className=''  src={data?.product?.image} />
             </div>
           </div>
         
@@ -91,7 +91,7 @@ const Checkout = () => {
 
           <div className="avatar placeholder">
             <div className="w-12 bg-neutral-focus text-neutral-content">
-              <span>+99</span>
+              <span className='text-4xl mb-2 font-bold'>+</span>
             </div>
           </div>
         </div>
@@ -100,9 +100,9 @@ const Checkout = () => {
       </div>
     </div>
 
-    <div className="py-12  md:py-24 border border-l-0 border-2 border-primary">
+    <div className="py-12  md:py-24 border border-l-0 border-2 border-primary bg-gray-100">
       <div className="max-w-lg px-4 mx-auto lg:px-8">
-        <form onSubmit={checkOut} className="grid grid-cols-6 gap-4">
+        <form onSubmit={checkOut} className="grid grid-cols-6 gap-4  p-5 rounded border border-primary border-opacity-50">
 
 
           <div className="col-span-6">
@@ -117,7 +117,8 @@ const Checkout = () => {
               type="text"
               id="LastName"
               name='name'
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              placeholder='Enter your name'
+              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
 
@@ -131,7 +132,7 @@ const Checkout = () => {
               id="Email"
               value=  {user?.email}
               name="email"
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
 
@@ -144,7 +145,8 @@ const Checkout = () => {
               type="tel"
               id="Phone"
               name='phone'
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              placeholder='Enter your phone'
+              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
           <div className="col-span-6">
@@ -156,11 +158,12 @@ const Checkout = () => {
               type="tel"
               id="Phone"
               name='address'
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-ou"
+              placeholder='Enter your address'
+              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
 
-          <div className="col-span-6">
+          {/* <div className="col-span-6">
             <label for="Phone" className="block text-xs font-medium text-gray-700">
               message
             </label>
@@ -170,17 +173,35 @@ const Checkout = () => {
               rows="8"
               id="message"
             ></textarea>
-          </div>
+          </div> */}
           
 
           <div className="flex flex-col w-full border-opacity-50 col-span-6">
-          <div className='flex w-full col-span-6'>
+          {/* <div className='flex w-full col-span-6'>
 <input type="radio" name="radio-1" className="radio radio-primary"  checked/>
 <span className='ml-3'>Chash on delevery</span>
 
-</div>
-  <div className="divider">OR</div>
-  <div className="col-span-6">
+</div> */}
+
+<p className='text-center  text-primary  text-xl mb-2 font-semibold'>Payment method</p>
+<div class=" items-center gap-8">
+    <label class="inline-flex items-center">
+        <input type="radio" name="vehicle" class="w-5 h-5 text-primary bg-primary"/>
+            <span class="ml-2 text-gray-700">
+                Cash on delevery
+            </span>
+        </label> <br />
+        <div className="divider">OR</div>
+        <label class=" inline-flex items-center">
+            <input type="radio" name="vehicle" class="w-5 h-5 text-primary"/>
+                <span class="ml-2 text-gray-700">
+                    Bkish
+                </span>
+            </label>
+        </div>
+
+
+  <div className="col-span-6" >
             <label for="Phone" className="block text-xs font-medium text-gray-700">
               Bkish transition ID
             </label>
@@ -189,7 +210,7 @@ const Checkout = () => {
               placeholder='Optional'
               id="Phone"
               name='bkishID'
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
           <div className="col-span-6">
@@ -201,7 +222,7 @@ const Checkout = () => {
               placeholder='Optional'
               id="Phone"
               name='bkishNumber'
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "
             />
           </div>
 </div>
@@ -210,7 +231,7 @@ const Checkout = () => {
 
           <div className="col-span-6">
             <input type="submit"
-              className="block w-full rounded-md btn-primary p-2.5 text-sm font-semibold text-white transition hover:shadow-lg"
+              className="block w-full rounded-md btn-primary p-2.5 text-xl font-semibold text-white transition hover:shadow-lg cursor-pointer"
             value="submit"/>
               
           </div>

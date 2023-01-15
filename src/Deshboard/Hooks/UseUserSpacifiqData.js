@@ -1,40 +1,29 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { set } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../Components/Loading';
+import axios from 'axios'
 import auth from '../../firebase.init';
 const UseUserSpacifiqData = () => {
      const [user]=useAuthState(auth);
      const[usdata,setUsdata]=useState([]);
-     // console.log(usdata);
     const navigate=useNavigate()
-     useEffect(()=>{
-         if(user){
-          fetch(`http://localhost:5000/notess?useremail=${user.email}`,{
-               method:"GET",
-               headers:{
-                    authorization:`Bearer ${localStorage.getItem('accessToken')}`
-               }
-          })
-          .then(res=>{
-               // console.log('res',res);
-               // if(res.status=== 401 || res.status=== 403){
-               if(res.status=== 401 || res.status=== 403){
-                    signOut(auth);
-                    localStorage.removeItem('accessToken');
-                    navigate('/');
-               }
-             return  res.json()
-          })
-          .then(data=>{
-               
-               setUsdata(data)
-          })
-         }
+
+    const fetchCarts  = async() => {
+     try{
+          const res = await axios.get(`http://localhost:5000/notess?useremail=${user.email}`)
+          setUsdata(res.data)
+     }catch(err){
+          console.log(err)
+     }
+    }
+
+     useEffect( ()=>{
+          fetchCarts() 
      },[user,usdata])
+     
      const handleUserDelete=id=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){

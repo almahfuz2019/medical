@@ -19,31 +19,31 @@ useEffect(()=>{
 },[])
     const handleNameChange = e => {
         const updateName = e.target.value;
-        const updateNameFinal = { name: updateName,  price:item.price,previcePrice:item.previcePrice };
+        const updateNameFinal = { name: updateName,  price:item.price,previcePrice:item.previcePrice ,image:item.image,details:item.details};
         setItem(updateNameFinal);
         console.log(updateNameFinal);
     }
     const handlePriceChange = e => {
         const updatePrice = e.target.value;
-        const finalUpdatPrice = { name: item.name,previcePrice:item.previcePrice, price: updatePrice, }
+        const finalUpdatPrice = { name: item.name,previcePrice:item.previcePrice, price: updatePrice, image:item.image,details:item.details}
         setItem(finalUpdatPrice);
         console.log(finalUpdatPrice);
     }
     const handlePrevicePriceChange = e => {
         const updatePrevicePrice = e.target.value;
-        const updatePrevicePrcie = { name: item.name, price:item.price,previcePrice:updatePrevicePrice }
+        const updatePrevicePrcie = { name: item.name, price:item.price,previcePrice:updatePrevicePrice,image:item.image,details:item.details }
         setItem(updatePrevicePrcie);
         console.log(updatePrevicePrcie);
     }
     const handleImageChange = e => {
         const updatePrevicePrice = e.target.value;
-        const updateImage = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:updatePrevicePrice }
+        const updateImage = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:updatePrevicePrice,details:item.details }
         setItem(updateImage);
         console.log(updateImage);
     }
     const handleCatagoryChange = e => {
         const updateCatagory = e.target.value;
-        const updateNewCatagory = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:item.image, catagory:updateCatagory}
+        const updateNewCatagory = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:item.image, catagory:updateCatagory,details:item.details}
         setItem(updateNewCatagory);
         console.log(updateNewCatagory);
     }
@@ -54,7 +54,9 @@ useEffect(()=>{
         console.log(updateNewDetails);
     }
     const handleUpdateProduct = e => {
-        const url = `http://localhost:5000/product/${id}`;
+      e.preventDefault();
+       
+      const url = `http://localhost:5000/product/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -76,7 +78,6 @@ useEffect(()=>{
                 });
                     e.target.reset();
             })
-        e.preventDefault();
     }   
      return (
      <div> 

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 const UseOrder = () => {
-     const { isLoading:orderLoading, error1, data:orderItem } = useQuery( 'repoDatsa', () =>
-      fetch('http://localhost:5000/itemorder').then(res =>
-       res.json()   
- )
-   )
+     const [orderItem,setOrderItem]=useState([])
+     const[orderLoading,setOrderLoading]=useState(true);
+     useEffect(()=>{
+          setOrderLoading(true)
+          fetch("http://localhost:5000/itemorder")
+          .then(res=>res.json())
+          .then(data=>setOrderItem(data))
+          setOrderLoading(false)
+     },[])
+     
    const [copone,setCopone]=useState([]);
    const handleOrderDelete=id=>{
     const proceed=window.confirm("are you sure you want to delete?");
@@ -25,6 +30,6 @@ const UseOrder = () => {
          })
     }
 }
-     return {orderLoading,error1,orderItem,handleOrderDelete};
+     return {orderLoading,setOrderLoading,orderItem,handleOrderDelete};
 };
 export default UseOrder;

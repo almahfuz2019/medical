@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaCartPlus } from "react-icons/fa";
 import UserReview from './UserReview';
 import { FaArrowCircleLeft} from 'react-icons/fa';
@@ -31,7 +31,7 @@ const ProductDetails = () => {
     
     toast.success('Added Successfully', {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -48,7 +48,6 @@ const ProductDetails = () => {
      }
      const [note, setNote] = useState({});
      const { id } = useParams();
-    //  console.log(note);
      useEffect(() => {
          const url = `http://localhost:5000/product/${id}`;
          fetch(url)
@@ -66,32 +65,32 @@ const ProductDetails = () => {
         <img
           alt="Les Paul"
           src={note.image}
-          className="object-cover w-full aspect-square rounded-xl border"
+          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         />
 
         <div className="grid grid-cols-2 gap-4 lg:mt-4">
           <img
             alt="Les Paul"
             src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border "
+            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
           />
 
           <img
             alt="Les Paul"
             src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border"
+            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30"
           />
 
           <img
             alt="Les Paul"
             src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border"
+            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30"
           />
 
           <img
             alt="Les Paul"
             src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border"
+            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30"
           />
         </div>
       </div>
@@ -186,10 +185,7 @@ const ProductDetails = () => {
             <div>
               <div className="prose max-w-none group-open:hidden">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                  veniam dicta beatae eos ex error culpa delectus rem tenetur,
-                  architecto quam nesciunt, dolor veritatis nisi minus
-                  inventore, rerum at recusandae?
+                  {note?.details}
                 </p>
               </div>
 
@@ -202,19 +198,9 @@ const ProductDetails = () => {
           </summary>
 
           <div className="pb-6 prose max-w-none">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-              veniam dicta beatae eos ex error culpa delectus rem tenetur,
-              architecto quam nesciunt, dolor veritatis nisi minus inventore,
-              rerum at recusandae?
-            </p>
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-              nam sapiente nobis ea veritatis error consequatur nisi
-              exercitationem iure laudantium culpa, animi temporibus non! Maxime
-              et quisquam amet. A, deserunt!
-            </p>
+            <span>
+            {note?.details}
+            </span>
           </div>
         </details>
 
@@ -375,11 +361,15 @@ const ProductDetails = () => {
                 name='productQuentity' required
               />
             </div>
-<button type='submit'
+         {user? <button type='submit'
               className="block px-5 py-3 ml-3 text-xs font-medium text-white btn btn-primary flex"
             >
               Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
-            </button>
+            </button>: <Link to="/login" type='submit'
+              className="block px-5 py-3 ml-3 text-xs font-medium text-white btn btn-primary flex"
+            >
+              Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
+            </Link>}
            
           </div>
         </form>

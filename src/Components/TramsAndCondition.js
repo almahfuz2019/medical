@@ -3,14 +3,15 @@ import { Link, NavLink } from 'react-router-dom';
 
 const TramsAndCondition = () => {
      return (
-          <><nav aria-label="Breadcrumb" className="flex justify-center ">
+          <>
+          <nav aria-label="Breadcrumb" className="flex justify-center mt-5 mb-3">
   <ol role="list"
     className="flex overflow-hidden rounded-lg border-primary border"
   >
     <li className="flex items-center">
-      <a
-        href="#"
-        className="flex h-10 items-center bg-gray-100 px-4 transition hover:text-gray-900"
+      <Link
+        to="/"
+        className="flex h-10 items-center bg-primary px-4 transition  text-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,13 +28,13 @@ const TramsAndCondition = () => {
           />
         </svg>
 
-        <span className="ml-1.5 text-xs font-medium"> Home </span>
-      </a>
+        <span className="ml-1.5 text-xs font-medium text-white"> Home </span>
+      </Link>
     </li>
 
     <li className="relative flex items-center">
       <span
-        className="absolute inset-y-0 -left-px h-10 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
+        className="absolute inset-y-0 -left-px h-10 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
       >
       </span>
 
@@ -41,7 +42,7 @@ const TramsAndCondition = () => {
         href="#"
         className="flex h-10 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
       >
-        Shirts
+        Terms and Condition
       </a>
     </li>
   </ol>

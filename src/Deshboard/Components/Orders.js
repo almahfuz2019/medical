@@ -5,7 +5,7 @@ import { AiFillEye } from "react-icons/ai";
 import Loading from '../../Components/Loading';
 import UseOrder from '../Hooks/UseOrder';
 const Orders = () => {
-     const {orderLoading,error1,orderItem,handleOrderDelete}=UseOrder();
+     const {orderLoading,setOrderLoading,orderItem,handleOrderDelete}=UseOrder();
 
      const time= new Date().toLocaleString();
      if(orderLoading){

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { NavLink, NavNavLink, Outlet } from 'react-router-dom';
 import Loading from '../Components/Loading';
 // import UseCatagory from './Hooks/UseCatagory';
 import UseProducts from './Hooks/UseProducts';
@@ -59,7 +59,7 @@ const Deshboard = () => {
                        
  
         {admin? "":<li className=' text-white bg-gray-500 mt-2 '>
-       <Link to="#" className="flex items-center  active:bg-red-700 ">
+       <NavLink to="#" className="flex items-center  active:bg-primary ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -68,9 +68,9 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Orders</span>
-                            </Link></li>}
+                            </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
-       <Link to="basic-info" className="flex items-center  active:bg-red-700 ">
+       <NavLink to="basic-info" className="flex items-center  active:bg-primary ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -79,11 +79,11 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Basic Info</span>
-                            </Link></li>}
+                            </NavLink></li>}
                        
        
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
-        <Link to="products" className="flex items-center  active:bg-red-700 ">
+        <NavLink to="products" className="flex items-center  active:bg-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -92,9 +92,9 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Products <span className='bg-primary rounded p-2 text-white font-bold text-end'>{products.length}</span></span>
-                            </Link></li>}
+                            </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
-        <Link to="add-product" className="flex items-center  active:bg-red-700 ">
+        <NavLink to="add-product" className="flex items-center  active:bg-primary ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -103,9 +103,9 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Add Product</span>
-                            </Link></li>}
+                            </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
-        <Link to="catagory" className="flex items-center  active:bg-red-700 ">
+        <NavLink to="catagory" className="flex items-center  active:bg-primary ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -114,9 +114,9 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>{catagorys.length}</span></span>
-                            </Link></li>}
+                            </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
-        <Link to="copne" className="flex items-center  active:bg-red-700 ">
+        <NavLink to="copne" className="flex items-center  active:bg-primary ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -125,17 +125,17 @@ const Deshboard = () => {
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
                                 <span className="text-sm  ml-2">Copone <span className='bg-primary rounded p-2 text-white font-bold text-end'>{copone.length}</span></span>
-                            </Link></li>}
+                            </NavLink></li>}
                             {admin &&<li className=' text-white bg-gray-500 mt-2 '>
-        <Link to="orders" className="flex items-center  active:bg-red-700 ">
+        <NavLink to="orders" className="flex items-center  active:bg-primary ">
                                 <AiFillEye/>
                                 <span className="text-sm  ml-2">Orders <span className='bg-primary rounded p-2 text-white font-bold text-end'>{orderItem.length}</span></span>
-                            </Link></li>}
+                            </NavLink></li>}
                             {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
-     <Link to="users" className="flex items-center  active:bg-red-700 ">
+     <NavLink to="users" className="flex items-center  active:bg-primary ">
                                 <AiFillEye/>
                                 <span className="text-sm  ml-2">users <span>{userlength.length}</span></span>
-                            </Link></li>}
+                            </NavLink></li>}
     </ul>
   
   </div>

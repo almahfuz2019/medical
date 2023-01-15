@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import auth from '../firebase.init';
@@ -6,26 +6,32 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import SocialLogin from './SocialLogin';
 import Loading from '../Components/Loading';
 import UseToken from '../Deshboard/Hooks/UseToken';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 const Login = () => {
-    const navigate=useNavigate();
-    let location = useLocation();
-    
+  const [emails, setEmails] = useState('');
+  console.log(emails);
+  const auth = getAuth();
+  const navigate=useNavigate();
+  let location = useLocation();
+  
   let from = location.state?.from?.pathname || "/";
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
+  const { register, formState: { errors }, handleSubmit } = useForm();
+  const [sendPasswordResetEmail, sending, error3] = useSendPasswordResetEmail(auth);
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+  
    
-  
-  const onSubmit = data => {
-    signInWithEmailAndPassword(data.email,data.password);
-  }
-  const [token]=UseToken(user);
-  let signInErrorMessage;
-  
+      const onSubmit = data => {
+        signInWithEmailAndPassword(data.email,data.password);
+      }
+      const [token]=UseToken(user);
+      let signInErrorMessage;
    useEffect(()=>{
      if (token) {
        navigate(from, { replace: true });
@@ -35,13 +41,24 @@ const Login = () => {
     
 signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
   }
-  if (loading) {
+  if (loading || sending) {
     return <Loading/>;
   }
+  // const handlePasswordReset=()=>{
+  //   sendPasswordResetEmail(auth,email)
+  // .then(() => {
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ..
+  // });
+  // }
+
      return (
          
 <div className="py-6 my-6">
-<div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+<div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl border-primary border border-opacity-30">
         <div className="hidden lg:block lg:w-1/2 bg-cover" style={{backgroundImage:"url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')"}}></div>
         <div className="w-full p-8 lg:w-1/2">
         <h2 className="text-2xl font-semibold text-gray-700 text-center">Medical</h2>
@@ -57,7 +74,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
            </div>
            <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-            <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"
+            <input onChange={(e) => setEmails(e.target.value)} className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"
             {...register("email",{
                 required:{
                 
@@ -98,6 +115,26 @@ signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
             </label>
             
            </div>
+         
+           <div className='text-end'>
+      <input
+        type="email"
+        
+        onChange={(e) => setEmails(e.target.value)}
+      />
+      <Link className='underline'
+        onClick={async () => {
+          const success = await sendPasswordResetEmail(
+            emails
+          );
+          if (success) {
+            toast.success("Check your email")
+          }
+        }}
+      >
+        forget password
+      </Link>
+    </div>
           {signInErrorMessage}
             <div className="mt-8">
             <input className="bg-primary text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600" type="submit" value="Login"/>

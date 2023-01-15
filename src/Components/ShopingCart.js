@@ -16,7 +16,7 @@ console.log(usdata);
         <h1 className="text-xl font-bold  sm:text-4xl">Your Cart items</h1>
       </header>
 
-      <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white">
+      <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30">
         <ul className="space-y-4 ">
           {usdata?.map(data=>
         <li className="flex items-center border-primary border-b-2 p-2">
@@ -45,7 +45,7 @@ console.log(usdata);
 
             <h1
               id="Line1Qty"
-              className="py-2 px-2 rounded border-gray-200 bg-gray-50 p-0 text-center text-sm border-primary border-2 border font-semibold"
+              className="py-2 px-2 rounded border-gray-200 bg-gray-50 p-0 text-center border-primary border-2 border sm:text-xl text-sm  font-semibold"
             >{data?.product?.price} * {data?.productQuentity}=
             {data?.productQuentity*data?.product?.price}</h1>
           </form>
@@ -59,7 +59,7 @@ console.log(usdata);
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-4 h-4"
+              className="w-8 h-8"
             >
               <path
                 strokeLinecap="round"

@@ -16,13 +16,14 @@ const Navbar = () => {
       subTotal+=parseInt(products.product.price)*(products.productQuentity);
       let shippingCharge=100;
       total=subTotal+shippingCharge;
+      // console.log(total);
      //  discount=(shippingCharge-(5/100).toFixed(2));
      //  discount=(discount.toFixed(2));
      
     }
   }
   
-  const {cart}=UseProducts();
+  // const {cart}=UseProducts();
   const [user, loading, error] = useAuthState(auth);
   const [signOut, SignOutLoading, SignOutError] = useSignOut(auth);
   const logout=()=>{
@@ -41,12 +42,12 @@ const Navbar = () => {
   }
      let navItems=<>
      
-    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100 '><Link  to="/">Home</Link></li>
-    {/* <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><Link  to="/all-Products">Products</Link></li> */}
-    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><Link  to="/home/trams-and-condition">Terms and Condition</Link></li>
-    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><Link  to="/home/faq">QNA</Link></li>
-    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><Link  to="/home/about">About US</Link></li>
-    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><Link  to="/home/contact">Contact US</Link></li>
+    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100 '><NavLink  to="/">Home</NavLink></li>
+    {/* <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/all-Products">Products</NavLink></li> */}
+    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/trams-and-condition">Terms and Condition</NavLink></li>
+    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/faq">QNA</NavLink></li>
+    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/about">About US</NavLink></li>
+    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/contact">Contact US</NavLink></li>
    {/* <li tabIndex={0} className="z-20 ">
      <a className="justify-between">
        Others
@@ -68,15 +69,15 @@ const Navbar = () => {
           <h1 className='bg-primary p-1 font-semibold text-center text-white sm:text-xl'>For Any Query, Please Call: 01864-210567</h1>
        <div className="navbar bg-white border-b-4 border-primary">
   <div className="navbar-start ">
-    <div className="dropdown">
+    <div className="dropdown  ">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </label>
-      <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+      <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 border border-primary border-opacity-30">
 {navItems}
       </ul>
     </div>
-    <Link to="/" className="btn btn-ghost normal-case text-xl ">Medical</Link>
+    <NavLink to="/" className="btn btn-ghost normal-case text-xl ">Medical</NavLink>
     
   </div>
   {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
@@ -84,7 +85,7 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
     {navItems}
-    {user?<li></li>:<li> <NavLink to="/login">Login</NavLink></li>}
+    {user?<li></li>:<li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'> <NavLink to="/login">Login</NavLink></li>}
     </ul>
   </div>
  
@@ -99,19 +100,19 @@ const Navbar = () => {
           <span className="badge badge-sm indicator-item">{usdata?.length}</span>
         </div>
       </label>
-      <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-        <div className="card-body">
+      <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow border border-primary border-opacity-30">
+        <div className="card-body ">
           <span className="font-bold text-lg">{usdata?.length} Items</span>
           <span className="text-info">Total: ${total}</span>
           <div className="card-actions">
-            <Link to="view-cart" className="btn btn-primary btn-block">View cart</Link>
+            <NavLink to="view-cart" className="btn btn-primary btn-block">View cart</NavLink>
           </div>
         </div>
       </div>
     </div>:""}
    {user?  <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className=" rounded-full">
+        <div className=" rounded-full ">
         <div className="avatar placeholder online">
   <div className="bg-neutral-focus text-neutral-content rounded-full w-12  ">
     <span>{(user?.displayName?.slice(0,2))}</span>
@@ -119,12 +120,12 @@ const Navbar = () => {
 </div> 
         </div>
       </label>
-      <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+      <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 border border-primary border-opacity-30">
         
-        <li><Link to="/deshboard">Deshboard</Link></li>
+        <li><NavLink to="/deshboard">Deshboard</NavLink></li>
         
-        {user?<li><button onClick={logout}>Sign out</button></li>:
-        <li> <Link to="/login">Login</Link></li>}
+        {user?<li ><button onClick={logout}>Sign out</button></li>:
+        <li className=''> <NavLink to="/login">Login</NavLink></li>}
         
       </ul>
     </div>:""}

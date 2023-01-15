@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-
 const UseToken = (user) => {
     const [token,setToken]=useState('');
     useEffect(()=>{
@@ -18,20 +17,20 @@ const UseToken = (user) => {
          .then(res => res.json())
          .then(data => {
           console.log(data);
-          const accessToken=data.token;
+          const accessToken=data?.token;
           localStorage.setItem('accessToken',accessToken)
           setToken(accessToken)
           // alert("success")
-          // toast.success('Update Successfully', {
-          //   position: "top-right",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: false,
-          //   progress: undefined,
-          //   theme: "colored",
-          //   });
+        //   toast.success('Update Successfully', {
+        //     position: "top-right",
+        //     autoClose:1000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: false,
+        //     progress: undefined,
+        //     theme: "colored",
+        //     });
                 
          })
      }

@@ -11,7 +11,6 @@ const RequireAdmin = ({children}) => {
      if (loading || adminLoading) {
           return <Loading/>
         }
-        
         // if(!user || !admin){
         if(!user || !admin){
       

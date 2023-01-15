@@ -2,6 +2,7 @@
      color: #176F6B;
      background-color: white;
      font-weight: 700;
+     border-radius: 0 !important;
 }
 .pagination .selected{
      background-color: aqua !important;
