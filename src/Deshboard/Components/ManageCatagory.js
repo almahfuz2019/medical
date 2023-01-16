@@ -5,7 +5,7 @@ import UseCatagory from "../Hooks/UseCatagory"
 const ManageCatagory = () => {
      const {catagorys,handleCatagoryDelete}=UseCatagory();
      return(
-          <div className="overflow-x-auto m-10">
+          <div className="overflow-x-auto sm:m-10 m-2">
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>

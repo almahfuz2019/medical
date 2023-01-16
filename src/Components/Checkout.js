@@ -7,12 +7,13 @@ import auth from '../firebase.init';
 import Loading from './Loading';
 const Checkout = () => {
   const [user, loading, error] = useAuthState(auth);
-  // if(loading){
-  //   return <Loading/>
-  // }
-  // if(error){
-  //   return <p>{error}</p>
-  // }
+  if(loading){
+    return <Loading/>
+  }
+  if(error){
+    return <p>{error}</p>
+  }
+ 
   const time= new Date().toLocaleString();
   const {usdata,total}=UseUserSpacifiqData();
   // console.log(x);
@@ -57,8 +58,14 @@ const Checkout = () => {
           <div>
                
 <section className='mt-12'>
-  <h1 className="text-center font-bold text-4xl mb-5">Checkout</h1>
-
+  <h1 className="text-center font-bold text-3xl sm:text-4xl mb-5">Checkout</h1>
+  <div className='mx-auto text-center my-2'>
+      <ul className="steps ">
+  <li className="step step-primary mx-2">Add Product</li>
+  <li className="step step-primary mx-2">Shopping Cart</li>
+  <li className="step step-primary mx-2">CheckOut</li>
+</ul>
+</div>
   <div className="grid grid-cols-1 mx-auto max-w-screen-2xl md:grid-cols-2 ">
     <div className="py-12  md:py-24 border border-2  bg-white border-primary">
       <div className="max-w-lg px-4 mx-auto space-y-8 lg:px-8">

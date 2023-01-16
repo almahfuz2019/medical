@@ -56,17 +56,18 @@ const OrderStatusUpdate = () => {
      <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
     <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
       <h2 className="text-gray-900 text-lg mb-1 
-     title-font font-semibold">Add a product</h2>
+     title-font font-semibold">Update Status</h2>
       
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Name</label>
         <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={handleNameChange}>
           <option selected>Confirm</option>
           <option>Wating</option>
+          <option>Cencel</option>
         </select>
       </div>
      
-      <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="save" type="submit"/>
+      <input  className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg cursor-pointer" value="save" type="submit"/>
       <p className="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
     </div>
   </div>

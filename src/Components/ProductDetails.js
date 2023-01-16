@@ -55,7 +55,7 @@ const ProductDetails = () => {
              .then(data => setNote(data));
      }, []);
      return (
-          <div className='bg-gray-100 p-5'>
+          <div className='bg-gray-100 p-2'>
                <a  href = "javascript:history.back()"><span className="ml-1 text-2xl  text-primary">
                 <FaArrowCircleLeft/></span></a>
                 <section>
@@ -112,7 +112,7 @@ const ProductDetails = () => {
 
           <span className="text-gray-500 text-sm">incl. VAT plus shipping</span>
         </div>
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-xl sm:text-2xl font-bold">
               {note.name}
             </h1>
             
@@ -165,7 +165,7 @@ const ProductDetails = () => {
               </svg>
 
               <svg
-                className="w-5 h-5 text-gray-200"
+                className="w-5 h-5 text-yellow-400"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -357,12 +357,12 @@ const ProductDetails = () => {
                 min="1"
                 defaultValue={1}
                 
-                className="w-12 rounded border-gray-200 py-3 text-center text-xs border border-3"
+                className="w-12 sm:w-20 rounded border-primary  text-center  font-medium border border-3 input-sm p-2 sm:input-md sm:p-0"
                 name='productQuentity' required
               />
             </div>
          {user? <button type='submit'
-              className="block px-5 py-3 ml-3 text-xs font-medium text-white btn btn-primary flex"
+              className="block sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md"
             >
               Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
             </button>: <Link to="/login" type='submit'

@@ -10,7 +10,7 @@ const Faq = () => {
     <li className="flex items-center">
       <Link
         to="/"
-        className="flex h-10 items-center bg-primary px-4 transition  text-white"
+        className="flex h-9 items-center bg-primary px-4 transition  text-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -33,13 +33,13 @@ const Faq = () => {
 
     <li className="relative flex items-center">
       <span
-        className="absolute inset-y-0 -left-px h-10 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
+        className="absolute inset-y-0 -left-px h-9 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
       >
       </span>
 
       <a
         href="#"
-        className="flex h-10 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
+        className="flex h-9 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
       >
         QNA
       </a>

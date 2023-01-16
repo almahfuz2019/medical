@@ -1,32 +1,27 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { AiFillEye } from 'react-icons/ai';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Loading from '../../Components/Loading';
-import auth from '../../firebase.init';
 import UserRow from './UserRow';
 const Users = () => {
-
-     const { isLoading, error, data:users,refetch } = useQuery( 'users', () =>
+     const { isLoading, error, data:usersInfo,refetch } = useQuery( 'users', () =>
      fetch('http://localhost:5000/user',{
           method:"GET",
           headers:{
                authorization:`Bearer ${localStorage.getItem('accessToken')}`
           }
      }).then(res =>
-      res.json()
-)
-  )
-  // console.log(users);
+      res.json()))
+  console.log(usersInfo);
   if(isLoading){
      return <Loading/>
+  }
+  if(error){
+    return <p>{error}</p>
   }
      return (
           <div>
              <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {users?.length}</span></div>
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {usersInfo?.length}</span></div>
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
@@ -40,10 +35,11 @@ const Users = () => {
     
          
             <tbody>
-             {users.map(user=><UserRow
+             {usersInfo.map((user,index)=><UserRow
              key={user._id}
              refetch={refetch}
              user={user}
+             index={index}
              >
 
              </UserRow>)}

@@ -14,7 +14,7 @@ const Orders = () => {
      return (
           <div>
           <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {orderItem.length}</span></div>
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {orderItem.length}</span></div>
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
@@ -34,12 +34,14 @@ const Orders = () => {
                 <th>{index+1}</th>
                 <th>{order.dateAndTime}</th>
                 <td>
-                  {order.status==="Wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">Confirm</button>}
+                  {order.status==="Wating"?
+                  <button className="btn sm:btn-md btn-sm loading">Wating</button>
+                  :order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled">Cencel</button>:<button className="btn sm:btn-md btn-sm disabled">Confirm</button>}
+                  {/* Confirm */}
                 </td>
                 <td>TK ${order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}
                 </td>
-
                <td>
                     {order.dateAndTime}
                </td>

@@ -41,11 +41,13 @@ const UserSlefOrderInfo = () => {
                 
          {orders.map((order,index)=>
             <tbody>
-              <tr className='border'>
+              <tr className='border bg-white'>
                 <th>{index+1}</th>
                 <th>{order.dateAndTime}</th>
                 <td>
-                  {order.status==="Wating"? <button className="btn loading">Wating</button>:<button className="btn disabled">Confirem</button>}
+                {order.status==="Wating"?
+                  <button className="btn loading ">Wating</button>
+                  :order.status==="Cencel"?<button className="btn disabled">Cencel</button>:<button className="btn disabled">Confirm</button>}
                
                 </td>
                 <td>TK ${order?.TotalPrice} <br />

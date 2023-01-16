@@ -10,7 +10,7 @@ return <Loading/>
   }
      return (
           <section className="bg-white">
-          <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+          <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:py-16 lg:px-8">
             <div className="text-3xl ">
               <h2 className="text-4xl font-bold text-primary sm:text-5xl ">
                 Welcome Boss
@@ -18,7 +18,7 @@ return <Loading/>
             </div>
         
             <div className="mt-8 sm:mt-12">
-              <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div
                   className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
                 >

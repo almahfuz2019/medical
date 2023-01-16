@@ -3,7 +3,7 @@ import { NavLink, NavNavLink, Outlet } from 'react-router-dom';
 import Loading from '../Components/Loading';
 // import UseCatagory from './Hooks/UseCatagory';
 import UseProducts from './Hooks/UseProducts';
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiOutlineAppstoreAdd, AiOutlineMail, AiOutlineUsergroupAdd } from "react-icons/ai";
 import userEvent from '@testing-library/user-event';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
@@ -12,7 +12,11 @@ import UseCopen from './Hooks/UseCopen';
 import UseCatagory from './Hooks/UseCatagory';
 import UseOrder from './Hooks/UseOrder';
 import { useQuery } from 'react-query';
-
+import { BsInfoSquare } from "react-icons/bs";
+import { MdProductionQuantityLimits } from "react-icons/md";
+import { CiShoppingBasket } from "react-icons/ci";
+import { GrContact } from "react-icons/gr";
+import { TbDiscount2, TbShoppingCartDiscount } from "react-icons/tb";
 const Deshboard = () => {
     const  {products,productLoading}=UseProducts()
     const [user]=useAuthState(auth);
@@ -71,37 +75,19 @@ const Deshboard = () => {
                             </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
        <NavLink to="basic-info" className="flex items-center  active:bg-primary ">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x={4} y={4} width={6} height={6} rx={1} />
-                                    <rect x={14} y={4} width={6} height={6} rx={1} />
-                                    <rect x={4} y={14} width={6} height={6} rx={1} />
-                                    <rect x={14} y={14} width={6} height={6} rx={1} />
-                                </svg>
+                                <BsInfoSquare/>
                                 <span className="text-sm  ml-2">Basic Info</span>
                             </NavLink></li>}
                        
        
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="products" className="flex items-center  active:bg-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x={4} y={4} width={6} height={6} rx={1} />
-                                    <rect x={14} y={4} width={6} height={6} rx={1} />
-                                    <rect x={4} y={14} width={6} height={6} rx={1} />
-                                    <rect x={14} y={14} width={6} height={6} rx={1} />
-                                </svg>
+                                <MdProductionQuantityLimits/>
                                 <span className="text-sm  ml-2">Products <span className='bg-primary rounded p-2 text-white font-bold text-end'>{products.length}</span></span>
                             </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="add-product" className="flex items-center  active:bg-primary ">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x={4} y={4} width={6} height={6} rx={1} />
-                                    <rect x={14} y={4} width={6} height={6} rx={1} />
-                                    <rect x={4} y={14} width={6} height={6} rx={1} />
-                                    <rect x={14} y={14} width={6} height={6} rx={1} />
-                                </svg>
+                                <AiOutlineAppstoreAdd/>
                                 <span className="text-sm  ml-2">Add Product</span>
                             </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
@@ -117,24 +103,23 @@ const Deshboard = () => {
                             </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="copne" className="flex items-center  active:bg-primary ">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x={4} y={4} width={6} height={6} rx={1} />
-                                    <rect x={14} y={4} width={6} height={6} rx={1} />
-                                    <rect x={4} y={14} width={6} height={6} rx={1} />
-                                    <rect x={14} y={14} width={6} height={6} rx={1} />
-                                </svg>
+                               <TbShoppingCartDiscount/>
                                 <span className="text-sm  ml-2">Copone <span className='bg-primary rounded p-2 text-white font-bold text-end'>{copone.length}</span></span>
                             </NavLink></li>}
                             {admin &&<li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="orders" className="flex items-center  active:bg-primary ">
-                                <AiFillEye/>
+                                <CiShoppingBasket/>
                                 <span className="text-sm  ml-2">Orders <span className='bg-primary rounded p-2 text-white font-bold text-end'>{orderItem.length}</span></span>
                             </NavLink></li>}
                             {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
      <NavLink to="users" className="flex items-center  active:bg-primary ">
-                                <AiFillEye/>
+                                <AiOutlineUsergroupAdd/>
                                 <span className="text-sm  ml-2">users <span>{userlength.length}</span></span>
+                            </NavLink></li>}
+                            {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
+     <NavLink to="contact" className="flex items-center  active:bg-primary text-white">
+                                <AiOutlineMail/>
+                                <span className="text-sm  ml-2">Contact <span className='bg-primary'>{userlength.length}</span></span>
                             </NavLink></li>}
     </ul>
   

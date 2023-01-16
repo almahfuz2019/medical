@@ -1,4 +1,3 @@
-import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
@@ -9,21 +8,18 @@ import auth from '../../firebase.init';
 const UseUserSpacifiqData = () => {
      const [user]=useAuthState(auth);
      const[usdata,setUsdata]=useState([]);
-    const navigate=useNavigate()
-
+    const navigate=useNavigate();
     const fetchCarts  = async() => {
      try{
           const res = await axios.get(`http://localhost:5000/notess?useremail=${user.email}`)
           setUsdata(res.data)
      }catch(err){
           console.log(err)
-     }
+      }
     }
-
-     useEffect( ()=>{
+     useEffect(()=>{
           fetchCarts() 
      },[user,usdata])
-     
      const handleUserDelete=id=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
@@ -39,7 +35,6 @@ const UseUserSpacifiqData = () => {
                        const remaining=usdata.filter(note=>note._id !==id);
                        setUsdata(remaining)
                   }
-
              })
         }
    }
@@ -59,11 +54,9 @@ const UseUserSpacifiqData = () => {
    let shippingCharge=0;
    if(Array.isArray(usdata)){
      for(let products of usdata){
- 
        subTotal+=parseInt(products.product.price)*(products.productQuentity);
        shippingCharge=100;
        total=subTotal+shippingCharge;
-      
      }
    }
      return {usdata,handleUserDelete,total,productLoading,products,subTotal,error,shippingCharge};

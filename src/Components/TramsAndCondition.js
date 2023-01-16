@@ -11,7 +11,7 @@ const TramsAndCondition = () => {
     <li className="flex items-center">
       <Link
         to="/"
-        className="flex h-10 items-center bg-primary px-4 transition  text-white"
+        className="flex h-9 items-center bg-primary px-4 transition  text-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -34,13 +34,13 @@ const TramsAndCondition = () => {
 
     <li className="relative flex items-center">
       <span
-        className="absolute inset-y-0 -left-px h-10 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
+        className="absolute inset-y-0 -left-px h-9 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
       >
       </span>
 
       <a
         href="#"
-        className="flex h-10 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
+        className="flex h-9 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
       >
         Terms and Condition
       </a>
@@ -50,7 +50,7 @@ const TramsAndCondition = () => {
 
                <div>
                <h1 className='sm:text-4xl md:text-5xl text-2xl mb-5 font-bold text-center'>Terms and Condition</h1>
-               <p className='mx-4 md:mx-0'>
+               <p className='mx-4 md:mx-0 text-justify'>
 
 Dear honorable customer, Welcome to Naba Tech Shop. Here are the terms and conditions for shopping in Naba Tech Shop. Please read these terms and conditions carefully before purchasing product from Naba Tech Shop.
 Product Order:

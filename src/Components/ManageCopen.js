@@ -5,13 +5,13 @@ import UseCopen from '../Deshboard/Hooks/UseCopen';
 const ManageCopen = () => {
      const{copone,handleCatagoryDelete}=UseCopen();
      return(
-          <div className="overflow-x-auto m-10">
+          <div className="overflow-x-auto sm:m-10 m-2">
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>
               <tr>
                 <th >No</th>
-                <th className='text-center'>Catagory</th>
+                <th className='text-center'>Copone</th>
                 <th className='text-end'>Action</th>
               </tr>
             </thead>

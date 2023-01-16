@@ -47,7 +47,7 @@ const AddProducts = () => {
           <div>
      <form onSubmit={addProduct}>
      <section className="text-gray-600 body-font relative ">
-     <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
+     <div className="container px-5 sm:py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
     <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
       <h2 className="text-gray-900 text-lg mb-1 
      title-font font-semibold">Add a product</h2>

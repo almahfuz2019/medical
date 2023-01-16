@@ -2,9 +2,9 @@ import React from 'react';
 
 const UserReview = () => {
      return (
-      <div className="flex flex-col max-w-xl p-8 rounded-xl lg:p-12 border-2 shadow-2xl bg-white border-primary border-opacity-30">
+      <div className="flex flex-col max-w-xl sm:p-8 p-3 rounded-xl lg:p-12 border-2 shadow-2xl bg-white border-primary border-opacity-30">
 	<div className="flex flex-col w-full">
-		<h2 className="text-3xl font-semibold text-center">Customer reviews</h2>
+		<h2 className="text-xl sm:text-2xl font-semibold text-center">Customer reviews</h2>
 		<div className="flex flex-wrap items-center mt-2 mb-1 space-x-2">
 			<div className="flex">
 				<button type="button" title="Rate 1 stars" aria-label="Rate 1 stars">
@@ -39,38 +39,38 @@ const UserReview = () => {
 		<div className="flex flex-col mt-4">
 			<div className="flex items-center space-x-1 ">
 				<span className="flex-shrink-0 w-12 text-sm ">5 star</span>
-				<div className="flex-1 h-4 overflow-hidden rounded-sm bg-white border-2 border-primary">
-					<div className="bg-primary h-4 w-5/6"></div>
+				<div className="flex-1 sm:h-4 sm:h-2 overflow-hidden rounded-sm bg-white border-2 border-primary">
+					<div className="bg-primary sm:h-4 sm:h-2 "></div>
 				</div>
-				<span className="flex-shrink-0 w-12 text-sm text-right">83%</span>
+				<span className="flex-shrink-0 w-12 text-sm text-right">100%</span>
 			</div>
 			<div className="flex items-center space-x-1 ">
 				<span className="flex-shrink-0 w-12 text-sm ">4 star</span>
-				<div className="flex-1 h-4 overflow-hidden rounded-sm bg-white border-2 border-primary">
-					<div className="bg-primary h-4 w-4/6"></div>
+				<div className="flex-1 sm:h-4 sm:h-2 overflow-hidden rounded-sm bg-white border-2 border-primary">
+					<div className="bg-primary sm:h-4 sm:h-2 w-0"></div>
 				</div>
-				<span className="flex-shrink-0 w-12 text-sm text-right">67%</span>
+				<span className="flex-shrink-0 w-12 text-sm text-right">0%</span>
 			</div>
 			<div className="flex items-center space-x-1 ">
 				<span className="flex-shrink-0 w-12 text-sm ">3 star</span>
-				<div className="flex-1 h-4 overflow-hidden rounded-sm bg-white border-2 border-primary">
-					<div className="bg-primary h-4 w-3/6"></div>
+				<div className="flex-1 sm:h-4 sm:h-2 overflow-hidden rounded-sm bg-white border-2 border-primary">
+					<div className="bg-primary sm:h-4 sm:h-2 w-0"></div>
 				</div>
-				<span className="flex-shrink-0 w-12 text-sm text-right">50%</span>
+				<span className="flex-shrink-0 w-12 text-sm text-right">0%</span>
 			</div>
 			<div className="flex items-center space-x-1 ">
 				<span className="flex-shrink-0 w-12 text-sm ">2 star</span>
-				<div className="flex-1 h-4 overflow-hidden rounded-sm bg-white border-2 border-primary">
-					<div className="bg-primary h-4 w-2/6"></div>
+				<div className="flex-1 sm:h-4 sm:h-2 overflow-hidden rounded-sm bg-white border-2 border-primary">
+					<div className="bg-primary sm:h-4 sm:h-2 w-0"></div>
 				</div>
-				<span className="flex-shrink-0 w-12 text-sm text-right">33%</span>
+				<span className="flex-shrink-0 w-12 text-sm text-right">0%</span>
 			</div>
 			<div className="flex items-center space-x-1 ">
 				<span className="flex-shrink-0 w-12 text-sm ">1 star</span>
-				<div className="flex-1 h-4 overflow-hidden rounded-sm bg-white border-2 border-primary">
-					<div className="bg-primary h-4 w-1/6"></div>
+				<div className="flex-1 sm:h-4 sm:h-2 overflow-hidden rounded-sm bg-white border-2 border-primary">
+					<div className="bg-primary sm:h-4 sm:h-2 w-0"></div>
 				</div>
-				<span className="flex-shrink-0 w-12 text-sm text-right">17%</span>
+				<span className="flex-shrink-0 w-12 text-sm text-right">0%</span>
 			</div>
 		</div>
 	</div>

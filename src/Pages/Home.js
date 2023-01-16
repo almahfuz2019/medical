@@ -162,18 +162,19 @@ if (productLoading){
 </div>
             <div className="divider  divide-current mt-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
             <div className="text-center  mt-5 sm:mt-7   ">
-              <div className="flex justify-center mx-2">
-              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
+              <div className="flex justify-center mx-2 ">
+              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
               
                <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto">
     <label for="SortBy " className="sr-only bg-white">Catagory</label>
 
-    <select id="SortBy" className="h-10 border-r-0 text-sm border-primary rounded px-2 bg-white" onChange={searchProductsbyCatagory}>
-<option className=''value="">All</option>
+    <select id="SortBy" className=" border-r-0 text-xs sm:text-sm border-primary rounded sm:px-2 bg-white max-w-sm sm:max-w-md mx-auto sm:mt-3  text-center" onChange={searchProductsbyCatagory}>
+<option className=''value=""><span className=''>All</span></option>
       
     {
                catagorys.map(p=>
                     <option
+                    className=''
                     key={p._id}
                     >{p.catagory}</option>
                )
@@ -188,7 +189,7 @@ if (productLoading){
 
 
 <div class="flex gap-8 ">
-  <div class="relative">
+  <div class="relative hidden sm:block no-underline border-0">
     <details class="group [&_summary::-webkit-details-marker]:hidden">
       <summary
         class="flex items-center gap-2 pb-1 text-gray-900 transition border-b border-gray-400 cursor-pointer hover:border-gray-600"
@@ -296,8 +297,8 @@ if (productLoading){
   </div>
 </div>
      
-<div className="flex  space-x-1  my-4 md:ml-5">
-	<button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+<div className="flex  space-x-1  my-4 sm:ml-5">
+	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="15 18 9 12 15 6"></polyline>
 		</svg>
@@ -306,14 +307,14 @@ if (productLoading){
           [...Array(pageCount).keys()]
           .map(number=><button
           count={pageCount}
-             className={page===number?'inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary ':"inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
+             className={page===number?'inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md btn-primary ':"inline-flex items-center justify-center  py-0 border rounded-md shadow-md border-primary text-primary w-6 h-6 sm:w-8 sm:h-8 bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
         }
-	<button  type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+	<button  type="button" className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="9 18 15 12 9 6"></polyline>
 		</svg>
 	</button>
-  <select className='inline-flex items-center justify-center w-20 h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary bg-white' onChange={e=>setSize(e.target.value)} >
+  <select className='inline-flex items-center justify-center  w-14 h-6 sm:w-20 sm:h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary bg-white' onChange={e=>setSize(e.target.value)} >
           <option  value="5">5</option>
           <option  value="10">10</option>
           <option value="15">15</option>
@@ -323,14 +324,14 @@ if (productLoading){
   {
     products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold'>Not found</h1>
   }
-<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6  gap-5 mx-5-2 sm:mx-5'>
+<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-2 sm:gap-5 mx-5-2 sm:mx-5'>
   
 
       {products?.map(product=>
 <>
 
         <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
-       <div className="h-28 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-4 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none"    style={{backgroundImage: `url(${product.image})`  }}>
+       <div className="h-28 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none"    style={{backgroundImage: `url(${product.image})`  }}>
          <div className="flex justify-between">
           </div>
        <div className='sm:flex'>
@@ -361,8 +362,8 @@ if (productLoading){
         }
 </div> */}
 
-<div className="flex justify-center space-x-1 dark:text-gray-100 my-10">
-	<button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+<div className="flex  space-x-1  my-4 sm:ml-5">
+	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="15 18 9 12 15 6"></polyline>
 		</svg>
@@ -371,14 +372,14 @@ if (productLoading){
           [...Array(pageCount).keys()]
           .map(number=><button
           count={pageCount}
-             className={page===number?'inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary':"inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
+             className={page===number?'inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md btn-primary ':"inline-flex items-center justify-center  py-0 border rounded-md shadow-md border-primary text-primary w-6 h-6 sm:w-8 sm:h-8 bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
         }
-	<button  type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+	<button  type="button" className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="9 18 15 12 9 6"></polyline>
 		</svg>
 	</button>
-  <select className='inline-flex items-center justify-center w-20 h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary bg-white' onChange={e=>setSize(e.target.value)} >
+  <select className='inline-flex items-center justify-center  w-14 h-6 sm:w-20 sm:h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary bg-white' onChange={e=>setSize(e.target.value)} >
           <option  value="5">5</option>
           <option  value="10">10</option>
           <option value="15">15</option>

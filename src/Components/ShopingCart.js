@@ -13,21 +13,27 @@ console.log(usdata);
   <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-0 ">
     <div className=" mx-auto ">
       <header className="text-center">
-        <h1 className="text-xl font-bold  sm:text-4xl">Your Cart items</h1>
+        <h1 className="text-3xl font-bold  sm:text-4xl">Your Cart items</h1>
       </header>
-
+      <div className='mx-auto text-center mt-2'>
+      <ul className="steps ">
+  <li className="step step-primary mx-2">Add Product</li>
+  <li className="step step-primary mx-2">Shopping Cart</li>
+  <li className="step mx-2">CheckOut</li>
+</ul>
+</div>
       <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30">
         <ul className="space-y-4 ">
           {usdata?.map(data=>
-        <li className="flex items-center border-primary border-b-2 p-2">
+        <li className="sm:flex items-center border-primary border-b-2 p-2">
         <img
           src={data?.product?.image}
           alt=""
           className="object-cover w-16 h-16 rounded border-primary border"
         />
 
-        <div className="ml-4">
-          <h3 className="text-xl text-gray-900">{data?.product?.name}</h3>
+        <div className="sm:ml-4">
+          <h3 className="text-md sm:text-xl text-gray-900 ">{data?.product?.name}</h3>
 
           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
             <div>
@@ -39,18 +45,18 @@ console.log(usdata);
           </dl>
         </div>
 
-        <div className="flex items-center justify-end flex-1 gap-2">
+        <div className="flex items-center justify-between sm:justify-end flex-1 gap-2 mt-2 sm:0">
           <form>
             <label for="Line1Qty" className="sr-only"> Quantity </label>
 
             <h1
               id="Line1Qty"
-              className="py-2 px-2 rounded border-gray-200 bg-gray-50 p-0 text-center border-primary border-2 border sm:text-xl text-sm  font-semibold"
+              className="py-2 px-2 rounded border-primary border-opacity-40 bg-gray-50 p-0 text-center  border-2 border sm:text-xl text-sm  font-semibold"
             >{data?.product?.price} * {data?.productQuentity}=
             {data?.productQuentity*data?.product?.price}</h1>
           </form>
 
-          <Link onClick={()=>handleUserDelete(data._id)} className="text-gray-600 transition hover:text-red-600">
+          <Link onClick={()=>handleUserDelete(data._id)} className="text-gray-600 transition hover:text-red-600 ">
             <span className="sr-only">Remove item</span>
 
             <svg
@@ -132,7 +138,7 @@ console.log(usdata);
             <div className="flex justify-end">
               <Link
                 to="/checkout"
-                className="block px-5 py-3 text-sm text-white btn btn-primary transition"
+                className="block sm:px-5 sm:py-3 pt-1 text-sm text-white btn btn-primary transition btn-sm sm:btn-md"
               >
                 Checkout
               </Link>

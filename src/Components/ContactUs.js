@@ -40,7 +40,7 @@ const ContactUs = () => {
     <li className="flex items-center">
       <Link
         to="/"
-        className="flex h-10 items-center bg-primary px-4 transition  text-white"
+        className="flex h-9 items-center bg-primary px-4 transition  text-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,13 +63,13 @@ const ContactUs = () => {
 
     <li className="relative flex items-center">
       <span
-        className="absolute inset-y-0 -left-px h-10 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
+        className="absolute inset-y-0 -left-px h-9 w-4 bg-primary [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"
       >
       </span>
 
       <a
         href="#"
-        className="flex h-10 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
+        className="flex h-9 items-center bg-white pl-8 pr-4 text-xs font-medium transition hover:text-gray-900"
       >
         Contact US
       </a>
@@ -96,7 +96,7 @@ const ContactUs = () => {
         <label for="message" className="leading-7 text-sm text-gray-600">Message</label>
         <textarea id="message" name="message" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
       </div>
-      <input className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="submit" value="Submit"/>
+      <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="submit" value="Submit"/>
       </form>
       <p className="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
     </div>
