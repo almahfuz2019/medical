@@ -40,6 +40,7 @@ import UseAdmin from './Deshboard/Hooks/UseAdmin';
 import { useState } from 'react';
 import DarkMode from './Deshboard/Hooks/DarkMode';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ForgetPassword from './Authentication/ForgetPassword';
 
 function App() {
       const [user]=useAuthState(auth);
@@ -51,6 +52,7 @@ function App() {
    <Navbar/>
 <Routes>
   <Route path='/login' element={<Login/>}/>
+  <Route path='/forget-password' element={<ForgetPassword/>}/>
   <Route path='update/:id' element={<RequireAuth>
       <RequireAdmin><UpdateProduct/></RequireAdmin></RequireAuth>}/>
   <Route path='itemorderdelete/:id' element={<RequireAuth>

@@ -11,7 +11,7 @@ useEffect(()=>{
      .then(data=>setItem(data))
      toast.success('Submitted Successfully', {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -40,7 +40,7 @@ const handleNameChange = e => {
          .then(data => {
           toast.success('Update Successfully', {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,

@@ -18,7 +18,7 @@ const Login = () => {
   
   let from = location.state?.from?.pathname || "/";
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const [sendPasswordResetEmail, sending, error3] = useSendPasswordResetEmail(auth);
+
   const [
     signInWithEmailAndPassword,
     user,
@@ -41,7 +41,7 @@ const Login = () => {
     
 signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
   }
-  if (loading || sending) {
+  if (loading ) {
     return <Loading/>;
   }
   // const handlePasswordReset=()=>{
@@ -117,21 +117,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
            </div>
          
            <div className='text-end'>
-      <input
-        type="email"
-        
-        onChange={(e) => setEmails(e.target.value)}
-      />
-      <Link className='underline'
-        onClick={async () => {
-          const success = await sendPasswordResetEmail(
-            emails
-          );
-          if (success) {
-            toast.success("Check your email")
-          }
-        }}
-      >
+      <Link to="/forget-password" className='underline'>
         forget password
       </Link>
     </div>

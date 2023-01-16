@@ -185,7 +185,7 @@ const ProductDetails = () => {
             <div>
               <div className="prose max-w-none group-open:hidden">
                 <p>
-                  {note?.details}
+                  {note?.details?.slice(0,250)}
                 </p>
               </div>
 
@@ -199,7 +199,7 @@ const ProductDetails = () => {
 
           <div className="pb-6 prose max-w-none">
             <span>
-            {note?.details}
+            {note?.details?.slice(0,250000)}
             </span>
           </div>
         </details>

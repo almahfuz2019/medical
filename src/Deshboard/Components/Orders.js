@@ -30,7 +30,7 @@ const Orders = () => {
                 
          {orderItem.map((order,index)=>
             <tbody>
-              <tr className='border'>
+              <tr className='border bg-white '>
                 <th>{index+1}</th>
                 <th>{order.dateAndTime}</th>
                 <td>
@@ -43,7 +43,7 @@ const Orders = () => {
                <td>
                     {order.dateAndTime}
                </td>
-                <td className='flex gap-3 text-2xl'>
+                <td className='flex gap-3 text-2xl bg-white'>
                  
                  <Link to={`/itemorderdelete/${order._id}`}>
                  <FaEdit/>

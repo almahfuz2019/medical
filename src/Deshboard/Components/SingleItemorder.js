@@ -22,7 +22,7 @@ const SingleItemorder = () => {
     }
     //  console.log(z);
      return (
-          <div className=''>
+          <div className='h-screen'>
               <div className='text-end mt-5'>
               <ReactToPrint trigger={()=>
                <button className='cursor-pointer  '><FaFileDownload/></button>} content={()=>ref.current}/>
@@ -64,11 +64,11 @@ const SingleItemorder = () => {
       <th>Price</th>
     </tr>
   </thead>
-  <tbody className=' border-black border-b-2'>
+  <tbody className=' border-black border-b-2 '>
   {
   singleUserOrder.userData?.map(x=>
-<tr className=' mb-2 border-b'>
-      <td className='font-semibold'>{x.product.name}</td>
+<tr className=' mb-2 border-black border-b-2'>
+      <td className=' pl-5'>{x.product.name}</td>
       <td></td>
       <td>${x.product.price}</td>
       <td>{x.productQuentity}</td>
@@ -79,29 +79,48 @@ const SingleItemorder = () => {
     
   </tbody>
 </table>
-<div class="grid grid-cols-5">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div className='border-b-2 border-black py-5'>
+
+<table class="table-fixed  w-full text-center px-10">
+  <thead className=' text-black fotn-semibold '>
+    <tr className=''>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody className='  '>
+  
+<tr className=' mb-2  text-seart m-72'>
+      <td className=' pl-5'></td>
+      <td></td>
+      <td></td>
+      <td className='border-black border-b-2 pl-10'><div className='text-start'>
 <h1 className=' font-semibold '>Subtotal
 </h1>
 <p>+Delivery fee</p>
 <p>-Discount</p>
 <p className='font-bold'>Total</p>
-  </div>
-  <div className='border-b-2 border-black py-5 '>
-<h1 className=' ml-28 font-semibold '>BDT {subTtotal}</h1>
-<p className=' ml-28 '>BDT 100</p>
-<p className=' ml-28 '>BDT 00</p>
-<p className=' ml-28 font-bold'>BDT {total}</p>
-  </div>
-</div>
-   <footer className="footer footer-center p-4 bg-gray-500  mt-96 text-white">
+  </div></td>
+      <td className=' text-end border-black border-b-2 px-10'>
+        <div className=' py-5 '>
+<h1 className=' font-semibold '>BDT {subTtotal}</h1>
+<p className=' '>BDT 100</p>
+<p className=' '>BDT 00</p>
+<p className=' font-bold'>BDT {total}</p>
+  </div></td>
+    </tr>
+
+
+    
+  </tbody>
+</table>
+   {/* <footer className="footer footer-center p-4 bg-gray-500  mt-100 text-white">
   <div>
     <p>Thanks for shopping</p>
   </div>
-</footer>
+</footer> */}
                </div>
                
 

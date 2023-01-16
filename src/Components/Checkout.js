@@ -42,7 +42,7 @@ const Checkout = () => {
  .then((data) => {
   toast.success('Submitted Successfully', {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 1000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -63,7 +63,7 @@ const Checkout = () => {
     <div className="py-12  md:py-24 border border-2  bg-white border-primary">
       <div className="max-w-lg px-4 mx-auto space-y-8 lg:px-8">
         <div className="flex items-center">
-          <span className="w-10 h-10 bg-blue-700 rounded-full"></span>
+          <span className="w-10 h-10 bg-primary rounded-full"></span>
 
           <h2 className="ml-4 font-medium text-gray-900">Medical</h2>
         </div>
@@ -100,7 +100,7 @@ const Checkout = () => {
       </div>
     </div>
 
-    <div className="py-12  md:py-24 border border-l-0 border-2 border-primary bg-gray-100">
+    <div className="py-12  md:py-24 border border-l-0 border-2 border-primary bg-white">
       <div className="max-w-lg px-4 mx-auto lg:px-8">
         <form onSubmit={checkOut} className="grid grid-cols-6 gap-4  p-5 rounded border border-primary border-opacity-50">
 
@@ -207,7 +207,7 @@ const Checkout = () => {
             </label>
             <input
               type="tex" 
-              placeholder='Optional'
+              placeholder='Enter your TR ID'
               id="Phone"
               name='bkishID'
               className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
@@ -219,7 +219,7 @@ const Checkout = () => {
             </label>
             <input
               type="tex" 
-              placeholder='Optional'
+              placeholder='Bkish number'
               id="Phone"
               name='bkishNumber'
               className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "

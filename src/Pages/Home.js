@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FaCartPlus } from 'react-icons/fa';
-import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import Banner from '../Components/Banner';
 import Discount from '../Components/Discount';
-import HomePageCatagory from '../Components/HomePageCatagory';
 import Loading from '../Components/Loading';
-import SecondNav from '../Components/SecondNav';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
-import UseProducts from '../Deshboard/Hooks/UseProducts';
 const Home = () => {
   const {catagorys}=UseCatagory();
   const[allProducts,setAllProducts]=useState([]);
@@ -57,17 +51,17 @@ const handleChange1000=(e)=> {
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange3000=(e)=> {
-  const matched_products = allProducts.filter(pro => pro.price.includes(e.target.value>3000))
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 3000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange5000=(e)=> {
-  const matched_products = allProducts.filter(pro => pro.price.includes(e.target.value>5000))
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 5000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChangeuUnlimited=(e)=> {
-  const matched_products = allProducts.filter(pro => pro.price.includes(e.target.value>90000000))
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 10000000000000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
@@ -236,7 +230,7 @@ if (productLoading){
                 />
 
                 <span class="text-sm font-medium text-gray-700">
-                  100 to 1000
+                  0 to 1000
                 </span>
               </label>
             </li>
@@ -254,7 +248,7 @@ if (productLoading){
                 />
 
                 <span class="text-sm font-medium text-gray-700">
-                  1001 to 3000
+                  0 to 3000
                 </span>
               </label>
             </li>
@@ -273,7 +267,7 @@ if (productLoading){
                 />
 
                 <span class="text-sm font-medium text-gray-700">
-                  3001 to 5000
+                  0 to 5000
                 </span>
               </label>
             </li>
@@ -291,7 +285,7 @@ if (productLoading){
                 />
 
                 <span class="text-sm font-medium text-gray-700">
-                  5001 to unlimited
+                  0 to unlimited
                 </span>
               </label>
             </li>
@@ -326,11 +320,11 @@ if (productLoading){
           <option selected value="20">20</option>
         </select>  
 </div>
+  {
+    products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold'>Not found</h1>
+  }
 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6  gap-5 mx-5-2 sm:mx-5'>
   
-  {
-    products.length === 0 && <h1>Not found</h1>
-  }
 
       {products?.map(product=>
 <>
@@ -342,7 +336,7 @@ if (productLoading){
        <div className='sm:flex'>
             <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> available </span> </p>
             <p>
-            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1"><span className="line-through decoration-gray-400   text-gray-800 ">${product.previcePrice} </span><span className=' ml-2'> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
+            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1"><span className="line-through decoration-gray-400   text-gray-800 ">${product.previcePrice} </span><span className=' ml-1'> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
             </p>
        </div>  
        </div>  

@@ -76,7 +76,7 @@ const LoadProducts = () => {
            
     {products.map((product,index)=>
        <tbody>
-         <tr className='border'>
+         <tr className='border bg-white'>
            <th>{index+1}</th>
            <td>
            <div className="avatar border border-primary rounded border-2">
