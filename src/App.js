@@ -43,6 +43,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import ForgetPassword from './Authentication/ForgetPassword';
 import UserContactinfo from './Deshboard/UserContactinfo';
 import ContactInfoReadMore from './Deshboard/Components/ContactInfoReadMore';
+import AllProducts from './Components/AllProducts';
+import RequireWorker from './Authentication/RequireWorker';
 
 function App() {
       const [user]=useAuthState(auth);
@@ -58,9 +60,9 @@ function App() {
   <Route path='update/:id' element={<RequireAuth>
       <RequireAdmin><UpdateProduct/></RequireAdmin></RequireAuth>}/>
   <Route path='readmore/:id' element={<RequireAuth>
-      <RequireAdmin><ContactInfoReadMore/></RequireAdmin></RequireAuth>}/>
+      <RequireWorker><ContactInfoReadMore/></RequireWorker></RequireAuth>}/>
   <Route path='itemorderdelete/:id' element={<RequireAuth>
-      <RequireAdmin><OrderStatusUpdate/></RequireAdmin></RequireAuth>}/>
+      <RequireWorker><OrderStatusUpdate/></RequireWorker></RequireAuth>}/>
   <Route path='itemorder/:id' element={<RequireAuth>
       <SingleItemorder/></RequireAuth>}/>
   <Route path='updatecatagory/:id' element={<RequireAuth><RequireAdmin><UpdateCatagory/></RequireAdmin></RequireAuth>}/>
@@ -79,21 +81,24 @@ function App() {
           <Route path='basic-info' element={<RequireAuth><RequireAdmin><BasicInfo/></RequireAdmin></RequireAuth>}/>
           <Route path='users' element={<RequireAuth>{<RequireAdmin><Users/></RequireAdmin>}</RequireAuth>}/>
           <Route path='products' element={<RequireAuth>
-                <RequireAdmin><LoadProducts/></RequireAdmin>
+                <RequireWorker><LoadProducts/></RequireWorker>
           </RequireAuth>}/>
           <Route path='add-product' element={<RequireAuth>
-              <RequireAdmin>  <AddProducts/></RequireAdmin>
+              <RequireWorker>  <AddProducts/></RequireWorker>
           </RequireAuth>}/>
-          <Route path='catagory' element={<RequireAuth><RequireAdmin><CreateCatagory/></RequireAdmin></RequireAuth>}/>
+          <Route path='catagory' element={<RequireWorker><CreateCatagory/></RequireWorker>}/>
           <Route path='copne' element={<RequireAuth>
          <RequireAdmin>  <Copen/></RequireAdmin>
           </RequireAuth>}/>
           <Route path='orders' element={<RequireAuth>
-               <RequireAdmin> <Orders/></RequireAdmin>
+               <RequireWorker> <Orders/></RequireWorker>
           </RequireAuth>}/>
           <Route path='contact' element={<RequireAuth>
-               <RequireAdmin> <UserContactinfo/></RequireAdmin>
+               <RequireWorker> <UserContactinfo/></RequireWorker>
           </RequireAuth>}/>
+          {/* <Route path='contact' element={<RequireAuth>
+               <RequireAdmin> <UserContactinfo/></RequireAdmin>
+          </RequireAuth>}/> */}
 
   </Route>
   <Route path='/register' element={<Register/>}/>
@@ -113,6 +118,7 @@ function App() {
           <Route path='/home/about' element={<AboutUs/>}/>
           <Route path='/home/faq' element={<Faq/>}/>
           <Route path='/home/contact' element={<ContactUs/>}/>
+          <Route path='/home/all-products' element={<AllProducts/>}/>
   <Route path='/single/:id' element={<ProductDetails/>}/>
   <Route path='/' element={<Home/>}>
           <Route index  element={<MainPage/>}/>

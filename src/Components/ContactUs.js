@@ -29,6 +29,7 @@ const ContactUs = () => {
     progress: undefined,
     theme: "colored",
     });
+      event.target.reset();
  })
     }
      return (

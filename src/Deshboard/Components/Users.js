@@ -21,7 +21,7 @@ const Users = () => {
      return (
           <div>
              <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {usersInfo?.length}</span></div>
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Users: {usersInfo?.length}</span></div>
           <table className="table w-full">
             {/* <!-- head --> */}
             <thead>

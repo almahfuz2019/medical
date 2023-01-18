@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, NavNavLink, Outlet } from 'react-router-dom';
-import Loading from '../Components/Loading';
-// import UseCatagory from './Hooks/UseCatagory';
-import UseProducts from './Hooks/UseProducts';
 import { AiFillEye, AiOutlineAppstoreAdd, AiOutlineMail, AiOutlineUsergroupAdd } from "react-icons/ai";
 import userEvent from '@testing-library/user-event';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import UseAdmin from './Hooks/UseAdmin';
+import UseWorker from './Hooks/UseWorker';
 import UseCopen from './Hooks/UseCopen';
 import UseCatagory from './Hooks/UseCatagory';
 import UseOrder from './Hooks/UseOrder';
@@ -18,24 +16,54 @@ import { CiShoppingBasket } from "react-icons/ci";
 import { GrContact } from "react-icons/gr";
 import { TbDiscount2, TbShoppingCartDiscount } from "react-icons/tb";
 const Deshboard = () => {
-    const  {products,productLoading}=UseProducts()
     const [user]=useAuthState(auth);
     const [admin]=UseAdmin(user);
+    const [worker]=UseWorker(user);
     const  {catagorys}=UseCatagory();
     const  {copone}=UseCopen();
     const  {orderItem}=UseOrder();
-    const [userlength,setUserLength]=useState([]);
+    const [catagory,setCatagory]=useState([]);
+    const [products,setProducts]=useState([]);
+    const [orders,setOrders]=useState([]);
+    const [contactcount,setContactcount]=useState([]);
+    const [coponecount,setCoponecount]=useState([]);
+    const [userscount,setUserscount]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:5000/user")
+        fetch("http://localhost:5000/userscount")
         .then(res=>res.json())
-        .then(data=>setUserLength(data))
-        console.log(userlength);
+        .then(data=>setUserscount(data))
 
     },[])
-    
-    if(productLoading){
-        return <Loading/>
-    }
+    useEffect(()=>{
+        fetch("http://localhost:5000/coponecount")
+        .then(res=>res.json())
+        .then(data=>setCoponecount(data))
+
+    },[])
+    useEffect(()=>{
+        fetch("http://localhost:5000/contactcount")
+        .then(res=>res.json())
+        .then(data=>setContactcount(data))
+
+    },[])
+    useEffect(()=>{
+        fetch("http://localhost:5000/itemordercoutn")
+        .then(res=>res.json())
+        .then(data=>setOrders(data))
+
+    },[])
+    useEffect(()=>{
+        fetch("http://localhost:5000/productCount")
+        .then(res=>res.json())
+        .then(data=>setProducts(data))
+
+    },[])
+    useEffect(()=>{
+        fetch("http://localhost:5000/catagoycount")
+        .then(res=>res.json())
+        .then(data=>setCatagory(data))
+
+    },[])
      return (
           <>
           <div className="drawer drawer-mobile">
@@ -80,17 +108,17 @@ const Deshboard = () => {
                             </NavLink></li>}
                        
        
-                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
-        <NavLink to="products" className="flex items-center  active:bg-primary">
+                            {worker && <li className=' text-white bg-gray-500 mt-2 '>
+        <NavLink to="products" className="flex items-center  active:bg-primary ">
                                 <MdProductionQuantityLimits/>
-                                <span className="text-sm  ml-2">Products <span className='bg-primary rounded p-2 text-white font-bold text-end'>{products.length}</span></span>
+                                <span className="text-sm  ml-2">Products <span className='bg-primary rounded p-2 text-white font-bold text-end'>{products.count}</span></span>
                             </NavLink></li>}
-                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
+                            {worker && <li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="add-product" className="flex items-center  active:bg-primary ">
                                 <AiOutlineAppstoreAdd/>
                                 <span className="text-sm  ml-2">Add Product</span>
                             </NavLink></li>}
-                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
+                            {worker && <li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="catagory" className="flex items-center  active:bg-primary ">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -99,28 +127,29 @@ const Deshboard = () => {
                                     <rect x={4} y={14} width={6} height={6} rx={1} />
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
-                                <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>{catagorys.length}</span></span>
+                                <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>{catagory.count}</span></span>
                             </NavLink></li>}
                             {admin && <li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="copne" className="flex items-center  active:bg-primary ">
                                <TbShoppingCartDiscount/>
-                                <span className="text-sm  ml-2">Copone <span className='bg-primary rounded p-2 text-white font-bold text-end'>{copone.length}</span></span>
+                                <span className="text-sm  ml-2">Copone <span className='bg-primary rounded p-2 text-white font-bold text-end'>{coponecount.count}</span></span>
                             </NavLink></li>}
-                            {admin &&<li className=' text-white bg-gray-500 mt-2 '>
+                            {worker &&<li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="orders" className="flex items-center  active:bg-primary ">
                                 <CiShoppingBasket/>
-                                <span className="text-sm  ml-2">Orders <span className='bg-primary rounded p-2 text-white font-bold text-end'>{orderItem.length}</span></span>
+                                <span className="text-sm  ml-2">Orders <span className='bg-primary rounded p-2 text-white font-bold text-end'>{orders.count}</span></span>
                             </NavLink></li>}
                             {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
      <NavLink to="users" className="flex items-center  active:bg-primary ">
                                 <AiOutlineUsergroupAdd/>
-                                <span className="text-sm  ml-2">users <span>{userlength.length}</span></span>
+                                <span className="text-sm  ml-2">users <span className='bg-primary rounded p-2 text-white font-bold text-end'>{userscount.count}</span></span>
                             </NavLink></li>}
-                            {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
+                            {worker && <li className=' text-white bg-gray-500 mt-2 '>
      <NavLink to="contact" className="flex items-center  active:bg-primary text-white">
                                 <AiOutlineMail/>
-                                <span className="text-sm  ml-2">Contact <span className='bg-primary'>{userlength.length}</span></span>
+                                <span className="text-sm  ml-2">Contact <span className='bg-primary rounded p-2 text-white font-bold text-end'>{contactcount.count}</span></span>
                             </NavLink></li>}
+                            
     </ul>
   
   </div>
