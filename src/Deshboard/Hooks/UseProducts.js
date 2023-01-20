@@ -6,15 +6,7 @@ const[cart,setCart]=useState([]);
 // const[pageCount,setPageCount]=useState(0);
 const[page,setPage]=useState(0);
 const[size,setSize]=useState(10);
-// useEffect(()=>{
-//      fetch("http://localhost:5000/productCount")
-//      .then(res=>res.json())
-//      .then(data=>{
-//           const count=data.count;
-//           const pages=Math.ceil(count/size);
-//           setPageCount(pages)
-//      })
-// },[])
+
      const { isLoading:productLoading, error, data:products } = useQuery( 'repoDatsa', () =>
       fetch('http://localhost:5000/products').then(res =>
        res.json()

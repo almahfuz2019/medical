@@ -1,12 +1,12 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import UseCatagory from '../Hooks/UseCatagory';
-
 const AddProducts = () => {
      const {catagorys}=UseCatagory();
      const time= new Date().toLocaleString();
      const [selectCatagory,setSelectCatagory]=useState();
-     const addProduct=(event)=>{
+     const addProduct=async(event)=>{
       event.preventDefault();
       const name=event.target.name.value;
       const price=event.target.price.value;
@@ -17,16 +17,8 @@ const AddProducts = () => {
       const dateAndTime=time;
       const catagorys=selectCatagory;
       const productData={name,price,previcePrice,catagory,details,image,catagorys,dateAndTime};
-      console.log(productData);
-      fetch('http://localhost:5000/product', {
-   method: 'POST', // or 'PUT'
-   headers: {
-     'Content-Type': 'application/json',
-   },
-   body: JSON.stringify(productData),
- })
-   .then((res) => res.json())
-   .then((data) => {
+      await axios.post("http://localhost:5000/product",productData)
+
     toast.success('Update Successfully', {
       position: "top-right",
       autoClose: 1000,
@@ -37,11 +29,8 @@ const AddProducts = () => {
       progress: undefined,
       theme: "colored",
       });
-    //  event.target.reset();
-   })
-  //  .catch((error) => {
-  //    console.error('Error:', error);
-  //  });
+     event.target.reset();
+ 
       }
      return (
           <div>

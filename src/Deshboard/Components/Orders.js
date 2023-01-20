@@ -30,7 +30,7 @@ const[size,setSize]=useState(12);
     loadOrders()
   },[page,size])
   const searchProductsbyname = (e) => {
-    const matched_products = allOrders.filter(pro => pro.email.toLowerCase().includes(e.target.value.toLowerCase()))
+    const matched_products = allOrders.filter(pro => pro.email?.toLowerCase().includes(e.target.value.toLowerCase()))
     setOrders(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }

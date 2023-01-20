@@ -12,6 +12,7 @@ import { CiShoppingBasket } from "react-icons/ci";
 import { TbDiscount2, TbShoppingCartDiscount } from "react-icons/tb";
 import axios from 'axios';
 const Deshboard = () => {
+    const [error,setError]=useState("");
     const [user]=useAuthState(auth);
     const [admin]=UseAdmin(user);
     const [worker]=UseWorker(user);
@@ -26,7 +27,7 @@ const Deshboard = () => {
             const response=await axios.get("http://localhost:5000/userscount")
             setUserscount(response.data)
         }catch(error){
-            console.log(error);
+            setError("something is wrong.Please try again")
         }
     }
     useEffect(()=>{
@@ -65,6 +66,7 @@ const Deshboard = () => {
     },[])
      return (
           <>
+          {/* <p>{error}</p> */}
           <div className="drawer drawer-mobile">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content ">

@@ -28,6 +28,9 @@ const LoadProducts = () => {
   useEffect(()=>{
     fetchProducts()
   },[page,size])
+  const ab=()=>{
+    setPage(page+1)
+  }
   const searchProductsbyname = (e) => {
     const matched_products = allProducts.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
@@ -42,7 +45,7 @@ const LoadProducts = () => {
      <div className="overflow-x-auto">
      <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {products.length}</span></div>
      <div className="flex  space-x-1  my-4 sm:ml-5">
-	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+	<button onClick={ab} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="15 18 9 12 15 6"></polyline>
 		</svg>
@@ -117,8 +120,8 @@ const LoadProducts = () => {
      </table>
    </div>
 
-            <div className="flex justify-center space-x-1 dark:text-gray-100 my-10">
-	<button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary">
+        <div className="flex justify-center space-x-1 dark:text-gray-100 my-10">
+	<button onClick={ab} title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="15 18 9 12 15 6"></polyline>
 		</svg>

@@ -7,50 +7,18 @@ const OrderStatusUpdate = () => {
       const[item,setItem]=useState("");
       console.log(item);
       const { id } = useParams();
-  // useEffect(()=>{
-  //      const url=`http://localhost:5000/copone/${id}`
-  //      fetch(url)
-  //      .then(res=>res.json())
-  //      .then(data=>setItem(data))
-  //      console.log(url);
-  // },[])
   const handleNameChange = e => {
        const updateName = e.target.value;
        setItem(updateName);
-      //  console.log(updateName);
    }
    const handleUpdateProduct = async(e) => {
      e.preventDefault();
      console.log(item);
      const url = `http://localhost:5000/itemorderUpdate/${id}`;
        const res=await axios.post(url,{status:item})
-       
-      //  fetch(url, {
-      //      method: 'PUT',
-      //      headers: {
-      //          'content-type': 'application/json'
-      //      },
-      //      body: JSON.stringify(item)
-      //  })
-  //          .then(res => res.json())
-  //          .then(data => {
-  //           toast.success('Update Successfully', {
-  //             position: "top-right",
-  //             autoClose: 5000,
-  //             hideProgressBar: false,
-  //             closeOnClick: true,
-  //             pauseOnHover: true,
-  //             draggable: false,
-  //             progress: undefined,
-  //             theme: "colored",
-  //             });
-  //                  e.target.reset();
-  //          })
    } 
-    
      return (
           <div>
-
         <form onSubmit={handleUpdateProduct}>
      <section className="text-gray-600 body-font relative ">
      <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
