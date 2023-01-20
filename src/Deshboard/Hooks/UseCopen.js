@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 const UseCopen = () => {
      const [copone,setCopone]=useState([]);
@@ -9,23 +10,19 @@ const UseCopen = () => {
      const handleCatagoryDelete=id=>{
           const proceed=window.confirm("are you sure you want to delete?");
           if(proceed){
-               console.log("deleting user with id",id);
-               const url=`http://localhost:5000/copone/${id}`;
-               fetch(url,{
-                    method:'DELETE'
-               })
-               .then(res=>res.json())
-               .then(data=>{
-                    console.log("deleted",data);
-                    if(data.deletedCount>0){
+               
+               axios.delete(`http://localhost:5000/copone/${id}`)
+               .then(response => {
+                    if(response.data.deletedCount>0){
                          const remaining=copone.filter(cla=>cla._id !==id);
                          setCopone(remaining)
                     }
-               })
+                  })
+                  .catch(error => {
+                    console.log(error);
+                  });
           }
      }
-     
-    
      return {copone,handleCatagoryDelete};
 };
 export default UseCopen;

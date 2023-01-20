@@ -46,8 +46,9 @@ const ProductDetails = () => {
     console.error('Error:', error);
   });
      }
-     const [note, setNote] = useState({});
      const { id } = useParams();
+     const [note, setNote] = useState({});
+     
      useEffect(() => {
          const url = `http://localhost:5000/product/${id}`;
          fetch(url)

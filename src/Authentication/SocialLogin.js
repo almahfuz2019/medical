@@ -8,19 +8,19 @@ const SocialLogin = () => {
      const navigate=useNavigate();
      let location = useLocation();
    let from = location.state?.from?.pathname || "/";
-     const [signInWithGoogle, Guser, Gloading, Gerror] = useSignInWithGoogle(auth);
-     const [token]=UseToken(Guser);
-     if (Guser) {
+     const [signInWithGoogle, GoogleUser, GoogleLoading, GoogleError] = useSignInWithGoogle(auth);
+     const [token]=UseToken(GoogleUser);
+     if (GoogleUser) {
           navigate(from, { replace: true });
         }
      if (token) {
           navigate(from, { replace: true });
         }
         let googleError;
-  if(Gerror){
-googleError=<p className='text-red-700'>{Gerror?.message}</p>
+  if(GoogleError){
+googleError=<p className='text-red-700'>{GoogleError?.message}</p>
   }
-        if (Gloading) {
+        if (GoogleLoading) {
           return<Loading/>;
         }
         if(token){
@@ -39,7 +39,6 @@ googleError=<p className='text-red-700'>{Gerror?.message}</p>
                             </svg>
                         </div>
                         <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold" >Sign up with Google</h1>
-                      
                     </button>
           </div>
      );

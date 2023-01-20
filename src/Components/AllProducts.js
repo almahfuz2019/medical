@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
@@ -13,15 +14,16 @@ const AllProducts = () => {
      const[productLoading,setProductLoading]=useState(true);
      const fetchProducts = async() => {
        setProductLoading(true)
-       fetch(`http://localhost:5000/productss?page=${page}&size=${size}`)
-       .then(res=>res.json())
-       .then(data=>{
-         setPageCount(Math.ceil(data.count/size))
-         setProducts(data.products)
-         setAllProducts(data.allProducts)
-         setProductLoading(false)
-         // console.log(data);
-       })
+       axios.get(`http://localhost:5000/productss?page=${page}&size=${size}`)
+       .then(response => {
+        setPageCount(Math.ceil(response.data.count/size))
+          setProducts(response.data.products)
+          setAllProducts(response.data.allProducts)
+          setProductLoading(false)
+      })
+      .catch(error => {
+        console.log(error);
+      })
      }
      useEffect(()=>{
        fetchProducts()

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './Authentication/Login';
-import Register from './Authentication/Register';
+import Registration from './Authentication/Registration';
 import AboutUs from './Components/AboutUs';
 import ContactUs from './Components/ContactUs';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,7 +42,7 @@ import DarkMode from './Deshboard/Hooks/DarkMode';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ForgetPassword from './Authentication/ForgetPassword';
 import UserContactinfo from './Deshboard/UserContactinfo';
-import ContactInfoReadMore from './Deshboard/Components/ContactInfoReadMore';
+import ContactDetailsInformation from './Deshboard/Components/ContactDetailsInformation';
 import AllProducts from './Components/AllProducts';
 import RequireWorker from './Authentication/RequireWorker';
 
@@ -60,7 +60,7 @@ function App() {
   <Route path='update/:id' element={<RequireAuth>
       <RequireAdmin><UpdateProduct/></RequireAdmin></RequireAuth>}/>
   <Route path='readmore/:id' element={<RequireAuth>
-      <RequireWorker><ContactInfoReadMore/></RequireWorker></RequireAuth>}/>
+      <RequireWorker><ContactDetailsInformation/></RequireWorker></RequireAuth>}/>
   <Route path='itemorderdelete/:id' element={<RequireAuth>
       <RequireWorker><OrderStatusUpdate/></RequireWorker></RequireAuth>}/>
   <Route path='itemorder/:id' element={<RequireAuth>
@@ -101,7 +101,7 @@ function App() {
           </RequireAuth>}/> */}
 
   </Route>
-  <Route path='/register' element={<Register/>}/>
+  <Route path='/register' element={<Registration/>}/>
   <Route path='/product-details' element={<ProductDetails/>}/>
   <Route path='/view-cart' element={
   <RequireAuth>

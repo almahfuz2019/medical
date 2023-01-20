@@ -1,47 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { FaEdit, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AiFillEye } from "react-icons/ai";
 import Loading from '../../Components/Loading';
 import UseOrder from '../Hooks/UseOrder';
+import axios from 'axios';
 const Orders = () => {
      const {handleOrderDelete}=UseOrder();
-     const [orderItem,setOrderItem]=useState([])
-     const[page,setPage]=useState(0);
-     const[size,setSize]=useState(20);
-       const[pageCount,setPageCount]=useState(0);
-       const[products,setProducts]=useState([]);
-       const[userInfoLoading,setuserInfoLoading]=useState(true);
-       const[searchText,setSearchText]=useState('');
-       const fetchProducts = () => {
-         setuserInfoLoading(true)
-         fetch(`http://localhost:5000/itemorder?page=${page}&size=${size}&search=${searchText}`)
-         .then(res=>res.json())
-         .then(data=>{
-           setPageCount(Math.ceil(data.count/size))
-           setProducts(data.products)
-           setOrderItem(data.orderItem)
-           setuserInfoLoading(false)
-           console.log(data);
-           console.log(data.orderItem);
-         })
-       }
+  const[allOrders,setAllOrders]=useState([]);
+  const[page,setPage]=useState(0);
+const[size,setSize]=useState(12);
+  const[pageCount,setPageCount]=useState(0);
+  const[orders,setOrders]=useState([]);
+  const[orderLoading,setOrderLoading]=useState(true);
+  const loadOrders = async() => {
+    try{
+      setOrderLoading(true)
+      const response=await axios.get(`http://localhost:5000/itemorder?page=${page}&size=${size}`)
+      setPageCount(Math.ceil(response.data.count/size))
+          setOrders(response.data.products)
+          setAllOrders(response.data.allProducts)
+          setOrderLoading(false)
+    }
+    catch(error){
+      console.log(error);
+    };
+  }
   useEffect(()=>{
-    fetchProducts()
+    loadOrders()
   },[page,size])
   const searchProductsbyname = (e) => {
-    const matched_products = orderItem.filter(pro => pro._id.toLowerCase().includes(e.target.value.toLowerCase()))
-    setProducts(matched_products)
+    const matched_products = allOrders.filter(pro => pro.email.toLowerCase().includes(e.target.value.toLowerCase()))
+    setOrders(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }
-     const time= new Date().toLocaleString();
-     if(userInfoLoading){
+     if(orderLoading){
       return <Loading/>
      }
      return (
           <div>
           <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {products.length}</span></div>
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {orders.length}</span></div>
           <div className="flex  space-x-1  my-4 sm:ml-5">
 	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
@@ -67,11 +66,9 @@ const Orders = () => {
         </select>  
 </div>
 <div className='mx-auto text-center mb-5'>
-  
-<input type="text" placeholder="Type here" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
+<input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
 </div>
           <table className="table w-full">
-            {/* <!-- head --> */}
             <thead>
               <tr>
                 <th>No</th>
@@ -82,8 +79,7 @@ const Orders = () => {
                 <th>Action</th>
               </tr>
             </thead>
-                
-         {products.map((order,index)=>
+         {orders.map((order,index)=>
             <tbody>
               <tr className='border bg-white '>
                 <th>{index+1}</th>
@@ -92,7 +88,6 @@ const Orders = () => {
                   {order.status==="Wating"?
                   <button className="btn sm:btn-md btn-sm loading">Wating</button>
                   :order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled">Cencel</button>:<button className="btn sm:btn-md btn-sm disabled">Confirm</button>}
-                  {/* Confirm */}
                 </td>
                 <td>TK ${order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}

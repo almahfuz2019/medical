@@ -6,34 +6,33 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import UseAdmin from './Hooks/UseAdmin';
 import UseWorker from './Hooks/UseWorker';
-import UseCopen from './Hooks/UseCopen';
-import UseCatagory from './Hooks/UseCatagory';
-import UseOrder from './Hooks/UseOrder';
-import { useQuery } from 'react-query';
 import { BsInfoSquare } from "react-icons/bs";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { CiShoppingBasket } from "react-icons/ci";
-import { GrContact } from "react-icons/gr";
 import { TbDiscount2, TbShoppingCartDiscount } from "react-icons/tb";
+import axios from 'axios';
 const Deshboard = () => {
     const [user]=useAuthState(auth);
     const [admin]=UseAdmin(user);
     const [worker]=UseWorker(user);
-    const  {catagorys}=UseCatagory();
-    const  {copone}=UseCopen();
-    const  {orderItem}=UseOrder();
     const [catagory,setCatagory]=useState([]);
     const [products,setProducts]=useState([]);
     const [orders,setOrders]=useState([]);
     const [contactcount,setContactcount]=useState([]);
     const [coponecount,setCoponecount]=useState([]);
     const [userscount,setUserscount]=useState([]);
+    const totalUserCount = async() => {
+        try{
+            const response=await axios.get("http://localhost:5000/userscount")
+            setUserscount(response.data)
+        }catch(error){
+            console.log(error);
+        }
+    }
     useEffect(()=>{
-        fetch("http://localhost:5000/userscount")
-        .then(res=>res.json())
-        .then(data=>setUserscount(data))
-
+        totalUserCount();
     },[])
+
     useEffect(()=>{
         fetch("http://localhost:5000/coponecount")
         .then(res=>res.json())

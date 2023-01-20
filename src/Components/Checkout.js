@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import auth from '../firebase.init';
 import Loading from './Loading';

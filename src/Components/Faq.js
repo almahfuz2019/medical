@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 const Faq = () => {
      return (
-          <>
+          <div className='bg-white p-2 sm:p-5 pb-5'>
                 <nav aria-label="Breadcrumb" className="flex justify-center mt-5 mb-3">
   <ol role="list"
     className="flex overflow-hidden rounded-lg border-primary border"
@@ -49,7 +49,7 @@ const Faq = () => {
                <h1 className='sm:text-4xl md:text-5xl text-2xl mb-5 font-bold text-center'>QNA</h1>
                <div className="space-y-4">
   <details
-    className="group border-l-4 border-primary bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+    className="group border-l-4 border-primary bg-gray-100 p-6 [&_summary::-webkit-details-marker]:hidden"
     open
   >
     <summary className="flex items-center justify-between cursor-pointer">
@@ -84,7 +84,7 @@ const Faq = () => {
   </details>
 
   <details
-    className="group border-l-4 border-primary bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+    className="group border-l-4 border-primary bg-gray-100 p-6 [&_summary::-webkit-details-marker]:hidden"
   >
     <summary className="flex items-center justify-between cursor-pointer">
       <h2 className="text-lg font-medium text-gray-900">
@@ -118,7 +118,7 @@ const Faq = () => {
   </details>
 </div>
 
-          </>
+          </div>
      );
 };
 export default Faq;

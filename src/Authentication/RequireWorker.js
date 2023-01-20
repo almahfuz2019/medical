@@ -11,9 +11,7 @@ const RequireWorker = ({children}) => {
      if (loading || workerLoading) {
           return <Loading/>
         }
-        // if(!user || !admin){
         if(!user || !worker){
-      
           return <Navigate to="/login" state={{ from: location }} replace></Navigate>
         }
      return children;

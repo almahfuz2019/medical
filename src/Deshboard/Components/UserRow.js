@@ -3,25 +3,31 @@ import { toast } from 'react-toastify';
 const UserRow = ({user,refetch,index}) => {
      const {email,role,wrole}=user;
      const makeAdmin=()=>{
-          fetch(`http://localhost:5000/user/admin/${email}`,{
-               method:"PUT",
-                    headers:{
-                         authorization:`Bearer ${localStorage.getItem('accessToken')}`
+          const proceed=window.confirm("are you sure you want to make a admin?");
+          if(proceed){
+               fetch(`http://localhost:5000/user/admin/${email}`,{
+                    method:"PUT",
+                         headers:{
+                              authorization:`Bearer ${localStorage.getItem('accessToken')}`
+                         }
+               })
+               .then(res=>{
+                    if(res.status=== 403){
+                         toast.error("Failed to make an admin")
                     }
-          })
-          .then(res=>{
-               if(res.status=== 403){
-                    toast.error("Failed to make an admin")
-               }
-              return res.json()})
-          .then(data=>{
-            if(data.modifiedCount > 0){
-               refetch();
-               toast.success("Successfully made an amdin")
+                   return res.json()})
+               .then(data=>{
+                 if(data.modifiedCount > 0){
+                    refetch();
+                    toast.success("Successfully made an amdin")
+                 }
+               })
             }
-          })
-       }
+          }
+        
      const removeAdmin=()=>{
+          const proceed=window.confirm("are you sure you want to remove a admin?");
+          if(proceed){
           fetch(`http://localhost:5000/userr/admin/${email}`,{
                method:"PUT",
                     headers:{
@@ -39,8 +45,10 @@ const UserRow = ({user,refetch,index}) => {
                toast.success("Successfully Remove")
             }
           })
-       }
+       }}
      const makeWorker=()=>{
+          const proceed=window.confirm("are you sure you want to make a workder?");
+          if(proceed){
           fetch(`http://localhost:5000/worker/admin/${email}`,{
                method:"PUT",
                     headers:{
@@ -58,8 +66,10 @@ const UserRow = ({user,refetch,index}) => {
                toast.success("Successfully made an amdin")
             }
           })
-       }
+       }}
      const removeWorker=()=>{
+          const proceed=window.confirm("are you sure you want to remove a workder?");
+          if(proceed){
           fetch(`http://localhost:5000/workerr/admin/${email}`,{
                method:"PUT",
                     headers:{
@@ -72,12 +82,12 @@ const UserRow = ({user,refetch,index}) => {
                }
               return res.json()})
           .then(data=>{
-            if(data.modifiedCount > 0){
+            if(data.modifiedCount>0){
                refetch();
                toast.success("Successfully Remove")
             }
           })
-       }
+       }}
      return (
           <tr className='border'>
           <th>{index+1}</th>

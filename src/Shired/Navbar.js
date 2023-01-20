@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import UseProducts from '../Deshboard/Hooks/UseProducts';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
-
+import logo from "../Images/logo.png"
 import auth from '../firebase.init';
 const Navbar = () => {
   const {usdata}=UseUserSpacifiqData();
@@ -12,7 +12,6 @@ const Navbar = () => {
   let subTotal=0;
   if(Array.isArray(usdata)){
     for(let products of usdata){
-
       subTotal+=parseInt(products.product.price)*(products.productQuentity);
       let shippingCharge=100;
       total=subTotal+shippingCharge;
@@ -77,7 +76,8 @@ const Navbar = () => {
 {navItems}
       </ul>
     </div>
-    <NavLink to="/" className="btn btn-ghost normal-case text-xl ">Medical</NavLink>
+    {/* <NavLink to="/" className="btn btn-ghost normal-case text-xl ">Medical</NavLink> */}
+    <NavLink to="/" className="btn btn-ghost normal-case text-xl "><img className='h-12 w-28' src={logo} alt="" /></NavLink>
     
   </div>
   {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
@@ -111,9 +111,9 @@ const Navbar = () => {
       </div>
     </div>:""}
    {user?  <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+      <label tabIndex={0} className="">
         <div className=" rounded-full ">
-        <div className="avatar placeholder online">
+        <div className="avatar placeholder online animate-pulse cursor-pointer">
   <div className="bg-neutral-focus text-neutral-content rounded-full w-12  ">
     <span>{(user?.displayName?.slice(0,2))}</span>
   </div>

@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const TramsAndCondition = () => {
      return (
-          <>
+          <div className='bg-white p-2 sm:p-5 pb-5'>
           <nav aria-label="Breadcrumb" className="flex justify-center mt-5 mb-3">
   <ol role="list"
     className="flex overflow-hidden rounded-lg border-primary border"
@@ -84,7 +84,7 @@ The second payment method is Mobile Banking. At this moment we accept Bkash, Nag
 </p>
                </div>
                
-          </>
+          </div>
       
      );
 };
