@@ -18,7 +18,6 @@ const AddProducts = () => {
       const catagorys=selectCatagory;
       const productData={name,price,previcePrice,catagory,details,image,catagorys,dateAndTime};
       await axios.post("http://localhost:5000/product",productData)
-
     toast.success('Update Successfully', {
       position: "top-right",
       autoClose: 1000,

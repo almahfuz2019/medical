@@ -1,36 +1,28 @@
+import axios from 'axios';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const ContactUs = () => {
   const time= new Date().toLocaleString();
-  const ContactUS=(event)=>{
+  const ContactUS=async(event)=>{
     event.preventDefault();
     const email=event.target.email.value;
     const message=event.target.message.value;
     const dateAndTime=time;
     const productData={email,message,dateAndTime};
     console.log(productData);
-    fetch('http://localhost:5000/contact', {
- method: 'POST', // or 'PUT'
- headers: {
-   'Content-Type': 'application/json',
- },
- body: JSON.stringify(productData),
-})
- .then((res) => res.json())
- .then((data) => {
-  toast.success('Update Successfully', {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: false,
-    progress: undefined,
-    theme: "colored",
-    });
-      event.target.reset();
- })
+    await axios.post("http://localhost:5000/contact",productData)
+    toast.success('Update Successfully', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+      });
+     event.target.reset();
     }
      return (
           <div className='bg-white p-2 sm:p-5 pb-5'>

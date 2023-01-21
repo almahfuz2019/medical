@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { AiFillEye } from 'react-icons/ai';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
@@ -46,22 +47,18 @@ const UserContactinfo = () => {
           return <Loading/>
      }
 
-     const handleOrderDelete=id=>{
+     const handleOrderDelete=async(id)=>{
           const proceed=window.confirm("are you sure you want to delete?");
           if(proceed){
-               console.log("deleting user with id",id);
-               const url=`http://localhost:5000/contact/${id}`;
-               fetch(url,{
-                    method:'DELETE'
-               })
-               .then(res=>res.json())
-               .then(data=>{
-                    console.log("deleted",data);
-                    if(data.deletedCount>0){
-                         const remaining=products.filter(cla=>cla._id !==id);
-                         setProducts(remaining)
-                    }
-               })
+               
+               await axios.delete(`http://localhost:5000/contact/${id}`)
+               .then(response=>{
+                if(response.data.deletedCount>0){
+                     const deletedremaining=products.filter(note=>note._id !==id);
+                     setProducts(deletedremaining)
+                     alert("deles")
+                }
+           })
           }
       }
      return (
@@ -125,7 +122,7 @@ const UserContactinfo = () => {
            </td>
          </tr>
        </tbody>
-     )}
+     ).reverse()}
      </table>
      </div>
        </div>

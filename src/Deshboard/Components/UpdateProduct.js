@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -53,31 +54,22 @@ useEffect(()=>{
         setItem(updateNewDetails);
         console.log(updateNewDetails);
     }
-    const handleUpdateProduct = e => {
+    const handleUpdateProduct = async(e) => {
+      e.preventDefault()
+     const url = `http://localhost:5000/product/${id}`;
+     await axios.put(url,item)
+          toast.success('Update Successfully', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+            });
+                 e.target.reset();
       e.preventDefault();
-       
-      const url = `http://localhost:5000/product/${id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type':'application/json'
-            },
-            body: JSON.stringify(item)
-        })
-            .then(res => res.json())
-            .then(data => {
-              toast.success('Update Successfully', {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: false,
-                progress: undefined,
-                theme: "colored",
-                });
-                    e.target.reset();
-            })
     }   
      return (
      <div> 
@@ -136,45 +128,3 @@ useEffect(()=>{
      );
 };
 export default UpdateProduct;
-
-// const[item,setItem]=useState([]);
-// const[name,setName]=useState([]);
-// const[price,setPrice]=useState([]);
-// const[details,setDetails]=useState([]);
-// const[catagory,setCatagory]=useState([]);
-// const[firstImage,setFirstImage]=useState([]);
-// const[previcePrice,setPrevicePrice]=useState([]);
-// const { id } = useParams();
-// useEffect(()=>{
-// const url=`http://localhost:5000/product/${id}`
-// fetch(url)
-// .then(res=>res.json())
-// .then(data=>setItem(data))
-// console.log(url);
-// },[])
-// const handleNameChange = e => {
-//    const updateName = e.target.value;
-//    setName(updateName);
-// }
-// const handlePriceChange = e => {
-//    const updatePrice = e.target.value;
-
-//    setPrice(updatePrice);
-// }
-// const handlePrevicePriceChange = e => {
-//    const updatePrevicePrice = e.target.value;
-//    setPrevicePrice(updatePrevicePrice);
-// }
-// const handleImageChange = e => {
-//    const updatePrevicePrice = e.target.value;
-//    setFirstImage(updatePrevicePrice);
-// }
-// const handleCatagoryChange = e => {
-//    const updateCatagory = e.target.value;
-//    setCatagory(updateCatagory);
-// }
-// const handleDetailsChange = e => {
-//    const updateDetail = e.target.value;
-   
-//    setDetails(updateDetail);
-// }

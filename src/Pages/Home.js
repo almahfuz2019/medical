@@ -355,7 +355,7 @@ if (productLoading){
             </div>
             
             </>
-        )}
+        ).reverse()}
         
         </div>
         {/* <div className="btn-group border-primary border">

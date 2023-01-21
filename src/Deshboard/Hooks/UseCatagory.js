@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
  const UseCatagory = () => {
@@ -7,20 +8,14 @@ import { useQuery } from "react-query";
           .then(res=>res.json())
           .then(data=>setCatagorys(data))
      },[])
-     const handleCatagoryDelete=id=>{
+     const handleCatagoryDelete=async(id)=>{
           const proceed=window.confirm("are you sure you want to delete?");
           if(proceed){
-               console.log("deleting user with id",id);
-               const url=`http://localhost:5000/catagory/${id}`;
-               fetch(url,{
-                    method:'DELETE'
-               })
-               .then(res=>res.json())
-               .then(data=>{
-                    console.log("deleted",data);
-                    if(data.deletedCount>0){
-                         const remaining=catagorys.filter(cla=>cla._id !==id);
-                         setCatagorys(remaining)
+               await axios.delete(`http://localhost:5000/catagory/${id}`)
+               .then(response=>{
+                    if(response.data.deletedCount>0){
+                         const deletedremaining=catagorys.filter(note=>note._id !==id);
+                         setCatagorys(deletedremaining)
                     }
                })
           }

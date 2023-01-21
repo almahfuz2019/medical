@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import auth from '../firebase.init';
 import Loading from './Loading';
+import axios from 'axios';
 const Checkout = () => {
   const [user, loading, error] = useAuthState(auth);
   if(loading){
@@ -17,7 +18,7 @@ const Checkout = () => {
   const time= new Date().toLocaleString();
   const {usdata,total}=UseUserSpacifiqData();
   // console.log(x);
-  const checkOut=(event)=>{
+  const checkOut=async(event)=>{
     event.preventDefault();
     const name=event.target.name.value;
     const phone=event.target.phone.value;
@@ -31,17 +32,8 @@ const Checkout = () => {
     const dateAndTime=time;
     let status="Wating";
     const checkOut={name,phone,email,address,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
-    // console.log(checkOut);
-  fetch('http://localhost:5000/itemorder', {
- method: 'POST', // or 'PUT'
- headers: {
-   'Content-Type': 'application/json',
- },
- body: JSON.stringify(checkOut),
-})
- .then((res) => res.json())
- .then((data) => {
-  toast.success('Submitted Successfully', {
+  await axios.post("http://localhost:5000/itemorder",checkOut)
+  toast.success('Update Successfully', {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
@@ -51,8 +43,7 @@ const Checkout = () => {
     progress: undefined,
     theme: "colored",
     });
-  //  event.target.reset();
- })
+   event.target.reset();
     }
      return (
           <div>

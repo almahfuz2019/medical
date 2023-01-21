@@ -115,7 +115,7 @@ const LoadProducts = () => {
            </td>
          </tr>
        </tbody>
-     )}
+     ).reverse()}
      </table>
    </div>
 

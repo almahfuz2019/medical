@@ -20,22 +20,18 @@ const UseUserSpacifiqData = () => {
      useEffect(()=>{
           fetchCarts() 
      },[user,usdata])
-     const handleUserDelete=id=>{
+     const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
-             console.log("deleting user with id",id);
-             const url=`http://localhost:5000/note/${id}`;
-             fetch(url,{
-                  method:'DELETE'
-             })
-             .then(res=>res.json())
-             .then(data=>{
-                  console.log("deleted",data);
-                  if(data.deletedCount>0){
-                       const remaining=usdata.filter(note=>note._id !==id);
-                       setUsdata(remaining)
-                  }
-             })
+             await axios.delete(`http://localhost:5000/note/${id}`)
+             .then(response=>{
+               if(response.data.deletedCount>0){
+                    const deletedremaining=usdata.filter(note=>note._id !==id);
+                    setUsdata(deletedremaining)
+                    console.log("deleted");
+               }
+          })
+             
         }
    }
    const { isLoading:productLoading, error, data:products } = useQuery( 'repoaData', () =>

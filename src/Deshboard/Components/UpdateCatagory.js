@@ -10,16 +10,6 @@ useEffect(()=>{
      fetch(url)
      .then(res=>res.json())
      .then(data=>setCatagory(data))
-    //  toast.success('Submitted Successfully', {
-    //   position: "top-right",
-    //   autoClose: 1000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: false,
-    //   progress: undefined,
-    //   theme: "colored",
-    //   });
      console.log(url);
 },[])
 const handleCatagoryNameChange = e => {
@@ -32,15 +22,6 @@ const handleCatagoryNameChange = e => {
   e.preventDefault()
      const url = `http://localhost:5000/catagory/${id}`;
      await axios.put(url,catagory)
-    //  fetch(url, {
-    //      method: 'PUT',
-    //      headers: {
-    //          'content-type': 'application/json'
-    //      },
-    //      body: JSON.stringify(catagory)
-    //  })
-        //  .then(res => res.json())
-        //  .then(data => {
           toast.success('Update Successfully', {
             position: "top-right",
             autoClose: 1000,

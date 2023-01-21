@@ -6,44 +6,30 @@ import { FaArrowCircleLeft} from 'react-icons/fa';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 const ProductDetails = () => {
   const navigate=useNavigate();
   const [user]=useAuthState(auth);
   
-  const handleAddtocart=(event)=>{
+  const handleAddtocart=async(event)=>{
     event.preventDefault();
     const productQuentity=event.target.productQuentity.value;
     const useremail=user.email;
     const product=note;
      const NotesData={productQuentity,useremail,product};
      console.log(NotesData);
-     fetch('http://localhost:5000/note', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(NotesData),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    console.log('Success:', data);
-    
-    toast.success('Added Successfully', {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-      theme: "colored",
-      });
-  
-    event.target.reset();
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+     await axios.post("http://localhost:5000/note",NotesData)
+     toast.success('Update Successfully', {
+       position: "top-right",
+       autoClose: 1000,
+       hideProgressBar: false,
+       closeOnClick: true,
+       pauseOnHover: true,
+       draggable: false,
+       progress: undefined,
+       theme: "colored",
+       });
+      event.target.reset();
      }
      const { id } = useParams();
      const [note, setNote] = useState({});

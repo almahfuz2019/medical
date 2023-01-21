@@ -1,35 +1,24 @@
+import axios from 'axios';
 import React from 'react';
 import { toast } from 'react-toastify';
 import ManageCatagory from './ManageCatagory';
 const CreateCatagory = () => {
-     const handleCatagory=(event)=>{
+     const handleCatagory=async(event)=>{
      event.preventDefault();
      const catagory=event.target.findClass.value;
      const catagoryData={catagory};
-     fetch('http://localhost:5000/catagory', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(catagoryData),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    toast.success('Addedd Successfully', {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-      theme: "colored",
-      });
-    event.target.reset();
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+      await axios.post("http://localhost:5000/catagory",catagoryData)
+      toast.success('Update Successfully', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        });
+       event.target.reset();
      }
      return (
           <>

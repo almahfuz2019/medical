@@ -33,7 +33,7 @@ const ManageCatagory = () => {
                 </td>
               </tr>
             </tbody>
-          )}
+          ).reverse()}
           </table>
         </div>
      );
