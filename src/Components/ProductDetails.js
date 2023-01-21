@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaCartPlus } from "react-icons/fa";
 import UserReview from './UserReview';
 import { FaArrowCircleLeft} from 'react-icons/fa';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { toast } from 'react-toastify';
@@ -63,6 +62,7 @@ const ProductDetails = () => {
   <div className="relative max-w-screen-xl px-4 py-8 mx-auto">
     <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
       <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
+        
         <img
           alt="Les Paul"
           src={note.image}

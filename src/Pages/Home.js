@@ -9,7 +9,7 @@ const Home = () => {
   const {catagorys}=UseCatagory();
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(12);
+const[size,setSize]=useState(30);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
@@ -298,37 +298,6 @@ if (productLoading){
     </details>
   </div>
 </div>
-<h2 className='font-semibold text-xl mb-2 text-primary-focus'>Most Popular Products</h2>
-<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
-  
-
-      {xyz.map(mobilit=>
-<>
-
-        <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
-       <div className="h-28 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none"    style={{backgroundImage: `url(${mobilit.image})`  }}>
-         <div className="flex justify-between">
-          </div>
-       <div className='sm:flex'>
-            <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> available </span> </p>
-            <p>
-            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1"><span className="line-through decoration-gray-400   text-gray-800 ">${mobilit.previcePrice} </span><span className=' ml-1'> {Math.ceil(((mobilit.price-mobilit.previcePrice)*100/mobilit.price))}%</span> </span> 
-            </p>
-       </div>  
-       </div>  
-            <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{mobilit?.catagory}</p>
-            <div className='text-center'>
-            <Link to={`/single/${mobilit._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline hover:text-primary" >{(mobilit.name).slice(0,20)}</Link>
-            </div>    <p className="text-center text-gray-800 mt-1">€{mobilit.price}</p>    
-            
-            </div>
-          
-            </div> 
-            
-             </>
-        )} 
-        
-        </div>
 <div className="flex  space-x-1  my-4 sm:ml-0">
 	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">

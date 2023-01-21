@@ -1,35 +1,55 @@
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
  const UseProducts = () => {
 const[cart,setCart]=useState([]);
-// const[pageCount,setPageCount]=useState(0);
-const[page,setPage]=useState(0);
-const[size,setSize]=useState(10);
+const [products,setProducts]=useState([]);
+const[productLoading,setProductLoading]=useState(true);
+useEffect(()=>{
+     setProductLoading(true)
+     fetch('http://localhost:5000/products')
+     .then(res =>res.json())
+     .then(data=>setProducts(data))
+     setProductLoading(false)
+},[])
 
-     const { isLoading:productLoading, error, data:products } = useQuery( 'repoDatsa', () =>
-      fetch('http://localhost:5000/products').then(res =>
-       res.json()
- )
-   )
-   console.log(products);
+//      const { isLoading:productLoading, error, data:products ,refetch} = useQuery( 'repoDatsa', () =>
+//       fetch('http://localhost:5000/products').then(res =>
+//        res.json()
+//  )
+//    )
    const handleProductDelete=id=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
-         const url=`http://localhost:5000/product/${id}`;
-         fetch(url,{
-              method:'DELETE'
-         })
-         .then(res=>res.json())
-         .then(data=>{
-              if(data.deletedCount>0){
-                   const remaining=products.filter(item=>item._id !==id);
-                   products(remaining)
-              }
-
-         })
-    }
+     axios.delete(`http://localhost:5000/product/${id}`)
+     .then(response=>{
+          if(response.data.deletedCount>0){
+               const deletedremaining=products.filter(note=>note._id !==id);
+               setProducts(deletedremaining)
+               alert("deles")
+               console.log("deleted");
+          }
+     })
 }
+//     if(proceed){
+//      console.log("deleting user with id",id);
+//          const url=`http://localhost:5000/product/${id}`;
+//          fetch(url,{
+//               method:'DELETE'
+//          })
+//          .then(res=>res.json())
+//          .then(data=>{
+//           console.log("deleted",data);
+//           if(data.deletedCount>0){
+//                const remaining=products.filter(cla=>cla._id !==id);
+//                setProducts(remaining)
+//           }
+//      })
+//     }
+}
+
 const handleAddToCart=(product)=>{
      const newCart=[...cart,product];
      setCart(newCart)
@@ -46,7 +66,7 @@ const handleAddToCart=(product)=>{
 //    }
 //   console.log(cart);
   
-  return {products,productLoading,handleProductDelete,error,handleAddToCart,cart,page,setPage,size,setSize};
+  return {products,productLoading,handleProductDelete,handleAddToCart,cart};
 };
 
 export default UseProducts;

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const LoadProducts = () => {
      const {handleProductDelete}=UseProducts();
      const[page,setPage]=useState(0);
-     const[size,setSize]=useState(50);
+     const[size,setSize]=useState(20);
        const[pageCount,setPageCount]=useState(0);
        const[allProducts,setAllProducts]=useState([]);
        const[products,setProducts]=useState([]);
@@ -21,7 +21,6 @@ const LoadProducts = () => {
            setProducts(data.products)
            setAllProducts(data.allProducts)
            setProductLoading(false)
-           console.log(data);
          })
        }
         
