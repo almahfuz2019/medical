@@ -30,7 +30,6 @@ import RequireAuth from './Authentication/RequireAuth';
 import auth from './firebase.init';
 import Orders from './Deshboard/Components/Orders';
 import SingleItemorder from './Deshboard/Components/SingleItemorder';
-import OrderStatusUpdate from './Deshboard/OrderStatusUpdate';
 import UserSlefOrderInfo from './Deshboard/Components/UserSelfInfo/UserSlefOrderInfo';
 import { ToastContainer } from 'react-toastify';
 import Users from './Deshboard/Components/Users';
@@ -41,18 +40,16 @@ import { useState } from 'react';
 import DarkMode from './Deshboard/Hooks/DarkMode';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ForgetPassword from './Authentication/ForgetPassword';
-import UserContactinfo from './Deshboard/UserContactinfo';
 import ContactDetailsInformation from './Deshboard/Components/ContactDetailsInformation';
 import AllProducts from './Components/AllProducts';
 import RequireWorker from './Authentication/RequireWorker';
-
+import OrderStatusUpdate from './Deshboard/Components/OrderStatusUpdate';
+import UserContactinfo from './Deshboard/Components/UserContactinfo';
 function App() {
       const [user]=useAuthState(auth);
       const [admin]=UseAdmin(user);
-//    const {dark,setDark}=DarkMode()
   return (
    <div className='md:px-6 bg-gray-100'>
-     {/* <input onClick={()=>setDark(!dark)}  type="checkbox"/> */}
    <Navbar/>
 <Routes>
   <Route path='/login' element={<Login/>}/>
@@ -77,7 +74,6 @@ function App() {
 <RequireAdmin> <BasicInfo/></RequireAdmin>
    </RequireAuth>
   }/>: <Route index element={<RequireAuth><UserSlefOrderInfo/></RequireAuth>}/>}
-         
           <Route path='basic-info' element={<RequireAuth><RequireAdmin><BasicInfo/></RequireAdmin></RequireAuth>}/>
           <Route path='users' element={<RequireAuth>{<RequireAdmin><Users/></RequireAdmin>}</RequireAuth>}/>
           <Route path='products' element={<RequireAuth>
@@ -96,10 +92,6 @@ function App() {
           <Route path='contact' element={<RequireAuth>
                <RequireWorker> <UserContactinfo/></RequireWorker>
           </RequireAuth>}/>
-          {/* <Route path='contact' element={<RequireAuth>
-               <RequireAdmin> <UserContactinfo/></RequireAdmin>
-          </RequireAuth>}/> */}
-
   </Route>
   <Route path='/register' element={<Registration/>}/>
   <Route path='/product-details' element={<ProductDetails/>}/>
@@ -109,11 +101,7 @@ function App() {
   </RequireAuth>}/>
   <Route path='/checkout' element={<Checkout/>}/>
   <Route path='/test' element={<Test/>}/>
-
-
   <Route path='/' element={<Home/>}/>
-
-
   <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='/home/about' element={<AboutUs/>}/>
           <Route path='/home/faq' element={<Faq/>}/>
@@ -134,5 +122,4 @@ function App() {
    </div>
   );
 }
-
 export default App;

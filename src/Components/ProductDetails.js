@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 const ProductDetails = () => {
   const navigate=useNavigate();
   const [user]=useAuthState(auth);
@@ -47,38 +48,36 @@ const ProductDetails = () => {
                 <section>
   <div className="relative max-w-screen-xl px-4 py-8 mx-auto">
     <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
-        
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-1  justify-items-center">
+      <TransformWrapper>
+        <TransformComponent className="w-full">
         <img
           alt="Les Paul"
           src={note.image}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         />
+        </TransformComponent>
+      </TransformWrapper>
+        
 
-        <div className="grid grid-cols-2 gap-4 lg:mt-4">
-          <img
-            alt="Les Paul"
-            src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
-          />
-
-          <img
-            alt="Les Paul"
-            src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30"
-          />
-
-          <img
-            alt="Les Paul"
-            src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30"
-          />
-
-          <img
-            alt="Les Paul"
-            src={note.image}
-            className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30"
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:mt-4">
+             <TransformWrapper>
+        <TransformComponent className="w-full">
+        <img
+          alt="Les Paul"
+          src={note.image}
+          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
+        />
+        </TransformComponent>
+      </TransformWrapper>   <TransformWrapper>
+        <TransformComponent className="w-full">
+        <img
+          alt="Les Paul"
+          src={note.image}
+          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
+        />
+        </TransformComponent>
+      </TransformWrapper>
         </div>
       </div>
 

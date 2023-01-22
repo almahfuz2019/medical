@@ -67,11 +67,11 @@ const Deshboard = () => {
      return (
           <>
           {/* <p>{error}</p> */}
-          <div className="drawer drawer-mobile">
+          <div className="drawer drawer-start drawer-mobile ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content ">
-   <label htmlFor="my-drawer-2" tabIndex={0} className="btn btn-ghost lg:hidden ">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+   <label htmlFor="my-drawer-2" tabIndex={0} className="btn btn-ghost lg:hidden mx-auto text-center ml-100">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mx-auto text-center ml-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </label>
      
    <Outlet/>

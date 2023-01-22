@@ -2,7 +2,6 @@ import React from 'react';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
 import Loading from '../Components/Loading';
-import UseProducts from '../Deshboard/Hooks/UseProducts';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import logo from "../Images/logo.png"
 import auth from '../firebase.init';
@@ -47,20 +46,6 @@ const Navbar = () => {
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/faq">QNA</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/about">About US</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/contact">Contact US</NavLink></li>
-   {/* <li tabIndex={0} className="z-20 ">
-     <a className="justify-between">
-       Others
-        <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-     </a>
-     <ul className="p-2 bg-base-100">
-       <li><a>Submenu 1</a></li>
-       <li><a>Submenu 2</a></li>
-       <li><a>Submenu 3</a></li>
-       <li><a>Submenu 4</a></li>
-       <li><a>Submenu 5</a></li>
-     </ul>
-   </li> */}
-   {/* <button data-set-theme="light" data-act-class="ACTIVECLASS">light</button> */}
      
      </>
      return (

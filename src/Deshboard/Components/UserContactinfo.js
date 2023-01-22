@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { AiFillEye } from 'react-icons/ai';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Loading from '../Components/Loading';
+import Loading from '../../Components/Loading';
 const UserContactinfo = () => {
      // const [contactus,setContactus]=useState([])
      // useEffect(()=>{
