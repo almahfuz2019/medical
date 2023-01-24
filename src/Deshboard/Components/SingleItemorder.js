@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaFileDownload } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
+import logo from "../../Images/logo.png"
 const SingleItemorder = () => {
      const ref=useRef()
      const [singleUserOrder, setSingleUserOrder] = useState({});
@@ -28,7 +29,8 @@ const SingleItemorder = () => {
                <button className='cursor-pointer  '><FaFileDownload/></button>} content={()=>ref.current}/>
               </div>
                <div ref={ref}>
-               <h1 className='text-center font-bold text-4xl py-5'>Medical Shop</h1>
+               <img className='h-12 w-28 text-center mx-auto my-4' src={logo} alt="" />
+               
             
                <div class="grid grid-cols-2 gap-4 px-10  border border-2 border-l-0 border-r-0  border-b-0 border-black mb-10">
   <div>

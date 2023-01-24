@@ -86,8 +86,11 @@ const[size,setSize]=useState(12);
                 <th>{order.dateAndTime}</th>
                 <td>
                   {order.status==="Wating"?
-                  <button className="btn sm:btn-md btn-sm loading">Wating</button>
-                  :order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled">Cencel</button>:<button className="btn sm:btn-md btn-sm disabled">Confirm</button>}
+                  <button className="btn sm:btn-md btn-sm loading">Wating</button>:
+                  order.status==="Shipment"?<button className="btn sm:btn-md btn-sm disabled">Shipment</button>:
+                  order.status==="Done"?<button className="btn sm:btn-md btn-sm disabled">Done</button>:
+                  order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled">Cencel</button>:
+                  <button className="btn sm:btn-md btn-sm disabled">Confirm</button>}
                 </td>
                 <td>TK ${order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}

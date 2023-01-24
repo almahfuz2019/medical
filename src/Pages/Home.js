@@ -2,25 +2,23 @@ import axios, { all } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Discount from '../Components/Discount';
-import Loading from '../Components/Loading';
-
+import HomePageSkeletion from '../Components/HomePageSkeletion';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   const {catagorys}=UseCatagory();
-  // const[allProducts,setAllProducts]=useState([]);
+  const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(20);
+const[size,setSize]=useState(30);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
-  // console.log(`size:${size},products:${products},allproducts:${allProducts}`);
   const fetchProducts = async() => {
     try{
       setProductLoading(true)
       const response=await axios.get(`http://localhost:5000/productss?page=${page}&size=${size}`)
       setPageCount(Math.ceil(response.data.count/size))
           setProducts(response.data.products)
-          // setAllProducts(response.data.allProducts)
+          setAllProducts(response.data.allProducts)
           setProductLoading(false)
     }
     catch(error){
@@ -30,56 +28,57 @@ const[size,setSize]=useState(20);
   useEffect(()=>{
     fetchProducts()
   },[page,size])
-    const xyz = products.filter(pro => pro.catagory==="Mobility")
+  const pageIncrease=()=>{
+    setPage(page+1)
+  }
+  const pageDecrease=()=>{
+    setPage(page-1)
+  }
+    // const xyz = products.filter(pro => pro.catagory==="Mobility")
   const searchProductsbyname = (e) => {
-    const matched_products = products.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    const matched_products = allProducts.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }
   const searchProductsbyCatagory = (e) => {
-    const matched_products = products.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
+    const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }
 
 const searchByCatagory = (e) => {
-  const matched_products = products.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
+  const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     // console.log(allProducts);
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange1000=(e)=> {
-  const matched_products = products.filter(pro => parseInt(pro.price) <= 1000)
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 1000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange3000=(e)=> {
-  const matched_products = products.filter(pro => parseInt(pro.price) <= 3000)
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 3000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange5000=(e)=> {
-  const matched_products = products.filter(pro => parseInt(pro.price) <= 5000)
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 5000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChangeuUnlimited=(e)=> {
-  const matched_products = products.filter(pro => parseInt(pro.price) <= 10000000000000)
+  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 10000000000000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
-if (productLoading){
-   return <Loading/>};
+// if (productLoading){
+//    return <Loading/>};
      return (
-          <div className='mx-1'>
-                 {/* <Banner/> */}
+          <div className='mx-1 '>
                  <Discount/>
-                 {/* <HomePageCatagory/> */}
-               {/* <SubNavbar/> */}
-            {/* <BestSelling/> */}
             <div class="hidden sm:block">
   <div class="grid  grid-cols-3 px-2 sm:grid-cols-8 lg:grid-cols-8 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
-
   <button value="Mobility" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
         <div className="avatar"  value="Mobility" onClick={searchByCatagory}>
           <button className="w-full rounded"  value="Mobility" onClick={searchByCatagory}>
@@ -300,22 +299,67 @@ if (productLoading){
   </div>
 </div>
 
-  {
-    products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
-  }
+ 
   
  
   {/* <h2 className='font-semibold text-xl mb-2 text-primary-focus'>Just For You</h2> */}
-  <p>{products.length},{products.length}</p>
 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
-  
-
-      {products?.map(product=>
+ 
+ {
+  productLoading?<>
 <>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+<HomePageSkeletion/>
+</>
+  {/* <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto h-28 sm:h-52">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div> */}
+  </>: <>{products?.map(product=>
+
 <Link to={`/single/${product._id}`}>
 
         <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
-       <div className="h-28 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none"    style={{backgroundImage: `url(${product.image})`  }}>
+       <div className="h-40 sm:h-52 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image})`}}>
          <div className="flex justify-between">
           </div>
        <div className='sm:flex'>
@@ -334,8 +378,13 @@ if (productLoading){
           
             </div>
             </Link>
-            </>
-        )}
+        ).reverse()}
+        </>
+ }
+
+
+
+      
         
         </div>
         {/* <div className="btn-group border-primary border">
@@ -346,9 +395,11 @@ if (productLoading){
         }
 </div> */}
  
-
+ {
+    products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
+  }
 <div className="flex  space-x-1  my-4 sm:ml-5">
-	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+	<button onClick={pageDecrease} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="15 18 9 12 15 6"></polyline>
 		</svg>
@@ -359,7 +410,7 @@ if (productLoading){
           count={pageCount}
              className={page===number?'inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md btn-primary ':"inline-flex items-center justify-center  py-0 border rounded-md shadow-md border-primary text-primary w-6 h-6 sm:w-8 sm:h-8 bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
         }
-	<button  type="button" className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
+	<button onClick={pageIncrease} type="button" className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="9 18 15 12 9 6"></polyline>
 		</svg>

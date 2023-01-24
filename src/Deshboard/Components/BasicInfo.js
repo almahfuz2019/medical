@@ -5,7 +5,38 @@ import UseProducts from '../Hooks/UseProducts';
 const BasicInfo = () => {
   const [products,setProducts]=useState([])
   const [orders,setOrders]=useState([])
+  const [watingOrders,setWatingOrders]=useState([])
+  const [doneOrders,setDoneOrders]=useState([])
+  const [shipmentOrders,setShipmentOrders]=useState([])
   const [contactcount,setContactcount]=useState([])
+  const [ordersBydateandtime,setordersBydateandtime]=useState([])
+  const time= new Date().toLocaleString();
+  useEffect(()=>{
+    fetch(`http://localhost:5000/productssearchbydateandtime?dateAndTime=${time}`)
+    .then(res=>res.json())
+    .then(data=>setordersBydateandtime(data))
+
+},[])
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/productssearch?status=Shipment`)
+    .then(res=>res.json())
+    .then(data=>setShipmentOrders(data))
+
+},[])
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/productssearch?status=Wating`)
+    .then(res=>res.json())
+    .then(data=>setWatingOrders(data))
+
+},[])
+  useEffect(()=>{
+    fetch(`http://localhost:5000/productssearch?status=Done`)
+    .then(res=>res.json())
+    .then(data=>setDoneOrders(data))
+
+},[])
   useEffect(()=>{
     fetch("http://localhost:5000/contactcount")
     .then(res=>res.json())
@@ -56,6 +87,50 @@ const BasicInfo = () => {
                   </dt>
         
                   <dd className="text-4xl font-extrabold text-primary md:text-5xl">{orders.count}</dd>
+                  
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center "
+                >
+               
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Total Orders Wating
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{watingOrders.length}</dd>
+                  
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center "
+                >
+               
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Total Orders Done
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{doneOrders.length}</dd>
+                  
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center "
+                >
+               
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Total Orders Shipment
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{shipmentOrders.length}</dd>
+                  
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center "
+                >
+               
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Todays Order
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{ordersBydateandtime.length}</dd>
                   
                 </div>
                 <div

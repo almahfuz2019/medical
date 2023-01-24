@@ -41,7 +41,6 @@ import DarkMode from './Deshboard/Hooks/DarkMode';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ForgetPassword from './Authentication/ForgetPassword';
 import ContactDetailsInformation from './Deshboard/Components/ContactDetailsInformation';
-import AllProducts from './Components/AllProducts';
 import RequireWorker from './Authentication/RequireWorker';
 import OrderStatusUpdate from './Deshboard/Components/OrderStatusUpdate';
 import UserContactinfo from './Deshboard/Components/UserContactinfo';
@@ -112,7 +111,7 @@ function App() {
           <Route path='/home/about' element={<AboutUs/>}/>
           <Route path='/home/faq' element={<Faq/>}/>
           <Route path='/home/contact' element={<ContactUs/>}/>
-          <Route path='/home/all-products' element={<AllProducts/>}/>
+          
   <Route path='/single/:id' element={<ProductDetails/>}/>
   <Route path='/' element={<Home/>}>
           <Route index  element={<MainPage/>}/>

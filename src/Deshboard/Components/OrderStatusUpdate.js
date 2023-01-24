@@ -16,6 +16,7 @@ const OrderStatusUpdate = () => {
      console.log(item);
      const url = `http://localhost:5000/itemorderUpdate/${id}`;
        const res=await axios.post(url,{status:item})
+       toast.success("success")
    } 
      return (
           <div>
@@ -32,6 +33,8 @@ const OrderStatusUpdate = () => {
           <option selected>Confirm</option>
           <option>Wating</option>
           <option>Cencel</option>
+          <option>Shipment</option>
+          <option>Done</option>
         </select>
       </div>
      

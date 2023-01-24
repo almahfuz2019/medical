@@ -41,7 +41,6 @@ const Navbar = () => {
      let navItems=<>
      
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100 '><NavLink  to="/">Home</NavLink></li>
-    <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100 '><NavLink  to="/home/all-products">All Products</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/trams-and-condition">Terms and Condition</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/faq">QNA</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/about">About US</NavLink></li>
@@ -61,7 +60,7 @@ const Navbar = () => {
 {navItems}
       </ul>
     </div>
-    <NavLink to="/" className="btn btn-ghost normal-case text-xl "><img className='h-12 w-28' src={logo} alt="" /></NavLink>
+    <NavLink to="/" className="btn btn-ghost normal-case text-xl logo"><img className='h-12 w-28 ' src={""} alt="" /></NavLink>
     
   </div>
   <div className="navbar-center hidden lg:flex">

@@ -106,7 +106,7 @@ const ProductDetails = () => {
           <div className="mb-4">
           <div className="flex items-end gap-2">
             <span className="text-gray-800 text-xl md:text-2xl font-bold">${note.price}</span>
-            <span className="text-red-500 line-through mb-0.5">$30.00</span>
+            <span className="text-red-500 line-through mb-0.5">${note.previcePrice}</span>
           </div>
 
           <span className="text-gray-500 text-sm">incl. VAT plus shipping</span>
