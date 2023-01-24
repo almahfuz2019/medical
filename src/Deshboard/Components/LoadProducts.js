@@ -90,11 +90,11 @@ const LoadProducts = () => {
            <td>
            <div className="avatar border border-primary rounded border-2">
               <div className="mask mask-squircle w-12 h-12 ">
-                {
+                {/* {
                 product?.image?
     <img  src={product?.image} alt="image"/>:
     <img src="" className='bg-primary' alt=''/>
-                }
+                } */}
               </div>
             </div>
            </td>

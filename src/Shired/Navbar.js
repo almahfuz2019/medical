@@ -61,12 +61,9 @@ const Navbar = () => {
 {navItems}
       </ul>
     </div>
-    {/* <NavLink to="/" className="btn btn-ghost normal-case text-xl ">Medical</NavLink> */}
     <NavLink to="/" className="btn btn-ghost normal-case text-xl "><img className='h-12 w-28' src={logo} alt="" /></NavLink>
     
   </div>
-  {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
- 
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
     {navItems}
@@ -75,9 +72,7 @@ const Navbar = () => {
   </div>
  
  <div className="navbar-end flex">
-
   <div className="flex">
-    
  {user? <div className="dropdown dropdown-end ">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">

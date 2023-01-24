@@ -55,7 +55,6 @@ console.log(usdata);
             >{data?.product?.price} * {data?.productQuentity}=
             {data?.productQuentity*data?.product?.price}</h1>
           </form>
-
           <Link onClick={()=>handleUserDelete(data._id)} className="text-gray-600 transition hover:text-red-600 ">
             <span className="sr-only">Remove item</span>
 

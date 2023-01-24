@@ -7,19 +7,20 @@ import Loading from '../Components/Loading';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   const {catagorys}=UseCatagory();
-  const[allProducts,setAllProducts]=useState([]);
+  // const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(30);
+const[size,setSize]=useState(20);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
+  // console.log(`size:${size},products:${products},allproducts:${allProducts}`);
   const fetchProducts = async() => {
     try{
       setProductLoading(true)
       const response=await axios.get(`http://localhost:5000/productss?page=${page}&size=${size}`)
       setPageCount(Math.ceil(response.data.count/size))
           setProducts(response.data.products)
-          setAllProducts(response.data.allProducts)
+          // setAllProducts(response.data.allProducts)
           setProductLoading(false)
     }
     catch(error){
@@ -31,39 +32,39 @@ const[size,setSize]=useState(30);
   },[page,size])
     const xyz = products.filter(pro => pro.catagory==="Mobility")
   const searchProductsbyname = (e) => {
-    const matched_products = allProducts.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    const matched_products = products.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }
   const searchProductsbyCatagory = (e) => {
-    const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
+    const matched_products = products.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }
 
 const searchByCatagory = (e) => {
-  const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
+  const matched_products = products.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     // console.log(allProducts);
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange1000=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 1000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 1000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange3000=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 3000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 3000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange5000=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 5000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 5000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChangeuUnlimited=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 10000000000000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 10000000000000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
@@ -167,7 +168,7 @@ if (productLoading){
               <div className="flex justify-center mx-2 ">
               <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
               
-               <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto">
+               <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto ">
     <label for="SortBy " className="sr-only bg-white">Catagory</label>
 
     <select id="SortBy" className=" border-r-0 text-xs sm:text-sm border-primary rounded sm:px-2 bg-white max-w-sm sm:max-w-md mx-auto sm:mt-3  text-center" onChange={searchProductsbyCatagory}>
@@ -190,7 +191,7 @@ if (productLoading){
             {/* <input className=" p-3 m-5 border w-1/3 text-center justify-center text-black" onChange={searchProducts} type="text" /> */}
 
 
-<div class="flex gap-8 ">
+<div class="flex gap-8 mt-5 sm:mt-0">
   <div class="relative hidden sm:block no-underline border-0">
     <details class="group [&_summary::-webkit-details-marker]:hidden">
       <summary
@@ -298,41 +299,20 @@ if (productLoading){
     </details>
   </div>
 </div>
-<div className="flex  space-x-1  my-4 sm:ml-0">
-	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
-		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
-			<polyline points="15 18 9 12 15 6"></polyline>
-		</svg>
-	</button>
-	{
-          [...Array(pageCount).keys()]
-          .map(number=><button
-          count={pageCount}
-             className={page===number?'inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md btn-primary ':"inline-flex items-center justify-center  py-0 border rounded-md shadow-md border-primary text-primary w-6 h-6 sm:w-8 sm:h-8 bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
-        }
-	<button  type="button" className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
-		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
-			<polyline points="9 18 15 12 9 6"></polyline>
-		</svg>
-	</button>
-  <select className='inline-flex items-center justify-center  w-14 h-6 sm:w-20 sm:h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary bg-white' onChange={e=>setSize(e.target.value)} >
-          <option  value="5">5</option>
-          <option  value="10">10</option>
-          <option value="15">15</option>
-          <option selected value="20">20</option>
-        </select>  
-</div>
+
   {
-    products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold'>Not found</h1>
+    products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
   }
   
  
-  <h2 className='font-semibold text-xl mb-2 text-primary-focus'>Just For You</h2>
+  {/* <h2 className='font-semibold text-xl mb-2 text-primary-focus'>Just For You</h2> */}
+  <p>{products.length},{products.length}</p>
 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
   
 
       {products?.map(product=>
 <>
+<Link to={`/single/${product._id}`}>
 
         <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
        <div className="h-28 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none"    style={{backgroundImage: `url(${product.image})`  }}>
@@ -353,9 +333,9 @@ if (productLoading){
             </div>
           
             </div>
-            
+            </Link>
             </>
-        ).reverse()}
+        )}
         
         </div>
         {/* <div className="btn-group border-primary border">

@@ -3,6 +3,30 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import UseCatagory from '../Hooks/UseCatagory';
 const AddProducts = () => {
+  const [baseImage, setBaseImage] = useState("");
+      console.log(baseImage);
+        const uploadImage = async (e) => {
+          const file = e.target.files[0];
+          console.log(file);
+          if((file?.size/1000) > 150){
+            return alert("Image is to larget try to upload less then 200kb")
+            }
+          const base64 = await convertBase64(file);
+          setBaseImage(base64);
+          // console.log(baseImage);
+        };
+        const convertBase64 = (file) => {
+          return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+              resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+              reject(error);
+            };
+          });
+        };
      const {catagorys}=UseCatagory();
      const time= new Date().toLocaleString();
      const [selectCatagory,setSelectCatagory]=useState();
@@ -13,7 +37,7 @@ const AddProducts = () => {
       const previcePrice=event.target.previcePrice.value;
       const catagory=event.target.catagory.value;
       const details=event.target.details.value;
-      const image=event.target.image.value;
+      const image=baseImage;
       const dateAndTime=time;
       const catagorys=selectCatagory;
       const productData={name,price,previcePrice,catagory,details,image,catagorys,dateAndTime};
@@ -28,9 +52,10 @@ const AddProducts = () => {
       progress: undefined,
       theme: "colored",
       });
-     event.target.reset();
+    //  event.target.reset();
  
       }
+      
      return (
           <div>
      <form onSubmit={addProduct}>
@@ -54,7 +79,9 @@ const AddProducts = () => {
       </div>
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
-        <input type="text"  name="image" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input onChange={(e) => {
+          uploadImage(e);
+        }}  type="file"  name="image" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
      
       <div className="relative mb-4">
@@ -70,7 +97,6 @@ const AddProducts = () => {
         </select>
       </div>
      
-      
       <div className="relative mb-4">
         <label for="message" className="leading-7 text-sm text-gray-600">Description</label>
         <textarea id="message" name="details" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" ></textarea>

@@ -99,7 +99,13 @@ function App() {
   <RequireAuth>
   <ShopingCart/>
   </RequireAuth>}/>
-  <Route path='/checkout' element={<Checkout/>}/>
+
+  <Route path='/checkout' element={
+    <RequireAuth>
+<Checkout/>
+    </RequireAuth>
+  }/>
+
   <Route path='/test' element={<Test/>}/>
   <Route path='/' element={<Home/>}/>
   <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>

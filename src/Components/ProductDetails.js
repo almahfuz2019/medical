@@ -7,7 +7,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import { Carousel } from 'react-responsive-carousel';
+import "../css/ProductDetails.css"
 const ProductDetails = () => {
   const navigate=useNavigate();
   const [user]=useAuthState(auth);
@@ -47,20 +49,31 @@ const ProductDetails = () => {
                 <FaArrowCircleLeft/></span></a>
                 <section>
   <div className="relative max-w-screen-xl px-4 py-8 mx-auto">
-    <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-1  justify-items-center">
-      <TransformWrapper>
-        <TransformComponent className="w-full">
+    <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2 ">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-1  justify-items-center ">
+      <Carousel autoPlay="true" autoFocus="true" emulateTouch="true" infiniteLoop="true" className=''>
+        <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
           src={note.image}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
-        />
-        </TransformComponent>
-      </TransformWrapper>
+        /></div>
+        <div className='rounded-xl border border-primary border-opacity-30 '>
+        <img
+          alt="Les Paul"
+          src={note.image}
+          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
+        /></div>
+        <div className='rounded-xl border border-primary border-opacity-30 '>
+        <img
+          alt="Les Paul"
+          src={note.image}
+          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
+        /></div>
+            </Carousel>
         
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:mt-4">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:mt-4">
              <TransformWrapper>
         <TransformComponent className="w-full">
         <img
@@ -78,7 +91,7 @@ const ProductDetails = () => {
         />
         </TransformComponent>
       </TransformWrapper>
-        </div>
+        </div> */}
       </div>
 
       <div className="sticky top-0 ">
@@ -364,7 +377,10 @@ const ProductDetails = () => {
     </div>
   </div>
 </section>
+
 <UserReview/>
+<>
+</>
           </div>
      );
 };

@@ -11,7 +11,7 @@ const UseUserSpacifiqData = () => {
     const navigate=useNavigate();
     const fetchCarts  = async() => {
      try{
-          const res = await axios.get(`http://localhost:5000/notess?useremail=${user.email}`)
+          const res = await axios.get(`http://localhost:5000/notess?useremail=${user?.email}`)
           setUsdata(res.data)
      }catch(err){
           console.log(err)
@@ -20,6 +20,7 @@ const UseUserSpacifiqData = () => {
      useEffect(()=>{
           fetchCarts() 
      },[user,usdata])
+    //  },[user,usdata])
      const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){

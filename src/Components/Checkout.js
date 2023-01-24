@@ -161,25 +161,8 @@ const Checkout = () => {
             />
           </div>
 
-          {/* <div className="col-span-6">
-            <label for="Phone" className="block text-xs font-medium text-gray-700">
-              message
-            </label>
-             <textarea name='message'
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              placeholder="Message"
-              rows="8"
-              id="message"
-            ></textarea>
-          </div> */}
-          
-
           <div className="flex flex-col w-full border-opacity-50 col-span-6">
-          {/* <div className='flex w-full col-span-6'>
-<input type="radio" name="radio-1" className="radio radio-primary"  checked/>
-<span className='ml-3'>Chash on delevery</span>
-
-</div> */}
+        
 
 <p className='text-center  text-primary  text-xl mb-2 font-semibold'>Payment method</p>
 <div class=" items-center gap-8">
@@ -189,6 +172,10 @@ const Checkout = () => {
                 Cash on delevery
             </span>
         </label> <br />
+       <div className='mt-2 text-sky-600 border border-primary border-opacity-30 rounded-lg p-2'>
+       <p>Please pay 100 take for confirm</p>
+    <p> <a href="tel:5551234567">Bkish Number: 0178787843</a></p>
+       </div>
         <div className="divider">OR</div>
         <label class=" inline-flex items-center">
             <input type="radio" name="vehicle" class="w-5 h-5 text-primary"/>
