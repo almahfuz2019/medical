@@ -64,6 +64,7 @@ const Deshboard = () => {
         .then(data=>setCatagory(data))
 
     },[])
+   
      return (
           <>
           {/* <p>{error}</p> */}
@@ -128,12 +129,12 @@ const Deshboard = () => {
                                     <rect x={4} y={14} width={6} height={6} rx={1} />
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
-                                <span className="text-sm  ml-2">Catoagory <span className='bg-primary rounded p-2 text-white font-bold text-end'>{catagory.count}</span></span>
+                                <span className="text-sm  ml-2">Category <span className='bg-primary rounded p-2 text-white font-bold text-end'>{catagory.count}</span></span>
                             </NavLink></li>}
-                            {admin && <li className=' text-white bg-gray-500 mt-2 '>
-        <NavLink to="copne" className="flex items-center  active:bg-primary ">
+                            {admin && <li className=' text-white bg-gray-500 mt-2'>
+        <NavLink to="copne" className="flex items-center  active:bg-primary">
                                <TbShoppingCartDiscount/>
-                                <span className="text-sm  ml-2">Copone <span className='bg-primary rounded p-2 text-white font-bold text-end'>{coponecount.count}</span></span>
+                                <span className="text-sm  ml-2">Coupon <span className='bg-primary rounded p-2 text-white font-bold text-end'>{coponecount.count}</span></span>
                             </NavLink></li>}
                             {worker &&<li className=' text-white bg-gray-500 mt-2 '>
         <NavLink to="orders" className="flex items-center  active:bg-primary ">
@@ -143,12 +144,12 @@ const Deshboard = () => {
                             {admin &&  <li className=' text-white bg-gray-500 mt-2 '>
      <NavLink to="users" className="flex items-center  active:bg-primary ">
                                 <AiOutlineUsergroupAdd/>
-                                <span className="text-sm  ml-2">users <span className='bg-primary rounded p-2 text-white font-bold text-end'>{userscount.count}</span></span>
+                                <span className="text-sm  ml-2">Users <span className='bg-primary rounded p-2 text-white font-bold text-end'>{userscount.count}</span></span>
                             </NavLink></li>}
                             {worker && <li className=' text-white bg-gray-500 mt-2 '>
      <NavLink to="contact" className="flex items-center  active:bg-primary text-white">
                                 <AiOutlineMail/>
-                                <span className="text-sm  ml-2">Contact <span className='bg-primary rounded p-2 text-white font-bold text-end'>{contactcount.count}</span></span>
+                                <span className="text-sm  ml-2">Messages <span className='bg-primary rounded p-2 text-white font-bold text-end'>{contactcount.count}</span></span>
                             </NavLink></li>}
                             
     </ul>

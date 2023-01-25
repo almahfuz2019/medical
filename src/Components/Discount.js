@@ -8,6 +8,7 @@ const Discount = () => {
 		<div className="sm:flex  sm:flex-row items-center justify-between">
 			<h2 className="text-center text-3xl font-bold sm:text-6xl tracking-tighter font-bold">BIG BRAND DISCOUNTS
 			</h2>
+			{/* BIG BRAND DISCOUNTS */}
 			<div className="space-x-2 text-center py-2 lg:py-0">
 
 				<span className='font-semibold text-lg'>Home Delivery</span>

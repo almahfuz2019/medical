@@ -11,7 +11,7 @@ const ManageCatagory = () => {
             <thead>
               <tr>
                 <th >No</th>
-                <th className='text-center'>Catagory</th>
+                <th className='text-center'>Category</th>
                 <th className='text-end'>Action</th>
               </tr>
             </thead>

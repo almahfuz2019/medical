@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 const UserRow = ({user,refetch,index}) => {
      const {email,role,wrole}=user;
      const makeAdmin=()=>{
-          const proceed=window.confirm("are you sure you want to make a admin?");
+          const proceed=window.confirm("Are you sure you want to make this user an admin?");
           if(proceed){
                fetch(`http://localhost:5000/user/admin/${email}`,{
                     method:"PUT",
@@ -24,9 +24,8 @@ const UserRow = ({user,refetch,index}) => {
                })
             }
           }
-        
      const removeAdmin=()=>{
-          const proceed=window.confirm("are you sure you want to remove a admin?");
+          const proceed=window.confirm("Are you sure you want to remove a admin?");
           if(proceed){
           fetch(`http://localhost:5000/userr/admin/${email}`,{
                method:"PUT",
@@ -42,12 +41,12 @@ const UserRow = ({user,refetch,index}) => {
           .then(data=>{
             if(data.modifiedCount > 0){
                refetch();
-               toast.success("Successfully Remove")
+               toast.success("Successfully Removed")
             }
           })
        }}
      const makeWorker=()=>{
-          const proceed=window.confirm("are you sure you want to make a workder?");
+          const proceed=window.confirm("Are you sure you want to make this user a Worker?");
           if(proceed){
           fetch(`http://localhost:5000/worker/admin/${email}`,{
                method:"PUT",
@@ -68,7 +67,7 @@ const UserRow = ({user,refetch,index}) => {
           })
        }}
      const removeWorker=()=>{
-          const proceed=window.confirm("are you sure you want to remove a workder?");
+          const proceed=window.confirm("Are you sure you want to remove a workder?");
           if(proceed){
           fetch(`http://localhost:5000/workerr/admin/${email}`,{
                method:"PUT",
@@ -84,7 +83,7 @@ const UserRow = ({user,refetch,index}) => {
           .then(data=>{
             if(data.modifiedCount>0){
                refetch();
-               toast.success("Successfully Remove")
+               toast.success("Successfully Removed")
             }
           })
        }}
@@ -95,14 +94,10 @@ const UserRow = ({user,refetch,index}) => {
           <th>
             {role!=='admin' && <button className="btn-primary btn-sm btn mb-1" onClick={makeAdmin}>Make Admin</button>} <br />
             {wrole!=='worker' && <button className="btn-primary btn-sm btn" onClick={makeWorker}>Make Worker</button>}
-           {/* <button className="btn-primary btn-sm btn" onClick={makeAdmin}>Make Admin</button> */}
-         
           </th>
           <th>{role==='admin' && <button onClick={removeAdmin} className="btn-primary btn-sm btn mb-1">Remove Admin</button>} <br />
           {wrole==='worker' && <button className="btn-primary btn-sm btn" onClick={removeWorker}>Remove Worker</button>}
           </th>
-
-          
         </tr>
      );
 };

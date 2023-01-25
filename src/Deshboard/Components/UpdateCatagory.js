@@ -50,7 +50,7 @@ const handleCatagoryNameChange = e => {
       </div>
      
       <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="save" type="submit"/>
-      <p className="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
+      <p className="text-xs text-gray-500 mt-3">This is very important for your website.So,be careful.</p>
     </div>
   </div>
 </section>

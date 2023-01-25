@@ -24,7 +24,7 @@ import Test from './Deshboard/Components/Test';
 import Notfound from './Components/Notfound';
 import UpdateProduct from './Deshboard/Components/UpdateProduct';
 import UpdateCatagory from './Deshboard/Components/UpdateCatagory';
-import Copen from '../src/Components/Copen';
+import Coupon from '../src/Components/Coupon';
 import UpdateCopen from './Deshboard/Components/UpdateCopen';
 import RequireAuth from './Authentication/RequireAuth';
 import auth from './firebase.init';
@@ -36,9 +36,6 @@ import Users from './Deshboard/Components/Users';
 import RequireAdmin from './Authentication/RequireAdmin';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import UseAdmin from './Deshboard/Hooks/UseAdmin';
-import { useState } from 'react';
-import DarkMode from './Deshboard/Hooks/DarkMode';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import ForgetPassword from './Authentication/ForgetPassword';
 import ContactDetailsInformation from './Deshboard/Components/ContactDetailsInformation';
 import RequireWorker from './Authentication/RequireWorker';
@@ -83,7 +80,7 @@ function App() {
           </RequireAuth>}/>
           <Route path='catagory' element={<RequireWorker><CreateCatagory/></RequireWorker>}/>
           <Route path='copne' element={<RequireAuth>
-         <RequireAdmin>  <Copen/></RequireAdmin>
+         <RequireAdmin>  <Coupon/></RequireAdmin>
           </RequireAuth>}/>
           <Route path='orders' element={<RequireAuth>
                <RequireWorker> <Orders/></RequireWorker>

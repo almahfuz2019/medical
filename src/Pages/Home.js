@@ -8,7 +8,7 @@ const Home = () => {
   const {catagorys}=UseCatagory();
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(30);
+const[size,setSize]=useState(100);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
@@ -16,7 +16,7 @@ const[size,setSize]=useState(30);
     try{
       setProductLoading(true)
       const response=await axios.get(`http://localhost:5000/productss?page=${page}&size=${size}`)
-      setPageCount(Math.ceil(response.data.count/size))
+      // setPageCount(Math.ceil(response.data.count/size))
           setProducts(response.data.products)
           setAllProducts(response.data.allProducts)
           setProductLoading(false)
@@ -28,6 +28,9 @@ const[size,setSize]=useState(30);
   useEffect(()=>{
     fetchProducts()
   },[page,size])
+  const loadMore=()=>{
+    setSize(size+18)
+  }
   const pageIncrease=()=>{
     setPage(page+1)
   }
@@ -165,7 +168,7 @@ const handleChangeuUnlimited=(e)=> {
             <div className="divider  divide-current mt-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
             <div className="text-center  mt-5 sm:mt-7   ">
               <div className="flex justify-center mx-2 ">
-              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
+              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here by product name" onChange={searchProductsbyname}/>
               
                <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto ">
     <label for="SortBy " className="sr-only bg-white">Catagory</label>
@@ -378,27 +381,17 @@ const handleChangeuUnlimited=(e)=> {
           
             </div>
             </Link>
-        ).reverse()}
+        )}
         </>
  }
-
-
-
-      
-        
-        </div>
-        {/* <div className="btn-group border-primary border">
-        {
-          [...Array(pageCount).keys()]
-          .map(number=><button className="btn"
-              onClick={()=>setPage(number)}>{number+1}</button>)
-        }
-</div> */}
- 
+</div>
+<div className='mx-auto text-center mt-5'>
+<button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
+</div>
  {
     products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
   }
-<div className="flex  space-x-1  my-4 sm:ml-5">
+{/* <div className="flex  space-x-1  my-4 sm:ml-5">
 	<button onClick={pageDecrease} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
 			<polyline points="15 18 9 12 15 6"></polyline>
@@ -421,7 +414,7 @@ const handleChangeuUnlimited=(e)=> {
           <option value="15">15</option>
           <option selected value="20">20</option>
         </select>  
-</div>
+</div> */}
 
 
      

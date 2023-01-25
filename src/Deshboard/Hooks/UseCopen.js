@@ -8,7 +8,7 @@ const UseCopen = () => {
           .then(data=>setCopone(data))
      },[])
      const handleCatagoryDelete=id=>{
-          const proceed=window.confirm("are you sure you want to delete?");
+          const proceed=window.confirm("Are you sure you want to delete it?");
           if(proceed){
                
                axios.delete(`http://localhost:5000/copone/${id}`)

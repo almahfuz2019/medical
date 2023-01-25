@@ -48,7 +48,7 @@ const UserContactinfo = () => {
      }
 
      const handleOrderDelete=async(id)=>{
-          const proceed=window.confirm("are you sure you want to delete?");
+          const proceed=window.confirm("Are you sure you want to delete it?");
           if(proceed){
                
                await axios.delete(`http://localhost:5000/contact/${id}`)
@@ -64,7 +64,7 @@ const UserContactinfo = () => {
      return (
           <div>
           <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {products.length}</span></div>
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Messages: {products.length}</span></div>
      <div className="flex  space-x-1  my-4 sm:ml-5">
 	<button onClick={ab} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
@@ -91,14 +91,14 @@ const UserContactinfo = () => {
 </div>
 <div className='mx-auto text-center mb-5'>
   
-<input type="text" placeholder="Type here" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
+<input type="text" placeholder="Search here" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
 </div>
        <table className="table w-full">
        <thead>
          <tr>
            <th>No</th>
            <th>email</th>
-           <th>Message</th>
+           <th>Messages</th>
            <th>Action</th>
          </tr>
        </thead>

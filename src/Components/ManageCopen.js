@@ -11,7 +11,7 @@ const ManageCopen = () => {
             <thead>
               <tr>
                 <th >No</th>
-                <th className='text-center'>Copone</th>
+                <th className='text-center'>Coupon</th>
                 <th className='text-end'>Action</th>
               </tr>
             </thead>

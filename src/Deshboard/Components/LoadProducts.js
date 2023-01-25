@@ -6,12 +6,20 @@ import { Link } from 'react-router-dom';
 const LoadProducts = () => {
      const {handleProductDelete}=UseProducts();
      const[page,setPage]=useState(0);
-     const[size,setSize]=useState(20);
+     const[size,setSize]=useState(50);
        const[pageCount,setPageCount]=useState(0);
        const[allProducts,setAllProducts]=useState([]);
        const[products,setProducts]=useState([]);
        const[productLoading,setProductLoading]=useState(true);
        const[searchText,setSearchText]=useState('');
+       
+    const [productsCount,setProductsCount]=useState([]);
+    useEffect(()=>{
+      fetch("http://localhost:5000/productCount")
+      .then(res=>res.json())
+      .then(data=>setProductsCount(data))
+
+  },[])
        const fetchProducts = () => {
          setProductLoading(true)
          fetch(`http://localhost:5000/productss?page=${page}&size=${size}&search=${searchText}`)
@@ -45,7 +53,7 @@ const LoadProducts = () => {
           <div>
             
      <div className="overflow-x-auto">
-     <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {products.length}</span></div>
+     <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {productsCount.count}</span></div>
      <div className="flex  space-x-1  my-4 sm:ml-5">
 	<button onClick={pageDecrease} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
@@ -72,7 +80,7 @@ const LoadProducts = () => {
 </div>
 <div className='mx-auto text-center mb-5'>
   
-<input type="text" placeholder="Type here" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
+<input type="text" placeholder="Search here by product name" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
 </div>
      <table className="table w-full">
        {/* <!-- head --> */}
@@ -81,7 +89,7 @@ const LoadProducts = () => {
            <th>No</th>
            <th>Image</th>
            <th>Name</th>
-           <th>Catagory</th>
+           <th>Category</th>
            <th>Action</th>
          </tr>
        </thead>
@@ -118,7 +126,7 @@ const LoadProducts = () => {
            </td>
          </tr>
        </tbody>
-     ).reverse()}
+     )}
      </table>
    </div>
 

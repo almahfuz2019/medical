@@ -2,11 +2,14 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import { toast } from 'react-toastify';
-
+import logo from "../Images/logo.png"
 import auth from '../firebase.init';
 import Loading from './Loading';
 import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Checkout = () => {
+  const navigate=useNavigate();
+  let location = useLocation();
   const [user, loading, error] = useAuthState(auth);
   if(loading){
     return <Loading/>
@@ -14,10 +17,10 @@ const Checkout = () => {
   if(error){
     return <p>{error}</p>
   }
- 
   const time= new Date().toLocaleString();
   const {usdata,total}=UseUserSpacifiqData();
   // console.log(x);
+
   const checkOut=async(event)=>{
     event.preventDefault();
     const name=event.target.name.value;
@@ -44,7 +47,9 @@ const Checkout = () => {
     theme: "colored",
     });
    event.target.reset();
+navigate("/deshboard")
     }
+
      return (
           <div>
                
@@ -61,17 +66,15 @@ const Checkout = () => {
     <div className="py-12  md:py-24 border border-2  bg-white border-primary">
       <div className="max-w-lg px-4 mx-auto space-y-8 lg:px-8">
         <div className="flex items-center">
-          <span className="w-10 h-10 bg-primary rounded-full"></span>
-
-          <h2 className="ml-4 font-medium text-gray-900">Medical</h2>
+        <img className='h-12 w-28 ' src={logo} alt="" />
         </div>
 
         <div>
           <p className="text-2xl tracking-tight text-primary font-bold">
-            ${total}
+            Total amount: ${total}
           </p>
 
-          <p className="mt-1 text-sm text-gray-600">For the purchase of</p>
+          <p className="mt-1 text-sm text-gray-600">Thank's for shopping</p>
         </div>
 
         <div>

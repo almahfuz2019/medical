@@ -17,14 +17,12 @@ const BasicInfo = () => {
     .then(data=>setordersBydateandtime(data))
 
 },[])
-
   useEffect(()=>{
     fetch(`http://localhost:5000/productssearch?status=Shipment`)
     .then(res=>res.json())
     .then(data=>setShipmentOrders(data))
 
 },[])
-
   useEffect(()=>{
     fetch(`http://localhost:5000/productssearch?status=Wating`)
     .then(res=>res.json())
@@ -55,12 +53,22 @@ const BasicInfo = () => {
     .then(data=>setProducts(data))
 
 },[])
+let timeOfDay;
+const date = new Date();
+const hours = date.getHours();
+if (hours < 12) {
+  timeOfDay = 'Good Morning';
+} else if (hours >= 12 && hours < 17) {
+  timeOfDay = 'Good Afternoon';
+} else {
+  timeOfDay = 'Good Night';
+}
      return (
           <section className="bg-white">
           <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:py-16 lg:px-8">
             <div className="text-3xl ">
               <h2 className="text-4xl font-bold text-primary sm:text-5xl ">
-                Welcome Boss
+                 {timeOfDay}, Boss.
               </h2>
             </div>
         
@@ -94,7 +102,7 @@ const BasicInfo = () => {
                 >
                
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Total Orders Wating
+                    Pending Orders
                   </dt>
         
                   <dd className="text-4xl font-extrabold text-primary md:text-5xl">{watingOrders.length}</dd>
@@ -105,7 +113,7 @@ const BasicInfo = () => {
                 >
                
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Total Orders Done
+                    Completed Orders
                   </dt>
         
                   <dd className="text-4xl font-extrabold text-primary md:text-5xl">{doneOrders.length}</dd>
@@ -116,7 +124,7 @@ const BasicInfo = () => {
                 >
                
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Total Orders Shipment
+                     Orders in Shipment
                   </dt>
         
                   <dd className="text-4xl font-extrabold text-primary md:text-5xl">{shipmentOrders.length}</dd>
@@ -127,7 +135,7 @@ const BasicInfo = () => {
                 >
                
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Todays Order
+                    Today's Orders
                   </dt>
         
                   <dd className="text-4xl font-extrabold text-primary md:text-5xl">{ordersBydateandtime.length}</dd>
@@ -137,7 +145,7 @@ const BasicInfo = () => {
                   className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
                 >
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Total Contacts
+                    Total Messages
                   </dt>
         
                   <dd className="text-4xl font-extrabold text-primary md:text-5xl">{contactcount.count}</dd>
@@ -146,10 +154,10 @@ const BasicInfo = () => {
                   className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
                 >
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Total Contacts
+                    Total Amount
                   </dt>
         
-                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{contactcount.count}</dd>
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{contactcount.count+3232}</dd>
                 </div>
               </dl>
             </div>

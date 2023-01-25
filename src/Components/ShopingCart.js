@@ -13,7 +13,7 @@ console.log(usdata);
   <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-0 ">
     <div className=" mx-auto ">
       <header className="text-center">
-        <h1 className="text-3xl font-bold  sm:text-4xl">Your Cart items</h1>
+        <h1 className="text-3xl font-bold  sm:text-4xl">My shopping cart</h1>
       </header>
       <div className='mx-auto text-center mt-2'>
       <ul className="steps ">
@@ -51,8 +51,8 @@ console.log(usdata);
 
             <h1
               id="Line1Qty"
-              className="py-2 px-2 rounded border-primary border-opacity-40 bg-gray-50 p-0 text-center  border-2 border sm:text-xl text-sm  font-semibold"
-            >{data?.product?.price} * {data?.productQuentity}=
+              className="py-2 px-2 rounded border-primary border-opacity-40 bg-gray-100 p-0 text-center   sm:text-xl text-sm  font-semibold"
+            >{data?.product?.price} <span className="text-primary text-2xl">x</span> {data?.productQuentity}=
             {data?.productQuentity*data?.product?.price}</h1>
           </form>
           <Link onClick={()=>handleUserDelete(data._id)} className="text-gray-600 transition hover:text-red-600 ">

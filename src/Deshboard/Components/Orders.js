@@ -6,13 +6,16 @@ import Loading from '../../Components/Loading';
 import UseOrder from '../Hooks/UseOrder';
 import axios from 'axios';
 const Orders = () => {
+
      const {handleOrderDelete}=UseOrder();
   const[allOrders,setAllOrders]=useState([]);
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(12);
+const[size,setSize]=useState(50);
   const[pageCount,setPageCount]=useState(0);
   const[orders,setOrders]=useState([]);
   const[orderLoading,setOrderLoading]=useState(true);
+  
+  let amount=0;
   const loadOrders = async() => {
     try{
       setOrderLoading(true)
@@ -20,15 +23,24 @@ const[size,setSize]=useState(12);
       setPageCount(Math.ceil(response.data.count/size))
           setOrders(response.data.products)
           setAllOrders(response.data.allProducts)
+          for(const product of response.data.allProducts){
+            if(product.status==="Wating"){
+              console.log(product);
+              amount=amount+ 10;
+            }
+          }
           setOrderLoading(false)
     }
     catch(error){
       console.log(error);
     };
   }
+
   useEffect(()=>{
     loadOrders()
+    
   },[page,size])
+ console.log(amount);
   const searchProductsbyname = (e) => {
     const matched_products = allOrders.filter(pro => pro.email?.toLowerCase().includes(e.target.value.toLowerCase()))
     setOrders(matched_products)
@@ -39,12 +51,13 @@ const[size,setSize]=useState(12);
      }
      return (
           <div>
+           
           <div className="overflow-x-auto">
-          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {orders.length}</span></div>
+          <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Orders: {orders.length}</span></div>
           <div className="flex  space-x-1  my-4 sm:ml-5">
 	<button title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
-			<polyline points="15 18 9 12 15 6"></polyline>
+		<polyline points="15 18 9 12 15 6"></polyline>
 		</svg>
 	</button>
 	{
@@ -65,6 +78,7 @@ const[size,setSize]=useState(12);
           <option selected value="20">20</option>
         </select>  
 </div>
+<h1>{amount}</h1>
 <div className='mx-auto text-center mb-5'>
 <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
 </div>
@@ -72,10 +86,9 @@ const[size,setSize]=useState(12);
             <thead>
               <tr>
                 <th>No</th>
-                <th>Date</th>
+                <th>Order Date</th>
                 <th>Status</th>
-                <th>Total</th>
-                <th>Delevary Date</th>
+                <th>Summary</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -92,12 +105,10 @@ const[size,setSize]=useState(12);
                   order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled">Cencel</button>:
                   <button className="btn sm:btn-md btn-sm disabled">Confirm</button>}
                 </td>
-                <td>TK ${order?.TotalPrice} <br />
+                <td>TK <span className='text-xl'>৳</span> {order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}
                 </td>
-               <td>
-                    {order.dateAndTime}
-               </td>
+               
                 <td className='flex gap-3 text-2xl bg-white'>
                  
                  <Link to={`/itemorderdelete/${order._id}`}>

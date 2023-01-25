@@ -49,7 +49,7 @@ const handleNameChange = e => {
      <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
     <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
       <h2 className="text-gray-900 text-lg mb-1 
-     title-font font-semibold">Add a product</h2>
+     title-font font-semibold">Update Coupon</h2>
       
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Name</label>
@@ -57,7 +57,7 @@ const handleNameChange = e => {
       </div>
      
       <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="save" type="submit"/>
-      <p className="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
+      <p className="text-xs text-gray-500 mt-3">This is very important for your website.So,be careful.</p>
     </div>
   </div>
 </section>
