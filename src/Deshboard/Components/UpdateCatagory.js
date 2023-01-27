@@ -10,13 +10,13 @@ useEffect(()=>{
      fetch(url)
      .then(res=>res.json())
      .then(data=>setCatagory(data))
-     console.log(url);
+    
 },[])
 const handleCatagoryNameChange = e => {
      const updateCatagory = e.target.value;
      const CatagoryName = { catagory: updateCatagory };
      setCatagory(CatagoryName);
-     console.log(CatagoryName);
+     
  }
  const handleUpdateCatagory = async(e) => {
   e.preventDefault()

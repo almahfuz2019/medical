@@ -8,7 +8,6 @@ import UseToken from '../Deshboard/Hooks/UseToken';
 import { getAuth } from 'firebase/auth';
 const Login = () => {
   const [emails, setEmails] = useState('');
-  console.log(emails);
   const auth = getAuth();
   const navigate=useNavigate();
   let location = useLocation();

@@ -8,19 +8,19 @@ import auth from '../../firebase.init';
 const UseUserSpacifiqData = () => {
      const [user]=useAuthState(auth);
      const[usdata,setUsdata]=useState([]);
-    const navigate=useNavigate();
+     const[shoppingCartItemLoading,setshoppingCartItemLoading]=useState(true);
     const fetchCarts  = async() => {
      try{
+      setshoppingCartItemLoading(true);
           const res = await axios.get(`http://localhost:5000/notess?useremail=${user?.email}`)
           setUsdata(res.data)
-     }catch(err){
-          console.log(err)
+          setshoppingCartItemLoading(false)
+        }catch(err){
+        }
       }
-    }
-     useEffect(()=>{
-          fetchCarts() 
+      useEffect(()=>{
+        fetchCarts() 
      },[user,usdata])
-    //  },[user,usdata])
      const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
@@ -29,7 +29,6 @@ const UseUserSpacifiqData = () => {
                if(response.data.deletedCount>0){
                     const deletedremaining=usdata.filter(note=>note._id !==id);
                     setUsdata(deletedremaining)
-                    console.log("deleted");
                }
           })
              
@@ -56,6 +55,6 @@ const UseUserSpacifiqData = () => {
        total=subTotal+shippingCharge;
      }
    }
-     return {usdata,handleUserDelete,total,productLoading,products,subTotal,error,shippingCharge};
+     return {usdata,handleUserDelete,total,productLoading,products,subTotal,error,shippingCharge,shoppingCartItemLoading};
 };
 export default UseUserSpacifiqData;

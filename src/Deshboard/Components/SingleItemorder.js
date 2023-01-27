@@ -21,7 +21,7 @@ const SingleItemorder = () => {
       subTtotal += parseInt(userD.productQuentity) * parseInt(userD.product.price) 
       total=subTtotal+100;
     }
-    //  console.log(z);
+  
      return (
           <div className='h-screen'>
               <div className='text-end mt-5'>

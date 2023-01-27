@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 
 const ShopingCart = () => {
-const {usdata,handleUserDelete,total,products,subTotal,shippingCharge}=UseUserSpacifiqData();
-console.log(usdata);
-// console.log(data);
+const {usdata,handleUserDelete,total,products,subTotal,shippingCharge,shoppingCartItemLoading}=UseUserSpacifiqData();
+
      return (
           <div>
              
@@ -24,6 +23,7 @@ console.log(usdata);
 </div>
       <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30">
         <ul className="space-y-4 ">
+          
           {usdata?.map(data=>
         <li className="sm:flex items-center border-primary border-b-2 p-2">
         <img
@@ -76,13 +76,8 @@ console.log(usdata);
         </div>
       </li>
             )}
-          
-
-         
-
-      
         </ul>
-
+{usdata.length===0?<p className='text-xl text-red-600 text-center'>Not found</p>:""}
         <div className="flex justify-end pt-8 mt-8 border-t border-gray-100 ">
           <div className="w-screen max-w-lg space-y-4  border border-primary border-2 rounded-lg p-5 ">
             <dl className="space-y-0.5 text-sm text-gray-700">

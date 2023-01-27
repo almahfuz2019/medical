@@ -4,13 +4,7 @@ import { AiFillEye } from 'react-icons/ai';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Loading from '../../Components/Loading';
-const UserContactinfo = () => {
-     // const [contactus,setContactus]=useState([])
-     // useEffect(()=>{
-     //      fetch("http://localhost:5000/contact")
-     //      .then(res=>res.json())
-     //      .then(data=>setContactus(data))
-     // },[])    
+const UserContactinfo = () => {  
      const [copone,setCopone]=useState([]);
      const[page,setPage]=useState(0);
      const[size,setSize]=useState(2);
@@ -28,7 +22,7 @@ const UserContactinfo = () => {
            setProducts(data.products)
            setAllProducts(data.allProducts)
            setProductLoading(false)
-           console.log(data);
+        
          })
        }
         

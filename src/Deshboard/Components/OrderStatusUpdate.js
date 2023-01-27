@@ -5,7 +5,7 @@ import axios from "axios";
 const OrderStatusUpdate = () => {
      
       const[item,setItem]=useState("");
-      console.log(item);
+      
       const { id } = useParams();
   const handleNameChange = e => {
        const updateName = e.target.value;
@@ -13,7 +13,7 @@ const OrderStatusUpdate = () => {
    }
    const handleUpdateProduct = async(e) => {
      e.preventDefault();
-     console.log(item);
+     
      const url = `http://localhost:5000/itemorderUpdate/${id}`;
        const res=await axios.post(url,{status:item})
        toast.success("success")

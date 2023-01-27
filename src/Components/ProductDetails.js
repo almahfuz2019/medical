@@ -20,7 +20,7 @@ const ProductDetails = () => {
     const useremail=user.email;
     const product=note;
      const NotesData={productQuentity,useremail,product};
-     console.log(NotesData);
+   
      await axios.post("http://localhost:5000/note",NotesData)
      toast.success('Update Successfully', {
        position: "top-right",
@@ -61,13 +61,13 @@ const ProductDetails = () => {
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
-          src={note.image}
+          src={note.image1}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
-          src={note.image}
+          src={note.image2}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
             </Carousel>

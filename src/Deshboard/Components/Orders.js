@@ -23,24 +23,19 @@ const[size,setSize]=useState(50);
       setPageCount(Math.ceil(response.data.count/size))
           setOrders(response.data.products)
           setAllOrders(response.data.allProducts)
-          for(const product of response.data.allProducts){
-            if(product.status==="Wating"){
-              console.log(product);
-              amount=amount+ 10;
-            }
-          }
-          setOrderLoading(false)
+        setOrderLoading(false)
+      }
+      catch(error){
+      };
     }
-    catch(error){
-      console.log(error);
-    };
-  }
-
   useEffect(()=>{
     loadOrders()
-    
   },[page,size])
- console.log(amount);
+  for(let pro of allOrders){
+    if(pro.status==="Shipment"){
+      amount=amount+pro.TotalPrice;
+    }
+  }
   const searchProductsbyname = (e) => {
     const matched_products = allOrders.filter(pro => pro.email?.toLowerCase().includes(e.target.value.toLowerCase()))
     setOrders(matched_products)

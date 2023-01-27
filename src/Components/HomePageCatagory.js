@@ -3,8 +3,6 @@ import React from 'react';
 const HomePageCatagory = () => {
    const searchByCatagory = (e) => {
       const x=e.target.value;
-      console.log(x);
-     
     }
   return (
     <div>

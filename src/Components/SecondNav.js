@@ -5,7 +5,7 @@ const secondNav = () => {
      const search=(event)=>{
           // event.preventDefault();
           const searchInput=event.target.inputValue.value;
-          console.log(searchInput);
+       
      }
      return (
           <div>

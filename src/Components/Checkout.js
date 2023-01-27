@@ -19,7 +19,6 @@ const Checkout = () => {
   }
   const time= new Date().toLocaleString();
   const {usdata,total}=UseUserSpacifiqData();
-  // console.log(x);
 
   const checkOut=async(event)=>{
     event.preventDefault();

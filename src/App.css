@@ -36,6 +36,9 @@
     transform: rotate(360deg);
   }
 }
-.logo{
-  margin-left: -25px !important;
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    margin-left: -25px !important;
+  }
 }

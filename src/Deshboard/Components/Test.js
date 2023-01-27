@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const Test = () => {
   const [baseImage, setBaseImage] = useState("");
-console.log(baseImage);
+
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);

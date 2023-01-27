@@ -8,7 +8,7 @@ const Home = () => {
   const {catagorys}=UseCatagory();
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(100);
+const[size,setSize]=useState(30);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
@@ -22,20 +22,13 @@ const[size,setSize]=useState(100);
           setProductLoading(false)
     }
     catch(error){
-      console.log(error);
     };
   }
   useEffect(()=>{
     fetchProducts()
   },[page,size])
   const loadMore=()=>{
-    setSize(size+18)
-  }
-  const pageIncrease=()=>{
-    setPage(page+1)
-  }
-  const pageDecrease=()=>{
-    setPage(page-1)
+    setSize(size+30)
   }
     // const xyz = products.filter(pro => pro.catagory==="Mobility")
   const searchProductsbyname = (e) => {
@@ -52,7 +45,6 @@ const[size,setSize]=useState(100);
 const searchByCatagory = (e) => {
   const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
-    // console.log(allProducts);
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange1000=(e)=> {
@@ -81,83 +73,83 @@ const handleChangeuUnlimited=(e)=> {
           <div className='mx-1 '>
                  <Discount/>
             <div class="hidden sm:block">
-  <div class="grid  grid-cols-3 px-2 sm:grid-cols-8 lg:grid-cols-8 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
-  <button value="Mobility" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Mobility" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Mobility" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2022/02/Mobility-2.png" />
+  <div class="grid  grid-cols-3 px-2 sm:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
+  <button value="Health Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Health Care" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Health Care" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" />
            </button>
         </div>
-           <button  value="Mobility" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Mobility</button>
+           <button  value="Health Care" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Health Care</button>
   </button>
-  <button value="Digital BP" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Digital BP" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Digital BP" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/q:u/r:0/wp:0/w:247/u:https://cdn.medistorebd.com/wp-content/uploads/2016/11/JPN1-247x300.jpg" />
+  <button value="Baby Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Baby Care" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Baby Care" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
            </button>
         </div>
-           <button  value="Digital BP" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Digital BP</button>
+           <button  value="Baby Care" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Baby Care</button>
   </button>
-  <button value="Nebulizer" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Nebulizer" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Nebulizer" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2022/02/Nebulizer-3.png" />
+  <button value="Beauty Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Beauty Care" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Beauty Care" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" />
            </button>
         </div>
-           <button  value="Nebulizer" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Nebulizer</button>
+           <button  value="Beauty Care" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Beauty Care</button>
   </button>
-  <button value="X-Ray Machine" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="X-Ray Machine" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="X-Ray Machine" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2022/02/X-Ray-Machine-2.png" />
+  <button value="First Aid" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="First Aid" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="First Aid" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" />
            </button>
         </div>
-           <button  value="X-Ray Machine" onClick={searchByCatagory} className='text-center mt-1 underline font-normal '>X-Ray Machine</button>
+           <button  value="First Aid" onClick={searchByCatagory} className='text-center mt-1 underline font-normal '>First Aid</button>
   </button>
-  <button value="Laboratory Product" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Laboratory Product" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Laboratory Product" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2022/02/Laboratory-Items-2.png" />
+  <button value="Surgical" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Surgical" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Surgical" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" />
            </button>
         </div>
-           <button  value="Laboratory Product" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Laboratory</button>
+           <button  value="Surgical" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Surgical</button>
   </button>
-  <button value="Hematology Analyzer" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Hematology Analyzer" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Hematology Analyzer" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/q:u/r:0/wp:0/w:747/u:https://www.medistorebd.com/wp-content/uploads/2022/07/Dyasis-730x800.jpeg" />
+  <button value="Dental" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Dental" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Dental" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" />
            </button>
         </div>
-           <button  value="Hematology Analyzer" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Hematology</button>
+           <button  value="Dental" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Dental</button>
   </button>
-  <button value="Air Mattress" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Air Mattress" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Air Mattress" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2022/02/Air-Mattress-2.png" />
+  <button value="Diagnostic" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Diagnostic" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Diagnostic" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" />
            </button>
         </div>
-           <button  value="Air Mattress" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Air Mattress</button>
+           <button  value="Diagnostic" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Diagnostic</button>
   </button>
-  <button value="Weight Scale" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Weight Scale" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Weight Scale" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2016/11/beurer_gs207_spring-510x510.jpg" />
+  <button value="Laboratory" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Laboratory" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Laboratory" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" />
            </button>
         </div>
-           <button  value="Weight Scale" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Weight Scale</button>
+           <button  value="Laboratory" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Laboratory</button>
   </button>
-  <button value="ECG Machine" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="ECG Machine" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="ECG Machine" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2022/02/ECG-Machine-2.png" />
+  <button value="Hospital" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Hospital" onClick={searchByCatagory}>
+          <button className="w-full rounded"  value="Hospital" onClick={searchByCatagory}>
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" />
            </button>
         </div>
-           <button  value="ECG Machine" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>ECG Machine</button>
+           <button  value="Hospital" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Hospital</button>
   </button>
   <button value="Helth" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
         <div className="avatar"  value="Helth" onClick={searchByCatagory}>
           <button className="w-full rounded"  value="Helth" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://cdn.medistorebd.com/wp-content/uploads/2017/11/Aneroid-Sphygmomanometer-Blood-Pressure-Measure-Device-Home-Use-Blood-Pressure-Manual-watches-blood-pressure-meter.jpg_640x640-510x510.jpg" />
+          <img   onClick={searchByCatagory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
            </button>
         </div>
            <button  value="Helth" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Baby Care</button>
@@ -189,12 +181,8 @@ const handleChangeuUnlimited=(e)=> {
                   
                </div>    
                </div>
-
-            {/* <input className=" p-3 m-5 border w-1/3 text-center justify-center text-black" onChange={searchProducts} type="text" /> */}
-
-
 <div class="flex gap-8 mt-5 sm:mt-0">
-  <div class="relative hidden sm:block no-underline border-0">
+  <div class="relative  sm:block no-underline border-0">
     <details class="group [&_summary::-webkit-details-marker]:hidden">
       <summary
         class="flex items-center gap-2 pb-1 text-gray-900 transition border-b border-gray-400 cursor-pointer hover:border-gray-600"
@@ -306,7 +294,7 @@ const handleChangeuUnlimited=(e)=> {
   
  
   {/* <h2 className='font-semibold text-xl mb-2 text-primary-focus'>Just For You</h2> */}
-<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
+<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
  
  {
   productLoading?<>
@@ -342,21 +330,7 @@ const handleChangeuUnlimited=(e)=> {
 <HomePageSkeletion/>
 <HomePageSkeletion/>
 </>
-  {/* <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto h-28 sm:h-52">
-    <div class="animate-pulse flex space-x-4">
-      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-      <div class="flex-1 space-y-6 py-1">
-        <div class="h-2 bg-slate-700 rounded"></div>
-        <div class="space-y-3">
-          <div class="grid grid-cols-3 gap-4">
-            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-          </div>
-          <div class="h-2 bg-slate-700 rounded"></div>
-        </div>
-      </div>
-    </div>
-  </div> */}
+ 
   </>: <>{products?.map(product=>
 
 <Link to={`/single/${product._id}`}>
@@ -385,36 +359,15 @@ const handleChangeuUnlimited=(e)=> {
         </>
  }
 </div>
-<div className='mx-auto text-center mt-5'>
-<button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
-</div>
+{
+  products.length>30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
+  <button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
+  </div>
+}
+
  {
     products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
   }
-{/* <div className="flex  space-x-1  my-4 sm:ml-5">
-	<button onClick={pageDecrease} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
-		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
-			<polyline points="15 18 9 12 15 6"></polyline>
-		</svg>
-	</button>
-	{
-          [...Array(pageCount).keys()]
-          .map(number=><button
-          count={pageCount}
-             className={page===number?'inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md btn-primary ':"inline-flex items-center justify-center  py-0 border rounded-md shadow-md border-primary text-primary w-6 h-6 sm:w-8 sm:h-8 bg-white"} onClick={()=>setPage(number)}>{number+1}</button>)
-        }
-	<button onClick={pageIncrease} type="button" className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
-		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
-			<polyline points="9 18 15 12 9 6"></polyline>
-		</svg>
-	</button>
-  <select className='inline-flex items-center justify-center  w-14 h-6 sm:w-20 sm:h-8 py-0 px-2 border rounded-md shadow-md border-primary text-primary bg-white' onChange={e=>setSize(e.target.value)} >
-          <option  value="5">5</option>
-          <option  value="10">10</option>
-          <option value="15">15</option>
-          <option selected value="20">20</option>
-        </select>  
-</div> */}
 
 
      

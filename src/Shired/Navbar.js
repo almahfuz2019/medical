@@ -14,14 +14,8 @@ const Navbar = () => {
       subTotal+=parseInt(products.product.price)*(products.productQuentity);
       let shippingCharge=100;
       total=subTotal+shippingCharge;
-      // console.log(total);
-     //  discount=(shippingCharge-(5/100).toFixed(2));
-     //  discount=(discount.toFixed(2));
-     
     }
   }
-  
-  // const {cart}=UseProducts();
   const [user, loading, error] = useAuthState(auth);
   const [signOut, SignOutLoading, SignOutError] = useSignOut(auth);
   const logout=()=>{
@@ -49,7 +43,7 @@ const Navbar = () => {
      </>
      return (
           <>
-          <h1 className='bg-primary p-1 font-semibold text-center text-white sm:text-xl'>For Any Query, Please Call: 01864-210567</h1>
+          <h1 className='bg-primary p-1 font-semibold text-center text-white sm:text-xl'>For Any Query, Please Call: 01710-041226</h1>
        <div className="navbar bg-white border-b-4 border-primary">
   <div className="navbar-start ">
     <div className="dropdown  ">
@@ -60,7 +54,7 @@ const Navbar = () => {
 {navItems}
       </ul>
     </div>
-    <NavLink to="/" className="btn btn-ghost normal-case text-xl "><img className='h-12 w-28 ' src={logo} alt="" /></NavLink>
+    <NavLink to="/" className="btn btn-ghost normal-case text-xl logo"><img className='h-12 w-28 ' src={logo} alt="" /></NavLink>
     
   </div>
   <div className="navbar-center hidden lg:flex">

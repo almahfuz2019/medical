@@ -19,7 +19,6 @@ const UseCopen = () => {
                     }
                   })
                   .catch(error => {
-                    console.log(error);
                   });
           }
      }

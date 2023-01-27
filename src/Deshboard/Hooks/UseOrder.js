@@ -21,7 +21,6 @@ const UseOrder = () => {
           if(response.data.deletedCount>0){
                const deletedremaining=copone.filter(note=>note._id !==id);
                setCopone(deletedremaining)
-               console.log("deleted");
           }
      })
     }

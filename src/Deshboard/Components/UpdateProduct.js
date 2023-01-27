@@ -16,43 +16,38 @@ useEffect(()=>{
      fetch(url)
      .then(res=>res.json())
      .then(data=>setItem(data))
-     console.log(url);
+    
 },[])
     const handleNameChange = e => {
         const updateName = e.target.value;
         const updateNameFinal = { name: updateName,  price:item.price,previcePrice:item.previcePrice ,image:item.image,details:item.details};
         setItem(updateNameFinal);
-        console.log(updateNameFinal);
+       
     }
     const handlePriceChange = e => {
         const updatePrice = e.target.value;
         const finalUpdatPrice = { name: item.name,previcePrice:item.previcePrice, price: updatePrice, image:item.image,details:item.details}
         setItem(finalUpdatPrice);
-        console.log(finalUpdatPrice);
     }
     const handlePrevicePriceChange = e => {
         const updatePrevicePrice = e.target.value;
         const updatePrevicePrcie = { name: item.name, price:item.price,previcePrice:updatePrevicePrice,image:item.image,details:item.details }
         setItem(updatePrevicePrcie);
-        console.log(updatePrevicePrcie);
     }
     const handleImageChange = e => {
         const updatePrevicePrice = e.target.value;
         const updateImage = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:updatePrevicePrice,details:item.details }
         setItem(updateImage);
-        console.log(updateImage);
     }
     const handleCatagoryChange = e => {
         const updateCatagory = e.target.value;
         const updateNewCatagory = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:item.image, catagory:updateCatagory,details:item.details}
         setItem(updateNewCatagory);
-        console.log(updateNewCatagory);
     }
     const handleDetailsChange = e => {
         const updateDetail = e.target.value;
         const updateNewDetails = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:item.image, catagorys:item.catagorys ,details:updateDetail}
         setItem(updateNewDetails);
-        console.log(updateNewDetails);
     }
     const handleUpdateProduct = async(e) => {
       e.preventDefault()
@@ -74,7 +69,6 @@ useEffect(()=>{
     const imageHostKey ="454f0a4afe3ac6d5a8b44f466386e31d";
     const imgUpload=(e)=>{
       const image = e.target.files[0];
-      console.log(image);
       const formData = new FormData();
       formData.append('image', image);
       const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
@@ -126,14 +120,13 @@ useEffect(()=>{
       </div>
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
-        {/* <input type="text"  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={item.image} onChange={handleImageChange}/> */}
         <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
                     <input onChange={imgUpload} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                  
                 </div>
-        <img src={item.image} alt="" />
       </div>
+        <img className='h-52 w-52 mx-auto border rounded border border-gray-300 ' src={item.image} alt="" />
       
       <div className="relative mb-4">
         <label for="message" className="leading-7 text-sm text-gray-600">Product Description</label>

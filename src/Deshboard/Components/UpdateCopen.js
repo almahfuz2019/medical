@@ -9,13 +9,13 @@ useEffect(()=>{
      fetch(url)
      .then(res=>res.json())
      .then(data=>setItem(data))
-     console.log(url);
+    
 },[])
 const handleNameChange = e => {
      const updateName = e.target.value;
      const updateNameFinal = { catagory: updateName };
      setItem(updateNameFinal);
-     console.log(updateNameFinal);
+     
  }
  const handleUpdateProduct = e => {
      const url = `http://localhost:5000/copone/${id}`;

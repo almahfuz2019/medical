@@ -1,10 +1,12 @@
-
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from '../../Components/Loading';
 const AddDoctor = () => {
+    const [imageURL, setImageURL] = useState("");
+    const [imageURL1, setImageURL1] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { data: catagorys, isLoading } = useQuery({
       queryKey: ['products'],
@@ -15,9 +17,40 @@ const AddDoctor = () => {
       }
   })
     const imageHostKey ="454f0a4afe3ac6d5a8b44f466386e31d";
-    const handleAddDoctor = data => {
+    const handleUploadImage = (event) => {
+        const image1 = event.target.files[0];
+        const formData = new FormData();
+        formData.set("image", image1);
+        axios
+          .post(
+            `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
+            formData
+          )
+          .then((res) => {
+            setImageURL(res.data.data.display_url);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+    const handleUploadImage1 = (event) => {
+        const image2 = event.target.files[0];
+        const formData = new FormData();
+        formData.set("image", image2);
+        axios
+          .post(
+            `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
+            formData
+          )
+          .then((res) => {
+            setImageURL1(res.data.data.display_url);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+    const handleAddProduct = data => {
         const image = data.image[0];
-        console.log(image);
         const formData = new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
@@ -27,6 +60,7 @@ const AddDoctor = () => {
         })
         .then(res => res.json())
         .then(imgData => {
+            console.log(imgData);
             if(imgData.success){
                 const doctor = {
                     name: data.name, 
@@ -35,6 +69,8 @@ const AddDoctor = () => {
                     previcePrice: data.previcePrice,
                     catagory: data.specialty,
                     image: imgData.data.url,
+                    image1: imageURL,
+                    image2: imageURL1,
                 }
                 fetch('http://localhost:5000/product', {
                     method: 'POST',
@@ -61,12 +97,13 @@ const AddDoctor = () => {
             }
         })
     }
+   
     if(isLoading){
       return <Loading/>
     }
     return (
         <div>
-            <form onSubmit={handleSubmit(handleAddDoctor)}>
+            <form onSubmit={handleSubmit(handleAddProduct)}>
             <section className="text-gray-600 body-font relative ">
             <div className="container px-5 sm:py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
     <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
@@ -120,6 +157,18 @@ const AddDoctor = () => {
                     })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" multiple="multiple"/>
                     {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                 </div>
+               <div className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'>
+               <input
+                type='file'
+                onChange={handleUploadImage}
+              />
+               </div>
+               <div className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'>
+               <input
+                type='file'
+                onChange={handleUploadImage1}
+              />
+               </div>
                 <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Submit" type="submit"/>
   <p className="text-xs text-gray-500 mt-3">This is very important for your website.So,be careful.</p>
                 </div>
