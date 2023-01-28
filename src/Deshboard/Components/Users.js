@@ -41,7 +41,7 @@ const Users = () => {
              index={index}
              >
 
-             </UserRow>).reverse()}
+             </UserRow>)}
             </tbody>
   
           </table>

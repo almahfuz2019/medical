@@ -9,7 +9,7 @@ import UseWorker from './Hooks/UseWorker';
 import { BsInfoSquare } from "react-icons/bs";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { CiShoppingBasket } from "react-icons/ci";
-import { TbDiscount2, TbShoppingCartDiscount } from "react-icons/tb";
+import {  TbShoppingCartDiscount } from "react-icons/tb";
 import axios from 'axios';
 const Deshboard = () => {
     const [error,setError]=useState("");

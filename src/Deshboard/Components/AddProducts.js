@@ -16,7 +16,7 @@ const AddDoctor = () => {
           return data;
       }
   })
-    const imageHostKey ="454f0a4afe3ac6d5a8b44f466386e31d";
+    const imageHostKey ="24578957b7d8d88583ebff8098526d8c";
     const handleUploadImage = (event) => {
         const image1 = event.target.files[0];
         const formData = new FormData();
@@ -67,7 +67,8 @@ const AddDoctor = () => {
                     price: data.price,
                     details: data.details,
                     previcePrice: data.previcePrice,
-                    catagory: data.specialty,
+                    catagory: data.catagory,
+                    status:data.status,
                     image: imgData.data.url,
                     image1: imageURL,
                     image2: imageURL1,
@@ -140,7 +141,7 @@ const AddDoctor = () => {
                 <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> Select a category</label>
                     <select 
-                    {...register('specialty')}
+                    {...register('catagory')}
                     className="select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded">
                         {
                             catagorys.map(specialty => <option
@@ -151,20 +152,31 @@ const AddDoctor = () => {
                     </select>
                 </div>
                 <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
+                    <label className="leading-7 text-sm text-gray-600"> Select status</label>
+                    <select 
+                    {...register('status')}
+                    className="select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded">
+                       <option value="Available">Available</option>
+                       <option value="Unavailable">Unavailable </option>
+                    </select>
+                </div>
+                <div className="relative mb-4">
+                    <label className="leading-7 text-sm text-gray-600"> select product main Image</label>
                     <input type="file" {...register("image", {
                         required: "Photo is Required"
                     })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" multiple="multiple"/>
                     {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                 </div>
-               <div className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'>
-               <input
+               <div className="relative mb-4">
+               <label className="leading-7 text-sm text-gray-600"> selectproduct second Image</label>
+               <input className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 type='file'
                 onChange={handleUploadImage}
               />
                </div>
-               <div className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'>
-               <input
+               <div className="relative mb-4">
+               <label className="leading-7 text-sm text-gray-600"> select product third Image</label>
+               <input className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 type='file'
                 onChange={handleUploadImage1}
               />

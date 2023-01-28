@@ -48,7 +48,7 @@ const SingleItemorder = () => {
    <h1 className=''>
      <span className='font-bold text-2xl'>Issued To:</span><br />
      <span>{singleUserOrder.name}</span><br />
-     <span>{singleUserOrder.address}</span><br />
+     <span>{singleUserOrder.village},{singleUserOrder.union},{singleUserOrder.thana},{singleUserOrder.district}</span><br />
      <span>{singleUserOrder.phone}</span> <br />
      <span>{singleUserOrder.email}</span> <br />
      <span>Order Date: {singleUserOrder.dateAndTime}</span>

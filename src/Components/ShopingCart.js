@@ -1,9 +1,11 @@
 import React from 'react';
+import { BsAsterisk } from 'react-icons/bs';
+import { TbCurrencyTaka } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 
 const ShopingCart = () => {
-const {usdata,handleUserDelete,total,products,subTotal,shippingCharge,shoppingCartItemLoading}=UseUserSpacifiqData();
+const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqData();
 
      return (
           <div>
@@ -46,15 +48,15 @@ const {usdata,handleUserDelete,total,products,subTotal,shippingCharge,shoppingCa
         </div>
 
         <div className="flex items-center justify-between sm:justify-end flex-1 gap-2 mt-2 sm:0">
-          <form>
+          
             <label for="Line1Qty" className="sr-only"> Quantity </label>
 
             <h1
               id="Line1Qty"
-              className="py-2 px-2 rounded border-primary border-opacity-40 bg-gray-100 p-0 text-center   sm:text-xl text-sm  font-semibold"
-            >{data?.product?.price} <span className="text-primary text-2xl">x</span> {data?.productQuentity}=
-            {data?.productQuentity*data?.product?.price}</h1>
-          </form>
+              className="py-2 px-2 rounded border-primary border-opacity-40 bg-gray-100 p-0 text-center items-center  sm:text-xl text-sm  font-semibold flex"
+            >{data?.product?.price} <span className="text-primary text-xs mx-1"><BsAsterisk/></span> {data?.productQuentity}=
+             {data?.productQuentity*data?.product?.price}</h1>
+        
           <Link onClick={()=>handleUserDelete(data._id)} className="text-gray-600 transition hover:text-red-600 ">
             <span className="sr-only">Remove item</span>
 
@@ -83,26 +85,26 @@ const {usdata,handleUserDelete,total,products,subTotal,shippingCharge,shoppingCa
             <dl className="space-y-0.5 text-sm text-gray-700">
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>Subtotal</dt>
-                <dd className='font-bold'>$ {subTotal}</dd>
+                <dd className='font-bold flex items-center'><TbCurrencyTaka/> {subTotal}</dd>
               </div>
 
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>VAT</dt>
-                <dd className='font-bold'>$ 0.00</dd>
+                <dd className='font-bold flex items-center'><TbCurrencyTaka/> 0.00</dd>
               </div>
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>Shipping chirge</dt>
-                <dd className='font-bold'>$ {shippingCharge}</dd>
+                <dd className='font-bold flex items-center'><TbCurrencyTaka/> {shippingCharge}</dd>
               </div>
 
               <div className="flex justify-between border-b-2 text-xl">
                 <dt>Discount</dt>
-                <dd className='font-bold'>-$000</dd>
+                <dd className='font-bold flex items-center'><TbCurrencyTaka/>-$000</dd>
               </div>
 
               <div className="flex justify-between border-b-2  text-xl ">
                 <dt >Total</dt>
-                <dd className='font-bold text-xl'>${total}</dd>
+                <dd className='font-bold text-xl flex items-center'><TbCurrencyTaka/>{total}</dd>
               </div>
             </dl>
 
@@ -134,7 +136,7 @@ const {usdata,handleUserDelete,total,products,subTotal,shippingCharge,shoppingCa
                 to="/checkout"
                 className="block sm:px-5 sm:py-3 pt-1 text-sm text-white btn btn-primary transition btn-sm sm:btn-md"
               >
-                Checkout
+                Proceed to checkout
               </Link>
             </div>
           </div>

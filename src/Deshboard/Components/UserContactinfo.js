@@ -7,7 +7,7 @@ import Loading from '../../Components/Loading';
 const UserContactinfo = () => {  
      const [copone,setCopone]=useState([]);
      const[page,setPage]=useState(0);
-     const[size,setSize]=useState(2);
+     const[size,setSize]=useState(30);
        const[pageCount,setPageCount]=useState(0);
        const[allProducts,setAllProducts]=useState([]);
        const[products,setProducts]=useState([]);
@@ -116,7 +116,7 @@ const UserContactinfo = () => {
            </td>
          </tr>
        </tbody>
-     ).reverse()}
+     )}
      </table>
      </div>
        </div>

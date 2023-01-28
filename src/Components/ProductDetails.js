@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaCartPlus } from "react-icons/fa";
-import UserReview from './UserReview';
+import UserReview from './OrderPolicy';
 import { FaArrowCircleLeft} from 'react-icons/fa';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
@@ -9,9 +9,11 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
-import "../css/ProductDetails.css"
+import "../css/ProductDetails.css";
+import { BsDash,  BsPlus} from "react-icons/bs";
 const ProductDetails = () => {
-  const navigate=useNavigate();
+  const [inputNumber, setInputNumber] = useState(1);
+  
   const [user]=useAuthState(auth);
   
   const handleAddtocart=async(event)=>{
@@ -22,7 +24,7 @@ const ProductDetails = () => {
      const NotesData={productQuentity,useremail,product};
    
      await axios.post("http://localhost:5000/note",NotesData)
-     toast.success('Update Successfully', {
+     toast.success('Added Successfully', {
        position: "top-right",
        autoClose: 1000,
        hideProgressBar: false,
@@ -36,7 +38,6 @@ const ProductDetails = () => {
      }
      const { id } = useParams();
      const [note, setNote] = useState({});
-     
      useEffect(() => {
          const url = `http://localhost:5000/product/${id}`;
          fetch(url)
@@ -50,7 +51,7 @@ const ProductDetails = () => {
                 <section>
   <div className="relative max-w-screen-xl px-4 py-8 mx-auto">
     <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2 ">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-1  justify-items-center ">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-1  justify-items-center md:m-6 md:mt-0 mt-0">
       <Carousel autoPlay="true" autoFocus="true" emulateTouch="true" infiniteLoop="true" className=''>
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
@@ -72,26 +73,6 @@ const ProductDetails = () => {
         /></div>
             </Carousel>
         
-
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:mt-4">
-             <TransformWrapper>
-        <TransformComponent className="w-full">
-        <img
-          alt="Les Paul"
-          src={note.image}
-          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
-        />
-        </TransformComponent>
-      </TransformWrapper>   <TransformWrapper>
-        <TransformComponent className="w-full">
-        <img
-          alt="Les Paul"
-          src={note.image}
-          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
-        />
-        </TransformComponent>
-      </TransformWrapper>
-        </div> */}
       </div>
 
       <div className="sticky top-0 ">
@@ -204,141 +185,6 @@ const ProductDetails = () => {
         </details>
 
         <form onSubmit={handleAddtocart} className="mt-8">
-          {/* <fieldset>
-            <legend className="mb-1 text-sm font-medium">Color</legend>
-
-            <div className="flow-root">
-              <div className="-m-0.5 flex flex-wrap">
-                <label for="color_tt" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="color"
-                    id="color_tt"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-block px-3 py-1 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    Texas Tea
-                  </span>
-                </label>
-
-                <label for="color_fr" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="color"
-                    id="color_fr"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-block px-3 py-1 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    Fiesta Red
-                  </span>
-                </label>
-
-                <label for="color_cb" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="color"
-                    id="color_cb"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-block px-3 py-1 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    Cobalt Blue
-                  </span>
-                </label>
-              </div>
-            </div>
-          </fieldset> */}
-{/* 
-          <fieldset className="mt-4">
-            <legend className="mb-1 text-sm font-medium">Size</legend>
-
-            <div className="flow-root">
-              <div className="-m-0.5 flex flex-wrap">
-                <label for="size_xs" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="size"
-                    id="size_xs"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    XS
-                  </span>
-                </label>
-
-                <label for="size_s" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="size"
-                    id="size_s"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    S
-                  </span>
-                </label>
-
-                <label for="size_m" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="size"
-                    id="size_m"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    M
-                  </span>
-                </label>
-
-                <label for="size_l" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="size"
-                    id="size_l"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    L
-                  </span>
-                </label>
-
-                <label for="size_xl" className="cursor-pointer p-0.5">
-                  <input
-                    type="radio"
-                    name="size"
-                    id="size_xl"
-                    className="sr-only peer"
-                  />
-
-                  <span
-                    className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
-                  >
-                    XL
-                  </span>
-                </label>
-              </div>
-            </div>
-          </fieldset> */}
         <div className="flex items-center text-gray-500 gap-2 my-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -347,37 +193,70 @@ const ProductDetails = () => {
 
           <span className="text-sm">2-4 day shipping</span>
         </div>
-          <div className="flex mt-8">
-            <div>
+        {
+          note.status==="Unavailable"?
+          <div className="flex mt-8 items-center ">
+            <div className='flex items-center border bg-white'>
               <label for="quantity" className="sr-only">Qty</label>
-
+              <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber - 1)}><BsDash/></Link>
+     
               <input
-                type="number"
-                min="1"
-                defaultValue={1}
                 
-                className="w-12 sm:w-20 rounded border-primary  text-center  font-medium border border-3 input-sm p-2 sm:input-md sm:p-0"
+                min="1"
+                value={inputNumber}
+                className="w-12 sm:w-20 rounded border-primary  text-center font-semibold text-primary  border-3 input-sm sm:input-md border-opacity-30 bg-white  "
                 name='productQuentity' required
               />
+               <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber + 1)}><BsPlus/></Link>
             </div>
-         {user? <button type='submit'
-              className="block sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md"
+         {user? <button type='button'
+              className=" sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-gray-300  flex btn-sm sm:btn-md cursor-not-allowed"
+            >
+              Add to cart<span className='ml-4 text-xl'> <FaCartPlus/></span>
+            </button>: <Link to="/login" type='button'
+              className=" px-5 py-3 ml-3 text-xs font-medium text-white btn  flex bg-gray-300 cursor-not-allowed"
+            >
+              Add to cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
+            </Link>}
+          </div>
+          : 
+          <div className="flex mt-8 items-center ">
+            <div className='flex items-center border bg-white'>
+              <label for="quantity" className="sr-only">Qty</label>
+              <Link   className='md:text-4xl text-primary text-2xl bg-white ' onClick={() => setInputNumber(inputNumber - 1)}><BsDash/></Link>
+     
+              <input
+                
+                min="1"
+                value={inputNumber}
+                className="w-12 sm:w-20 rounded border-primary  text-center font-semibold text-primary  border-3 input-sm sm:input-md border-opacity-30 bg-white  "
+                name='productQuentity' required
+              />
+               <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber + 1)}><BsPlus/></Link>
+            </div>
+         {user? <button  type='submit'
+              className="block sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md "
             >
               Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
-            </button>: <Link to="/login" type='submit'
+            </button>: <Link  to="/login" type='submit'
               className="block px-5 py-3 ml-3 text-xs font-medium text-white btn btn-primary flex"
             >
               Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
             </Link>}
-           
           </div>
+        }
         </form>
+            <br />
+            {
+            note.status==="Unavailable"?<button type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full">Order Now</button>:<button type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</button>
+            }
+            
       
       </div>
     </div>
   </div>
 </section>
-
+      
 <UserReview/>
 <>
 </>

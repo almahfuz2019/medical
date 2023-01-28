@@ -5,6 +5,7 @@ import Loading from '../Components/Loading';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import logo from "../Images/logo.png"
 import auth from '../firebase.init';
+import { TbCurrencyTaka } from "react-icons/tb";
 const Navbar = () => {
   const {usdata}=UseUserSpacifiqData();
   let total=0;
@@ -76,7 +77,7 @@ const Navbar = () => {
       <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow border border-primary border-opacity-30">
         <div className="card-body ">
           <span className="font-bold text-lg">{usdata?.length} Items</span>
-          <span className="text-info-content">Total Amount: ${total}</span>
+          <span className="text-info-content flex items-center">Total Amount: <TbCurrencyTaka/>{total}</span>
           <div className="card-actions">
             <NavLink to="view-cart" className="btn btn-primary btn-block">View cart</NavLink>
           </div>

@@ -336,11 +336,11 @@ const handleChangeuUnlimited=(e)=> {
 <Link to={`/single/${product._id}`}>
 
         <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
-       <div className="h-40 sm:h-52 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image})`}}>
+       <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image})`}}>
          <div className="flex justify-between">
           </div>
        <div className='sm:flex'>
-            <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> available </span> </p>
+            <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
             <p>
             <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1"><span className="line-through decoration-gray-400   text-gray-800 ">${product.previcePrice} </span><span className=' ml-1'> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
             </p>
@@ -360,7 +360,7 @@ const handleChangeuUnlimited=(e)=> {
  }
 </div>
 {
-  products.length>30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
+  allProducts.length===products.length|| products.length<30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
   <button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
   </div>
 }

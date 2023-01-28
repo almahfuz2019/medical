@@ -118,7 +118,7 @@ const[size,setSize]=useState(50);
                 </td>
               </tr>
             </tbody>
-          ).reverse()}
+          )}
           </table>
           <div className="flex justify-center space-x-1 dark:text-gray-100 my-10">
 	<button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md btn-primary">
