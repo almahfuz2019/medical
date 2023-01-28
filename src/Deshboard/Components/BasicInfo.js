@@ -9,8 +9,38 @@ const BasicInfo = () => {
   const [doneOrders,setDoneOrders]=useState([])
   const [shipmentOrders,setShipmentOrders]=useState([])
   const [contactcount,setContactcount]=useState([])
+  const [allitemorders,setAllitemorders]=useState([])
   const [ordersBydateandtime,setordersBydateandtime]=useState([])
   const time= new Date().toLocaleString();
+  useEffect(()=>{
+    fetch(`http://localhost:5000/allitemorders`)
+    .then(res=>res.json())
+    .then(data=>setAllitemorders(data))
+  },[])
+  let DoneAmount=0;
+  for(let item of allitemorders){
+    if(item.status==="Done"){
+      DoneAmount=DoneAmount+item.TotalPrice;
+    }
+  }
+  let ShipmentAmount=0;
+  for(let item of allitemorders){
+    if(item.status==="Shipment"){
+      ShipmentAmount=ShipmentAmount+item.TotalPrice;
+    }
+  }
+  let CencelAmount=0;
+  for(let item of allitemorders){
+    if(item.status==="Cencel"){
+      CencelAmount=CencelAmount+item.TotalPrice;
+    }
+  }
+  let WatingAmount=0;
+  for(let item of allitemorders){
+    if(item.status==="Wating"){
+      WatingAmount=WatingAmount+item.TotalPrice;
+    }
+  }
   useEffect(()=>{
     fetch(`http://localhost:5000/productssearchbydateandtime?dateAndTime=${time}`)
     .then(res=>res.json())
@@ -154,10 +184,37 @@ if (hours < 12) {
                   className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
                 >
                   <dt className="order-last text-lg font-medium text-gray-500">
-                    Total Amount
+                    Total Amount (Shipment)
                   </dt>
         
-                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{contactcount.count+3232}</dd>
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{ShipmentAmount}</dd>
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
+                >
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Total Amount (Done)
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{DoneAmount}</dd>
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
+                >
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Total Amount (Cencel)
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{CencelAmount}</dd>
+                </div>
+                <div
+                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
+                >
+                  <dt className="order-last text-lg font-medium text-gray-500">
+                    Total Amount (Wating)
+                  </dt>
+        
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{WatingAmount}</dd>
                 </div>
               </dl>
             </div>

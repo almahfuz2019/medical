@@ -23,10 +23,10 @@ const ContactDetailsInformation = () => {
     </div>
   </div>
   <div className="chat-header">
-    <time className="text-xs opacity-50 ml-10">  {specificUserContactInfo.dateAndTime}</time>
+    <time className="text-xs  ml-10">  {specificUserContactInfo.dateAndTime}</time>
   </div>
   <div className="chat-bubble bg-gray-500 text-white"> {specificUserContactInfo.message}</div>
-  <div className="chat-footer opacity-50">
+  <div className="chat-footer ">
   {specificUserContactInfo.email}
   </div>
 </div>

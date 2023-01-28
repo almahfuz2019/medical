@@ -14,7 +14,7 @@ const Checkout = () => {
   let location = useLocation();
   const [agree,setAgree]=useState(false);
   const [agreeWithCashOnDelevery,setAgreeWithCashOnDelevery]=useState(false);
-  const [agreeWithBkish,setAgreeWithBkish]=useState(false);
+  // const [agreeWithBkish,setAgreeWithBkish]=useState(false);
   const [user, loading, error] = useAuthState(auth);
   if(loading){
     return <Loading/>
@@ -24,12 +24,7 @@ const Checkout = () => {
   }
   const time= new Date().toLocaleString();
   const {usdata,total,subTotal}=UseUserSpacifiqData();
-  if(agreeWithCashOnDelevery==true){
-    return agreeWithBkish(false)
-  }
-  if(agreeWithBkish==true){
-    return agreeWithCashOnDelevery(false)
-  }
+  
   const checkOut=async(event)=>{
     event.preventDefault();
     const name=event.target.name.value;
@@ -81,8 +76,8 @@ navigate("/deshboard")
         </div>
 
         <div>
-          <p className="text-2xl tracking-tight text-primary font-bold">
-            Total amount: ${total}
+          <p className="text-2xl tracking-tight text-primary font-bold flex items-center">
+            Total amount: <TbCurrencyTaka/>{total}
           </p>
 
           <p className="mt-1 text-sm text-gray-600">Thank's for shopping</p>
@@ -221,6 +216,8 @@ navigate("/deshboard")
         
 
 <p className='text-center  text-primary  text-xl mb-2 font-semibold'>Payment method</p>
+
+
 <div class=" items-center gap-8">
     <label class="inline-flex items-center">
         <input onClick={()=>setAgreeWithCashOnDelevery(!agreeWithCashOnDelevery)} type="radio" name="vehicle" class="w-5 h-5 accent-primary"/>
@@ -228,51 +225,47 @@ navigate("/deshboard")
                 Cash on delevery
             </span>
         </label> <br />
-      {
-        agreeWithCashOnDelevery? <div className='mt-2 text-primary border border-primary border-opacity-30 rounded-lg p-2 mb-3'>
-        <p>Please pay 100 take for confirm</p>
-     <p> <a href="tel:5551234567">Bkish Number: 0178787843</a></p>
-        </div>
-        :""
-
-
-      }
-        {/* <div className="divider">OR</div> */}
         <label class=" inline-flex items-center">
-            <input onClick={()=>setAgreeWithBkish(!agreeWithBkish)} type="radio" name="vehicle" class="w-5 h-5 accent-primary"/>
+            <input  onClick={()=>setAgreeWithCashOnDelevery(!agreeWithCashOnDelevery)} type="radio" name="vehicle" class="w-5 h-5 accent-primary"/>
                 <span class="ml-2 text-gray-700">
                     Bkish
                 </span>
             </label>
+      {
+        agreeWithCashOnDelevery? <div className='mt-2 text-primary border border-primary border-opacity-30 rounded-lg p-2'>
+        <p>Please pay 100 take for confirm</p>
+     <p> <a href="tel:5551234567">Bkish Number: 0178787843</a></p>
         </div>
-{
-  agreeWithBkish?
-  <>
-  <div className="col-span-6" >
-  <label for="Phone" className="block text-xs font-medium text-gray-700">
-    Bkish transition ID
-  </label>
-  <input
-    type="tex" 
-    placeholder='Enter your TR ID'
-    id="Phone"
-    name='bkishID'
-    className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
-  />
-</div>
-<div className="col-span-6">
-  <label for="Phone" className="block text-xs font-medium text-gray-700">
-    Bkish phone number
-  </label>
-  <input
-    type="tex" 
-    placeholder='Bkish number'
-    id="Phone"
-    name='bkishNumber'
-    className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "
-  />
-</div></>:""
-}
+        :<>
+        <div className="col-span-6" >
+        <label for="Phone" className="block text-xs font-medium text-gray-700">
+          Bkish transition ID
+        </label>
+        <input
+          type="tex" 
+          placeholder='Enter your TR ID'
+          id="Phone"
+          name='bkishID'
+          className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+        />
+      </div>
+      <div className="col-span-6">
+        <label for="Phone" className="block text-xs font-medium text-gray-700">
+          Bkish phone number
+        </label>
+        <input
+          type="tex" 
+          placeholder='Bkish number'
+          id="Phone"
+          name='bkishNumber'
+          className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "
+        />
+      </div></>
+
+      }
+  
+       
+        </div>
         </div>
 <input type="checkbox" id="my-modal-3" className="modal-toggle" />
 <div className="modal">
@@ -284,7 +277,7 @@ navigate("/deshboard")
 </div>
         <div className="col-span-6">
           <input onClick={()=>setAgree(!agree)} type="checkbox" name="trems" id="terms" className='accent-primary'/>
-          <label className={agree?'text-primary ml-2':'text-black ml-2'} htmlFor="terms">I have read and agree to the website </label><label htmlFor="my-modal-3"><span className='text-red-600 underline cursor-pointer' >terms and conditions</span></label>
+          <label className={agree?'text-primary ml-2':'text-black ml-2'} htmlFor="terms">I agree with the </label><label htmlFor="my-modal-3"><span className='text-red-600 underline cursor-pointer' >terms and conditions.</span></label>
         </div>
           <div className="col-span-6">
             {

@@ -23,7 +23,99 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
   <li className="step mx-2">CheckOut</li>
 </ul>
 </div>
-      <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30">
+
+    
+<div class=" bg-gray-100 mt-16">
+    <div class="mx-auto  justify-center px-6 md:flex md:space-x-6 xl:px-0">
+      <div class="rounded-lg w-full">
+    {usdata?.map(data=>
+        <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+          <img src={data?.product?.image} alt="product-image" class="w-full h-40 md:h-20 rounded-lg sm:w-40" />
+          <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+            <div class="mt-5 sm:mt-0">
+              <h2 class="text-lg font-bold text-gray-900">{data?.product?.name}</h2>
+              <p class="mt-1 text-xs text-gray-700">
+              <div>
+              <dt className="inline text-sm">Price: {data?.product?.price}</dt>
+              <br />
+              <dt className="inline text-sm">Quentity: {data?.productQuentity}</dt>
+            </div>
+
+              </p>
+            </div>
+            <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+              <div class="flex items-center border-gray-100">
+                <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
+                <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value={data?.productQuentity} min="1" />
+                <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <p class="text-sm">{data?.productQuentity*data?.product?.price}</p>
+                <svg onClick={()=>handleUserDelete(data._id)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      </div>
+    
+      <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+        <div class="mb-2 flex justify-between">
+          <p class="text-gray-700">Subtotal</p>
+          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>{subTotal}</p>
+        </div>
+        <div class="flex justify-between mb-2 ">
+          <p class="text-gray-700">Shipping</p>
+          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>{shippingCharge}</p>
+        </div>
+        <div class="flex justify-between mb-2">
+          <p class="text-gray-700">Discount</p>
+          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>000</p>
+        </div>
+        <div class="flex justify-between">
+          <p class="text-gray-700">VAT</p>
+          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>000</p>
+        </div>
+        <hr class="my-4" />
+        <div class="flex justify-between">
+          <p class="text-lg font-bold">Total</p>
+          <div class="">
+            <p class="mb-1 text-lg font-bold flex  items-center justify-end"><TbCurrencyTaka/>{total}</p>
+          
+            <div className="flex justify-end">
+              <span
+                className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="-ml-1 mr-1.5 h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"
+                />
+                </svg>
+
+                <p className="text-xs whitespace-nowrap ">No Discounts Applied</p>
+              </span>
+            </div>
+          </div>
+        </div>
+  <div className='mt-6 w-full'>
+  <Link to="/checkout" class=" w-full rounded-md btn-primary btn p-1 font-medium text-blue-50 ">Proceed to checkout</Link>
+  </div>
+      </div>
+
+    </div>
+  </div>
+      {/* <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30">
         <ul className="space-y-4 ">
           
           {usdata?.map(data=>
@@ -42,7 +134,6 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
               <dt className="inline text-sm">Price: {data?.product?.price}</dt>
               <br />
               <dt className="inline text-sm">Quentity: {data?.productQuentity}</dt>
-              {/* <dd className="inline">XXS</dd> */}
             </div>
           </dl>
         </div>
@@ -141,7 +232,7 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 </section>

@@ -32,7 +32,7 @@ const[size,setSize]=useState(50);
     loadOrders()
   },[page,size])
   for(let pro of allOrders){
-    if(pro.status==="Shipment"){
+    if(pro.status==="Done"){
       amount=amount+pro.TotalPrice;
     }
   }

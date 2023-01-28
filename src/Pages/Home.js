@@ -1,8 +1,10 @@
 import axios, { all } from 'axios';
 import React, { useEffect, useState } from 'react';
+import { TbCurrencyTaka } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import Discount from '../Components/Discount';
 import HomePageSkeletion from '../Components/HomePageSkeletion';
+import TrustedCompanys from '../Components/TrustedCompanys';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   const {catagorys}=UseCatagory();
@@ -339,11 +341,15 @@ const handleChangeuUnlimited=(e)=> {
        <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image})`}}>
          <div className="flex justify-between">
           </div>
-       <div className='sm:flex'>
-            <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
-            <p>
-            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1"><span className="line-through decoration-gray-400   text-gray-800 ">${product.previcePrice} </span><span className=' ml-1'> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
+       <div className='flex'>
+           <div>
+           <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
+           </div>
+            <div className='flex items-center'>
+            <p className=' ml-1'>
+            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1 flex items-center"><span className="line-through decoration-gray-400 flex items-center   text-gray-800 "><TbCurrencyTaka />{product.previcePrice} </span><span className=' ml-1 '> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
             </p>
+            </div>
        </div>  
        </div>  
             <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{product?.catagory}</p>
@@ -369,7 +375,7 @@ const handleChangeuUnlimited=(e)=> {
     products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
   }
 
-
+<TrustedCompanys/>
      
           </div>
      );
