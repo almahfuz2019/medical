@@ -41,6 +41,7 @@ import ContactDetailsInformation from './Deshboard/Components/ContactDetailsInfo
 import RequireWorker from './Authentication/RequireWorker';
 import OrderStatusUpdate from './Deshboard/Components/OrderStatusUpdate';
 import UserContactinfo from './Deshboard/Components/UserContactinfo';
+import SingleItemOrder from './Components/SingleItemOrder';
 function App() {
       const [user]=useAuthState(auth);
       const [admin]=UseAdmin(user);
@@ -110,6 +111,7 @@ function App() {
           <Route path='/home/contact' element={<ContactUs/>}/>
           
   <Route path='/single/:id' element={<ProductDetails/>}/>
+  <Route path='/single-order/:id' element={<SingleItemOrder/>}/>
   <Route path='/' element={<Home/>}>
           <Route index  element={<MainPage/>}/>
           <Route path='trams-and-condition' element={<TramsAndCondition/>}/>

@@ -16,12 +16,12 @@ const SingleItemorder = () => {
      }, []);
      const time= new Date().toLocaleString();
      let subTtotal=0;
-     let total=0;
+     let total=singleUserOrder.TotalPrice;
+    //  const productQuentity=singleUserOrder.productQuentity;
+    //  const productTotalPrice=singleUserOrder.TotalPrice;
      for(const userD of singleUserOrder.userData||[]){ 
       subTtotal += parseInt(userD.productQuentity) * parseInt(userD.product.price) 
-      total=subTtotal+100;
     }
-  
      return (
           <div className='h-screen'>
               <div className='text-end mt-5'>
@@ -32,7 +32,7 @@ const SingleItemorder = () => {
                <img className='h-12 w-28 text-center mx-auto my-4' src={logo} alt="" />
                
             
-               <div class="grid grid-cols-2 gap-4 px-10  border border-2 border-l-0 border-r-0  border-b-0 border-black mb-10">
+               <div class="grid grid-cols-2 gap-4 px-10  border-t border-black mb-10">
   <div>
     <h1 className='text-2xl font-bold'>Invoice</h1>
      <p className=''><span className='font-semibold'>Order Number</span> #{singleUserOrder.phone?.slice(3, 9)*2}</p>
@@ -58,7 +58,7 @@ const SingleItemorder = () => {
 
 </div>
 <table class="table-fixed  w-full text-center px-10">
-  <thead className=' text-black fotn-semibold border-b-2 border border-black border-l-0 border-r-0 border-t-0'>
+  <thead className=' text-black fotn-semibold border-b  border-black '>
     <tr className=''>
       <th>Product</th><th></th>
       <th>Unit Price</th>
@@ -66,15 +66,16 @@ const SingleItemorder = () => {
       <th>Price</th>
     </tr>
   </thead>
-  <tbody className=' border-black border-b-2 '>
+  <tbody className=' border-black border-b '>
   {
   singleUserOrder.userData?.map(x=>
-<tr className=' mb-2 border-black border-b-2'>
-      <td className=' pl-5'>{x.product.name}</td>
+<tr className=' mb-2 '>
+      <td className=' pl-5 w-full '>{x.product.name}</td>
       <td></td>
-      <td>${x.product.price}</td>
-      <td>{x.productQuentity}</td>
-      <td>${x.productQuentity*x.product.price}</td>
+      <td>${x?.product?.price}</td>
+      <td>${x?.product?.price}</td>
+      <td>{x.productQuentity }</td>
+      <td>${x.productQuentity*x.product.price }</td>
     </tr>
 )
 }
@@ -98,14 +99,14 @@ const SingleItemorder = () => {
       <td className=' pl-5'></td>
       <td></td>
       <td></td>
-      <td className='border-black border-b-2 pl-10'><div className='text-start'>
+      <td className='border-black border-b pl-10'><div className='text-start'>
 <h1 className=' font-semibold '>Subtotal
 </h1>
 <p>+Delivery fee</p>
 <p>-Discount</p>
 <p className='font-bold'>Total</p>
   </div></td>
-      <td className=' text-end border-black border-b-2 px-10'>
+      <td className=' text-end border-black border-b px-10'>
         <div className=' py-5 '>
 <h1 className=' font-semibold '>BDT {subTtotal}</h1>
 <p className=' '>BDT 100</p>

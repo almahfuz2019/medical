@@ -13,8 +13,8 @@ const Navbar = () => {
   if(Array.isArray(usdata)){
     for(let products of usdata){
       subTotal+=parseInt(products.product.price)*(products.productQuentity);
-      let shippingCharge=100;
-      total=subTotal+shippingCharge;
+     
+      total=subTotal;
     }
   }
   const [user, loading, error] = useAuthState(auth);

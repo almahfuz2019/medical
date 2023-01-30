@@ -13,9 +13,16 @@ import "../css/ProductDetails.css";
 import { BsDash,  BsPlus} from "react-icons/bs";
 const ProductDetails = () => {
   const [inputNumber, setInputNumber] = useState(1);
-  
+
+
   const [user]=useAuthState(auth);
-  
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    localStorage.setItem('product', JSON.stringify(data));
+  }, [data]);
+  useEffect(() => {
+    localStorage.setItem('productquenty', JSON.stringify(inputNumber));
+  }, [inputNumber]);
   const handleAddtocart=async(event)=>{
     event.preventDefault();
     const productQuentity=event.target.productQuentity.value;
@@ -42,8 +49,17 @@ const ProductDetails = () => {
          const url = `http://localhost:5000/product/${id}`;
          fetch(url)
              .then(res => res.json())
-             .then(data => setNote(data));
+             .then(data =>{
+               setNote(data)
+               setData(data)
+              });
      }, []);
+
+   
+    //  const setValue = (product, note) => {
+    //   const stringifiedValue = JSON.stringify(note);
+    //   localStorage.setItem(product, stringifiedValue);
+    // }
      return (
           <div className='bg-gray-100 p-2'>
                <a  href = "javascript:history.back()"><span className="ml-1 text-2xl  text-primary">
@@ -248,7 +264,8 @@ const ProductDetails = () => {
         </form>
             <br />
             {
-            note.status==="Unavailable"?<button type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full">Order Now</button>:<button type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</button>
+            note.status==="Unavailable"?
+            <Link to={`/single-order/${note._id}`}type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full">Order Now</Link>:<Link to={`/single-order/${note._id}`}type='btn'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</Link>
             }
             
       

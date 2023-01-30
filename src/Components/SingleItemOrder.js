@@ -1,65 +1,73 @@
-import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
-import { toast } from 'react-toastify';
-import logo from "../Images/logo.png"
-import auth from '../firebase.init';
-import Loading from './Loading';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { TbCurrencyTaka } from 'react-icons/tb';
-import { useState } from 'react';
-const Checkout = () => {
-  const navigate=useNavigate();
-  let location = useLocation();
-  const [agree,setAgree]=useState(false);
-  const [agreeWithCashOnDelevery,setAgreeWithCashOnDelevery]=useState(false);
-  // const [agreeWithBkish,setAgreeWithBkish]=useState(false);
-  const [user, loading, error] = useAuthState(auth);
-  if(loading){
-    return <Loading/>
-  }
-  if(error){
-    return <p>{error}</p>
-  }
-  const time= new Date().toLocaleString();
-  const {usdata,total,subTotal}=UseUserSpacifiqData();
-  
-  const checkOut=async(event)=>{
-    event.preventDefault();
-    const name=event.target.name.value;
-    const phone=event.target.phone.value;
-    const email=event.target.email.value;
-    const village=event.target.village.value;
-    const union=event.target.union.value;
-    const thana=event.target.thana.value;
-    const district=event.target.district.value;
-    const bkishID=event.target.bkishID.value;
-    const bkishNumber=event.target.bkishNumber.value;
-    const userData=usdata;
-    const TotalPrice=total;
-    const dateAndTime=time;
-    let status="Wating";
-    const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
-  await axios.post("http://localhost:5000/itemorder",checkOut)
-  toast.success('Update Successfully', {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: false,
-    progress: undefined,
-    theme: "colored",
-    });
-  //  event.target.reset();
-navigate("/deshboard")
-    }
-
+import { Navigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import auth from '../firebase.init';
+import logo from "../Images/logo.png"
+import Loading from './Loading';
+const SingleItemOrder = () => {
+     const time= new Date().toLocaleString();
+     const { id } = useParams();
+     const [order, setOrder] = useState({});
+     useEffect(() => {
+         const url = `http://localhost:5000/product/${id}`;
+         fetch(url)
+             .then(res => res.json())
+             .then(data => setOrder(data));
+     }, []);
+     
+     const [agree,setAgree]=useState(false);
+     const [agreeWithCashOnDelevery,setAgreeWithCashOnDelevery]=useState(false);
+     const [user, loading, error] = useAuthState(auth);
+     if(loading){
+       return <Loading/>
+     }
+     if(error){
+       return <p>{error}</p>
+     }
+     const cartItemQuentity = localStorage.getItem('productquenty');
+     const cartParsedValue = JSON.parse(cartItemQuentity);
+     console.log(cartParsedValue);
+     const product={_id:order._id,productQuentity:cartParsedValue,product:{name:order.name,price:order.price}};
+     const zc=[product]
+     const checkOut=async(event)=>{
+          event.preventDefault();
+          const name=event.target.name.value;
+          const phone=event.target.phone.value;
+          const email=event.target.email.value;
+          const village=event.target.village.value;
+          const union=event.target.union.value;
+          const thana=event.target.thana.value;
+          const district=event.target.district.value;
+          const bkishID=event.target.bkishID.value;
+        
+          const bkishNumber=event.target.bkishNumber.value;
+          
+          const userData=zc;
+          const TotalPrice=(order.price*cartParsedValue)+100;
+          const dateAndTime=time;
+          let status="Wating";
+          const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,TotalPrice,status,bkishNumber,userData};
+        await axios.post("http://localhost:5000/itemorder",checkOut)
+        toast.success('Update Successfully', {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+          });
+     //     event.target.reset();
+      Navigate("/deshboard")
+          }
+        
      return (
           <div>
-               
-<section className='mt-12'>
+               <section className='mt-12'>
   <h1 className="text-center font-bold text-3xl sm:text-4xl mb-5">Checkout</h1>
   <div className='mx-auto text-center my-2'>
       <ul className="steps ">
@@ -77,7 +85,7 @@ navigate("/deshboard")
 
         <div>
           <p className="text-2xl tracking-tight text-primary font-bold flex items-center">
-            Total amount: <TbCurrencyTaka/>{total}
+            Total amount: <TbCurrencyTaka/>{order.price*cartParsedValue}
           </p>
 
           <p className="mt-1 text-sm text-gray-600">Thank's for shopping</p>
@@ -87,14 +95,14 @@ navigate("/deshboard")
           <div className="flow-root">
        
           <div className="avatar-group -space-x-6 bg-primary p-2">
-          {usdata?.map(data=>
+         
           <div className="avatar">
             <div className="w-12 ">
-              <img className=''  src={data?.product?.image} />
+              <img className=''  src={order.image} />
             </div>
           </div>
         
-        )}
+     
 
           <div className="avatar placeholder">
             <div className="w-12 bg-neutral-focus text-neutral-content">
@@ -110,26 +118,27 @@ navigate("/deshboard")
   <div className='flex justify-between border-gray-300 border border-x-0 border-t-0 border-b-1 pb-2 '>
   <h1 className='font-bold'>PRODUCT</h1><h1 className='font-bold'>SUBTOTAL</h1>
   </div>
- {usdata?.map(data=>
 
- <>
+
+ 
   <div>
  <div className='flex justify-between'>
-    <h1>{data?.product?.name}</h1><h1>{data?.productQuentity*data?.product?.price}</h1>
+    <h1>{order?.name}</h1><h1>{order.price}</h1>
+    {/* <h1>{order.productQuentity*order.price}</h1> */}
   </div>
- <h1>scale × {data?.productQuentity}</h1>
+ <h1>scale × {cartParsedValue}</h1>
  </div>
- </>
- )}
+{/* <h1 className='bg-primary text-white'>{parsedValue?.name}</h1> */}
+
   <div className='flex justify-between border-gray-300 border border-x-0 border-t-0 border-b-1 py-2'>
-  <h1 className='font-bold'>Subtotal</h1><h1 className='text-primary font-bold flex items-center'><TbCurrencyTaka/>{total}</h1>
+  <h1 className='font-bold'>Subtotal</h1><h1 className='text-primary font-bold flex items-center'><TbCurrencyTaka/>{order.price*cartParsedValue}</h1>
   </div>
   <div className='border border-x-0 border-t-0 border-b-1 border-gray-300 pb-2'>
     <h1 className='font-bold'>Shipping</h1>
     <p>Enter your address to view shipping options.</p>
   </div>
   <div className='flex justify-between border border-gray-300 border-x-0 border-t-0 border-b-1 font-bold py-2'>
-    <h1>Total</h1><h1 className='text-primary flex items-center'><TbCurrencyTaka/>{total+100}</h1>
+    <h1>Total</h1><h1 className='text-primary flex items-center'><TbCurrencyTaka/>{parseInt(order.price*cartParsedValue)+100}</h1>
   </div>
   
 </div>
@@ -293,8 +302,7 @@ navigate("/deshboard")
     </div>
   </div>
 </section>
-
           </div>
      );
 };
-export default Checkout;
+export default SingleItemOrder;
