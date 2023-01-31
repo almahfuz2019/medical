@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import UseCatagory from '../Hooks/UseCatagory';
 const UpdateProduct = () => {
@@ -11,6 +11,7 @@ const UpdateProduct = () => {
     const [imgUrl,setImgUrl]=useState("")
     const [imgUrl1,setImgUrl1]=useState("")
     const [imgUrl2,setImgUrl2]=useState("")
+    console.log(imgUrl,imgUrl1,imgUrl2);
      // Update item
      const[item,setItem]=useState([]);
     const { id } = useParams();
@@ -24,8 +25,7 @@ useEffect(()=>{
     const handleNameChange = e => {
         const updateName = e.target.value;
         const updateNameFinal = { name: updateName,  price:item.price,previcePrice:item.previcePrice ,image: item.image,image1: item.image1,image2: item.image2,details:item.details,status:item.status};
-        setItem(updateNameFinal);
-       
+        setItem(updateNameFinal);     
     }
     const handlePriceChange = e => {
         const updatePrice = e.target.value;
@@ -49,7 +49,7 @@ useEffect(()=>{
     }
     const handleDetailsChange = e => {
         const updateDetail = e.target.value;
-        const updateNewDetails = { name: item.name, price:item.price,previcePrice:item.previcePrice,image: item.image,image1: item.image1,image2: item.image2, catagorys:item.catagorys ,details:updateDetail,status:item.status}
+        const updateNewDetails = { name: item.name, price:item.price,previcePrice:item.previcePrice, image: item.image,image1: item.image1,image2: item.image2, catagorys:item.catagorys ,details:updateDetail,status:item.status}
         setItem(updateNewDetails);
     }
     const handleUpdateProduct = async(e) => {
@@ -82,10 +82,10 @@ useEffect(()=>{
       .then(res => res.json())
       .then(imgData => {
         setImgUrl(imgData.data.url)
-          if(imgData.success){
+     
             const updateImage = { name: item.name, price:item.price,previcePrice:item.previcePrice,image: imgUrl,image1: item.image1,image2: item.image2,details:item.details }
             setItem(updateImage);
-          }
+          
         })}
     const imgUpload1=(e)=>{
       const image = e.target.files[0];
@@ -99,10 +99,10 @@ useEffect(()=>{
       .then(res => res.json())
       .then(imgData => {
         setImgUrl1(imgData.data.url)
-          if(imgData.success){
-            const updateImage = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:  item.image,image1: imgUrl1,image2:  item.image2,details:item.details }
-            setItem(updateImage);
-          }
+         
+            const updateImage1 = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:  item.image,image1: imgUrl1,image2:item.image2,details:item.details }
+            setItem(updateImage1);
+          
         })}
     const imgUpload2=(e)=>{
       const image = e.target.files[0];
@@ -116,18 +116,17 @@ useEffect(()=>{
       .then(res => res.json())
       .then(imgData => {
         setImgUrl2(imgData.data.url)
-          if(imgData.success){
-            const updateImage = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:  item.image,image1:  item.image1,image2: imgUrl2,details:item.details }
-            setItem(updateImage);
-          }
-        })}
+         
+            const updateImage3 = { name: item.name, price:item.price,previcePrice:item.previcePrice,image:  item.image,image1:  item.image1,image2: imgUrl2,details:item.details }
+            setItem(updateImage3);
         
+        })}
      return (
      <div> 
-<form onSubmit={handleUpdateProduct}>
+  <form onSubmit={handleUpdateProduct}>
      <section className="text-gray-600 body-font relative ">
      <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
-    <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
+    <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0  rounded-md p-5">
       <h2 className="text-gray-900 text-lg mb-1 
      title-font font-semibold">Update this product</h2>
       
@@ -172,28 +171,24 @@ useEffect(()=>{
                  
                 </div>
       </div>
-        <img className='h-52 w-52 mx-auto border rounded border border-gray-300 ' src={item.image} alt="" />
+        <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={item.image} alt="" />
       
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
         <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
                     <input onChange={imgUpload1} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-                 
-                </div>
+            </div>
       </div>
-        <img className='h-52 w-52 mx-auto border rounded border border-gray-300 ' src={item.image1} alt="" />
-      
+        <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={item.image1} alt="" />
       <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
         <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
                     <input onChange={imgUpload2} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-                 
                 </div>
       </div>
-        <img className='h-52 w-52 mx-auto border rounded border border-gray-300 ' src={item.image2} alt="" />
-      
+        <img className='h-52 w-52 mx-auto rounded border border-gray-300 ' src={item.image2} alt="" />
       <div className="relative mb-4">
         <label for="message" className="leading-7 text-sm text-gray-600">Product Description</label>
         <textarea id="message" name="message" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" value={item.details} onChange={handleDetailsChange}></textarea>
