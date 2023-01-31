@@ -15,21 +15,20 @@ import Navbar from './Shired/Navbar';
 import "./css/style.css";
 import Deshboard from './Deshboard/Deshboard';
 import BasicInfo from './Deshboard/Components/BasicInfo';
-import LoadProducts from './Deshboard/Components/LoadProducts';
-import AddProducts from './Deshboard/Components/AddProducts';
-import CreateCatagory from './Deshboard/Components/CreateCatagory';
+import AllProducts from './Deshboard/Components/AllProducts';
+import AddProduct from './Deshboard/Components/AddProduct';
+import CreateCategories from './Deshboard/Components/CreateCategories';
 import ShopingCart from './Components/ShopingCart';
 import Checkout from './Components/Checkout';
-import Test from './Deshboard/Components/Test';
 import Notfound from './Components/Notfound';
 import UpdateProduct from './Deshboard/Components/UpdateProduct';
-import UpdateCatagory from './Deshboard/Components/UpdateCatagory';
+import UpdateCategory from './Deshboard/Components/UpdateCategory';
 import Coupon from '../src/Components/Coupon';
-import UpdateCopen from './Deshboard/Components/UpdateCopen';
+import UpdateCoupon from './Deshboard/Components/UpdateCoupon';
 import RequireAuth from './Authentication/RequireAuth';
 import auth from './firebase.init';
 import Orders from './Deshboard/Components/Orders';
-import SingleItemorder from './Deshboard/Components/SingleItemorder';
+import OrderPDF from './Deshboard/Components/OrderPDF';
 import UserSlefOrderInfo from './Deshboard/Components/UserSelfInfo/UserSlefOrderInfo';
 import { ToastContainer } from 'react-toastify';
 import Users from './Deshboard/Components/Users';
@@ -51,16 +50,16 @@ function App() {
 <Routes>
   <Route path='/login' element={<Login/>}/>
   <Route path='/forget-password' element={<ForgetPassword/>}/>
-  <Route path='update/:id' element={<RequireAuth>
+  <Route path='update-product/:id' element={<RequireAuth>
       <RequireAdmin><UpdateProduct/></RequireAdmin></RequireAuth>}/>
   <Route path='readmore/:id' element={<RequireAuth>
       <RequireWorker><ContactDetailsInformation/></RequireWorker></RequireAuth>}/>
   <Route path='itemorderdelete/:id' element={<RequireAuth>
       <RequireWorker><OrderStatusUpdate/></RequireWorker></RequireAuth>}/>
   <Route path='itemorder/:id' element={<RequireAuth>
-      <SingleItemorder/></RequireAuth>}/>
-  <Route path='updatecatagory/:id' element={<RequireAuth><RequireAdmin><UpdateCatagory/></RequireAdmin></RequireAuth>}/>
-  <Route path='/updatecopen/:id' element={<RequireAuth><RequireAdmin><UpdateCopen/></RequireAdmin></RequireAuth>}/>
+      <OrderPDF/></RequireAuth>}/>
+  <Route path='updatecatagory/:id' element={<RequireAuth><RequireAdmin><UpdateCategory/></RequireAdmin></RequireAuth>}/>
+  <Route path='/updatecopen/:id' element={<RequireAuth><RequireAdmin><UpdateCoupon/></RequireAdmin></RequireAuth>}/>
   <Route path='/deshboard' element={
   <RequireAuth>
  <Deshboard/>
@@ -74,12 +73,12 @@ function App() {
           <Route path='basic-info' element={<RequireAuth><RequireAdmin><BasicInfo/></RequireAdmin></RequireAuth>}/>
           <Route path='users' element={<RequireAuth>{<RequireAdmin><Users/></RequireAdmin>}</RequireAuth>}/>
           <Route path='products' element={<RequireAuth>
-                <RequireWorker><LoadProducts/></RequireWorker>
+                <RequireWorker><AllProducts/></RequireWorker>
           </RequireAuth>}/>
           <Route path='add-product' element={<RequireAuth>
-              <RequireWorker>  <AddProducts/></RequireWorker>
+              <RequireWorker><AddProduct/></RequireWorker>
           </RequireAuth>}/>
-          <Route path='catagory' element={<RequireWorker><CreateCatagory/></RequireWorker>}/>
+          <Route path='catagory' element={<RequireWorker><CreateCategories/></RequireWorker>}/>
           <Route path='copne' element={<RequireAuth>
          <RequireAdmin>  <Coupon/></RequireAdmin>
           </RequireAuth>}/>
@@ -102,8 +101,6 @@ function App() {
 <Checkout/>
     </RequireAuth>
   }/>
-
-  <Route path='/test' element={<Test/>}/>
   <Route path='/' element={<Home/>}/>
   <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='/home/about' element={<AboutUs/>}/>

@@ -14,8 +14,6 @@ const ContactDetailsInformation = () => {
           <div className='p-2 sm:p-5 sm:pb-10 bg-white'>
                <a  href = "javascript:history.back()"><span className="ml-1 text-2xl  text-primary">
                 <FaArrowCircleLeft/></span></a>
-
-
             <div className="chat chat-start w-full">
   <div className="chat-image avatar">
     <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -29,11 +27,7 @@ const ContactDetailsInformation = () => {
   <div className="chat-footer text-black">
   {specificUserContactInfo.email}
   </div>
-</div>
-
-
-
-               
+</div> 
           </div>
      );
 };

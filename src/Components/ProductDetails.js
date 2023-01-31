@@ -72,12 +72,6 @@ const ProductDetails = () => {
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
-          src={note.image}
-          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
-        /></div>
-        <div className='rounded-xl border border-primary border-opacity-30 '>
-        <img
-          alt="Les Paul"
           src={note.image1}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
@@ -85,6 +79,12 @@ const ProductDetails = () => {
         <img
           alt="Les Paul"
           src={note.image2}
+          className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
+        /></div>
+        <div className='rounded-xl border border-primary border-opacity-30 '>
+        <img
+          alt="Les Paul"
+          src={note.image3}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
             </Carousel>

@@ -98,7 +98,7 @@ const SingleItemOrder = () => {
          
           <div className="avatar">
             <div className="w-12 ">
-              <img className=''  src={order.image} />
+              <img className=''  src={order.image1} />
             </div>
           </div>
         

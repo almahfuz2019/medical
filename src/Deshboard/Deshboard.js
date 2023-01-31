@@ -41,19 +41,19 @@ const Deshboard = () => {
 
     },[])
     useEffect(()=>{
-        fetch("http://localhost:5000/contactcount")
+        fetch("http://localhost:5000/userscontactinfocount")
         .then(res=>res.json())
         .then(data=>setContactcount(data))
 
     },[])
     useEffect(()=>{
-        fetch("http://localhost:5000/itemordercoutn")
+        fetch("http://localhost:5000/orderscount")
         .then(res=>res.json())
         .then(data=>setOrders(data))
 
     },[])
     useEffect(()=>{
-        fetch("http://localhost:5000/productCount")
+        fetch("http://localhost:5000/allproductscount")
         .then(res=>res.json())
         .then(data=>setProducts(data))
 

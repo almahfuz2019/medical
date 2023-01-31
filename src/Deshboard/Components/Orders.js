@@ -6,20 +6,19 @@ import Loading from '../../Components/Loading';
 import UseOrder from '../Hooks/UseOrder';
 import axios from 'axios';
 const Orders = () => {
-
-     const {handleOrderDelete}=UseOrder();
+   const {handleOrderDelete}=UseOrder();
   const[allOrders,setAllOrders]=useState([]);
   const[page,setPage]=useState(0);
 const[size,setSize]=useState(50);
   const[pageCount,setPageCount]=useState(0);
   const[orders,setOrders]=useState([]);
   const[orderLoading,setOrderLoading]=useState(true);
-  
-  let amount=0;
-  const loadOrders = async() => {
+  // get all orders with pagination 
+    const loadOrders = async() => {
     try{
+      // productsorders
       setOrderLoading(true)
-      const response=await axios.get(`http://localhost:5000/itemorder?page=${page}&size=${size}`)
+      const response=await axios.get(`http://localhost:5000/productsorders?page=${page}&size=${size}`)
       setPageCount(Math.ceil(response.data.count/size))
           setOrders(response.data.products)
           setAllOrders(response.data.allProducts)
@@ -31,11 +30,6 @@ const[size,setSize]=useState(50);
   useEffect(()=>{
     loadOrders()
   },[page,size])
-  for(let pro of allOrders){
-    if(pro.status==="Done"){
-      amount=amount+pro.TotalPrice;
-    }
-  }
   const searchProductsbyname = (e) => {
     const matched_products = allOrders.filter(pro => pro.email?.toLowerCase().includes(e.target.value.toLowerCase()))
     setOrders(matched_products)
@@ -73,7 +67,6 @@ const[size,setSize]=useState(50);
           <option selected value="20">20</option>
         </select>  
 </div>
-<h1>{amount}</h1>
 <div className='mx-auto text-center mb-5'>
 <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
 </div>
@@ -146,7 +139,7 @@ const[size,setSize]=useState(50);
         </select>  
 </div>
         </div>
-               </div>
+          </div>
      );
 };
 export default Orders;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Components/Loading';
-import UserRow from './UserRow';
+import UserRole from './UserRole';
 const Users = () => {
      const { isLoading, error, data:usersInfo,refetch } = useQuery( 'users', () =>
-     fetch('http://localhost:5000/user',{
+     fetch('http://localhost:5000/users',{
           method:"GET",
           headers:{
                authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -31,17 +31,15 @@ const Users = () => {
                 <th>Remove Admin/Worker</th>
               </tr>
             </thead>
-    
-         
             <tbody>
-             {usersInfo.map((user,index)=><UserRow
+             {usersInfo.map((user,index)=><UserRole
              key={user._id}
              refetch={refetch}
              user={user}
              index={index}
              >
 
-             </UserRow>)}
+             </UserRole>)}
             </tbody>
   
           </table>

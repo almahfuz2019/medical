@@ -3,35 +3,33 @@ import Loading from '../../Components/Loading';
 import UseProducts from '../Hooks/UseProducts';
 import { FaRegTrashAlt,FaRegEdit } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-const LoadProducts = () => {
+const AllProducts = () => {
      const {handleProductDelete}=UseProducts();
      const[page,setPage]=useState(0);
      const[size,setSize]=useState(50);
        const[pageCount,setPageCount]=useState(0);
        const[allProducts,setAllProducts]=useState([]);
        const[products,setProducts]=useState([]);
-       const[productLoading,setProductLoading]=useState(true);
+       const[productsLoading,setProductsLoading]=useState(true);
        const[searchText,setSearchText]=useState('');
-       
     const [productsCount,setProductsCount]=useState([]);
     useEffect(()=>{
-      fetch("http://localhost:5000/productCount")
+      fetch("http://localhost:5000/allproductscount")
       .then(res=>res.json())
       .then(data=>setProductsCount(data))
-
   },[])
+  //get allproducts 
        const fetchProducts = () => {
-         setProductLoading(true)
-         fetch(`http://localhost:5000/productss?page=${page}&size=${size}&search=${searchText}`)
+         setProductsLoading(true)
+         fetch(`http://localhost:5000/allproducts?page=${page}&size=${size}&search=${searchText}`)
          .then(res=>res.json())
          .then(data=>{
            setPageCount(Math.ceil(data.count/size))
            setProducts(data.products)
            setAllProducts(data.allProducts)
-           setProductLoading(false)
+           setProductsLoading(false)
          })
        }
-        
   useEffect(()=>{
     fetchProducts()
   },[page,size])
@@ -41,17 +39,17 @@ const LoadProducts = () => {
   const pageDecrease=()=>{
     setPage(page-1)
   }
+  // search products by name 
   const searchProductsbyname = (e) => {
     const matched_products = allProducts.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
   }
-     if(productLoading){
+     if(productsLoading){
           return <Loading/>
      }
      return (
           <div>
-            
      <div className="overflow-x-auto">
      <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-xl sm:text-3xl '>Total Products: {productsCount.count}</span></div>
      <div className="flex  space-x-1  my-4 sm:ml-5">
@@ -75,11 +73,11 @@ const LoadProducts = () => {
           <option  value="5">5</option>
           <option  value="10">10</option>
           <option value="15">15</option>
-          <option selected value="20">20</option>
+          <option  value="20">20</option>
+          <option selected value="50">50</option>
         </select>  
 </div>
 <div className='mx-auto text-center mb-5'>
-  
 <input type="text" placeholder="Search here by product name" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
 </div>
      <table className="table w-full">
@@ -93,7 +91,6 @@ const LoadProducts = () => {
            <th>Action</th>
          </tr>
        </thead>
-           
     {products.map((product,index)=>
        <tbody>
          <tr className='border bg-white'>
@@ -102,9 +99,9 @@ const LoadProducts = () => {
            <div className="avatar border border-primary rounded border-2">
               <div className="mask mask-squircle w-12 h-12 ">
                 {
-                product?.image?
-    <img  src={product?.image} alt="image"/>:
-    <img src="" className='bg-primary' alt=''/>
+                product?.image1?
+    <img  src={product?.image1} alt="product image"/>:
+    <img src="" className='bg-primary' alt='not found image'/>
                 }
               </div>
             </div>
@@ -117,7 +114,7 @@ const LoadProducts = () => {
            {product?.dateAndTime}
            </td>
            <td className='flex gap-3 text-2xl'>
-            <Link to={`/update/${product._id}`}>
+            <Link to={`/update-product/${product._id}`}>
             <FaRegEdit/>
             </Link>
             <Link onClick={()=>handleProductDelete(product._id)}>
@@ -129,7 +126,6 @@ const LoadProducts = () => {
      )}
      </table>
    </div>
-
         <div className="flex justify-center space-x-1 dark:text-gray-100 my-10">
         <button onClick={pageDecrease} title="previous" type="button" className="inline-flex items-center justify-center  w-6 h-6 sm:w-8 sm:h-8 py-0 border rounded-md shadow-md border-primary text-primary bg-white">
 		<svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
@@ -151,11 +147,11 @@ const LoadProducts = () => {
           <option  value="5">5</option>
           <option  value="10">10</option>
           <option value="15">15</option>
-          <option selected value="20">20</option>
-          <option value="30">30</option>
+          <option  value="20">20</option>
+          <option selected value="50">50</option>
         </select>  
 </div>
           </div>
      );
 };
-export default LoadProducts;
+export default AllProducts;

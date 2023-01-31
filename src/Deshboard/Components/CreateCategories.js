@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { toast } from 'react-toastify';
 import ManageCatagory from './ManageCatagory';
-const CreateCatagory = () => {
+const CreateCategories = () => {
      const handleCatagory=async(event)=>{
      event.preventDefault();
      const catagory=event.target.findClass.value;
@@ -39,4 +39,4 @@ const CreateCatagory = () => {
           </>
      );
 };
-export default CreateCatagory;
+export default CreateCategories;

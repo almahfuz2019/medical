@@ -1,88 +1,98 @@
 import React, { useEffect, useState } from 'react';
-import Loading from '../../Components/Loading';
-// import UseCatagory from '../Hooks/UseCatagory';
-import UseProducts from '../Hooks/UseProducts';
 const BasicInfo = () => {
   const [products,setProducts]=useState([])
   const [orders,setOrders]=useState([])
   const [watingOrders,setWatingOrders]=useState([])
   const [doneOrders,setDoneOrders]=useState([])
   const [shipmentOrders,setShipmentOrders]=useState([])
-  const [contactcount,setContactcount]=useState([])
-  const [allitemorders,setAllitemorders]=useState([])
+  const [contaCtcount,setContactCount]=useState([])
+  const [allOrdersitem,setAllOrdersitem]=useState([])
   const [ordersBydateandtime,setordersBydateandtime]=useState([])
   const time= new Date().toLocaleString();
+  // get all orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/allitemorders`)
+    fetch(`http://localhost:5000/allorders`)
     .then(res=>res.json())
-    .then(data=>setAllitemorders(data))
+    .then(data=>setAllOrdersitem(data))
   },[])
+ // get all "Done" status orders condition
   let DoneAmount=0;
-  for(let item of allitemorders){
+  for(let item of allOrdersitem){
     if(item.status==="Done"){
       DoneAmount=DoneAmount+item.TotalPrice;
     }
   }
+ // get all "Shipment" status orders condition
   let ShipmentAmount=0;
-  for(let item of allitemorders){
+  for(let item of allOrdersitem){
     if(item.status==="Shipment"){
       ShipmentAmount=ShipmentAmount+item.TotalPrice;
     }
   }
+ // get all "Cencel" status orders condition
   let CencelAmount=0;
-  for(let item of allitemorders){
+  for(let item of allOrdersitem){
     if(item.status==="Cencel"){
       CencelAmount=CencelAmount+item.TotalPrice;
     }
   }
+    // get all "Wating" status orders condition
   let WatingAmount=0;
-  for(let item of allitemorders){
+  for(let item of allOrdersitem){
     if(item.status==="Wating"){
       WatingAmount=WatingAmount+item.TotalPrice;
     }
   }
+    // get all Orders "search by dateandtime" orders 
   useEffect(()=>{
     fetch(`http://localhost:5000/productssearchbydateandtime?dateAndTime=${time}`)
     .then(res=>res.json())
     .then(data=>setordersBydateandtime(data))
 
 },[])
+  // get all "Shipment" status orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/productssearch?status=Shipment`)
+    fetch(`http://localhost:5000/orders?status=Shipment`)
     .then(res=>res.json())
     .then(data=>setShipmentOrders(data))
 
 },[])
+  // get all "Wating" status orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/productssearch?status=Wating`)
+    fetch(`http://localhost:5000/orders?status=Wating`)
     .then(res=>res.json())
     .then(data=>setWatingOrders(data))
 
 },[])
+  // get all "Done" status orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/productssearch?status=Done`)
+    fetch(`http://localhost:5000/orders?status=Done`)
     .then(res=>res.json())
     .then(data=>setDoneOrders(data))
 
 },[])
+  // get all "user contacts" count 
   useEffect(()=>{
-    fetch("http://localhost:5000/contactcount")
+    fetch("http://localhost:5000/userscontactinfocount")
     .then(res=>res.json())
-    .then(data=>setContactcount(data))
+    .then(data=>setContactCount(data))
 
 },[])
+  // get all "Orders" count 
   useEffect(()=>{
-    fetch("http://localhost:5000/itemordercoutn")
+    fetch("http://localhost:5000/orderscount")
     .then(res=>res.json())
     .then(data=>setOrders(data))
 
 },[])
+  // get all "Products" count allproductscount
   useEffect(()=>{
-    fetch("http://localhost:5000/productCount")
+    fetch("http://localhost:5000/allproductscount")
     .then(res=>res.json())
     .then(data=>setProducts(data))
 
 },[])
+  // Greetings for Boss
 let timeOfDay;
 const date = new Date();
 const hours = date.getHours();
@@ -178,7 +188,7 @@ if (hours < 12) {
                     Total Messages
                   </dt>
         
-                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{contactcount.count}</dd>
+                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{contaCtcount.count}</dd>
                 </div>
                 <div
                   className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"

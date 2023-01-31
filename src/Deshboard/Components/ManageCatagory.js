@@ -16,18 +16,18 @@ const ManageCatagory = () => {
               </tr>
             </thead>
                 
-         {catagorys.map((cata,index)=>
+         {catagorys.map((category,index)=>
             <tbody>
               <tr className='border rounded'>
                 <td>{index+1}</td>
                
-                <td  className='text-center'>{cata?.catagory}</td>
+                <td  className='text-center'>{category?.catagory}</td>
                 
                 <td className='flex gap-3 text-2xl justify-end'>
-                <Link to={`/updatecatagory/${cata._id}`}>
+                <Link to={`/updatecatagory/${category._id}`}>
             <FaRegEdit/>
             </Link>
-            <Link onClick={()=>handleCatagoryDelete(cata._id)}>
+            <Link onClick={()=>handleCatagoryDelete(category._id)}>
             <FaRegTrashAlt/>
             </Link>
                 </td>

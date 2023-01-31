@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillEye } from 'react-icons/ai';
-import { FaEdit } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import Loading from '../../../Components/Loading';
@@ -13,17 +12,11 @@ const UserSlefOrderInfo = () => {
        res.json()
  )
    ) 
-  //  const y=orders[0];
    if(productLoading){
      return <Loading/>
    }
      return (
           <div>
-            {/* {
-              y.map(x=>
-                <p>{x._id}</p>
-                )
-            } */}
           <div className="overflow-x-auto">
           <div className='text-center my-5'><span className='bg-primary rounded p-2 text-white font-bold text-3xl '>Total Products: {orders.length}</span></div>
           <table className="table w-full">
@@ -38,7 +31,6 @@ const UserSlefOrderInfo = () => {
                 <th>Action</th>
               </tr>
             </thead>
-                
          {orders.map((order,index)=>
             <tbody>
               <tr className='border bg-white'>
@@ -48,19 +40,14 @@ const UserSlefOrderInfo = () => {
                 {order.status==="Wating"?
                   <button className="btn loading ">Wating</button>
                   :order.status==="Cencel"?<button className="btn disabled">Cencel</button>:<button className="btn disabled">Confirm</button>}
-               
                 </td>
                 <td>TK ${order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}
                 </td>
-
                <td>
                     {order.dateAndTime}
                </td>
                 <td className='flex gap-3 text-2xl'>
-                 
-                
-                
                  <Link to={`/itemorder/${order._id}`} >
                  <AiFillEye/>
                  </Link>
@@ -70,6 +57,7 @@ const UserSlefOrderInfo = () => {
           )}
           </table>
         </div>
+        {/* pagination  */}
         <div className="flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4">
                      <div className="lg:w-3/5 w-full  flex items-center justify-between border-t border-gray-200">
                          <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">

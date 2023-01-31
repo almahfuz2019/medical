@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-const UserRow = ({user,refetch,index}) => {
+const UserRole = ({user,refetch,index}) => {
      const {email,role,wrole}=user;
      const makeAdmin=()=>{
           const proceed=window.confirm("Are you sure you want to make this user an admin?");
@@ -101,4 +101,4 @@ const UserRow = ({user,refetch,index}) => {
         </tr>
      );
 };
-export default UserRow;
+export default UserRole;

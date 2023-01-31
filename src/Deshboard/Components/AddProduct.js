@@ -4,36 +4,22 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from '../../Components/Loading';
-const AddDoctor = () => {
-    const [imageURL, setImageURL] = useState("");
-    const [imageURL1, setImageURL1] = useState("");
+const AddProduct = () => {
+    const [secondImageUrl, setsecondImageUrl] = useState("");
+    const [thirdImageUrl, setThirdImageUrl] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { data: catagorys, isLoading } = useQuery({
+    const { data: categories, isLoading } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
-          const res = await fetch('http://localhost:5000/catagorys');
+          const res = await fetch('http://localhost:5000/categories');
           const data = await res.json();
           return data;
       }
   })
+   // image host key (imgbb) 
     const imageHostKey ="24578957b7d8d88583ebff8098526d8c";
-    const handleUploadImage = (event) => {
-        const image1 = event.target.files[0];
-        const formData = new FormData();
-        formData.set("image", image1);
-        axios
-          .post(
-            `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
-            formData
-          )
-          .then((res) => {
-            setImageURL(res.data.data.display_url);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      };
-    const handleUploadImage1 = (event) => {
+    // second image 
+    const secondImageUpload = (event) => {
         const image2 = event.target.files[0];
         const formData = new FormData();
         formData.set("image", image2);
@@ -43,16 +29,34 @@ const AddDoctor = () => {
             formData
           )
           .then((res) => {
-            setImageURL1(res.data.data.display_url);
+            setsecondImageUrl(res.data.data.display_url);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+    //   third image 
+    const thirdImageUpload = (event) => {
+        const image3 = event.target.files[0];
+        const formData = new FormData();
+        formData.set("image", image3);
+        axios
+          .post(
+            `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
+            formData
+          )
+          .then((res) => {
+            setThirdImageUrl(res.data.data.display_url);
           })
           .catch((error) => {
             console.log(error);
           });
       };
     const handleAddProduct = data => {
-        const image = data.image[0];
+        // first image 
+        const image1 = data.image[0];
         const formData = new FormData();
-        formData.append('image', image);
+        formData.append('image', image1);
         const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
         fetch(url, {
             method: 'POST',
@@ -60,7 +64,6 @@ const AddDoctor = () => {
         })
         .then(res => res.json())
         .then(imgData => {
-            console.log(imgData);
             if(imgData.success){
                 const doctor = {
                     name: data.name, 
@@ -69,9 +72,9 @@ const AddDoctor = () => {
                     previcePrice: data.previcePrice,
                     catagory: data.catagory,
                     status:data.status,
-                    image: imgData.data.url,
-                    image1: imageURL,
-                    image2: imageURL1,
+                    image1: imgData.data.url,
+                    image2: secondImageUrl,
+                    image3: thirdImageUrl,
                 }
                 fetch('http://localhost:5000/product', {
                     method: 'POST',
@@ -84,7 +87,7 @@ const AddDoctor = () => {
                 .then(res => res.json())
                 .then(result =>{
                     console.log(result);
-                    toast.success('Update Successfully', {
+                    toast.success('Addedd Successfully', {
                             position: "top-right",
                             autoClose: 1000,
                             hideProgressBar: false,
@@ -120,21 +123,21 @@ const AddDoctor = () => {
                 <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> Product price</label>
                     <input type="text" {...register("price", {
-                        required: true
+                        required: "Price is Required"
                     })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                     {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
                 </div>
                 <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> Product previous price</label>
                     <input type="text" {...register("previcePrice", {
-                        required: true
+                       required: "Previous price is Required"
                     })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                     {errors.previcePrice && <p className='text-red-500'>{errors.previcePrice.message}</p>}
                 </div>
                 <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> Details</label>
                     <textarea type="text" {...register("details", {
-                        required: true
+                        required: "Details is Required"
                     })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" />
                     {errors.details && <p className='text-red-500'>{errors.details.message}</p>}
                 </div>
@@ -144,7 +147,7 @@ const AddDoctor = () => {
                     {...register('catagory')}
                     className="select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded">
                         {
-                            catagorys.map(specialty => <option
+                            categories.map(specialty => <option
                                 key={specialty._id}
                                 value={specialty.catagory}
                             >{specialty.catagory}</option>)
@@ -163,22 +166,23 @@ const AddDoctor = () => {
                 <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select product main Image</label>
                     <input type="file" {...register("image", {
-                        required: "Photo is Required"
-                    })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" multiple="multiple"/>
-                    {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
+                        required: "First Image is Required"
+                    })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                    {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                 </div>
                <div className="relative mb-4">
                <label className="leading-7 text-sm text-gray-600"> selectproduct second Image</label>
                <input className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 type='file'
-                onChange={handleUploadImage}
+                onChange={secondImageUpload} required
               />
+              
                </div>
                <div className="relative mb-4">
                <label className="leading-7 text-sm text-gray-600"> select product third Image</label>
-               <input className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+               <input required className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 type='file'
-                onChange={handleUploadImage1}
+                onChange={thirdImageUpload}
               />
                </div>
                 <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Submit" type="submit"/>
@@ -189,13 +193,4 @@ const AddDoctor = () => {
         </div>
     );
 };
-
-
-/**
- * Three places to store images
- * 1. Third party image hosting server 
- * 2. File system of your server
- * 3. mongodb (database)
-*/
-
-export default AddDoctor;
+export default AddProduct;

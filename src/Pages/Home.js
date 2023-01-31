@@ -17,8 +17,8 @@ const[size,setSize]=useState(30);
   const fetchProducts = async() => {
     try{
       setProductLoading(true)
-      const response=await axios.get(`http://localhost:5000/productss?page=${page}&size=${size}`)
-      // setPageCount(Math.ceil(response.data.count/size))
+      const response=await axios.get(`http://localhost:5000/allproducts?page=${page}&size=${size}`)
+      setPageCount(Math.ceil(response.data.count/size))
           setProducts(response.data.products)
           setAllProducts(response.data.allProducts)
           setProductLoading(false)
@@ -338,7 +338,7 @@ const handleChangeuUnlimited=(e)=> {
 <Link to={`/single/${product._id}`}>
 
         <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
-       <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image})`}}>
+       <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image1})`}}>
          <div className="flex justify-between">
           </div>
        <div className='flex'>

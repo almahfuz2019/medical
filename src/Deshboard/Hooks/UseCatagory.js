@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
  const UseCatagory = () => {
      const [catagorys,setCatagorys]=useState([]);
      useEffect(()=>{
-          fetch("http://localhost:5000/catagorys")
+          fetch("http://localhost:5000/categories")
           .then(res=>res.json())
           .then(data=>setCatagorys(data))
      },[])

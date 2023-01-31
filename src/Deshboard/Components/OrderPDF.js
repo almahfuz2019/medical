@@ -3,11 +3,10 @@ import { FaFileDownload } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 import logo from "../../Images/logo.png"
-const SingleItemorder = () => {
+const OrderPDF = () => {
      const ref=useRef()
      const [singleUserOrder, setSingleUserOrder] = useState({});
      const { id } = useParams();
-    //  (singleUserOrder.userData);
      useEffect(() => {
           const url = `http://localhost:5000/itemorder/${id}`;
           fetch(url)
@@ -17,8 +16,6 @@ const SingleItemorder = () => {
      const time= new Date().toLocaleString();
      let subTtotal=0;
      let total=singleUserOrder.TotalPrice;
-    //  const productQuentity=singleUserOrder.productQuentity;
-    //  const productTotalPrice=singleUserOrder.TotalPrice;
      for(const userD of singleUserOrder.userData||[]){ 
       subTtotal += parseInt(userD.productQuentity) * parseInt(userD.product.price) 
     }
@@ -30,8 +27,6 @@ const SingleItemorder = () => {
               </div>
                <div ref={ref}>
                <img className='h-12 w-28 text-center mx-auto my-4' src={logo} alt="" />
-               
-            
                <div class="grid grid-cols-2 gap-4 px-10  border-t border-black mb-10">
   <div>
     <h1 className='text-2xl font-bold'>Invoice</h1>
@@ -44,7 +39,6 @@ const SingleItemorder = () => {
      </h1>
      </div>
   <div className=' text-end  mt-auto'>
- 
    <h1 className=''>
      <span className='font-bold text-2xl'>Issued To:</span><br />
      <span>{singleUserOrder.name}</span><br />
@@ -54,8 +48,6 @@ const SingleItemorder = () => {
      <span>Order Date: {singleUserOrder.dateAndTime}</span>
    </h1>
   </div>
-
-
 </div>
 <table class="table-fixed  w-full text-center px-10">
   <thead className=' text-black fotn-semibold border-b  border-black '>
@@ -125,10 +117,7 @@ const SingleItemorder = () => {
   </div>
 </footer> */}
                </div>
-               
-
-
           </div>
      );
 };
-export default SingleItemorder;
+export default OrderPDF;
