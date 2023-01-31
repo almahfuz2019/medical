@@ -20,17 +20,17 @@ const UpdateProduct = () => {
 },[])
     const nameChange = e => {
         const getName = e.target.value;
-        const updateNewName = { name: getName,  price:productInfo.price,previcePrice:productInfo.previcePrice ,image2: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status};
+        const updateNewName = { name: getName,  price:productInfo.price,previcePrice:productInfo.previcePrice ,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory};
         setProductInfo(updateNewName);     
     }
     const priceChange = e => {
         const getPrice = e.target.value;
-        const updateNewPrice = { name: productInfo.name,previcePrice:productInfo.previcePrice, price: getPrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status}
+        const updateNewPrice = { name: productInfo.name,previcePrice:productInfo.previcePrice, price: getPrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory}
         setProductInfo(updateNewPrice);
     }
     const previcePriceChange = e => {
         const getPrevicePrice = e.target.value;
-        const updateNewPrevicePrcie = { name: productInfo.name, price:productInfo.price,previcePrice:getPrevicePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status }
+        const updateNewPrevicePrcie = { name: productInfo.name, price:productInfo.price,previcePrice:getPrevicePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory }
         setProductInfo(updateNewPrevicePrcie);
     }
     const categoryChange = e => {
@@ -40,12 +40,12 @@ const UpdateProduct = () => {
     }
     const statusChange = e => {
         const getStatus = e.target.value;
-        const updateNewStatus = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:getStatus,details:productInfo.details,status:getStatus}
+        const updateNewStatus = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory,details:productInfo.details,status:getStatus}
         setProductInfo(updateNewStatus);
     }
     const detailsChange = e => {
         const getDetails = e.target.value;
-        const updateNewDetails = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagorys:productInfo.catagorys ,details:getDetails,status:productInfo.status}
+        const updateNewDetails = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory ,details:getDetails,status:productInfo.status}
         setProductInfo(updateNewDetails);
     }
     const handleUpdateProduct = async(event) => {
@@ -65,7 +65,7 @@ const UpdateProduct = () => {
           event.target.reset();
     }   
     // image host key (imgbb) 
-    const imageHostKey ="24578957b7d8d88583ebff8098526d8c";
+    const imageHostKey ="beaf06de8045a9c2bdfcf2b3378e418e";
   //  first Image 
     const uploadFirstImage=(e)=>{
       const image = e.target.files[0];
@@ -79,8 +79,8 @@ const UpdateProduct = () => {
       .then(res => res.json())
       .then(imgData => {
         setFirstImageUrl(imgData.data.url)
-          if(imgData.success){
-            const updateImage = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: firstImageUrl,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details }
+        if(imgData.success){
+            const updateImage = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: imgData.data.url,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details }
             setProductInfo(updateImage);
           }
         })}
@@ -98,7 +98,7 @@ const UpdateProduct = () => {
       .then(imgData => {
         setsecondImageUrl(imgData.data.url)
           if(imgData.success){
-            const updateImage1 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2: secondImageUrl,image3:productInfo.image3,details:productInfo.details }
+            const updateImage1 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2: imgData.data.url,image3:productInfo.image3,details:productInfo.details }
             setProductInfo(updateImage1);
           }
         })}
@@ -116,7 +116,7 @@ const UpdateProduct = () => {
       .then(imgData => {
         setThirdImageUrl(imgData.data.url)
           if(imgData.success){
-            const updateImage3 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2:  productInfo.image2,image3: thirdImageUrl,details:productInfo.details }
+            const updateImage3 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2:  productInfo.image2,image3: imgData.data.url,details:productInfo.details }
             setProductInfo(updateImage3);
           }
         })}
@@ -129,19 +129,19 @@ const UpdateProduct = () => {
       <h2 className="text-gray-900 text-lg mb-1 
      title-font font-semibold">Update this product</h2>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Product name</label>
+        <label  className="leading-7 text-sm text-gray-600">Product name</label>
         <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo.name} onChange={nameChange}/>
       </div>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Product price</label>
+        <label  className="leading-7 text-sm text-gray-600">Product price</label>
         <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo.price} onChange={priceChange}/>
       </div>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Product previous price</label>
+        <label  className="leading-7 text-sm text-gray-600">Product previous price</label>
         <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo.previcePrice} onChange={previcePriceChange}/>
       </div>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Change status</label>
+        <label  className="leading-7 text-sm text-gray-600">Change status</label>
         <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded' value={productInfo.status} onChange={statusChange}>
         <option value="Available">Available</option>
           <option value="Unavailable">Unavailable</option>
@@ -149,7 +149,7 @@ const UpdateProduct = () => {
         </select>
       </div>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Select a Category</label>
+        <label  className="leading-7 text-sm text-gray-600">Select a Category</label>
         <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={categoryChange}>
           {
                catagorys.map(p=>
@@ -161,15 +161,15 @@ const UpdateProduct = () => {
         </select>
       </div>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
+        <label  className="leading-7 text-sm text-gray-600">Image Link</label>
         <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
                     <input onChange={uploadFirstImage} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                 </div>
       </div>
-        <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={productInfo.image1} alt="" />
+        <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={productInfo.image1} alt=""/>
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
+        <label  className="leading-7 text-sm text-gray-600">Image Link</label>
         <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
                     <input onChange={uploadSecondImage} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
@@ -177,7 +177,7 @@ const UpdateProduct = () => {
       </div>
         <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={productInfo.image2} alt="" />
       <div className="relative mb-4">
-        <label for="name" className="leading-7 text-sm text-gray-600">Image Link</label>
+        <label  className="leading-7 text-sm text-gray-600">Image Link</label>
         <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
                     <input onChange={uploadThirdImage} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>

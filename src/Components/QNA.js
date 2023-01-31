@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-const Faq = () => {
+import { Link } from 'react-router-dom';
+const QNA = () => {
      return (
           <div className='bg-white p-2 sm:p-5 pb-5'>
                 <nav aria-label="Breadcrumb" className="flex justify-center mt-5 mb-3">
@@ -121,4 +121,4 @@ const Faq = () => {
           </div>
      );
 };
-export default Faq;
+export default QNA;

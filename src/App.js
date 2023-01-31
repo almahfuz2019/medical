@@ -5,7 +5,7 @@ import Registration from './Authentication/Registration';
 import AboutUs from './Components/AboutUs';
 import ContactUs from './Components/ContactUs';
 import 'react-toastify/dist/ReactToastify.css';
-import Faq from './Components/Faq';
+import QNA from './Components/QNA';
 import MainPage from './Components/MainPage';
 import ProductDetails from './Components/ProductDetails';
 import TramsAndCondition from './Components/TramsAndCondition';
@@ -104,7 +104,7 @@ function App() {
   <Route path='/' element={<Home/>}/>
   <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='/home/about' element={<AboutUs/>}/>
-          <Route path='/home/faq' element={<Faq/>}/>
+          <Route path='/home/faq' element={<QNA/>}/>
           <Route path='/home/contact' element={<ContactUs/>}/>
           
   <Route path='/single/:id' element={<ProductDetails/>}/>
@@ -112,7 +112,7 @@ function App() {
   <Route path='/' element={<Home/>}>
           <Route index  element={<MainPage/>}/>
           <Route path='trams-and-condition' element={<TramsAndCondition/>}/>
-          <Route path='faq' element={<Faq/>}/>
+          <Route path='faq' element={<QNA/>}/>
           <Route path='about' element={<AboutUs/>}/>
           <Route path='contact' element={<ContactUs/>}/>
         </Route>

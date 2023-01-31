@@ -8,12 +8,19 @@ import TrustedCompanys from '../Components/TrustedCompanys';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   const {catagorys}=UseCatagory();
+  const [productCount,setProductCount]=useState(0)
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
 const[size,setSize]=useState(30);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
+  useEffect(()=>{
+    fetch("http://localhost:5000/allproductscount")
+    .then(res=>res.json())
+    .then(data=>setProductCount(data))
+
+},[])
   const fetchProducts = async() => {
     try{
       setProductLoading(true)
@@ -69,13 +76,11 @@ const handleChangeuUnlimited=(e)=> {
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
-// if (productLoading){
-//    return <Loading/>};
      return (
           <div className='mx-1 '>
                  <Discount/>
-            <div class="hidden sm:block">
-  <div class="grid  grid-cols-3 px-2 sm:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
+            <div class="lg:block hidden overflow-y-auto whitespace-nowrap scroll-hidden">
+  <div class=" grid  grid-cols-10 px-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
   <button value="Health Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
         <div className="avatar"  value="Health Care" onClick={searchByCatagory}>
           <button className="w-full rounded"  value="Health Care" onClick={searchByCatagory}>
@@ -366,7 +371,7 @@ const handleChangeuUnlimited=(e)=> {
  }
 </div>
 {
-  allProducts.length===products.length|| products.length<30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
+  productCount.count===products.length|| products.length<30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
   <button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
   </div>
 }

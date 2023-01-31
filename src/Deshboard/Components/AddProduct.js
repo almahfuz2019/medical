@@ -5,9 +5,10 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from '../../Components/Loading';
 const AddProduct = () => {
+    const [firstImageUrl, setFirstImageUrl] = useState("");
     const [secondImageUrl, setsecondImageUrl] = useState("");
     const [thirdImageUrl, setThirdImageUrl] = useState("");
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: { errors }} = useForm();
     const { data: categories, isLoading } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
@@ -17,7 +18,24 @@ const AddProduct = () => {
       }
   })
    // image host key (imgbb) 
-    const imageHostKey ="24578957b7d8d88583ebff8098526d8c";
+    const imageHostKey ="beaf06de8045a9c2bdfcf2b3378e418e";
+    // second image 
+    const firstImageUpload = (event) => {
+        const image2 = event.target.files[0];
+        const formData = new FormData();
+        formData.set("image", image2);
+        axios
+          .post(
+            `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
+            formData
+          )
+          .then((res) => {
+            setFirstImageUrl(res.data.data.display_url);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
     // second image 
     const secondImageUpload = (event) => {
         const image2 = event.target.files[0];
@@ -53,18 +71,6 @@ const AddProduct = () => {
           });
       };
     const handleAddProduct = data => {
-        // first image 
-        const image1 = data.image[0];
-        const formData = new FormData();
-        formData.append('image', image1);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.json())
-        .then(imgData => {
-            if(imgData.success){
                 const doctor = {
                     name: data.name, 
                     price: data.price,
@@ -72,7 +78,7 @@ const AddProduct = () => {
                     previcePrice: data.previcePrice,
                     catagory: data.catagory,
                     status:data.status,
-                    image1: imgData.data.url,
+                    image1: firstImageUrl,
                     image2: secondImageUrl,
                     image3: thirdImageUrl,
                 }
@@ -99,8 +105,8 @@ const AddProduct = () => {
                             });
                 })
             }
-        })
-    }
+        
+    
    
     if(isLoading){
       return <Loading/>
@@ -167,7 +173,7 @@ const AddProduct = () => {
                     <label className="leading-7 text-sm text-gray-600"> select product main Image</label>
                     <input type="file" {...register("image", {
                         required: "First Image is Required"
-                    })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                    })} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"  onChange={firstImageUpload} required />
                     {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                 </div>
                <div className="relative mb-4">

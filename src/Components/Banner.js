@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Banner = () => {
      return (
           <>
@@ -22,12 +21,10 @@ const Banner = () => {
           Forever Home.
         </strong>
       </h1>
-
       <p className="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
         tenetur fuga ducimus numquam ea!
       </p>
-
       <div className="mt-8 flex flex-wrap gap-4 text-center">
         <Link 
           to="/all-Products"
@@ -35,7 +32,6 @@ const Banner = () => {
         >
           Get Started
         </Link>
-
         <a
           href="#"
           className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-primary shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto border border-2 border-primary"

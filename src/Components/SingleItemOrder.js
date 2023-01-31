@@ -42,9 +42,7 @@ const SingleItemOrder = () => {
           const thana=event.target.thana.value;
           const district=event.target.district.value;
           const bkishID=event.target.bkishID.value;
-        
           const bkishNumber=event.target.bkishNumber.value;
-          
           const userData=zc;
           const TotalPrice=(order.price*cartParsedValue)+100;
           const dateAndTime=time;
@@ -101,9 +99,6 @@ const SingleItemOrder = () => {
               <img className=''  src={order.image1} />
             </div>
           </div>
-        
-     
-
           <div className="avatar placeholder">
             <div className="w-12 bg-neutral-focus text-neutral-content">
               <span className='text-4xl mb-2 font-bold'>+</span>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const TramsAndCondition = () => {
      return (
           <div className='bg-white p-2 sm:p-5 pb-5'>
@@ -47,11 +46,9 @@ const TramsAndCondition = () => {
     </li>
   </ol>
 </nav>
-
                <div>
                <h1 className='sm:text-4xl md:text-5xl text-2xl mb-5 font-bold text-center'>Terms and Condition</h1>
                <p className='mx-4 md:mx-0 text-justify'>
-
 Dear honorable customer, Welcome to Naba Tech Shop. Here are the terms and conditions for shopping in Naba Tech Shop. Please read these terms and conditions carefully before purchasing product from Naba Tech Shop.
 Product Order:
 To purchase product from Naba Tech Shop, customer must order through website. No order will be taken on phone or Email. If customer faces any problem to order via website, Please contact our helpline. In that case, we will support customers to order product from website.

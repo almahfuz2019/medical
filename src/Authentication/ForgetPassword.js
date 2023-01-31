@@ -2,6 +2,7 @@ import { getAuth } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import {NavLink } from 'react-router-dom';
+import logo from '../Images/logo.png'
 import { toast } from 'react-toastify';
 import Loading from '../Components/Loading';
 const ForgetPassword = () => {
@@ -20,11 +21,11 @@ const ForgetPassword = () => {
    <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl border-primary border border-opacity-30">
            <div className="hidden lg:block lg:w-1/2 bg-cover" style={{backgroundImage:"url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')"}}></div>
            <div className="w-full p-8 lg:w-1/2">
-           <h2 className="text-2xl font-semibold text-gray-700 text-center">Medical</h2>
-            <p className="text-xl text-gray-600 text-center">Welcome back!</p>
+           <h2 className="text-2xl font-semibold text-gray-700 text-center mx-auto">
+            <img className='h-12 w-28 text-center mx-auto' src={logo} alt="logo" /></h2>
             <div className="mt-4 flex items-center justify-between">
              <span className="border-b w-1/5 lg:w-1/4"></span>
-             <a href="#" className="text-xs text-center text-gray-500 uppercase">or login with email</a>
+             <a href="#" className="text-xs text-center text-gray-500 uppercase">Forgot password</a>
               <span className="border-b w-1/5 lg:w-1/4"></span>
               </div>
               <div className="mt-4">

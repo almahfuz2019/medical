@@ -6,15 +6,13 @@ import logo from "../Images/logo.png"
 import auth from '../firebase.init';
 import Loading from './Loading';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import { useState } from 'react';
 const Checkout = () => {
   const navigate=useNavigate();
-  let location = useLocation();
   const [agree,setAgree]=useState(false);
   const [agreeWithCashOnDelevery,setAgreeWithCashOnDelevery]=useState(false);
-  // const [agreeWithBkish,setAgreeWithBkish]=useState(false);
   const [user, loading, error] = useAuthState(auth);
   if(loading){
     return <Loading/>
@@ -23,7 +21,7 @@ const Checkout = () => {
     return <p>{error}</p>
   }
   const time= new Date().toLocaleString();
-  const {usdata,total,subTotal}=UseUserSpacifiqData();
+  const {usdata,total}=UseUserSpacifiqData();
   
   const checkOut=async(event)=>{
     event.preventDefault();
@@ -90,7 +88,7 @@ navigate("/deshboard")
           {usdata?.map(data=>
           <div className="avatar">
             <div className="w-12 ">
-              <img className=''  src={data?.product?.image} />
+              <img className=''  src={data?.product?.image1} />
             </div>
           </div>
         

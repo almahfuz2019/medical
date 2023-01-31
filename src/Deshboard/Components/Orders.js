@@ -87,11 +87,11 @@ const[size,setSize]=useState(50);
                 <th>{order.dateAndTime}</th>
                 <td>
                   {order.status==="Wating"?
-                  <button className="btn sm:btn-md btn-sm loading">Wating</button>:
-                  order.status==="Shipment"?<button className="btn sm:btn-md btn-sm disabled">Shipment</button>:
-                  order.status==="Done"?<button className="btn sm:btn-md btn-sm disabled">Done</button>:
-                  order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled">Cencel</button>:
-                  <button className="btn sm:btn-md btn-sm disabled">Confirm</button>}
+                  <button className="btn sm:btn-md bg-amber-300 btn-sm loading ">Wating</button>:
+                  order.status==="Shipment"?<button className="btn sm:btn-md btn-sm disabled bg-indigo-400">Shipment</button>:
+                  order.status==="Done"?<button className="btn sm:btn-md btn-sm disabled bg-green-400 ">Done</button>:
+                  order.status==="Cencel"?<button className="btn sm:btn-md btn-sm disabled bg-red-400">Cencel</button>:
+                  <button className="btn sm:btn-md btn-sm disabled bg-cyan-300">Confirm</button>}
                 </td>
                 <td>TK <span className='text-xl'>৳</span> {order?.TotalPrice} <br />
                 Total Item: {order?.userData?.length}

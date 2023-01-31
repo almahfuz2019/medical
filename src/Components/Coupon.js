@@ -2,11 +2,11 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import ManageCopen from './ManageCopen';
 const Copen = () => {
-     const handleCatagory=(event)=>{
+     const handleCoupon=(event)=>{
      event.preventDefault();
-     const catagory=event.target.findClass.value;
-     const catagoryData={catagory};
-     fetch('http://localhost:5000/copone', {
+     const category=event.target.findClass.value;
+     const catagoryData={catagory: category};
+     fetch('http://localhost:5000/coupon', {
   method: 'POST', // or 'PUT'
   headers: {
     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Copen = () => {
      <div className='sm:mx-10 mx-2 mt-10'>
     <div className='border p-2 border-primary border-2 rounded-lg'>
     <h2 className='font-bold text-xl sm:text-3xl'>Create a Coupon</h2>
-     <form  onSubmit={handleCatagory} >
+     <form  onSubmit={handleCoupon} >
      <div className="relative mb-4">
         <label for="name" className="leading-7 text-sm text-gray-600">Coupon Name</label>
         <input placeholder='Create a coupon' type="text"  name="findClass" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
