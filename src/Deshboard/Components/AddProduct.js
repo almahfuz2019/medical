@@ -19,7 +19,7 @@ const AddProduct = () => {
   })
    // image host key (imgbb) 
     const imageHostKey ="beaf06de8045a9c2bdfcf2b3378e418e";
-    // second image 
+    // first image 
     const firstImageUpload = (event) => {
         const image2 = event.target.files[0];
         const formData = new FormData();

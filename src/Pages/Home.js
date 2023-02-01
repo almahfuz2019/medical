@@ -8,6 +8,7 @@ import TrustedCompanys from '../Components/TrustedCompanys';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   const {catagorys}=UseCatagory();
+  const [search,setSearch]=useState("")
   const [productCount,setProductCount]=useState(0)
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
@@ -21,13 +22,15 @@ const[size,setSize]=useState(30);
     .then(data=>setProductCount(data))
 
 },[])
+const handleSearch = (e) => {
+  setSearch(e.target.value);
+};
   const fetchProducts = async() => {
     try{
       setProductLoading(true)
       const response=await axios.get(`http://localhost:5000/allproducts?page=${page}&size=${size}`)
       setPageCount(Math.ceil(response.data.count/size))
           setProducts(response.data.products)
-          setAllProducts(response.data.allProducts)
           setProductLoading(false)
     }
     catch(error){
@@ -36,15 +39,24 @@ const[size,setSize]=useState(30);
   useEffect(()=>{
     fetchProducts()
   },[page,size])
+ 
   const loadMore=()=>{
     setSize(size+30)
   }
-    // const xyz = products.filter(pro => pro.catagory==="Mobility")
-  const searchProductsbyname = (e) => {
-    const matched_products = allProducts.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
-    setProducts(matched_products)
-    setPageCount(Math.ceil(matched_products.length/size))
-  }
+  useEffect(()=>{
+    const url=`http://localhost:5000/productsearch?name=${search}`;
+    console.log(url);
+    if(search!==""){
+      fetch(url)
+      .then(res=>res.json())
+      .then(data=>{
+        setProducts(data)
+        setPageCount(Math.ceil(data.length/size))
+      })
+    }else if(search===""){
+      fetchProducts()
+    }
+  },[search])
   const searchProductsbyCatagory = (e) => {
     const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
     setProducts(matched_products)
@@ -76,8 +88,10 @@ const handleChangeuUnlimited=(e)=> {
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
+
      return (
           <div className='mx-1 '>
+
                  <Discount/>
             <div class="lg:block hidden overflow-y-auto whitespace-nowrap scroll-hidden">
   <div class=" grid  grid-cols-10 px-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
@@ -165,9 +179,12 @@ const handleChangeuUnlimited=(e)=> {
   </div>
 </div>
             <div className="divider  divide-current mt-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
+            products={products.length},allProducts={allProducts.length}
             <div className="text-center  mt-5 sm:mt-7   ">
               <div className="flex justify-center mx-2 ">
-              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here by product name" onChange={searchProductsbyname}/>
+              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here by product name"
+      // value={search}
+           onChange={handleSearch}/>
               
                <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto ">
     <label for="SortBy " className="sr-only bg-white">Catagory</label>
