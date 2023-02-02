@@ -171,17 +171,6 @@ if (hours < 12) {
                   
                 </div>
                 <div
-                  className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center "
-                >
-               
-                  <dt className="order-last text-lg font-medium text-gray-500">
-                    Today's Orders
-                  </dt>
-        
-                  <dd className="text-4xl font-extrabold text-primary md:text-5xl">{ordersBydateandtime.length}</dd>
-                  
-                </div>
-                <div
                   className="flex flex-col rounded-lg border border-primary px-4 py-8 text-center"
                 >
                   <dt className="order-last text-lg font-medium text-gray-500">

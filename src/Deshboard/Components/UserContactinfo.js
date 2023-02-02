@@ -5,22 +5,19 @@ import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Loading from '../../Components/Loading';
 const UserContactinfo = () => {  
-     const [copone,setCopone]=useState([]);
+  const [search,setSearch]=useState("")
      const[page,setPage]=useState(0);
      const[size,setSize]=useState(30);
        const[pageCount,setPageCount]=useState(0);
-       const[allProducts,setAllProducts]=useState([]);
        const[products,setProducts]=useState([]);
        const[productLoading,setProductLoading]=useState(true);
-       const[searchText,setSearchText]=useState('');
        const fetchProducts = () => {
          setProductLoading(true)
-         fetch(`http://localhost:5000/contact?page=${page}&size=${size}&search=${searchText}`)
+         fetch(`http://localhost:5000/contact?page=${page}&size=${size}`)
          .then(res=>res.json())
          .then(data=>{
            setPageCount(Math.ceil(data.count/size))
            setProducts(data.products)
-           setAllProducts(data.allProducts)
            setProductLoading(false)
         
          })
@@ -29,13 +26,25 @@ const UserContactinfo = () => {
   useEffect(()=>{
     fetchProducts()
   },[page,size])
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  useEffect(()=>{
+    const url=`http://localhost:5000/contactinfosearch?email=${search}`;
+    console.log(url);
+    if(search!==""){
+      fetch(url)
+      .then(res=>res.json())
+      .then(data=>{
+        setProducts(data)
+        setPageCount(Math.ceil(data.length/size))
+      })
+    }else if(search===""){
+      fetchProducts()
+    }
+  },[search])
   const ab=()=>{
     setPage(page+1)
-  }
-  const searchProductsbyname = (e) => {
-    const matched_products = allProducts.filter(pro => pro.email.toLowerCase().includes(e.target.value.toLowerCase()))
-    setProducts(matched_products)
-    setPageCount(Math.ceil(matched_products.length/size))
   }
      if(productLoading){
           return <Loading/>
@@ -85,7 +94,7 @@ const UserContactinfo = () => {
 </div>
 <div className='mx-auto text-center mb-5'>
   
-<input type="text" placeholder="Search here" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
+<input type="text" placeholder="Search here by e-mail" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={handleSearch}/>
 </div>
        <table className="table w-full">
        <thead>

@@ -1,24 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useQuery } from 'react-query';
-import Loading from '../../Components/Loading';
+import UseCatagory from '../Hooks/UseCatagory';
 const UpdateProduct = () => {
-    const [firstImageUrl, setFirstImageUrl] = useState("");
-    const [secondImageUrl, setsecondImageUrl] = useState("");
-    const [thirdImageUrl, setThirdImageUrl] = useState("");
-    const {register, handleSubmit, formState: { errors }} = useForm();
-    const { data: categories, isLoading } = useQuery({
-      queryKey: ['category'],
-      queryFn: async () => {
-          const res = await fetch('http://localhost:5000/categories');
-          const data = await res.json();
-          return data;
-      }
-  })
-
+    const {catagorys}=UseCatagory();
+    const [firstImageUrl,setFirstImageUrl]=useState("")
+    const [secondImageUrl,setsecondImageUrl]=useState("")
+    const [thirdImageUrl,setThirdImageUrl]=useState("")
+    console.log(firstImageUrl,secondImageUrl,thirdImageUrl);
     const[productInfo,setProductInfo]=useState([]);
     // get single product by useParams
     const {id} = useParams();
@@ -28,170 +18,182 @@ const UpdateProduct = () => {
      .then(res=>res.json())
      .then(data=>setProductInfo(data))
 },[])
-if(isLoading){
-  return <Loading/>
-}
-    const handleAddProduct = async(data) => {
-      const doctor = {
-          name: data.name, 
-          price: data.price,
-          details: data.details,
-          previcePrice: data.previcePrice,
-          catagory: data.catagory,
-          status:data.status,
-          image1: firstImageUrl,
-          image2: secondImageUrl,
-          image3: thirdImageUrl,
-      }
-      fetch(`http://localhost:5000/product/${id}`, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json', 
-            authorization: `bearer ${localStorage.getItem('accessToken')}`
-        },
-        body: JSON.stringify(doctor)
-    })
-      .then(res => res.json())
-      .then(result =>{
-          console.log(result);
-          toast.success('Addedd Successfully', {
-                  position: "top-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: false,
-                  progress: undefined,
-                  theme: "colored",
-                  });
-      })
-  }
+    const nameChange = e => {
+        const getName = e.target.value;
+        const updateNewName = { name: getName,  price:productInfo.price,previcePrice:productInfo.previcePrice ,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory};
+        setProductInfo(updateNewName);     
+    }
+    const priceChange = e => {
+        const getPrice = e.target.value;
+        const updateNewPrice = { name: productInfo.name,previcePrice:productInfo.previcePrice, price: getPrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory}
+        setProductInfo(updateNewPrice);
+    }
+    const previcePriceChange = e => {
+        const getPrevicePrice = e.target.value;
+        const updateNewPrevicePrcie = { name: productInfo.name, price:productInfo.price,previcePrice:getPrevicePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory }
+        setProductInfo(updateNewPrevicePrcie);
+    }
+    const categoryChange = e => {
+        const getCategory = e.target.value;
+        const updateNewCategory = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:getCategory,details:productInfo.details,status:productInfo.status}
+        setProductInfo(updateNewCategory);
+    }
+    const statusChange = e => {
+        const getStatus = e.target.value;
+        const updateNewStatus = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory,details:productInfo.details,status:getStatus}
+        setProductInfo(updateNewStatus);
+    }
+    const detailsChange = e => {
+        const getDetails = e.target.value;
+        const updateNewDetails = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory ,details:getDetails,status:productInfo.status}
+        setProductInfo(updateNewDetails);
+    }
+    const handleUpdateProduct = async(event) => {
+      event.preventDefault();
+     const url = `http://localhost:5000/product/${id}`;
+     await axios.put(url,productInfo)
+          toast.success('Update Successfully', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+            });
+          event.target.reset();
+    }   
     // image host key (imgbb) 
     const imageHostKey ="beaf06de8045a9c2bdfcf2b3378e418e";
- // first image 
- const firstImageUpload = (event) => {
-  const image1 = event.target.files[0];
-  const formData = new FormData();
-  formData.set("image", image1);
-  axios
-    .post(
-      `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
-      formData
-    )
-    .then((res) => {
-      setFirstImageUrl(res.data.data.display_url);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-// second image 
-const secondImageUpload = (event) => {
-  const image2 = event.target.files[0];
-  const formData = new FormData();
-  formData.set("image", image2);
-  axios
-    .post(
-      `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
-      formData
-    )
-    .then((res) => {
-      setsecondImageUrl(res.data.data.display_url);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-//   third image 
-const thirdImageUpload = (event) => {
-  const image3 = event.target.files[0];
-  const formData = new FormData();
-  formData.set("image", image3);
-  axios
-    .post(
-      `https://api.imgbb.com/1/upload?key=${imageHostKey}`,
-      formData
-    )
-    .then((res) => {
-      setThirdImageUrl(res.data.data.display_url);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+  //  first Image 
+    const uploadFirstImage=(e)=>{
+      const image = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', image);
+      const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+      fetch(url, {
+          method: 'POST',
+          body: formData
+      })
+      .then(res => res.json())
+      .then(imgData => {
+        setFirstImageUrl(imgData.data.url)
+        if(imgData.success){
+            const updateImage = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: imgData.data.url,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details }
+            setProductInfo(updateImage);
+          }
+        })}
+    // second Image 
+    const uploadSecondImage=(e)=>{
+      const image = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', image);
+      const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+      fetch(url, {
+          method: 'POST',
+          body: formData
+      })
+      .then(res => res.json())
+      .then(imgData => {
+        setsecondImageUrl(imgData.data.url)
+          if(imgData.success){
+            const updateImage1 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2: imgData.data.url,image3:productInfo.image3,details:productInfo.details }
+            setProductInfo(updateImage1);
+          }
+        })}
+     // third Image 
+    const uploadThirdImage=(e)=>{
+      const image = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', image);
+      const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+      fetch(url, {
+          method: 'POST',
+          body: formData
+      })
+      .then(res => res.json())
+      .then(imgData => {
+        setThirdImageUrl(imgData.data.url)
+          if(imgData.success){
+            const updateImage3 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2:  productInfo.image2,image3: imgData.data.url,details:productInfo.details }
+            setProductInfo(updateImage3);
+          }
+        })}
      return (
      <div> 
-<form onSubmit={handleSubmit(handleAddProduct)}>
-            <section className="text-gray-600 body-font relative ">
-            <div className="container px-5 sm:py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
-    <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0 border rounded-md p-5">
+  <form onSubmit={handleUpdateProduct}>
+     <section className="text-gray-600 body-font relative ">
+     <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap ">
+    <div className="border-primary border border-2 md:w-1/2 bg-white flex flex-col md:mx-auto w-full md:py-8 mt-8 md:mt-0  rounded-md p-5">
       <h2 className="text-gray-900 text-lg mb-1 
-     title-font font-semibold">Add a product</h2>
-                <div className="relative mb-4">
-                    <label for="name" className="leading-7 text-sm text-gray-600">Product name</label>
-                    <input  type="text" {...register("name")} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" defaultValue={productInfo?.name}/>
+     title-font font-semibold">Update this product</h2>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Product name</label>
+        <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo.name} onChange={nameChange}/>
+      </div>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Product price</label>
+        <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo.price} onChange={priceChange}/>
+      </div>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Product previous price</label>
+        <input type="text" id="name" name="name" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo.previcePrice} onChange={previcePriceChange}/>
+      </div>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Change status</label>
+        <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded' value={productInfo.status} onChange={statusChange}>
+        <option value="Available">Available</option>
+          <option value="Unavailable">Unavailable</option>
+
+        </select>
+      </div>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Select a Category</label>
+        <select className='select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded'  onChange={categoryChange}>
+          {
+               catagorys.map(p=>
+                    <option
+                    key={p._id}
+                    >{p.catagory}</option>
+               )
+          }
+        </select>
+      </div>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Image Link</label>
+        <div className="relative mb-4">
+                    <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
+                    <input onChange={uploadFirstImage} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                 </div>
-                <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> Product price</label>
-                    <input defaultValue={productInfo?.price} type="text" {...register("price")} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+      </div>
+        <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={productInfo.image1} alt=""/>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Image Link</label>
+        <div className="relative mb-4">
+                    <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
+                    <input onChange={uploadSecondImage} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            </div>
+      </div>
+        <img className='h-52 w-52 mx-auto border rounded  border-gray-300 ' src={productInfo.image2} alt="" />
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Image Link</label>
+        <div className="relative mb-4">
+                    <label className="leading-7 text-sm text-gray-600"> select a product Image</label>
+                    <input onChange={uploadThirdImage} type="file" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                 </div>
-                <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> Product previous price</label>
-                    <input defaultValue={productInfo?.previcePrice} type="text" {...register("previcePrice")} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                   
-                </div>
-                <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> Details</label>
-                    <textarea defaultValue={productInfo?.details}  type="text" {...register("details")} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" />
-                </div>
-                <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> Select a category</label>
-                    <select  defaultValue={productInfo?.catagory}
-                    {...register('catagory')}
-                    className="select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded">
-                        {
-                            categories.map(specialty => <option
-                                key={specialty._id}
-                                value={specialty.catagory}
-                            >{specialty.catagory}</option>)
-                        }
-                    </select>
-                </div>
-                <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> Select status</label>
-                    <select defaultValue={productInfo?.status}
-                    {...register('status')}
-                    className="select w-full  border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 rounded">
-                       <option value="Available">Available</option>
-                       <option value="Unavailable">Unavailable </option>
-                    </select>
-                </div>
-                <div className="relative mb-4">
-                    <label className="leading-7 text-sm text-gray-600"> select product main Image</label>
-                    <input  type="file"  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"  onChange={firstImageUpload}  />
-                </div>
-                <img className='h-20 w-28 mx-auto' src={productInfo.image1} alt="" />
-               <div className="relative mb-4">
-               <label className="leading-7 text-sm text-gray-600"> selectproduct second Image</label>
-               <input  className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-                type='file'
-                onChange={secondImageUpload} 
-              />
-               </div>
-               <img className='h-20 w-28 mx-auto' src={productInfo.image2} alt="" />
-               <div className="relative mb-4">
-               <label className="leading-7 text-sm text-gray-600"> select product third Image</label>
-               <input  className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-                type='file'
-                onChange={thirdImageUpload}
-              />
-               </div>
-               <img className='h-20 w-28 mx-auto' src={productInfo.image3} alt="" />
-                <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Submit" type="submit"/>
-                <p className="text-xs text-gray-500 mt-3">This is very important for your website.So,be careful.</p>
-                </div>
-                </div>
-                </section></form>
+      </div>
+        <img className='h-52 w-52 mx-auto rounded border border-gray-300 ' src={productInfo.image3} alt="" />
+      <div className="relative mb-4">
+        <label for="message" className="leading-7 text-sm text-gray-600">Product Description</label>
+        <textarea id="message" name="message" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" value={productInfo.details} onChange={detailsChange}></textarea>
+      </div>
+      <input className="text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="save" type="submit"/>
+      <p className="text-xs text-gray-500 mt-3">This is very important for your website.So,be careful.</p>
+    </div>
+  </div>
+</section>
+</form>
      </div>
      );
 };

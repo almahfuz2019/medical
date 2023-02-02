@@ -4,47 +4,57 @@ import UseProducts from '../Hooks/UseProducts';
 import { FaRegTrashAlt,FaRegEdit } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 const AllProducts = () => {
+  const [search,setSearch]=useState("")
      const {handleProductDelete}=UseProducts();
      const[page,setPage]=useState(0);
      const[size,setSize]=useState(50);
        const[pageCount,setPageCount]=useState(0);
-       const[allProducts,setAllProducts]=useState([]);
        const[products,setProducts]=useState([]);
        const[productsLoading,setProductsLoading]=useState(true);
-       const[searchText,setSearchText]=useState('');
     const [productsCount,setProductsCount]=useState([]);
     useEffect(()=>{
       fetch("http://localhost:5000/allproductscount")
       .then(res=>res.json())
       .then(data=>setProductsCount(data))
   },[])
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
   //get allproducts 
        const fetchProducts = () => {
          setProductsLoading(true)
-         fetch(`http://localhost:5000/allproducts?page=${page}&size=${size}&search=${searchText}`)
+         fetch(`http://localhost:5000/allproducts?page=${page}&size=${size}`)
          .then(res=>res.json())
          .then(data=>{
            setPageCount(Math.ceil(data.count/size))
            setProducts(data.products)
-           setAllProducts(data.allProducts)
            setProductsLoading(false)
          })
        }
   useEffect(()=>{
     fetchProducts()
   },[page,size])
+  useEffect(()=>{
+    const url=`http://localhost:5000/productsearch?name=${search}`;
+    console.log(url);
+    if(search!==""){
+      fetch(url)
+      .then(res=>res.json())
+      .then(data=>{
+        setProducts(data)
+        setPageCount(Math.ceil(data.length/size))
+      })
+    }else if(search===""){
+      fetchProducts()
+    }
+  },[search])
   const pageIncrease=()=>{
     setPage(page+1)
   }
   const pageDecrease=()=>{
     setPage(page-1)
   }
-  // search products by name 
-  const searchProductsbyname = (e) => {
-    const matched_products = allProducts.filter(pro => pro.name.toLowerCase().includes(e.target.value.toLowerCase()))
-    setProducts(matched_products)
-    setPageCount(Math.ceil(matched_products.length/size))
-  }
+  
      if(productsLoading){
           return <Loading/>
      }
@@ -77,8 +87,9 @@ const AllProducts = () => {
           <option selected value="50">50</option>
         </select>  
 </div>
+Products :{products.length}
 <div className='mx-auto text-center mb-5'>
-<input type="text" placeholder="Search here by product name" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={searchProductsbyname}/>
+<input type="text" placeholder="Search here by product name" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={handleSearch}/>
 </div>
      <table className="table w-full">
        {/* <!-- head --> */}

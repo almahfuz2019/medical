@@ -9,6 +9,7 @@ import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   const {catagorys}=UseCatagory();
   const [search,setSearch]=useState("")
+  const [category,setCategory]=useState("")
   const [productCount,setProductCount]=useState(0)
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
@@ -22,6 +23,9 @@ const[size,setSize]=useState(30);
     .then(data=>setProductCount(data))
 
 },[])
+const handleCategory = (e) => {
+  setCategory(e.target.value);
+};
 const handleSearch = (e) => {
   setSearch(e.target.value);
 };
@@ -57,141 +61,142 @@ const handleSearch = (e) => {
       fetchProducts()
     }
   },[search])
-  const searchProductsbyCatagory = (e) => {
-    const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
-    setProducts(matched_products)
-    setPageCount(Math.ceil(matched_products.length/size))
-  }
-
-const searchByCatagory = (e) => {
-  const matched_products = allProducts.filter(pro => pro.catagory.toLowerCase().includes(e.target.value.toLowerCase()))
-    setProducts(matched_products)
-    setPageCount(Math.ceil(matched_products.length/size))
-}
+  useEffect(()=>{
+    const url=`http://localhost:5000/productsearchbycategory?catagory=${category}`;
+    console.log(url);
+    if(category!==""){
+      fetch(url)
+      .then(res=>res.json())
+      .then(data=>{
+        setProducts(data)
+        setPageCount(Math.ceil(data.length/size))
+      })
+    }else if(category===""){
+      fetchProducts()
+    }
+  },[category])
 const handleChange1000=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 1000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 1000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange3000=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 3000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 3000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChange5000=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 5000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 5000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 const handleChangeuUnlimited=(e)=> {
-  const matched_products = allProducts.filter(pro => parseInt(pro.price) <= 10000000000000)
+  const matched_products = products.filter(pro => parseInt(pro.price) <= 10000000000000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
 }
 
      return (
-          <div className='mx-1 '>
+          <div className='mx-1 z-0'>
 
                  <Discount/>
             <div class="lg:block hidden overflow-y-auto whitespace-nowrap scroll-hidden">
   <div class=" grid  grid-cols-10 px-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
-  <button value="Health Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Health Care" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Health Care" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" />
+  <button value="Health Care" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Health Care" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Health Care" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" />
            </button>
         </div>
-           <button  value="Health Care" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Health Care</button>
+           <button  value="Health Care" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Health Care</button>
   </button>
-  <button value="Baby Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Baby Care" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Baby Care" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
+  <button value="Baby Care" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Baby Care" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Baby Care" onClick={handleCategory}>
+          <img  onClick={handleCategory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
            </button>
         </div>
-           <button  value="Baby Care" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Baby Care</button>
+           <button  value="Baby Care" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Baby Care</button>
   </button>
-  <button value="Beauty Care" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Beauty Care" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Beauty Care" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" />
+  <button value="Beauty Care" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Beauty Care" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Beauty Care" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" />
            </button>
         </div>
-           <button  value="Beauty Care" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Beauty Care</button>
+           <button  value="Beauty Care" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Beauty Care</button>
   </button>
-  <button value="First Aid" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="First Aid" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="First Aid" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" />
+  <button value="First Aid" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="First Aid" onClick={handleCategory}>
+          <button className="w-full rounded"  value="First Aid" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" />
            </button>
         </div>
-           <button  value="First Aid" onClick={searchByCatagory} className='text-center mt-1 underline font-normal '>First Aid</button>
+           <button  value="First Aid" onClick={handleCategory} className='text-center mt-1 underline font-normal '>First Aid</button>
   </button>
-  <button value="Surgical" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Surgical" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Surgical" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" />
+  <button value="Surgical" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Surgical" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Surgical" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" />
            </button>
         </div>
-           <button  value="Surgical" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Surgical</button>
+           <button  value="Surgical" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Surgical</button>
   </button>
-  <button value="Dental" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Dental" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Dental" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" />
+  <button value="Dental" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Dental" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Dental" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" />
            </button>
         </div>
-           <button  value="Dental" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Dental</button>
+           <button  value="Dental" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Dental</button>
   </button>
-  <button value="Diagnostic" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Diagnostic" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Diagnostic" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" />
+  <button value="Diagnostic" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Diagnostic" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Diagnostic" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" />
            </button>
         </div>
-           <button  value="Diagnostic" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Diagnostic</button>
+           <button  value="Diagnostic" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Diagnostic</button>
   </button>
-  <button value="Laboratory" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Laboratory" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Laboratory" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" />
+  <button value="Laboratory" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Laboratory" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Laboratory" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" />
            </button>
         </div>
-           <button  value="Laboratory" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Laboratory</button>
+           <button  value="Laboratory" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Laboratory</button>
   </button>
-  <button value="Hospital" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Hospital" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Hospital" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" />
+  <button value="Hospital" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Hospital" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Hospital" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" />
            </button>
         </div>
-           <button  value="Hospital" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Hospital</button>
+           <button  value="Hospital" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Hospital</button>
   </button>
-  <button value="Helth" onClick={searchByCatagory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Helth" onClick={searchByCatagory}>
-          <button className="w-full rounded"  value="Helth" onClick={searchByCatagory}>
-          <img   onClick={searchByCatagory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
+  <button value="Helth" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <div className="avatar"  value="Helth" onClick={handleCategory}>
+          <button className="w-full rounded"  value="Helth" onClick={handleCategory}>
+          <img   onClick={handleCategory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
            </button>
         </div>
-           <button  value="Helth" onClick={searchByCatagory} className='text-center mt-1 underline font-normal'>Baby Care</button>
+           <button  value="Helth" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Baby Care</button>
   </button>
 
   </div>
 </div>
             <div className="divider  divide-current mt-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
-            products={products.length},allProducts={allProducts.length}
             <div className="text-center  mt-5 sm:mt-7   ">
               <div className="flex justify-center mx-2 ">
-              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here by product name"
+              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here by product name"
       // value={search}
            onChange={handleSearch}/>
               
                <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto ">
     <label for="SortBy " className="sr-only bg-white">Catagory</label>
 
-    <select id="SortBy" className=" border-r-0 text-xs sm:text-sm border-primary rounded sm:px-2 bg-white max-w-sm sm:max-w-md mx-auto sm:mt-3  text-center" onChange={searchProductsbyCatagory}>
+    <select id="SortBy" className=" border-r-0 text-xs sm:text-sm border-primary rounded sm:px-2 bg-white max-w-sm sm:max-w-md mx-auto sm:mt-3  text-center" onChange={handleCategory}>
 <option className=''value=""><span className=''>All</span></option>
-      
     {
                catagorys.map(p=>
                     <option
@@ -313,13 +318,11 @@ const handleChangeuUnlimited=(e)=> {
     </details>
   </div>
 </div>
-
- 
-  
  
   {/* <h2 className='font-semibold text-xl mb-2 text-primary-focus'>Just For You</h2> */}
+  {/* <div class="sticky top-0 ...">A</div> */}
 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
- 
+
  {
   productLoading?<>
 <>

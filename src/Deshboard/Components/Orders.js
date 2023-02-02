@@ -5,9 +5,10 @@ import { AiFillEye } from "react-icons/ai";
 import Loading from '../../Components/Loading';
 import UseOrder from '../Hooks/UseOrder';
 import axios from 'axios';
+
 const Orders = () => {
    const {handleOrderDelete}=UseOrder();
-  const[allOrders,setAllOrders]=useState([]);
+   const [search,setSearch]=useState("")
   const[page,setPage]=useState(0);
 const[size,setSize]=useState(50);
   const[pageCount,setPageCount]=useState(0);
@@ -21,7 +22,6 @@ const[size,setSize]=useState(50);
       const response=await axios.get(`http://localhost:5000/productsorders?page=${page}&size=${size}`)
       setPageCount(Math.ceil(response.data.count/size))
           setOrders(response.data.products)
-          setAllOrders(response.data.allProducts)
         setOrderLoading(false)
       }
       catch(error){
@@ -30,11 +30,23 @@ const[size,setSize]=useState(50);
   useEffect(()=>{
     loadOrders()
   },[page,size])
-  const searchProductsbyname = (e) => {
-    const matched_products = allOrders.filter(pro => pro.email?.toLowerCase().includes(e.target.value.toLowerCase()))
-    setOrders(matched_products)
-    setPageCount(Math.ceil(matched_products.length/size))
-  }
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  useEffect(()=>{
+    const url=`http://localhost:5000/ordersearch?email=${search}`;
+    console.log(url);
+    if(search!==""){
+      fetch(url)
+      .then(res=>res.json())
+      .then(data=>{
+        setOrders(data)
+        setPageCount(Math.ceil(data.length/size))
+      })
+    }else if(search===""){
+      loadOrders()
+    }
+  },[search])
      if(orderLoading){
       return <Loading/>
      }
@@ -68,7 +80,7 @@ const[size,setSize]=useState(50);
         </select>  
 </div>
 <div className='mx-auto text-center mb-5'>
-<input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here" onChange={searchProductsbyname}/>
+<input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md" name='inputValue' placeholder="Search here by e-mail" onChange={handleSearch}/>
 </div>
           <table className="table w-full">
             <thead>

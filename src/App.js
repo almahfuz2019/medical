@@ -6,7 +6,6 @@ import AboutUs from './Components/AboutUs';
 import ContactUs from './Components/ContactUs';
 import 'react-toastify/dist/ReactToastify.css';
 import QNA from './Components/QNA';
-import MainPage from './Components/MainPage';
 import ProductDetails from './Components/ProductDetails';
 import TramsAndCondition from './Components/TramsAndCondition';
 import Home from './Pages/Home';
@@ -110,7 +109,6 @@ function App() {
   <Route path='/single/:id' element={<ProductDetails/>}/>
   <Route path='/single-order/:id' element={<SingleItemOrder/>}/>
   <Route path='/' element={<Home/>}>
-          <Route index  element={<MainPage/>}/>
           <Route path='trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='faq' element={<QNA/>}/>
           <Route path='about' element={<AboutUs/>}/>

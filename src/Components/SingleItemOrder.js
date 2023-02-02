@@ -9,6 +9,7 @@ import logo from "../Images/logo.png"
 import Loading from './Loading';
 const SingleItemOrder = () => {
      const time= new Date().toLocaleString();
+     const [selectedOption, setSelectedOption] = useState("");
      const { id } = useParams();
      const [order, setOrder] = useState({});
      useEffect(() => {
@@ -27,6 +28,9 @@ const SingleItemOrder = () => {
      if(error){
        return <p>{error}</p>
      }
+     const handleOptionChange = (event) => {
+      setSelectedOption(event.target.value);
+    };
      const cartItemQuentity = localStorage.getItem('productquenty');
      const cartParsedValue = JSON.parse(cartItemQuentity);
      console.log(cartParsedValue);
@@ -41,8 +45,8 @@ const SingleItemOrder = () => {
           const union=event.target.union.value;
           const thana=event.target.thana.value;
           const district=event.target.district.value;
-          const bkishID=event.target.bkishID.value;
-          const bkishNumber=event.target.bkishNumber.value;
+          const bkishID=event.target.bkishID?.value || "";
+          const bkishNumber=event.target.bkishNumber?.value || "";
           const userData=zc;
           const TotalPrice=(order.price*cartParsedValue)+100;
           const dateAndTime=time;
@@ -222,26 +226,39 @@ const SingleItemOrder = () => {
 <p className='text-center  text-primary  text-xl mb-2 font-semibold'>Payment method</p>
 
 
+
 <div class=" items-center gap-8">
-    <label class="inline-flex items-center">
-        <input onClick={()=>setAgreeWithCashOnDelevery(!agreeWithCashOnDelevery)} type="radio" name="vehicle" class="w-5 h-5 accent-primary"/>
-            <span class="ml-2 text-gray-700">
-                Cash on delevery
-            </span>
-        </label> <br />
-        <label class=" inline-flex items-center">
-            <input  onClick={()=>setAgreeWithCashOnDelevery(!agreeWithCashOnDelevery)} type="radio" name="vehicle" class="w-5 h-5 accent-primary"/>
-                <span class="ml-2 text-gray-700">
-                    Bkish
-                </span>
-            </label>
-      {
-        agreeWithCashOnDelevery? <div className='mt-2 text-primary border border-primary border-opacity-30 rounded-lg p-2'>
+    <label>
+        <input
+          type="radio"
+          value="cash on delivery"
+          checked={selectedOption === "cash on delivery"}
+          onChange={handleOptionChange}
+        />
+        cash on delivery
+      </label>
+      <br />
+      <label>
+        <input
+          type="radio"
+          value="bkash"
+          checked={selectedOption === "bkash"}
+          onChange={handleOptionChange}
+        />
+       Bkash
+      </label>
+      <br />
+      {selectedOption === "cash on delivery" && (
+<>
+<div className='mt-2 text-primary border border-primary border-opacity-30 rounded-lg p-2'>
         <p>Please pay 100 take for confirm</p>
      <p> <a href="tel:5551234567">Bkish Number: 0178787843</a></p>
         </div>
-        :<>
-        <div className="col-span-6" >
+</>
+      )}
+      {selectedOption === "bkash" && (
+   <>
+   <div className="col-span-6" >
         <label for="Phone" className="block text-xs font-medium text-gray-700">
           Bkish transition ID
         </label>
@@ -265,8 +282,8 @@ const SingleItemOrder = () => {
           className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "
         />
       </div></>
-
-      }
+      )}
+      
   
        
         </div>

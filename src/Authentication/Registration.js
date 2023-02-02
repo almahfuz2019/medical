@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import auth from '../firebase.init';
@@ -8,6 +8,7 @@ import Loading from '../Components/Loading';
 import SocialLogin from './SocialLogin';
 import UseToken from '../Deshboard/Hooks/UseToken';
 const Registration = () => {
+  const [agree,setAgree]=useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword,
@@ -39,6 +40,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || updateerror?.m
         <div className="w-full p-8 lg:w-1/2">
         <img className='h-12 w-28 text-center mx-auto' src={logo} alt="logo" />
         <SocialLogin/>
+       
          <form onSubmit={handleSubmit(onSubmit)}>
          <div className="mt-4 flex items-center justify-between">
           <span className="border-b w-1/5 lg:w-1/4"></span>
@@ -97,9 +99,31 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || updateerror?.m
             </label>
            </div>
           {signInErrorMessage}
-            <div className="mt-8">
-            <input className="bg-primary text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600" type="submit" value="Register"/>
-            </div>
+          
+          <div className="mt-2">
+
+<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+<div className="modal">
+  <div className="modal-box relative">
+    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2 btn-primary text-white">✕</label>
+    <h3 className="text-lg font-bold text-primary">Terms and conditions</h3>
+    <p className="py-4 text-justify ">This privacy policy has been compiled to better serve those who are concerned with how their ‘Personally Identifiable Information’ (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.</p>
+  </div>
+</div>
+<div className="col-span-6">
+     <input onClick={()=>setAgree(!agree)} type="checkbox" name="trems" id="terms" className='accent-primary'/>
+     <label className={agree?'text-primary ml-2':'text-black ml-2'} htmlFor="terms">I agree with the </label><label htmlFor="my-modal-3"><span className='text-red-600 underline cursor-pointer' >terms and conditions.</span></label>
+   </div>
+      </div>
+      <div className="col-span-6 mt-2">
+            {
+              agree?<input type="submit"
+              className="block w-full rounded-md btn-primary py-2 text-xl font-semibold text-white transition hover:shadow-lg cursor-pointer"
+            value="Register"/>:<input type="submit"
+            className="block w-full rounded-md btn-primary py-2 text-xl font-semibold text-white transition hover:shadow-lg hover:text-white hover:bg-gray-300  bg-gray-300 cursor-not-allowed btn-disabled"
+          value="Register"/>
+            }
+          </div>
             </form>
             <div className="mt-4 flex items-center justify-between">
            <span className="border-b w-1/5 md:w-1/4"></span>
