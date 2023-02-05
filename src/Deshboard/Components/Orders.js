@@ -31,16 +31,19 @@ const[size,setSize]=useState(50);
     loadOrders()
   },[page,size])
   const handleSearch = (e) => {
+    e.preventDefault();
     setSearch(e.target.value);
   };
   useEffect(()=>{
     const url=`http://localhost:5000/ordersearch?email=${search}`;
     console.log(url);
     if(search!==""){
+    
       fetch(url)
       .then(res=>res.json())
       .then(data=>{
         setOrders(data)
+    
         setPageCount(Math.ceil(data.length/size))
       })
     }else if(search===""){

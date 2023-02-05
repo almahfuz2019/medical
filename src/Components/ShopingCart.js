@@ -1,15 +1,44 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { BsAsterisk } from 'react-icons/bs';
 import { TbCurrencyTaka } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
+import Notfound from './Notfound';
+import Test from './Test';
 
 const ShopingCart = () => {
-const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqData();
-
+  const[quentity,setQuentity]=useState("");
+const {usdata,handleUserDelete,total,subTotal,shippingCharge,error}=UseUserSpacifiqData();
+const handleUpdateCatagory = async(id) => {
+  console.log(id);
+     const url = `http://localhost:5000/quentity/${id}`;
+     console.log(url);
+     await axios.put(url,quentity)
+          toast.success('Update Successfully', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+            });  
+         
+ } 
+ const handleCatagoryNameChange = e => {
+  const getQuentity = e.target.value;
+  console.log(getQuentity);
+  const quentityset = { productQuentity: getQuentity };
+  setQuentity(quentityset);
+  
+}
+console.log(quentity);
      return (
           <div>
-             
+             {error?<><Notfound/></>: 
 <section className=''>
   <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-0 ">
     <div className=" mx-auto ">
@@ -23,34 +52,45 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
   <li className="step mx-2">CheckOut</li>
 </ul>
 </div>
-
-    
-<div class=" bg-gray-100 mt-16">
+<div class=" bg-gray-100 mt-16 ">
     <div class="mx-auto  justify-center px-6 md:flex md:space-x-6 xl:px-0">
       <div class="rounded-lg w-full">
     {usdata?.map(data=>
         <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-          <img src={data?.product?.image} alt="product-image" class="w-full h-40 md:h-20 rounded-lg sm:w-40" />
+          <img src={data?.product?.image1} alt="product-image" className="w-full h-40 md:h-20 rounded-lg sm:w-40" />
           <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
             <div class="mt-5 sm:mt-0">
               <h2 class="text-lg font-bold text-gray-900">{data?.product?.name}</h2>
               <p class="mt-1 text-xs text-gray-700">
               <div>
-              <dt className="inline text-sm">Price: {data?.product?.price}</dt>
+              <dt className=" text-sm flex items-center">Price:  <div className='flex items-center ml-1'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2.5 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 "> {data?.product?.price}</p>  
+              </div> </dt>
               <br />
-              <dt className="inline text-sm">Quentity: {data?.productQuentity}</dt>
+              <dt className="inline text-sm">Quentity:{data?.productQuentity}</dt>
+              {/* <dt className="inline text-sm">Quentity: {data?._id}</dt> */}
             </div>
 
               </p>
             </div>
             <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
               <div class="flex items-center border-gray-100">
-                <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
-                <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value={data?.productQuentity} min="1" />
-                <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
+                {/* <span onClick={() => setQuentity(quentity - 1)} class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span> */}
+             
+                <input class="h-8 w-16 border bg-white text-center text-xs outline-none" type="number" defaultValue={data?.productQuentity} min="1" onChange={handleCatagoryNameChange}/>
+                
+                {/* <span onClick={() => setQuentity(quentity + 1)} class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span> */}
+            <button className='ml-2 btn btn-sm' onClick={()=>handleUpdateCatagory(data._id)}>save</button>
               </div>
+              
               <div class="flex items-center space-x-4">
-                <p class="text-sm">{data?.productQuentity*data?.product?.price}</p>
+                <p class="text-sm"><div className='flex items-center ml-1'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2.5 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 "> {data?.productQuentity*data?.product?.price}</p>  
+              </div></p>
+
+                
                 <svg onClick={()=>handleUserDelete(data._id)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -64,25 +104,40 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
       <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
         <div class="mb-2 flex justify-between">
           <p class="text-gray-700">Subtotal</p>
-          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>{subTotal}</p>
+          <p class="text-gray-700 flex items-center"><div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 ">{subTotal}</p>  
+              </div>  </p>
         </div>
         <div class="flex justify-between mb-2 ">
           <p class="text-gray-700">Shipping</p>
-          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>{shippingCharge}</p>
+          <p class="text-gray-700 flex items-center"> <div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 ">{shippingCharge}</p>  
+              </div> </p>
         </div>
         <div class="flex justify-between mb-2">
           <p class="text-gray-700">Discount</p>
-          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>000</p>
+          <p class="text-gray-700 flex items-center"> <div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 "> 000</p>  
+              </div> </p>
         </div>
         <div class="flex justify-between">
           <p class="text-gray-700">VAT</p>
-          <p class="text-gray-700 flex items-center"><TbCurrencyTaka/>000</p>
+          <p class="text-gray-700 flex items-center"> <div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 "> 000</p>  
+              </div> </p>
         </div>
         <hr class="my-4" />
         <div class="flex justify-between">
           <p class="text-lg font-bold">Total</p>
           <div class="">
-            <p class="mb-1 text-lg font-bold flex  items-center justify-end"><TbCurrencyTaka/>{total}</p>
+            <p class="mb-1 text-lg font-bold flex  items-center justify-end"><div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 ">{total}</p>  
+              </div></p>
           
             <div className="flex justify-end">
               <span
@@ -115,14 +170,14 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
 
     </div>
   </div>
-      {/* <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30">
+      {/* <div className="my-10  border border-spacing-2 p-5 rounded-md bg-white border-primary border-opacity-30 md:hidden block">
         <ul className="space-y-4 ">
           
           {usdata?.map(data=>
         <li className="sm:flex items-center border-primary border-b-2 p-2">
         <img
-          src={data?.product?.image}
-          alt=""
+          src={data?.product?.image1}
+          alt="Product Image"
           className="object-cover w-16 h-16 rounded border-primary border"
         />
 
@@ -236,7 +291,7 @@ const {usdata,handleUserDelete,total,subTotal,shippingCharge}=UseUserSpacifiqDat
     </div>
   </div>
 </section>
-
+}
           </div>
      );
 };

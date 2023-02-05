@@ -1,15 +1,18 @@
 import axios, { all } from 'axios';
 import React, { useEffect, useState } from 'react';
-import { TbCurrencyTaka } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import Discount from '../Components/Discount';
 import HomePageSkeletion from '../Components/HomePageSkeletion';
+import NewProducts from '../Components/NewProducts';
+import Notfound from '../Components/Notfound';
 import TrustedCompanys from '../Components/TrustedCompanys';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
+import Footer from '../Shired/Footer';
 const Home = () => {
   const {catagorys}=UseCatagory();
   const [search,setSearch]=useState("")
   const [category,setCategory]=useState("")
+      const [error,setError]=useState("");
   const [productCount,setProductCount]=useState(0)
   const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
@@ -23,9 +26,46 @@ const[size,setSize]=useState(30);
     .then(data=>setProductCount(data))
 
 },[])
+const handleClickScroll = () => {
+  const element = document.getElementById('section-1');
+  if (element) {
+    // 👇 Will scroll smoothly to the top of the next section
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 const handleCategory = (e) => {
   setCategory(e.target.value);
+  console.log(e.target.value);
 };
+const HealthCare = () => {
+  setCategory("Health Care");
+};
+const BabyCare = () => {
+  setCategory("Baby Care");
+};
+const BeautyCare = () => {
+  setCategory("Beauty Care");
+};
+const FirstAid = () => {
+  setCategory("First Aid");
+};
+const Surgical = () => {
+  setCategory("Surgical");
+};
+const Dental = () => {
+  setCategory("Dental");
+};
+const Diagnostic = () => {
+  setCategory("Diagnostic");
+};
+const Laboratory = () => {
+  setCategory("Laboratory");
+};
+const Hospital = () => {
+  setCategory("Hospital");
+};
+
+
 const handleSearch = (e) => {
   setSearch(e.target.value);
 };
@@ -38,6 +78,7 @@ const handleSearch = (e) => {
           setProductLoading(false)
     }
     catch(error){
+      setError("something is wrong.Please try again")
     };
   }
   useEffect(()=>{
@@ -51,11 +92,13 @@ const handleSearch = (e) => {
     const url=`http://localhost:5000/productsearch?name=${search}`;
     console.log(url);
     if(search!==""){
+      setProductLoading(true)
       fetch(url)
       .then(res=>res.json())
       .then(data=>{
         setProducts(data)
         setPageCount(Math.ceil(data.length/size))
+        setProductLoading(false)
       })
     }else if(search===""){
       fetchProducts()
@@ -65,11 +108,13 @@ const handleSearch = (e) => {
     const url=`http://localhost:5000/productsearchbycategory?catagory=${category}`;
     console.log(url);
     if(category!==""){
+      setProductLoading(true)
       fetch(url)
       .then(res=>res.json())
       .then(data=>{
         setProducts(data)
         setPageCount(Math.ceil(data.length/size))
+        setProductLoading(false)
       })
     }else if(category===""){
       fetchProducts()
@@ -79,6 +124,7 @@ const handleChange1000=(e)=> {
   const matched_products = products.filter(pro => parseInt(pro.price) <= 1000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
+  
 }
 const handleChange3000=(e)=> {
   const matched_products = products.filter(pro => parseInt(pro.price) <= 3000)
@@ -97,95 +143,83 @@ const handleChangeuUnlimited=(e)=> {
 }
 
      return (
+      <div>{error?<><Notfound/></>: 
           <div className='mx-1 z-0'>
-
-                 <Discount/>
-            <div class="lg:block hidden overflow-y-auto whitespace-nowrap scroll-hidden">
-  <div class=" grid  grid-cols-10 px-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
-  <button value="Health Care" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Health Care" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Health Care" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" />
-           </button>
-        </div>
-           <button  value="Health Care" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Health Care</button>
+                <Discount/>
+ 
+            <div    class="lg:block hidden overflow-y-auto whitespace-nowrap scroll-hidden ">
+            {/* <p className='text-primary  mt-1'>Categorys</p> */}
+          
+  <div   class=" grid  grid-cols-10 px-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 mt-4 gap-4 bg-white py-2 ">
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={HealthCare}>
+          <img  className="rounded"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Health Care</button>
   </button>
-  <button value="Baby Care" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Baby Care" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Baby Care" onClick={handleCategory}>
-          <img  onClick={handleCategory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
-           </button>
-        </div>
-           <button  value="Baby Care" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Baby Care</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={BabyCare}>
+          <img  className="rounded"  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Baby Care</button>
   </button>
-  <button value="Beauty Care" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Beauty Care" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Beauty Care" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" />
-           </button>
-        </div>
-           <button  value="Beauty Care" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Beauty Care</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={BeautyCare}>
+          <img  className="rounded"  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Beauty Care</button>
   </button>
-  <button value="First Aid" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="First Aid" onClick={handleCategory}>
-          <button className="w-full rounded"  value="First Aid" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" />
-           </button>
-        </div>
-           <button  value="First Aid" onClick={handleCategory} className='text-center mt-1 underline font-normal '>First Aid</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={FirstAid}>
+          <img  className="rounded"  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>First Aid</button>
   </button>
-  <button value="Surgical" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Surgical" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Surgical" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" />
-           </button>
-        </div>
-           <button  value="Surgical" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Surgical</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={Dental}>
+          <img  className="rounded"  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Dental</button>
   </button>
-  <button value="Dental" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Dental" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Dental" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" />
-           </button>
-        </div>
-           <button  value="Dental" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Dental</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={Diagnostic}>
+          <img  className="rounded"  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Diagnostic</button>
   </button>
-  <button value="Diagnostic" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Diagnostic" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Diagnostic" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" />
-           </button>
-        </div>
-           <button  value="Diagnostic" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Diagnostic</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={Laboratory}>
+          <img  className="rounded"  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Laboratory</button>
   </button>
-  <button value="Laboratory" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Laboratory" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Laboratory" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" />
-           </button>
-        </div>
-           <button  value="Laboratory" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Laboratory</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={Surgical}>
+          <img  className="rounded"  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Surgical</button>
   </button>
-  <button value="Hospital" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Hospital" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Hospital" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" />
-           </button>
-        </div>
-           <button  value="Hospital" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Hospital</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={Hospital}>
+          <img  className="rounded"  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Hospital</button>
   </button>
-  <button value="Helth" onClick={handleCategory} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
-        <div className="avatar"  value="Helth" onClick={handleCategory}>
-          <button className="w-full rounded"  value="Helth" onClick={handleCategory}>
-          <img   onClick={handleCategory}  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" />
-           </button>
-        </div>
-           <button  value="Helth" onClick={handleCategory} className='text-center mt-1 underline font-normal'>Baby Care</button>
+  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+        <button onClick={HealthCare}>
+          <img  className="rounded"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
+        </button>
+           <button className='text-center mt-1 underline font-normal'>Health Care</button>
   </button>
-
   </div>
 </div>
-            <div className="divider  divide-current mt-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
+<div className='hidden md:block mt-4'>
+  
+            <NewProducts/>
+  </div>
+            <div  className="divider  divide-current mt-5 mb-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
+            
+         
             <div className="text-center  mt-5 sm:mt-7   ">
               <div className="flex justify-center mx-2 ">
               <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here by product name"
@@ -318,10 +352,9 @@ const handleChangeuUnlimited=(e)=> {
     </details>
   </div>
 </div>
- 
-  {/* <h2 className='font-semibold text-xl mb-2 text-primary-focus'>Just For You</h2> */}
-  {/* <div class="sticky top-0 ...">A</div> */}
-<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 '>
+
+<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0   bg-white 
+p-2'>
 
  {
   productLoading?<>
@@ -362,17 +395,22 @@ const handleChangeuUnlimited=(e)=> {
 
 <Link to={`/single/${product._id}`}>
 
-        <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
+        <div className=" bg-white    shadow-md   border border-primary rounded border-opacity-30">
        <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image1})`}}>
          <div className="flex justify-between">
           </div>
-       <div className='flex'>
+       <div className='flex items-center'>
            <div>
            <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
            </div>
-            <div className='flex items-center'>
-            <p className=' ml-1'>
-            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none sm:ml-1 flex items-center"><span className="line-through decoration-gray-400 flex items-center   text-gray-800 "><TbCurrencyTaka />{product.previcePrice} </span><span className=' ml-1 '> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
+            <div className='flex items-center mt-1'>
+            <p >
+            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none ml-1 flex items-center">
+              <span className="line-through decoration-gray-400    text-gray-800 ">
+              <div className='flex items-center '>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2 mr-0.5 ' alt="" />
+            <p className="text-center text-gray-800  ">{product.previcePrice}</p>  
+              </div> </span><span className=' ml-1 '> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
             </p>
             </div>
        </div>  
@@ -380,7 +418,10 @@ const handleChangeuUnlimited=(e)=> {
             <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{product?.catagory}</p>
             <div className='text-center'>
             <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline hover:text-primary" >{(product.name).slice(0,20)}</Link>
-            </div>    <p className="text-center text-gray-800 mt-1">€{product.price}</p>    
+            </div>    <div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800  ">{product.price}</p>  
+              </div>  
             
             </div>
           
@@ -390,6 +431,7 @@ const handleChangeuUnlimited=(e)=> {
         </>
  }
 </div>
+
 {
   productCount.count===products.length|| products.length<30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
   <button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
@@ -402,7 +444,9 @@ const handleChangeuUnlimited=(e)=> {
 
 <TrustedCompanys/>
      
-          </div>
+    </div>
+   
+    } </div>
      );
 };
 export default Home;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 const Discount = () => {
      return (
-      <div className="sm:p-6 py-2 mx-2  p-0  bg-white border rounded mt-5  text-primary border-primary border-opacity-30">
+      <div className="sm:p-6 py-2   p-0  bg-white border rounded mt-5  text-primary border-primary border-opacity-30">
 	<div className="container mx-auto">
 		<div className="sm:flex  sm:flex-row items-center justify-between">
 			<h2 className="text-center text-3xl font-bold md:text-6xl sm:text-3xl  tracking-tighter ">BUY AT LOWEST PRICE
@@ -12,7 +12,7 @@ const Discount = () => {
 				<span className='font-semibold text-lg'>Home Delivery</span>
 				<span className="">24/7 Support</span>
 			</div>
-			<Link to="/home/all-products" rel="noreferrer noopener" className="px-5 sm:mt-4 lg:mt-0 sm:py-3 py-1 rounded-md border text-center block bg-primary text-white ">Shop Now</Link>
+			<Link to="/" rel="noreferrer noopener" className="px-5 sm:mt-4 lg:mt-0 sm:py-3 py-1 rounded-md border text-center block bg-primary text-white ">Shop Now</Link>
 		</div>
 	</div>
 </div>

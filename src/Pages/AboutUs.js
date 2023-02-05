@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 const AboutUs = () => {
      return (
+      <>
          <div className='bg-white p-2 sm:p-5 pb-5'>
   <nav aria-label="Breadcrumb" className="flex justify-center mt-5 mb-3">
   <ol role="list"
@@ -51,6 +52,8 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime cum itaque totam
 </p>
 </div>
          </div>
+
+         </>
      );
 };
 export default AboutUs;

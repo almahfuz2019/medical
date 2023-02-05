@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../Shired/Footer';
 const TramsAndCondition = () => {
      return (
+      <>
           <div className='bg-white p-2 sm:p-5 pb-5'>
           <nav aria-label="Breadcrumb" className="flex justify-center mt-5 mb-3">
   <ol role="list"
@@ -82,7 +84,8 @@ The second payment method is Mobile Banking. At this moment we accept Bkash, Nag
                </div>
                
           </div>
-      
+          <Footer/>
+          </>
      );
 };
 

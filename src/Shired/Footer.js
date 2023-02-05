@@ -6,12 +6,12 @@ import { FaPhoneSquareAlt } from "react-icons/fa";
 import logo from '../Images/logo.png';
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-white mt-10">
-  <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
+    <footer aria-label="Site Footer" className="bg-white mt-6">
+  <div className="mx-auto max-w-screen-xl px-4 pt-8 pb-6 sm:px-6 lg:px-8 lg:pt-16">
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div>
         <div>
-        <img className='h-16 ' src={logo} alt="" />
+        <img className='h-16 ' src={logo} alt="logo" />
         </div>
 
         <p
@@ -20,7 +20,7 @@ const Footer = () => {
           Chaaya Surgical is all kinds o fsurgical goods whole saler and retailer.
         </p>
 
-        <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
+        <ul className="mt-4 flex justify-center gap-6 sm:justify-start md:gap-8">
           <li>
             <a
               href="/"
@@ -73,7 +73,7 @@ const Footer = () => {
         <div className="text-center sm:text-left">
           <p className="text-lg font-medium text-gray-900">About Us</p>
 
-          <nav aria-label="Footer About Nav" className="mt-8">
+          <nav aria-label="Footer About Nav" className="mt-4">
             <ul className="space-y-4 text-sm">
               <li>
                 <a
@@ -92,7 +92,7 @@ const Footer = () => {
         <div className="text-center sm:text-left">
           <p className="text-lg font-medium text-gray-900">Chaaya Surgical</p>
 
-          <nav aria-label="Footer Services Nav" className="mt-8">
+          <nav aria-label="Footer Services Nav" className="mt-4">
             <ul className="space-y-4 text-sm">
               <li>
                 <a
@@ -136,7 +136,7 @@ const Footer = () => {
         <div className="text-center sm:text-left">
           <p className="text-lg font-medium text-gray-900">Helpful Links</p>
 
-          <nav aria-label="Footer Helpful Nav" className="mt-8">
+          <nav aria-label="Footer Helpful Nav" className="mt-4">
             <ul className="space-y-4 text-sm">
               <li>
                 <a
@@ -184,7 +184,7 @@ const Footer = () => {
         <div className="text-center sm:text-left">
           <p className="text-lg font-medium text-gray-900">Contact Us</p>
 
-          <ul className="mt-8 space-y-4 text-sm">
+          <ul className="mt-4 space-y-4 text-sm">
             <li>
               <a
                 className="flex items-center justify-center gap-1.5 sm:justify-start"

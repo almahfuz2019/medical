@@ -54,8 +54,8 @@ const Checkout = () => {
     progress: undefined,
     theme: "colored",
     });
-  //  event.target.reset();
-// navigate("/deshboard")
+   event.target.reset();
+navigate("/deshboard")
     }
 
      return (
@@ -74,12 +74,15 @@ const Checkout = () => {
     <div className="py-12  md:py-24 border border-2  bg-white border-primary">
       <div className=" px-4 mx-auto space-y-8 lg:px-20">
         <div className="flex items-center">
-        <img className='h-12 w-28 ' src={logo} alt="" />
+        <img className='h-12 w-28 ' src={logo} alt="logo" />
         </div>
 
         <div>
           <p className="text-2xl tracking-tight text-primary font-bold flex items-center">
-            Total amount: <TbCurrencyTaka/>{total}
+            Total amount:  <div className='flex items-center justify-center ml-2'>
+            <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-5 mr-0.5 mt-1.5' alt="" />
+            <p className="text-center  mt-1 text-primary">{total}</p>  
+              </div> 
           </p>
 
           <p className="mt-1 text-sm text-gray-600">Thank's for shopping</p>
@@ -117,21 +120,31 @@ const Checkout = () => {
  <>
   <div>
  <div className='flex justify-between'>
-    <h1>{data?.product?.name}</h1><h1>{data?.productQuentity*data?.product?.price}</h1>
+    <h1>{data?.productQuentity*data?.product?.price}</h1>
+    <div className='flex items-center ml-1'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2.5 mr-0.5 mt-1' alt="" />
+            <p className="text-center text-gray-800 mt-1 "> {data?.productQuentity*data?.product?.price}</p>  
+              </div>
   </div>
  <h1>scale × {data?.productQuentity}</h1>
  </div>
  </>
  )}
   <div className='flex justify-between border-gray-300 border border-x-0 border-t-0 border-b-1 py-2'>
-  <h1 className='font-bold'>Subtotal</h1><h1 className='text-primary font-bold flex items-center'><TbCurrencyTaka/>{total}</h1>
+  <h1 className='font-bold'>Subtotal</h1><h1 className='text-primary font-bold flex items-center'><div className='flex items-center ml-1'>
+            <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-2.5 mr-0.5 mt-1' alt="" />
+            <p className="text-center  mt-1 text-primary "> {total}</p>  
+              </div></h1>
   </div>
   <div className='border border-x-0 border-t-0 border-b-1 border-gray-300 pb-2'>
     <h1 className='font-bold'>Shipping</h1>
     <p>Enter your address to view shipping options.</p>
   </div>
   <div className='flex justify-between border border-gray-300 border-x-0 border-t-0 border-b-1 font-bold py-2'>
-    <h1>Total</h1><h1 className='text-primary flex items-center'><TbCurrencyTaka/>{total+100}</h1>
+    <h1>Total</h1><h1 className='text-primary flex items-center'><div className='flex items-center ml-1'>
+            <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-2.5 mr-0.5 mt-1' alt="" />
+            <p className="text-center  mt-1 text-primary "> {total+100}</p>  
+              </div></h1>
   </div>
   
 </div>
@@ -221,26 +234,29 @@ const Checkout = () => {
 
 
 <div class=" items-center gap-8">
-    <label>
+    <label className='items-center flex'>
         <input
+        className=' radio-sm radio-primary'
           type="radio"
           value="cash on delivery"
           checked={selectedOption === "cash on delivery"}
           onChange={handleOptionChange}
         />
-        cash on delivery
+       <span className='ml-2 mb-1 text-xl'>cash on delivery</span>
       </label>
-      <br />
-      <label>
+
+      <label  className='items-center  flex'>
         <input
           type="radio"
+          className=' radio-sm radio-primary'
           value="bkash"
           checked={selectedOption === "bkash"}
           onChange={handleOptionChange}
         />
-       Bkash
+       
+       <span className='ml-2  text-xl'>Bkash</span>
       </label>
-      <br />
+ 
       {selectedOption === "cash on delivery" && (
 <>
 <div className='mt-2 text-primary border border-primary border-opacity-30 rounded-lg p-2'>
@@ -276,15 +292,12 @@ const Checkout = () => {
         />
       </div></>
       )}
-      
-  
-       
         </div>
         </div>
 <input type="checkbox" id="my-modal-3" className="modal-toggle" />
 <div className="modal">
   <div className="modal-box relative">
-    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2 btn-primary text-white">✕</label>
+    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2  btn-primary text-white">✕</label>
     <h3 className="text-lg font-bold text-primary">Terms and conditions</h3>
     <p className="py-4 text-justify ">This privacy policy has been compiled to better serve those who are concerned with how their ‘Personally Identifiable Information’ (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.</p>
   </div>

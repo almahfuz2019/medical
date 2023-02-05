@@ -107,7 +107,7 @@ function App() {
           <Route path='/home/contact' element={<ContactUs/>}/>
           
   <Route path='/single/:id' element={<ProductDetails/>}/>
-  <Route path='/single-order/:id' element={<SingleItemOrder/>}/>
+  <Route path='/single-order/:id' element={<RequireAuth><SingleItemOrder/></RequireAuth>}/>
   <Route path='/' element={<Home/>}>
           <Route path='trams-and-condition' element={<TramsAndCondition/>}/>
           <Route path='faq' element={<QNA/>}/>

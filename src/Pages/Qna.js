@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Footer from '../Shired/Footer';
 const Faq = () => {
      return (
           <div className='bg-white p-2 sm:p-5 pb-5'>
@@ -117,7 +118,6 @@ const Faq = () => {
     </p>
   </details>
 </div>
-
           </div>
      );
 };

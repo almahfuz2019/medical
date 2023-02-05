@@ -11,10 +11,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import "../css/ProductDetails.css";
 import { BsDash,  BsPlus} from "react-icons/bs";
+import { TbCurrencyTaka } from 'react-icons/tb';
+import Loading from './Loading';
+import { async } from '@firebase/util';
+import Footer from '../Shired/Footer';
 const ProductDetails = () => {
+  const [newProducts,setNewProducts]=useState([])
+  const[productLoading,setProductLoading]=useState(true);
   const [inputNumber, setInputNumber] = useState(1);
-
-
   const [user]=useAuthState(auth);
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -29,7 +33,6 @@ const ProductDetails = () => {
     const useremail=user.email;
     const product=note;
      const NotesData={productQuentity,useremail,product};
-   
      await axios.post("http://localhost:5000/note",NotesData)
      toast.success('Added Successfully', {
        position: "top-right",
@@ -45,21 +48,34 @@ const ProductDetails = () => {
      }
      const { id } = useParams();
      const [note, setNote] = useState({});
+     const fatchcategory=(a)=>{
+      setProductLoading(true)
+      const url= `http://localhost:5000/productsearchbycategorywithlimit?catagory=${a}`;
+    console.log(data);
+      console.log(url);
+      fetch(url)
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data);
+        setNewProducts(data)})
+        setProductLoading(false)
+    }
      useEffect(() => {
+      setProductLoading(true)
          const url = `http://localhost:5000/product/${id}`;
          fetch(url)
              .then(res => res.json())
              .then(data =>{
                setNote(data)
                setData(data)
+               setProductLoading(false)
+               fatchcategory(data.catagory);
+               console.log(data.catagory);
               });
-     }, []);
-
-   
-    //  const setValue = (product, note) => {
-    //   const stringifiedValue = JSON.stringify(note);
-    //   localStorage.setItem(product, stringifiedValue);
-    // }
+     }, [id]);
+    if(productLoading){
+      return <Loading/>
+    }
      return (
           <div className='bg-gray-100 p-2'>
                <a  href = "javascript:history.back()"><span className="ml-1 text-2xl  text-primary">
@@ -93,7 +109,7 @@ const ProductDetails = () => {
 
       <div className="sticky top-0 ">
         <strong
-          className="rounded-full border border-blue-600 bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-blue-600"
+          className="rounded-full border border-primary bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-primary"
         >
           Order Now
         </strong>
@@ -102,29 +118,35 @@ const ProductDetails = () => {
           <div className="">
           <div className="mb-4">
           <div className="flex items-end gap-2">
-            <span className="text-gray-800 text-xl md:text-2xl font-bold">${note.price}</span>
-            <span className="text-red-500 line-through mb-0.5">${note.previcePrice}</span>
+            <span className="text-gray-800 text-xl md:text-2xl font-bold"> <div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-4 mr-1 mt-0.5' alt="" />
+            <p className="text-center   ">{note.price}</p>  
+              </div> </span>
+            <span className="text-red-700 font-bold  line-through mb-0.5"> <div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/MscTYwN/1200px-Taka-Bengali-letter-svg-2.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center  ">{note.previcePrice}</p>  
+              </div> </span>
           </div>
 
-          <span className="text-gray-500 text-sm">incl. VAT plus shipping</span>
+          <span className="text-gray-500 text-sm">incl. VAT</span>
         </div>
             <h1 className="text-xl sm:text-2xl font-bold">
               {note.name}
             </h1>
             
 
-            <p className="mt-0.5 text-sm">Highest Rated Product</p>
-
+            <p className="mt-2 text-sm "><span className='bg-white p-1 rounded-l-none  rounded-lg font-semibold  px-1'>Brand Name: {note?.brand?<span className='text-primary font-bold '>{note.brand}</span>:<span className='text-primary font-bold '>Highest Rated Product</span>}</span></p>
+            {/* <p>Status: In Stock</p> */}
             <div className="mt-2 -ml-0.5 flex">
               <svg
                 className="w-5 h-5 text-yellow-400"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-              >
+                >
                 <path
                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
+                  />
               </svg>
 
               <svg
@@ -132,10 +154,10 @@ const ProductDetails = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-              >
+                >
                 <path
                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
+                  />
               </svg>
 
               <svg
@@ -143,10 +165,10 @@ const ProductDetails = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-              >
+                >
                 <path
                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
+                  />
               </svg>
 
               <svg
@@ -154,10 +176,10 @@ const ProductDetails = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-              >
+                >
                 <path
                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
+                  />
               </svg>
 
               <svg
@@ -165,12 +187,13 @@ const ProductDetails = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-              >
+                >
                 <path
                   d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                />
+                  />
               </svg>
             </div>
+                  <p className='font-semibold'>Category: {note.catagory}</p>
           </div>
         </div>
 
@@ -199,8 +222,7 @@ const ProductDetails = () => {
             </span>
           </div>
         </details>
-
-        <form onSubmit={handleAddtocart} className="mt-8">
+        <form onSubmit={handleAddtocart} className="">
         <div className="flex items-center text-gray-500 gap-2 my-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -209,6 +231,7 @@ const ProductDetails = () => {
 
           <span className="text-sm">2-4 day shipping</span>
         </div>
+  
         {
           note.status==="Unavailable"?
           <div className="flex mt-8 items-center ">
@@ -219,7 +242,7 @@ const ProductDetails = () => {
               <input
                 
                 min="1"
-                value={inputNumber}
+                value={inputNumber} type="number"
                 className="w-12 sm:w-20 rounded border-primary  text-center font-semibold text-primary  border-3 input-sm sm:input-md border-opacity-30 bg-white  "
                 name='productQuentity' required
               />
@@ -269,14 +292,54 @@ const ProductDetails = () => {
             }
             
       
+  
       </div>
     </div>
   </div>
 </section>
-      
+<> 
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 mb-5 '>
+          {newProducts?.map(product=>
+
+               <Link  to={`/single/${product._id}`}>
+               
+                       <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
+                      <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image1})`}}>
+                        <div className="flex justify-between">
+                         </div>
+                         <div className='flex items-center'>
+           <div>
+           <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
+           </div>
+            <div className='flex items-center mt-1'>
+            <p className=' '>
+            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none ml-1 flex items-center"><span className="line-through decoration-gray-400 flex items-center   text-gray-800 "><div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2 mr-0.5' alt="" />
+            <p className="text-center text-gray-800  ">{product.previcePrice}</p>  
+              </div> </span><span className=' ml-1 '> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
+            </p>
+            </div>
+       </div>    
+                      </div>  
+                           <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{product?.catagory}</p>
+                           <div className='text-center'>
+                           <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline hover:text-primary" >{(product.name).slice(0,20)}</Link>
+                           </div>    <p className="text-center text-gray-800 mt-1"><div className='flex items-center justify-center'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 ">{product.price}</p>  
+              </div> </p>    
+                           
+                           </div>
+                         
+                           </div>
+                           </Link>
+                       )}
+                       </div>
+                       </>
+                    
+                       
+                      
 <UserReview/>
-<>
-</>
           </div>
      );
 };

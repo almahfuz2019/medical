@@ -38,11 +38,13 @@ const AllProducts = () => {
     const url=`http://localhost:5000/productsearch?name=${search}`;
     console.log(url);
     if(search!==""){
+     
       fetch(url)
       .then(res=>res.json())
       .then(data=>{
         setProducts(data)
         setPageCount(Math.ceil(data.length/size))
+       
       })
     }else if(search===""){
       fetchProducts()
@@ -87,7 +89,6 @@ const AllProducts = () => {
           <option selected value="50">50</option>
         </select>  
 </div>
-Products :{products.length}
 <div className='mx-auto text-center mb-5'>
 <input type="text" placeholder="Search here by product name" className="input input-bordered input-accent w-full sm:max-w-sm input-sm sm:input-md max-w-xs border border-primary" onChange={handleSearch}/>
 </div>

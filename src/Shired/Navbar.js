@@ -55,7 +55,7 @@ const Navbar = () => {
 {navItems}
       </ul>
     </div>
-    <NavLink to="/" className="btn btn-ghost normal-case text-xl logo"><img className='h-12 w-28 ' src={logo} alt="" /></NavLink>
+    <NavLink to="/" className="btn btn-ghost normal-case text-xl logo"><img className='h-12 w-28 ' src={logo} alt="logo" /></NavLink>
     
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -77,7 +77,10 @@ const Navbar = () => {
       <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow border border-primary border-opacity-30">
         <div className="card-body ">
           <span className="font-bold text-lg">{usdata?.length} Items</span>
-          <span className="text-info-content flex items-center">Total Amount: <TbCurrencyTaka/>{total}</span>
+          <span className="text-info-content flex items-center">Total Amount: <div className='flex items-center justify-center ml-1'>
+            <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2.5 mr-0.5 mt-0.5' alt="" />
+            <p className="text-center text-gray-800 mt-1 ">{total}</p>  
+              </div>  </span>
           <div className="card-actions">
             <NavLink to="view-cart" className="btn btn-primary btn-block">View cart</NavLink>
           </div>

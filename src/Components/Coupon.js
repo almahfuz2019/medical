@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import ManageCopen from './ManageCopen';
+import Notfound from './Notfound';
 const Copen = () => {
+  const [error,setError]=useState("");
      const handleCoupon=(event)=>{
      event.preventDefault();
      const category=event.target.findClass.value;
@@ -33,6 +35,8 @@ const Copen = () => {
      }
      return (
           <>
+          {error?<><Notfound/></>: 
+          <>
      <div className='sm:mx-10 mx-2 mt-10'>
     <div className='border p-2 border-primary border-2 rounded-lg'>
     <h2 className='font-bold text-xl sm:text-3xl'>Create a Coupon</h2>
@@ -47,7 +51,9 @@ const Copen = () => {
           </div>
 <br />
 <ManageCopen/>
-          </>
+ </>
+ } 
+ </>
      );
 };
 export default Copen;

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Loading from '../../Components/Loading';
 import axios from 'axios'
 import auth from '../../firebase.init';
+import Notfound from '../../Components/Notfound';
 const UseUserSpacifiqData = () => {
      const [user]=useAuthState(auth);
      const[usdata,setUsdata]=useState([]);
@@ -21,6 +22,7 @@ const UseUserSpacifiqData = () => {
       useEffect(()=>{
         fetchCarts() 
      },[user,usdata])
+
      const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
@@ -43,7 +45,7 @@ const UseUserSpacifiqData = () => {
      return <Loading/>
    }
    if(error){
-     return <p>{error}</p>
+     return <Notfound/>
    }
    let total=0;
    let subTotal=0;

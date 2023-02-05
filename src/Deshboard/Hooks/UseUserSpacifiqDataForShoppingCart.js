@@ -30,6 +30,7 @@ const UseUserSpacifiqData = () => {
                })
           }
        }catch(err){
+
       }
    }
    const { isLoading:productLoading, error, data:products } = useQuery( 'repoaData', () =>

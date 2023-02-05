@@ -26,7 +26,7 @@ const OrderPDF = () => {
                <button className='cursor-pointer  '><FaFileDownload/></button>} content={()=>ref.current}/>
               </div>
                <div ref={ref}>
-               <img className='h-12 w-28 text-center mx-auto my-4' src={logo} alt="" />
+               <img className='h-12 w-28 text-center mx-auto my-4' src={logo} alt="logo" />
                <div class="grid grid-cols-2 gap-4 px-10  border-t border-black mb-10">
   <div>
     <h1 className='text-2xl font-bold'>Invoice</h1>
@@ -64,10 +64,15 @@ const OrderPDF = () => {
 <tr className=' mb-2 '>
       <td className=' pl-5 w-full '>{x.product.name}</td>
       <td></td>
-      <td>${x?.product?.price}</td>
-      <td>${x?.product?.price}</td>
+      <td><div className='flex items-center ml-1 justify-center'>
+            <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-2.5 mr-0.5 mt-1' alt="" />
+            <p className="text-center  mt-1 text-primary "> {x?.product?.price} </p>  
+              </div></td>
       <td>{x.productQuentity }</td>
-      <td>${x.productQuentity*x.product.price }</td>
+      <td><div className='flex items-center ml-1 justify-center'>
+            <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-2.5 mr-0.5 mt-1' alt="" />
+            <p className="text-center  mt-1 text-primary "> {x.productQuentity*x.product.price } </p>  
+              </div></td>
     </tr>
 )
 }
