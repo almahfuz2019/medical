@@ -120,7 +120,7 @@ navigate("/deshboard")
  <>
   <div>
  <div className='flex justify-between'>
-    <h1>{data?.productQuentity*data?.product?.price}</h1>
+    <h1>{data?.product?.name}</h1>
     <div className='flex items-center ml-1'>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2.5 mr-0.5 mt-1' alt="" />
             <p className="text-center text-gray-800 mt-1 "> {data?.productQuentity*data?.product?.price}</p>  
@@ -133,7 +133,7 @@ navigate("/deshboard")
   <div className='flex justify-between border-gray-300 border border-x-0 border-t-0 border-b-1 py-2'>
   <h1 className='font-bold'>Subtotal</h1><h1 className='text-primary font-bold flex items-center'><div className='flex items-center ml-1'>
             <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-2.5 mr-0.5 mt-1' alt="" />
-            <p className="text-center  mt-1 text-primary "> {total}</p>  
+            <p className="text-center  mt-1 text-primary "> {total-100}</p>  
               </div></h1>
   </div>
   <div className='border border-x-0 border-t-0 border-b-1 border-gray-300 pb-2'>
@@ -143,7 +143,7 @@ navigate("/deshboard")
   <div className='flex justify-between border border-gray-300 border-x-0 border-t-0 border-b-1 font-bold py-2'>
     <h1>Total</h1><h1 className='text-primary flex items-center'><div className='flex items-center ml-1'>
             <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-2.5 mr-0.5 mt-1' alt="" />
-            <p className="text-center  mt-1 text-primary "> {total+100}</p>  
+            <p className="text-center  mt-1 text-primary "> {total}</p>  
               </div></h1>
   </div>
   

@@ -40,12 +40,14 @@ import RequireWorker from './Authentication/RequireWorker';
 import OrderStatusUpdate from './Deshboard/Components/OrderStatusUpdate';
 import UserContactinfo from './Deshboard/Components/UserContactinfo';
 import SingleItemOrder from './Components/SingleItemOrder';
+import BottomNavbar from './Components/BottomNavbar';
+import NabbarForMabail from './Shired/NabbarForMabail';
 function App() {
       const [user]=useAuthState(auth);
       const [admin]=UseAdmin(user);
   return (
    <div className='md:px-6 bg-gray-100'>
-   <Navbar/>
+   <Navbar/><NabbarForMabail/>
 <Routes>
   <Route path='/login' element={<Login/>}/>
   <Route path='/forget-password' element={<ForgetPassword/>}/>
@@ -109,15 +111,17 @@ function App() {
   <Route path='/single/:id' element={<ProductDetails/>}/>
   <Route path='/single-order/:id' element={<RequireAuth><SingleItemOrder/></RequireAuth>}/>
   <Route path='/' element={<Home/>}>
-          <Route path='trams-and-condition' element={<TramsAndCondition/>}/>
-          <Route path='faq' element={<QNA/>}/>
-          <Route path='about' element={<AboutUs/>}/>
-          <Route path='contact' element={<ContactUs/>}/>
+          <Route path='/trams-and-condition' element={<TramsAndCondition/>}/>
+          <Route path='/faq' element={<QNA/>}/>
+          <Route path='/about' element={<AboutUs/>}/>
+          <Route path='/contact' element={<ContactUs/>}/>
         </Route>
 <Route path='*' element={<Notfound/>}/>
 </Routes>
 <Footer/>
+<BottomNavbar/>
 <ToastContainer />
+
    </div>
   );
 }

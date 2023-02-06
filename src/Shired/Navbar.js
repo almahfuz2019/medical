@@ -43,7 +43,7 @@ const Navbar = () => {
      
      </>
      return (
-          <div className='sticky top-0 z-20'>
+          <div className='sticky top-0 z-20 hidden lg:block'>
           <h1 className='bg-primary p-1 font-semibold text-center text-white sm:text-xl'>For Any Query, Please Call: 01710-041226</h1>
        <div className="navbar bg-white border-b-4 border-primary">
   <div className="navbar-start ">
@@ -58,7 +58,7 @@ const Navbar = () => {
     <NavLink to="/" className="btn btn-ghost normal-case text-xl logo"><img className='h-12 w-28 ' src={logo} alt="logo" /></NavLink>
     
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-center hidden md:flex">
     <ul className="menu menu-horizontal px-1">
     {navItems}
     {user?<li></li>:<li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'> <NavLink to="/login">Login</NavLink></li>}

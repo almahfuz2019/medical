@@ -1,6 +1,7 @@
 import axios, { all } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BottomNavbar from '../Components/BottomNavbar';
 import Discount from '../Components/Discount';
 import HomePageSkeletion from '../Components/HomePageSkeletion';
 import NewProducts from '../Components/NewProducts';
@@ -147,73 +148,73 @@ const handleChangeuUnlimited=(e)=> {
           <div className='mx-1 z-0'>
                 <Discount/>
  
-            <div    class="lg:block hidden overflow-y-auto whitespace-nowrap scroll-hidden ">
+            <div    class=" overflow-y-auto whitespace-nowrap  ">
             {/* <p className='text-primary  mt-1'>Categorys</p> */}
           
-  <div   class=" grid  grid-cols-10 px-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 mt-4 gap-4 bg-white py-2 ">
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-4 gap-2 md:gap-4 bg-white  ">
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={HealthCare}>
-          <img  className="rounded"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Health Care</button>
+           <p className='text-center  font-normal hidden lg:block'>Health Care</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={BabyCare}>
-          <img  className="rounded"  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Baby Care</button>
+           <p className='text-center  font-normal hidden lg:block'>Baby Care</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={BeautyCare}>
-          <img  className="rounded"  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Beauty Care</button>
+           <p className='text-center  font-normal hidden lg:block'>Beauty Care</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={FirstAid}>
-          <img  className="rounded"  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>First Aid</button>
+           <p className='text-center  font-normal hidden lg:block'>First Aid</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Dental}>
-          <img  className="rounded"  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Dental</button>
+           <p className='text-center  font-normal hidden lg:block'>Dental</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Diagnostic}>
-          <img  className="rounded"  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Diagnostic</button>
+           <p className='text-center  font-normal hidden lg:block'>Diagnostic</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Laboratory}>
-          <img  className="rounded"  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Laboratory</button>
+           <p className='text-center  font-normal hidden lg:block'>Laboratory</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Surgical}>
-          <img  className="rounded"  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Surgical</button>
+           <p className='text-center  font-normal hidden lg:block'>Surgical</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Hospital}>
-          <img  className="rounded"  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Hospital</button>
+           <p className='text-center  font-normal hidden lg:block'>Hospital</p>
   </button>
-  <button onClick={handleClickScroll} className='cursor-pointer btn p-2 w-full h-full  hover:btn-primary border-opacity-30 border border-primary'>
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg hidden sm:block'>
         <button onClick={HealthCare}>
-          <img  className="rounded"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
         </button>
-           <button className='text-center mt-1 underline font-normal'>Health Care</button>
+           <p className='text-center  font-normal hidden lg:block'>Health Care</p>
   </button>
   </div>
 </div>
-<div className='hidden md:block mt-4'>
+<div className='hidden lg:block mt-4' id="section-1">
   
             <NewProducts/>
   </div>
@@ -353,7 +354,7 @@ const handleChangeuUnlimited=(e)=> {
   </div>
 </div>
 
-<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0   bg-white 
+<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-flow-col-6 2xl:grid-flow-col-8  gap-2 sm:gap-3 mx-5-2 sm:mx-0   bg-white 
 p-2'>
 
  {
@@ -401,11 +402,11 @@ p-2'>
           </div>
        <div className='flex items-center'>
            <div>
-           <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
+           <p><span className="uppercase text-xs bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
            </div>
             <div className='flex items-center mt-1'>
             <p >
-            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none ml-1 flex items-center">
+            <span className="uppercase text-xs  bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none ml-1 flex items-center">
               <span className="line-through decoration-gray-400    text-gray-800 ">
               <div className='flex items-center '>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2 mr-0.5 ' alt="" />
@@ -446,7 +447,9 @@ p-2'>
      
     </div>
    
-    } </div>
+    } 
+  
+    </div>
      );
 };
 export default Home;

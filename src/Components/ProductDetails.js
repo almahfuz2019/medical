@@ -135,7 +135,7 @@ const ProductDetails = () => {
             </h1>
             
 
-            <p className="mt-2 text-sm "><span className='bg-white p-1 rounded-l-none  rounded-lg font-semibold  px-1'>Brand Name: {note?.brand?<span className='text-primary font-bold '>{note.brand}</span>:<span className='text-primary font-bold '>Highest Rated Product</span>}</span></p>
+            <p className="mt-2 text-sm "><span className='bg-white p-1 rounded-l-none  rounded-lg font-semibold  px-1'>Brand Name: {note?.brand?<span className='text-primary font-bold '>{note.brand}</span>:<span className='text-primary font-bold'>Non Brand</span>}</span></p>
             {/* <p>Status: In Stock</p> */}
             <div className="mt-2 -ml-0.5 flex">
               <svg
@@ -298,7 +298,8 @@ const ProductDetails = () => {
   </div>
 </section>
 <> 
-          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 mb-5 '>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-flow-col-6 2xl:grid-flow-col-8  gap-2 sm:gap-3 mx-5-2 sm:mx-0   bg-white 
+p-2'>
           {newProducts?.map(product=>
 
                <Link  to={`/single/${product._id}`}>

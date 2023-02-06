@@ -102,7 +102,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message}</p>
     </div>
           {signInErrorMessage}
             <div className="mt-8">
-            <input className="bg-primary text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600" type="submit" value="Login"/>
+            <input className="bg-primary text-white font-bold py-2 px-4 w-full rounded cursor-pointer" type="submit" value="Login"/>
             </div>
             </form>
             <div className="mt-4 flex items-center justify-between">

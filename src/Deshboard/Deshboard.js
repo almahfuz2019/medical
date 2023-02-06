@@ -39,31 +39,31 @@ const Deshboard = () => {
         .then(res=>res.json())
         .then(data=>setCoponecount(data))
 
-    },[])
+    },[coponecount])
     useEffect(()=>{
         fetch("http://localhost:5000/userscontactinfocount")
         .then(res=>res.json())
         .then(data=>setContactcount(data))
 
-    },[])
+    },[contactcount])
     useEffect(()=>{
         fetch("http://localhost:5000/orderscount")
         .then(res=>res.json())
         .then(data=>setOrders(data))
 
-    },[])
+    },[orders])
     useEffect(()=>{
         fetch("http://localhost:5000/allproductscount")
         .then(res=>res.json())
         .then(data=>setProducts(data))
 
-    },[])
+    },[products])
     useEffect(()=>{
         fetch("http://localhost:5000/catagoycount")
         .then(res=>res.json())
         .then(data=>setCatagory(data))
 
-    },[])
+    },[catagory])
    
      return (
           <>

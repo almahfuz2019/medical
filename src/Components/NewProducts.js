@@ -19,7 +19,7 @@ const NewProducts = () => {
      }
      return (
           <>
-          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 bg-white p-2'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 mx-5-2 sm:mx-0 bg-white p-2'>
           {newProducts?.map(product=>
 
                <Link  to={`/single/${product._id}`}>

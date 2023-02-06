@@ -34,7 +34,7 @@ const ForgetPassword = () => {
               </div>
              {forgotPasswordErrorMessage}
                <div className="mt-8 mx-auto text-center w-full">
-               <input type="submit" value="Submit" className='bg-primary text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600'
+               <input type="submit" value="Submit" className='bg-primary text-white font-bold py-2 px-4 w-full rounded cursor-pointer'
            onClick={async () => {
              const success = await sendPasswordResetEmail(
                email
