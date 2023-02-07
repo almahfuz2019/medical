@@ -241,7 +241,7 @@ const ProductDetails = () => {
      
               <input
                 
-                min="1"
+                min={1}
                 value={inputNumber} type="number"
                 className="w-12 sm:w-20 rounded border-primary  text-center font-semibold text-primary  border-3 input-sm sm:input-md border-opacity-30 bg-white  "
                 name='productQuentity' required
@@ -262,7 +262,9 @@ const ProductDetails = () => {
           <div className="flex mt-8 items-center ">
             <div className='flex items-center border bg-white'>
               <label for="quantity" className="sr-only">Qty</label>
-              <Link   className='md:text-4xl text-primary text-2xl bg-white ' onClick={() => setInputNumber(inputNumber - 1)}><BsDash/></Link>
+              <Link   className='md:text-4xl text-primary text-2xl bg-white ' onClick={() =>{
+                inputNumber<=1?  setInputNumber(1): setInputNumber(inputNumber - 1)
+              }}><BsDash/></Link>
      
               <input
                 
@@ -305,16 +307,16 @@ p-2'>
                <Link  to={`/single/${product._id}`}>
                
                        <div className=" bg-white    shadow-lg   border border-primary rounded border-opacity-30">
-                      <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image1})`}}>
+                      <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-1 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image1})`}}>
                         <div className="flex justify-between">
                          </div>
                          <div className='flex items-center'>
            <div>
-           <p><span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
+           <p><span className="uppercase text-xs bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none px-0.5"> {product.status} </span> </p>
            </div>
             <div className='flex items-center mt-1'>
             <p className=' '>
-            <span className="uppercase text-xs  bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none ml-1 flex items-center"><span className="line-through decoration-gray-400 flex items-center   text-gray-800 "><div className='flex items-center justify-center'>
+            <span className="uppercase text-xs  bg-green-50  border-green-500 border rounded px-0.5 text-green-700 font-medium select-none ml-1 flex items-center"><span className="line-through decoration-gray-400 flex items-center   text-gray-800 "><div className='flex items-center justify-center'>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2 mr-0.5' alt="" />
             <p className="text-center text-gray-800  ">{product.previcePrice}</p>  
               </div> </span><span className=' ml-1 '> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
@@ -324,7 +326,7 @@ p-2'>
                       </div>  
                            <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{product?.catagory}</p>
                            <div className='text-center'>
-                           <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline hover:text-primary" >{(product.name).slice(0,20)}</Link>
+                           <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline text-primary" >{(product.name).slice(0,20)}</Link>
                            </div>    <p className="text-center text-gray-800 mt-1"><div className='flex items-center justify-center'>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
             <p className="text-center text-gray-800 mt-1 ">{product.price}</p>  

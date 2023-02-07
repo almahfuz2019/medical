@@ -29,7 +29,6 @@ const AllProducts = () => {
           if(response.data.deletedCount>0){
                const deletedremaining=products.filter(note=>note._id !==id);
                setProducts(deletedremaining)
-              //  setProductsCount()
           }
      })
 }

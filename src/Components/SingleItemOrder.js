@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { TbCurrencyTaka } from 'react-icons/tb';
-import { Navigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 import logo from "../Images/logo.png"
 import Loading from './Loading';
 const SingleItemOrder = () => {
+  const navigate=useNavigate();
      const time= new Date().toLocaleString();
      const [selectedOption, setSelectedOption] = useState("");
      const { id } = useParams();
@@ -53,7 +53,7 @@ const SingleItemOrder = () => {
           let status="Wating";
           const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,TotalPrice,status,bkishNumber,userData};
         await axios.post("http://localhost:5000/itemorder",checkOut)
-        toast.success('Update Successfully', {
+        toast.success('Submitted Successfully', {
           position: "top-right",
           autoClose: 1000,
           hideProgressBar: false,
@@ -64,7 +64,8 @@ const SingleItemOrder = () => {
           theme: "colored",
           });
      //     event.target.reset();
-      Navigate("/deshboard")
+      
+navigate("/deshboard")
           }
         
      return (
@@ -103,7 +104,7 @@ const SingleItemOrder = () => {
          
           <div className="avatar">
             <div className="w-12 ">
-              <img className=''  src={order.image1} />
+              <img alt='orderImage'  src={order.image1} />
             </div>
           </div>
           <div className="avatar placeholder">

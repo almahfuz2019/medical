@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Login from './Authentication/Login';
 import Registration from './Authentication/Registration';
@@ -42,14 +42,24 @@ import UserContactinfo from './Deshboard/Components/UserContactinfo';
 import SingleItemOrder from './Components/SingleItemOrder';
 import BottomNavbar from './Components/BottomNavbar';
 import NabbarForMabail from './Shired/NabbarForMabail';
+import { useEffect } from 'react';
 function App() {
+    const ScrollToTop = () => {
+        const { pathname } = useLocation();
+        console.log(pathname)
+        useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+        return null;
+      }
       const [user]=useAuthState(auth);
       const [admin]=UseAdmin(user);
   return (
    <div className='md:px-6 bg-gray-100'>
    <Navbar/><NabbarForMabail/>
-<Routes>
-  <Route path='/login' element={<Login/>}/>
+    <ScrollToTop/>
+<Routes> 
+    <Route path='/login' element={<Login/>}/>
   <Route path='/forget-password' element={<ForgetPassword/>}/>
   <Route path='update-product/:id' element={<RequireAuth>
       <RequireAdmin><UpdateProduct/></RequireAdmin></RequireAuth>}/>
@@ -117,6 +127,7 @@ function App() {
           <Route path='/contact' element={<ContactUs/>}/>
         </Route>
 <Route path='*' element={<Notfound/>}/>
+
 </Routes>
 <Footer/>
 <BottomNavbar/>

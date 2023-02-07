@@ -151,61 +151,81 @@ const handleChangeuUnlimited=(e)=> {
             <div    class=" overflow-y-auto whitespace-nowrap  ">
             {/* <p className='text-primary  mt-1'>Categorys</p> */}
           
-  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-4 gap-2 md:gap-4 bg-white  ">
-  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white">
+  <div className="tooltip tooltip-primary  tooltip-right" data-tip="Health Care">
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Health Care</p>
   </button>
+</div>
+<div className="tooltip tooltip-primary " data-tip="Baby Care">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={BabyCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Baby Care</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary " data-tip="Beauty Care">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={BeautyCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Beauty Care</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary " data-tip="First Aid">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={FirstAid}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>First Aid</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary " data-tip="Dental">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Dental}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Dental</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary " data-tip="Diagnostic">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Diagnostic}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Diagnostic</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary " data-tip="Laboratory">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Laboratory}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Laboratory</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary " data-tip="Surgical">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Surgical}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Surgical</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary  tooltip-left" data-tip="Hospital">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Hospital}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Hospital</p>
   </button>
+  </div>
+  <div className="tooltip tooltip-primary  tooltip-left" data-tip="Health Care">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg hidden sm:block'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
@@ -213,12 +233,13 @@ const handleChangeuUnlimited=(e)=> {
            <p className='text-center  font-normal hidden lg:block'>Health Care</p>
   </button>
   </div>
+  </div>
 </div>
 <div className='hidden lg:block mt-4' id="section-1">
   
             <NewProducts/>
   </div>
-            <div  className="divider  divide-current mt-5 mb-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
+            <div  className="divider  divide-current mt-2 mb-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
             
          
             <div className="text-center  mt-5 sm:mt-7   ">
@@ -397,16 +418,16 @@ p-2'>
 <Link to={`/single/${product._id}`}>
 
         <div className=" bg-white    shadow-md   border border-primary rounded border-opacity-30">
-       <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-2 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none "    style={{backgroundImage: `url(${product.image1})`}}>
+       <div className="h-40 sm:h-40 w-full bg-gray-900 flex flex-col  justify-between p-1 sm:pb-1 sm:pl-1 bg-cover bg-center border-b-2 border-primary rounded rounded-b-none" style={{backgroundImage: `url(${product.image1})`}}>
          <div className="flex justify-between">
           </div>
        <div className='flex items-center'>
            <div>
-           <p><span className="uppercase text-xs bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none"> {product.status} </span> </p>
+           <p><span className="uppercase text-xs bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none px-0.5"> {product.status} </span> </p>
            </div>
             <div className='flex items-center mt-1'>
             <p >
-            <span className="uppercase text-xs  bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none ml-1 flex items-center">
+            <span className="uppercase text-xs  bg-green-50  border-green-500 border rounded px-0.5 text-green-700 font-medium select-none ml-1 flex items-center">
               <span className="line-through decoration-gray-400    text-gray-800 ">
               <div className='flex items-center '>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2 mr-0.5 ' alt="" />
@@ -418,7 +439,7 @@ p-2'>
        </div>  
             <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{product?.catagory}</p>
             <div className='text-center'>
-            <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline hover:text-primary" >{(product.name).slice(0,20)}</Link>
+            <Link to={`/single/${product._id}`} className="text-center mt-1 text-sm  font-bold text-primary hover:underline" >{(product.name).slice(0,20)}</Link>
             </div>    <div className='flex items-center justify-center'>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
             <p className="text-center text-gray-800  ">{product.price}</p>  

@@ -11,7 +11,7 @@ const ContactUs = () => {
     const dateAndTime=time;
     const productData={email,message,dateAndTime};
     await axios.post("http://localhost:5000/contact",productData)
-    toast.success('Update Successfully', {
+    toast.success('Submitted Successfully', {
       position: "top-right",
       autoClose: 1000,
       hideProgressBar: false,

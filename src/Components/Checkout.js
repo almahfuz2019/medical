@@ -7,7 +7,6 @@ import auth from '../firebase.init';
 import Loading from './Loading';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { TbCurrencyTaka } from 'react-icons/tb';
 import { useState } from 'react';
 const Checkout = () => {
   const navigate=useNavigate();
@@ -44,7 +43,7 @@ const Checkout = () => {
     let status="Wating";
     const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
   await axios.post("http://localhost:5000/itemorder",checkOut)
-  toast.success('Update Successfully', {
+  toast.success('Submitted Successfully', {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: false,
@@ -57,10 +56,8 @@ const Checkout = () => {
    event.target.reset();
 navigate("/deshboard")
     }
-
      return (
           <div>
-               
 <section className='mt-12'>
   <h1 className="text-center font-bold text-3xl sm:text-4xl mb-5">Checkout</h1>
   <div className='mx-auto text-center my-2'>
@@ -81,7 +78,7 @@ navigate("/deshboard")
           <p className="text-2xl tracking-tight text-primary font-bold flex items-center">
             Total amount:  <div className='flex items-center justify-center ml-2'>
             <img src="https://i.ibb.co/RS3Xm74/1200px-Taka-Bengali-letter-svg-1.png" className='h-5 mr-0.5 mt-1.5' alt="" />
-            <p className="text-center  mt-1 text-primary">{total}</p>  
+            <p className="text-center  mt-1 text-primary">{total-100}</p>  
               </div> 
           </p>
 

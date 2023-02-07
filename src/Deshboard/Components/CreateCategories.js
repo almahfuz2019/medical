@@ -8,7 +8,7 @@ const CreateCategories = () => {
      const catagory=event.target.findClass.value;
      const catagoryData={catagory};
       await axios.post("http://localhost:5000/catagory",catagoryData)
-      toast.success('Update Successfully', {
+      toast.success('Addedd Successfully', {
         position: "top-right",
         autoClose: 1000,
         hideProgressBar: false,
