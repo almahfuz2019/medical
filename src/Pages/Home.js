@@ -1,21 +1,18 @@
 import axios, { all } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import BottomNavbar from '../Components/BottomNavbar';
 import Discount from '../Components/Discount';
 import HomePageSkeletion from '../Components/HomePageSkeletion';
 import NewProducts from '../Components/NewProducts';
 import Notfound from '../Components/Notfound';
 import TrustedCompanys from '../Components/TrustedCompanys';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
-import Footer from '../Shired/Footer';
 const Home = () => {
   const {catagorys}=UseCatagory();
   const [search,setSearch]=useState("")
   const [category,setCategory]=useState("")
       const [error,setError]=useState("");
   const [productCount,setProductCount]=useState(0)
-  const[allProducts,setAllProducts]=useState([]);
   const[page,setPage]=useState(0);
 const[size,setSize]=useState(30);
   const[pageCount,setPageCount]=useState(0);
@@ -242,8 +239,8 @@ const handleChangeuUnlimited=(e)=> {
             <div  className="divider  divide-current mt-2 mb-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
             
          
-            <div className="text-center  mt-5 sm:mt-7   ">
-              <div className="flex justify-center mx-2 ">
+            <div className="text-center  mt-5 sm:mt-7   sticky">
+              <div className="flex justify-center mx-2  ">
               <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here by product name"
       // value={search}
            onChange={handleSearch}/>

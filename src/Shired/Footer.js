@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { RiWhatsappFill } from "react-icons/ri";
 import { FaPhoneSquareAlt } from "react-icons/fa";
 import logo from '../Images/logo.png';
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer aria-label="Site Footer" className="bg-white mt-6">
@@ -23,7 +24,7 @@ const Footer = () => {
         <ul className="mt-4 flex justify-center gap-6 sm:justify-start md:gap-8">
           <li>
             <a
-              href="/"
+              href="https://en-gb.facebook.com/people/Chaaya-Surgical/100064873664293/"
               rel="noreferrer"
               target="_blank"
               className="text-primary transition text-2xl"
@@ -33,7 +34,7 @@ const Footer = () => {
 
           <li>
             <a
-              href="/"
+              href="mailto:almahfuz2019@gmail.com"
               rel="noreferrer"
               target="_blank"
               className="text-primary transition text-2xl"
@@ -43,24 +44,24 @@ const Footer = () => {
 
           <li>
             <a
-              href="/"
+              href="tel:+8801710-041226"
               rel="noreferrer"
               target="_blank"
               className="text-primary transition text-2xl"
-            >
-              <RiWhatsappFill/>
+            ><RiWhatsappFill/>
+              
             </a>
           </li>
 
           <li>
             <a
-              href="/"
+           href="tel:+8801710-041226"
               rel="noreferrer"
               target="_blank"
               className="text-primary transition text-2xl"
-            >
-              <FaPhoneSquareAlt/>
-            </a>
+            ><FaPhoneSquareAlt/></a>
+             
+      
           </li>
 
           
@@ -76,12 +77,12 @@ const Footer = () => {
           <nav aria-label="Footer About Nav" className="mt-4">
             <ul className="space-y-4 text-sm">
               <li>
-                <a
+                <Link
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  to="/about"
                 >
                   Company History
-                </a>
+                </Link>
               </li>
 
               
@@ -95,39 +96,39 @@ const Footer = () => {
           <nav aria-label="Footer Services Nav" className="mt-4">
             <ul className="space-y-4 text-sm">
               <li>
-                <a
+                <Link
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  to="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  to="/trams-and-condition"
                 >
                   Terms and Condition
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  to="/qna"
                 >
                   QNA
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  to="/about"
                 >
                   About US
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -139,18 +140,18 @@ const Footer = () => {
           <nav aria-label="Footer Helpful Nav" className="mt-4">
             <ul className="space-y-4 text-sm">
               <li>
-                <a
+                <Link
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  to="/qna"
                 >
                   QNA
-                </a>
+                </Link>
               </li>
 
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="#"
                 >
                   Support
                 </a>
@@ -163,8 +164,8 @@ const Footer = () => {
                 >
                   <span
                     className="text-gray-700 transition group-hover:text-gray-700/75"
-                  >
-                    Whatsapp
+                  ><a href="tel:+8801710-041226">Whatsapp</a>
+                   
                   </span>
 
                   <span className="relative -mr-2 flex h-4 w-4">
@@ -204,8 +205,8 @@ const Footer = () => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-
-                <span className="text-gray-700">almahfuz2019@gmail.com</span>
+                <a href="mailto:almahfuz2019@gmail.com">almahfuz2019@gmail.com</a>
+                
               </a>
             </li>
 
@@ -228,8 +229,7 @@ const Footer = () => {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-
-                <span className="text-gray-700">01710-041226</span>
+                <a href="tel:+8801710-041226">+8801710-041226</a>
               </a>
             </li>
 
@@ -257,7 +257,7 @@ const Footer = () => {
               </svg>
 
               <address className="-mt-0.5 not-italic text-gray-700">
-                Sreemangal Road, Moulvibazar.
+                <a href="https://goo.gl/maps/B19J6nTRjdhCNNZN9"> Sreemangal Road, Moulvibazar.</a>
               </address>
             </li>
           </ul>
@@ -270,12 +270,8 @@ const Footer = () => {
         <p className="text-sm text-gray-500">
           <span className="block sm:inline">All rights reserved.</span>
 
-          <a
-            className="inline-block text-teal-600 underline transition hover:text-teal-600/75"
-            href="/"
-          >
-            Terms & Conditions
-          </a>
+          <Link className="inline-block text-teal-600 underline transition hover:text-teal-600/75"
+            to="/trams-and-condition">Terms & Conditions</Link>
 
           <span>&middot;</span>
 

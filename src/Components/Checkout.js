@@ -42,7 +42,13 @@ const Checkout = () => {
     const dateAndTime=time;
     let status="Wating";
     const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
-  await axios.post("http://localhost:5000/itemorder",checkOut)
+  await axios.post("http://localhost:5000/itemorder",checkOut,{
+    headers: {
+      'content-type': 'application/json',
+        authorization:`Bearer ${localStorage.getItem('accessToken')}`
+   
+  }
+  })
   toast.success('Submitted Successfully', {
     position: "top-right",
     autoClose: 1000,
@@ -84,10 +90,8 @@ navigate("/deshboard")
 
           <p className="mt-1 text-sm text-gray-600">Thank's for shopping</p>
         </div>
-
         <div>
           <div className="flow-root">
-       
           <div className="avatar-group -space-x-6 bg-primary p-2">
           {usdata?.map(data=>
           <div className="avatar">
@@ -95,9 +99,7 @@ navigate("/deshboard")
               <img className=''  src={data?.product?.image1} />
             </div>
           </div>
-        
         )}
-
           <div className="avatar placeholder">
             <div className="w-12 bg-neutral-focus text-neutral-content">
               <span className='text-4xl mb-2 font-bold'>+</span>

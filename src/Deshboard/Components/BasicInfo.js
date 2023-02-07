@@ -11,7 +11,14 @@ const BasicInfo = () => {
   const time= new Date().toLocaleString();
   // get all orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/allorders`)
+    fetch(`http://localhost:5000/allorders`,{
+      headers: {
+        'content-type': 'application/json',
+          authorization:`Bearer ${localStorage.getItem('accessToken')}`
+     
+    }
+    })
+    
     .then(res=>res.json())
     .then(data=>setAllOrdersitem(data))
   },[])

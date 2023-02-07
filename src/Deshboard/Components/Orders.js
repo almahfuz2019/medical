@@ -19,7 +19,13 @@ const[size,setSize]=useState(50);
     try{
       // productsorders
       setOrderLoading(true)
-      const response=await axios.get(`http://localhost:5000/productsorders?page=${page}&size=${size}`)
+      const response=await axios.get(`http://localhost:5000/productsorders?page=${page}&size=${size}`,{
+        headers: {
+          'content-type': 'application/json',
+            authorization:`Bearer ${localStorage.getItem('accessToken')}`
+       
+      }
+      })
       setPageCount(Math.ceil(response.data.count/size))
           setOrders(response.data.products)
         setOrderLoading(false)

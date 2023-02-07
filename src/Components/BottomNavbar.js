@@ -70,7 +70,7 @@ const BottomNavbar = () => {
     </div>}
          <span class="tab tab-kategori block text-xs ">Cart</span>
           </Link>
-          <Link to="/home/contact" class="w-full focus:text-primary hover:text-primary justify-center inline-block text-center  ">
+          <Link to="/contact" class="w-full focus:text-primary hover:text-primary justify-center inline-block text-center  ">
                          
 
         <div className="mx-auto flex justify-center">

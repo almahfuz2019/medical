@@ -8,10 +8,10 @@ const NabbarForMabail = () => {
      const [user] = useAuthState(auth);
      let navItems=<>
      <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100 '><NavLink  to="/">Home</NavLink></li>
-     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/trams-and-condition">Terms and Condition</NavLink></li>
-     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/faq">QNA</NavLink></li>
-     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/about">About US</NavLink></li>
-     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/home/contact">Contact US</NavLink></li>
+     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/trams-and-condition">Terms and Condition</NavLink></li>
+     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/qna">QNA</NavLink></li>
+     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/about">About US</NavLink></li>
+     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/contact">Contact US</NavLink></li>
      </>
      return (
           <div className='sticky top-0 z-20 block lg:hidden'>

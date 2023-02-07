@@ -6,9 +6,11 @@ const Users = () => {
      const { isLoading, error, data:usersInfo,refetch } = useQuery( 'users', () =>
      fetch('http://localhost:5000/users',{
           method:"GET",
-          headers:{
-               authorization:`Bearer ${localStorage.getItem('accessToken')}`
-          }
+          headers: {
+            'content-type': 'application/json',
+              authorization:`Bearer ${localStorage.getItem('accessToken')}`
+         
+        }
      }).then(res =>
       res.json()))
   if(isLoading){

@@ -1,8 +1,6 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { toast } from "react-toastify";
  const UseProducts = () => {
 const[cart,setCart]=useState([]);
 const [products,setProducts]=useState([]);
@@ -14,12 +12,6 @@ useEffect(()=>{
      .then(data=>setProducts(data))
      setProductLoading(false)
 },[])
-
-//      const { isLoading:productLoading, error, data:products ,refetch} = useQuery( 'repoDatsa', () =>
-//       fetch('http://localhost:5000/products').then(res =>
-//        res.json()
-//  )
-//    )
    const handleProductDelete=async(id)=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
@@ -31,16 +23,11 @@ useEffect(()=>{
           }
      })
 }
-
 }
-
 const handleAddToCart=(product)=>{
      const newCart=[...cart,product];
      setCart(newCart)
    }
-
-  
   return {products,productLoading,handleProductDelete,handleAddToCart,cart};
 };
-
 export default UseProducts;

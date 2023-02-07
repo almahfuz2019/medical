@@ -44,6 +44,8 @@ import BottomNavbar from './Components/BottomNavbar';
 import NabbarForMabail from './Shired/NabbarForMabail';
 import { useEffect } from 'react';
 function App() {
+    const [user]=useAuthState(auth);
+    const [admin]=UseAdmin(user);
     const ScrollToTop = () => {
         const { pathname } = useLocation();
         console.log(pathname)
@@ -52,8 +54,6 @@ function App() {
     }, [pathname]);
         return null;
       }
-      const [user]=useAuthState(auth);
-      const [admin]=UseAdmin(user);
   return (
    <div className='md:px-6 bg-gray-100'>
    <Navbar/><NabbarForMabail/>
@@ -112,20 +112,15 @@ function App() {
 <Checkout/>
     </RequireAuth>
   }/>
-  <Route path='/' element={<Home/>}/>
-  <Route path='/home/trams-and-condition' element={<TramsAndCondition/>}/>
-          <Route path='/home/about' element={<AboutUs/>}/>
-          <Route path='/home/faq' element={<QNA/>}/>
-          <Route path='/home/contact' element={<ContactUs/>}/>
+ 
           
   <Route path='/single/:id' element={<ProductDetails/>}/>
   <Route path='/single-order/:id' element={<RequireAuth><SingleItemOrder/></RequireAuth>}/>
-  <Route path='/' element={<Home/>}>
+  <Route path='/' element={<Home/>}/>
           <Route path='/trams-and-condition' element={<TramsAndCondition/>}/>
-          <Route path='/faq' element={<QNA/>}/>
+          <Route path='/qna' element={<QNA/>}/>
           <Route path='/about' element={<AboutUs/>}/>
           <Route path='/contact' element={<ContactUs/>}/>
-        </Route>
 <Route path='*' element={<Notfound/>}/>
 
 </Routes>
