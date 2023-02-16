@@ -3,7 +3,6 @@ import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AiFillEye } from "react-icons/ai";
 import Loading from '../../Components/Loading';
-import UseOrder from '../Hooks/UseOrder';
 import axios from 'axios';
 
 const Orders = () => {

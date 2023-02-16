@@ -22,15 +22,15 @@ const NabbarForMabail = () => {
      </div>
        <div className="flex justify-end">
     <div className="dropdown dropdown-bottom dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost lg:hidden">
-      <TfiAlignRight className='font-bold text-2xl'/>
+      <label tabIndex={0} className="btn btn-ghost lg:hidden ">
+          <i className='font-bold'><TfiAlignRight className='text-2xl'/></i>
+      
       </label>
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-48 border border-primary border-opacity-30">
 {navItems}
 {user?<li></li>:<li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'> <NavLink to="/login">Login</NavLink></li>}
       </ul>
     </div>
-
 {/*  
     <ul className="menu menu-horizontal px-1">
     {navItems}

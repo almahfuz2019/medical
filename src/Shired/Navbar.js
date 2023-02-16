@@ -1,11 +1,10 @@
 import React from 'react';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import logo from "../Images/logo.png"
 import auth from '../firebase.init';
-import { TbCurrencyTaka } from "react-icons/tb";
 const Navbar = () => {
   const {usdata}=UseUserSpacifiqData();
   let total=0;

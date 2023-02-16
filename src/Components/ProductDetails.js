@@ -72,7 +72,7 @@ const ProductDetails = () => {
                fatchcategory(data.catagory);
                console.log(data.catagory);
               });
-     }, [id]);
+     },[id]);
     if(productLoading){
       return <Loading/>
     }

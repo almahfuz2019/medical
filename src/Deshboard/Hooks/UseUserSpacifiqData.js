@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import Loading from '../../Components/Loading';
 import axios from 'axios'
 import auth from '../../firebase.init';

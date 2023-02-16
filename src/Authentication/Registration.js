@@ -44,12 +44,12 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || updateerror?.m
          <form onSubmit={handleSubmit(onSubmit)}>
          <div className="mt-4 flex items-center justify-between">
           <span className="border-b w-1/5 lg:w-1/4"></span>
-          <a href="#" className="text-xs text-center text-gray-500 uppercase">or login with email</a>
+          <a href="#" className="text-xs text-center text-gray-500 uppercase">OR</a>
            <span className="border-b w-1/5 lg:w-1/4"></span>
            </div>
            <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-            <input placeholder='Type your name' className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="text"
+            <input placeholder='Type your name' className="bg-gray-200 text-primary focus:outline-primary focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none caret-primary" type="text"
             {...register("name",{
                 required:{
                 value: true,
@@ -63,7 +63,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || updateerror?.m
            </div>
            <div className="mt-2">
             <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-            <input placeholder='Type a valid email' className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"
+            <input placeholder='Type a valid email' className="bg-gray-200 text-primary focus:outline-primary focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none caret-primary" type="email"
             {...register("email",{
                 required:{
                 value: true,
@@ -81,11 +81,11 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || updateerror?.m
            </div>
            <div className="mt-2">
             <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-            <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" placeholder='Type a unique password' type="password"
+            <input className="bg-gray-200 text-primary focus:outline-primary focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none caret-primary" placeholder='Type a unique password' type="password"
             {...register("password",{
                 required:{
                 value: true,
-                message:"password is Required"
+                message:"Password is Required"
             }, 
             minLength: { 
                 value:6,
@@ -127,7 +127,7 @@ signInErrorMessage=<p className='text-red-700'>{error?.message || updateerror?.m
             </form>
             <div className="mt-4 flex items-center justify-between">
            <span className="border-b w-1/5 md:w-1/4"></span>
-            <NavLink to="/login" className="text-xs text-gray-500 ">Already have an account?  <span className='text-primary underline'>Log in</span> </NavLink>
+            <NavLink to="/login" className="text-xs text-gray-500 ">Already have an account?  <span className='text-primary underline font-bold '>Log in</span> </NavLink>
             <span className="border-b w-1/5 md:w-1/4"></span>
             </div>
                   </div>

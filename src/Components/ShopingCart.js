@@ -1,12 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { BsAsterisk } from 'react-icons/bs';
-import { TbCurrencyTaka } from 'react-icons/tb';
-import { Link, useParams } from 'react-router-dom';
+import React, {  useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import Notfound from './Notfound';
-import Test from './Test';
 
 const ShopingCart = () => {
   const[quentity,setQuentity]=useState("");
@@ -35,7 +32,7 @@ const handleUpdateCatagory = async(id) => {
   setQuentity(quentityset);
   
 }
-console.log(quentity);
+// console.log(quentity);
      return (
           <div>
              {error?<><Notfound/></>: 
@@ -101,7 +98,7 @@ console.log(quentity);
       )}
       </div>
     
-      <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+      <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3 ">
         <div class="mb-2 flex justify-between">
           <p class="text-gray-700">Subtotal</p>
           <p class="text-gray-700 flex items-center"><div className='flex items-center justify-center'>

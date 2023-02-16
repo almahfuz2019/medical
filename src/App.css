@@ -1,7 +1,6 @@
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,7 +11,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -25,7 +23,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #176F6B;
 }
 
 @keyframes App-logo-spin {
@@ -44,4 +42,32 @@ input[type=number]::-webkit-outer-spin-button {
   .logo {
     margin-left: -25px !important;
   }
+}
+
+:root {
+  --primary: white;
+  --secondary: #176F6B;
+}
+
+/* Scrollbar styles */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 20px;
+  border: 3px solid var(--primary);
 }

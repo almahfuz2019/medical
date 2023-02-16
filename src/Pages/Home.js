@@ -420,7 +420,7 @@ p-2'>
           </div>
        <div className='flex items-center'>
            <div>
-           <p><span className="uppercase text-xs bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none px-0.5"> {product.status} </span> </p>
+           <p><span className="uppercase text-xs bg-green-50  border-green-500 border rounded text-green-700 font-medium select-none px-0.5"> {product.status} </span></p>
            </div>
             <div className='flex items-center mt-1'>
             <p >

@@ -175,7 +175,7 @@ navigate("/deshboard")
               id="LastName"
               name='name'
               placeholder='Enter your name'
-              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+              className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
 
@@ -189,7 +189,7 @@ navigate("/deshboard")
               id="Email"
               value=  {user?.email}
               name="email"
-              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+              className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
 
@@ -203,7 +203,7 @@ navigate("/deshboard")
               id="Phone"
               name='phone'
               placeholder='Enter your phone'
-              className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+              className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
           <div className="col-span-6">
@@ -212,25 +212,25 @@ navigate("/deshboard")
           <div className="col-span-6">
             <label for="Phone" className="block text-xs font-medium text-gray-700">
               Village</label>
-            <input required type="tel" id="Phone" name='village' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+            <input required type="tel" id="Phone" name='village' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
           <div className="col-span-6">
             <label for="Phone" className="block text-xs font-medium text-gray-700">
             Union</label>
-            <input required type="tel" id="Phone" name='union' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+            <input required type="tel" id="Phone" name='union' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
           <div className="col-span-6">
             <label for="Phone" className="block text-xs font-medium text-gray-700">
               Thana</label>
-            <input required type="tel" id="Phone" name='thana' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+            <input required type="tel" id="Phone" name='thana' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
           <div className="col-span-6">
             <label for="Phone" className="block text-xs font-medium text-gray-700">
             District</label>
-            <input required type="tel" id="Phone" name='district' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+            <input required type="tel" id="Phone" name='district' placeholder='Enter your address' className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
             />
           </div>
 
@@ -244,7 +244,7 @@ navigate("/deshboard")
 <div class=" items-center gap-8">
     <label className='items-center flex'>
         <input
-        className=' radio-sm radio-primary'
+        className=' radio-sm radio-primary accent-primary'
           type="radio"
           value="cash on delivery"
           checked={selectedOption === "cash on delivery"}
@@ -256,7 +256,7 @@ navigate("/deshboard")
       <label  className='items-center  flex'>
         <input
           type="radio"
-          className=' radio-sm radio-primary'
+          className=' radio-sm radio-primary accent-primary'
           value="bkash"
           checked={selectedOption === "bkash"}
           onChange={handleOptionChange}
@@ -284,7 +284,7 @@ navigate("/deshboard")
           placeholder='Enter your TR ID'
           id="Phone"
           name='bkishID'
-          className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
+          className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none"
         />
       </div>
       <div className="col-span-6">
@@ -296,7 +296,7 @@ navigate("/deshboard")
           placeholder='Bkish number'
           id="Phone"
           name='bkishNumber'
-          className="bg-gray-100 text-primary focus:outline-none focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "
+          className="bg-gray-100 text-primary focus:outline-primary focus:shadow-outline border border-primary border-opacity-50 rounded py-2 px-4 block w-full appearance-none "
         />
       </div></>
       )}

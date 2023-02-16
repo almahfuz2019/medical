@@ -55,7 +55,7 @@ function App() {
         return null;
       }
   return (
-   <div className='md:px-6 bg-gray-100'>
+   <div className='md:px-6 bg-gray-100 scrollbar-container'>
    <Navbar/><NabbarForMabail/>
     <ScrollToTop/>
 <Routes> 

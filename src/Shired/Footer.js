@@ -7,7 +7,12 @@ import logo from '../Images/logo.png';
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-white mt-6">
+    <div
+    className="bg-cover bg-center  bg-white"
+    // style={{ backgroundImage: "url('https://img.freepik.com/free-vector/white-elegant-texture-background-style_23-2148432200.jpg?w=2000')"}}
+  >
+    <footer aria-label="Site Footer" className=" mt-6">
+      
   <div className="mx-auto max-w-screen-xl px-4 pt-8 pb-6 sm:px-6 lg:px-8 lg:pt-16">
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div>
@@ -27,8 +32,11 @@ const Footer = () => {
               href="https://en-gb.facebook.com/people/Chaaya-Surgical/100064873664293/"
               rel="noreferrer"
               target="_blank"
-              className="text-primary transition text-2xl"
-            ><BsFacebook/>
+              className=" transition text-4xl"
+            >
+            
+             <BsFacebook className='bg-primary text-white p-0.5'/>
+           
             </a>
           </li>
 
@@ -37,8 +45,8 @@ const Footer = () => {
               href="mailto:almahfuz2019@gmail.com"
               rel="noreferrer"
               target="_blank"
-              className="text-primary transition text-2xl"
-            ><MdEmail/>
+              className=" transition text-4xl"
+            ><MdEmail className='bg-primary text-white p-0.5'/>
             </a>
           </li>
 
@@ -47,8 +55,8 @@ const Footer = () => {
               href="tel:+8801710-041226"
               rel="noreferrer"
               target="_blank"
-              className="text-primary transition text-2xl"
-            ><RiWhatsappFill/>
+              className=" transition text-4xl"
+            ><RiWhatsappFill className='bg-primary text-white p-0.5'/>
               
             </a>
           </li>
@@ -58,8 +66,8 @@ const Footer = () => {
            href="tel:+8801710-041226"
               rel="noreferrer"
               target="_blank"
-              className="text-primary transition text-2xl"
-            ><FaPhoneSquareAlt/></a>
+              className=" transition text-4xl"
+            ><FaPhoneSquareAlt className='bg-primary text-white p-0.5'/></a>
              
       
           </li>
@@ -289,7 +297,7 @@ const Footer = () => {
       </div>
     </div>
   </div>
-</footer>
+</footer></div>
 
   );
 };
