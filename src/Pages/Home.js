@@ -63,7 +63,13 @@ const Hospital = () => {
   setCategory("Hospital");
 };
 
-
+const handleClickScrollforInput = () => {
+  const element = document.getElementById('section-3');
+  if (element) {
+    // 👇 Will scroll smoothly to the top of the next section
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 const handleSearch = (e) => {
   setSearch(e.target.value);
 };
@@ -147,8 +153,10 @@ const handleChangeuUnlimited=(e)=> {
  
             <div    class=" overflow-y-auto whitespace-nowrap  ">
             {/* <p className='text-primary  mt-1'>Categorys</p> */}
-          
-  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white">
+            <span className=' lg:hidden block' id="section-3"></span>  
+   {/* for mobail  */}
+   <span className='lg:hidden'>
+  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
   <div className="tooltip tooltip-primary  tooltip-right" data-tip="Health Care">
  
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
@@ -230,17 +238,104 @@ const handleChangeuUnlimited=(e)=> {
            <p className='text-center  font-normal hidden lg:block'>Health Care</p>
   </button>
   </div>
-  </div>
+  </div></span>
+   {/* for pc  */}
+   <span className='lg:block hidden'>
+  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
+        <button onClick={HealthCare}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Health Care</p>
+  </button>
+
+
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={BabyCare}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/6Hx2Mf0/pexels-sarah-chai-7282923.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Baby Care</p>
+  </button>
+ 
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={BeautyCare}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/SXc7dSH/pexels-suzy-hazelwood-1438065.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Beauty Care</p>
+  </button>
+ 
+  
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={FirstAid}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/k80cnv9/pexels-roger-brown-5125690.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>First Aid</p>
+  </button>
+
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={Dental}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/8sWrpjG/pexels-daniel-frank-287237.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Dental</p>
+  </button>
+
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={Diagnostic}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/wLsbyG0/pexels-ksenia-chernaya-5766215.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Diagnostic</p>
+  </button>
+
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={Laboratory}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Laboratory</p>
+  </button>
+
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={Surgical}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Surgical</p>
+  </button>
+
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
+        <button onClick={Hospital}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Hospital</p>
+  </button>
+ 
+ 
+  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg hidden sm:block'>
+        <button onClick={HealthCare}>
+          <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
+        </button>
+           <p className='text-center  font-normal hidden lg:block'>Health Care</p>
+  </button>
+
+  </div></span>
 </div>
-<div className='hidden lg:block mt-4' id="section-1">
+<span className='hidden lg:block' id="section-3"></span>
+<div className='hidden lg:block mt-4' id="section-1" >
   
             <NewProducts/>
   </div>
-            <div  className="divider  divide-current mt-2 mb-5 "><span className='md:text-5xl  text-2xl font-bold '>Our Products</span></div>
+            <div  className="divider  divide-current mt-2 mb-5 "><span className='md:text-5xl  text-2xl font-bold ' >Our Products</span></div>
             
          
             <div className="text-center  mt-5 sm:mt-7   sticky">
+            <span onClick={handleClickScrollforInput}>
               <div className="flex justify-center mx-2  ">
+     
               <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here by product name"
       // value={search}
            onChange={handleSearch}/>
@@ -261,7 +356,7 @@ const handleChangeuUnlimited=(e)=> {
     </select>
   </div>
                   
-               </div>    
+               </div>     </span> 
                </div>
 <div class="flex gap-8 mt-5 sm:mt-0">
   <div class="relative  sm:block no-underline border-0">
