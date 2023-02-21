@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import {  VscAccount } from "react-icons/vsc";
 import { TfiEmail } from "react-icons/tfi";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import auth from '../firebase.init';
 import Loading from './Loading';
-
+import { BsSearch } from 'react-icons/bs';
 const BottomNavbar = () => {
      const {usdata}=UseUserSpacifiqData();
+     const ScrollToTop = () => {
+      const { pathname } = useLocation();
+      console.log(pathname)
+      useEffect(() => {
+      window.scrollTo(0, 0);
+  }, [pathname]);
+      return null;
+    }
   let total=0;
   let subTotal=0;
   if(Array.isArray(usdata)){
@@ -70,6 +78,16 @@ const BottomNavbar = () => {
     </div>}
          <span class="tab tab-kategori block text-xs ">Cart</span>
           </Link>
+          <Link to="/" onClick={ScrollToTop} class="w-full focus:text-primary hover:text-primary justify-center inline-block text-center  ">
+                         
+
+        <div className="mx-auto flex justify-center">
+        <BsSearch className='text-2xl cursor-pointer'/> 
+        </div>
+
+   
+                              <span class="tab tab-explore block text-xs">Search</span>
+                         </Link>
           <Link to="/contact" class="w-full focus:text-primary hover:text-primary justify-center inline-block text-center  ">
                          
 

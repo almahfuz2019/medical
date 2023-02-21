@@ -42,8 +42,8 @@ const Navbar = () => {
      
      </>
      return (
-          <div className='sticky top-0 z-20 hidden lg:block'>
-          <h1 className='bg-primary p-1 font-semibold text-center text-white sm:text-xl'>For Any Query, Please Call: 01710-041226</h1>
+          <div className='lg:sticky  lg:top-0 lg:z-20 hidden lg:block'>
+          <h1 className='bg-primary p-1 font-semibold text-center text-white sm:text-xl text-xs'>For Any Query, Please Call: 01710-041226 </h1>
        <div className="navbar bg-white border-b-4 border-primary">
   <div className="navbar-start ">
     <div className="dropdown  ">

@@ -1,4 +1,4 @@
-import axios, { all } from 'axios';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Discount from '../Components/Discount';
@@ -8,22 +8,23 @@ import Notfound from '../Components/Notfound';
 import TrustedCompanys from '../Components/TrustedCompanys';
 import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
-  const {catagorys}=UseCatagory();
+  // categorys 
+  const {catagorys,Hospital,Laboratory,Diagnostic,Dental,Surgical,FirstAid,BeautyCare,HealthCare,handleCategory,BabyCare,category}=UseCatagory();
   const [search,setSearch]=useState("")
-  const [category,setCategory]=useState("")
-      const [error,setError]=useState("");
+  const [error,setError]=useState("");
   const [productCount,setProductCount]=useState(0)
   const[page,setPage]=useState(0);
-const[size,setSize]=useState(30);
+  const[size,setSize]=useState(30);
   const[pageCount,setPageCount]=useState(0);
   const[products,setProducts]=useState([]);
   const[productLoading,setProductLoading]=useState(true);
+  // all products count 
   useEffect(()=>{
     fetch("http://localhost:5000/allproductscount")
     .then(res=>res.json())
     .then(data=>setProductCount(data))
-
 },[])
+// click to scroll 
 const handleClickScroll = () => {
   const element = document.getElementById('section-1');
   if (element) {
@@ -31,38 +32,6 @@ const handleClickScroll = () => {
     element.scrollIntoView({ behavior: 'smooth' });
   }
 }
-const handleCategory = (e) => {
-  setCategory(e.target.value);
-  console.log(e.target.value);
-};
-const HealthCare = () => {
-  setCategory("Health Care");
-};
-const BabyCare = () => {
-  setCategory("Baby Care");
-};
-const BeautyCare = () => {
-  setCategory("Beauty Care");
-};
-const FirstAid = () => {
-  setCategory("First Aid");
-};
-const Surgical = () => {
-  setCategory("Surgical");
-};
-const Dental = () => {
-  setCategory("Dental");
-};
-const Diagnostic = () => {
-  setCategory("Diagnostic");
-};
-const Laboratory = () => {
-  setCategory("Laboratory");
-};
-const Hospital = () => {
-  setCategory("Hospital");
-};
-
 const handleClickScrollforInput = () => {
   const element = document.getElementById('section-3');
   if (element) {
@@ -73,13 +42,14 @@ const handleClickScrollforInput = () => {
 const handleSearch = (e) => {
   setSearch(e.target.value);
 };
+// load products 
   const fetchProducts = async() => {
     try{
-      setProductLoading(true)
-      const response=await axios.get(`http://localhost:5000/allproducts?page=${page}&size=${size}`)
-      setPageCount(Math.ceil(response.data.count/size))
-          setProducts(response.data.products)
-          setProductLoading(false)
+      setProductLoading(true);
+      const response=await axios.get(`http://localhost:5000/allproducts?page=${page}&size=${size}`);
+      setPageCount(Math.ceil(response.data.count/size));
+          setProducts(response.data.products);
+          setProductLoading(false);
     }
     catch(error){
       setError("something is wrong.Please try again")
@@ -88,10 +58,11 @@ const handleSearch = (e) => {
   useEffect(()=>{
     fetchProducts()
   },[page,size])
- 
+//  load more 30 products 
   const loadMore=()=>{
     setSize(size+30)
   }
+  // search here
   useEffect(()=>{
     const url=`http://localhost:5000/productsearch?name=${search}`;
     console.log(url);
@@ -108,6 +79,7 @@ const handleSearch = (e) => {
       fetchProducts()
     }
   },[search])
+  // productsearchbycategory 
   useEffect(()=>{
     const url=`http://localhost:5000/productsearchbycategory?catagory=${category}`;
     console.log(url);
@@ -124,11 +96,11 @@ const handleSearch = (e) => {
       fetchProducts()
     }
   },[category])
+  // product filter with price range 
 const handleChange1000=(e)=> {
   const matched_products = products.filter(pro => parseInt(pro.price) <= 1000)
     setProducts(matched_products)
     setPageCount(Math.ceil(matched_products.length/size))
-  
 }
 const handleChange3000=(e)=> {
   const matched_products = products.filter(pro => parseInt(pro.price) <= 3000)
@@ -149,16 +121,14 @@ const handleChangeuUnlimited=(e)=> {
      return (
       <div>{error?<><Notfound/></>: 
           <div className='mx-1 z-0'>
-                <Discount/>
- 
+            <Discount/>
             <div    class=" overflow-y-auto whitespace-nowrap  ">
-            {/* <p className='text-primary  mt-1'>Categorys</p> */}
             <span className=' lg:hidden block' id="section-3"></span>  
    {/* for mobail  */}
    <span className='lg:hidden'>
   <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
+    {/* with tooltip  */}
   <div className="tooltip tooltip-primary  tooltip-right" data-tip="Health Care">
- 
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
@@ -242,7 +212,7 @@ const handleChangeuUnlimited=(e)=> {
    {/* for pc  */}
    <span className='lg:block hidden'>
   <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
- 
+   {/* without tooltip  */}
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
@@ -289,74 +259,60 @@ const handleChangeuUnlimited=(e)=> {
         </button>
            <p className='text-center  font-normal hidden lg:block'>Diagnostic</p>
   </button>
-
- 
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Laboratory}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/mJ0GNKG/pexels-chokniti-khongchum-2280571.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Laboratory</p>
   </button>
-
- 
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Surgical}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/XSZWd4B/pexels-cedric-fauntleroy-4269355.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Surgical</p>
   </button>
-
- 
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg '>
         <button onClick={Hospital}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/Gt1FWZ7/pexels-pixabay-247786.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Hospital</p>
   </button>
- 
- 
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg hidden sm:block'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
         </button>
            <p className='text-center  font-normal hidden lg:block'>Health Care</p>
   </button>
-
   </div></span>
 </div>
 <span className='hidden lg:block' id="section-3"></span>
 <div className='hidden lg:block mt-4' id="section-1" >
-  
             <NewProducts/>
   </div>
             <div  className="divider  divide-current mt-2 mb-5 "><span className='md:text-5xl  text-2xl font-bold ' >Our Products</span></div>
-            
-         
             <div className="text-center  mt-5 sm:mt-7   sticky">
             <span onClick={handleClickScrollforInput}>
               <div className="flex justify-center mx-2  ">
-     
               <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here by product name"
       // value={search}
            onChange={handleSearch}/>
               
                <div className=" rounded-l-none bg-white border border-primary rounded-md w-auto ">
-    <label for="SortBy " className="sr-only bg-white">Catagory</label>
-
-    <select id="SortBy" className=" border-r-0 text-xs sm:text-sm border-primary rounded sm:px-2 bg-white max-w-sm sm:max-w-md mx-auto sm:mt-3  text-center" onChange={handleCategory}>
-<option className=''value=""><span className=''>All</span></option>
+    <label for="SortBy " className="sr-only bg-white">Category</label>
+    <select id="SortBy" className=" border-r-0 text-xs sm:text-sm border-primary rounded sm:px-2 bg-white max-w-sm sm:max-w-md mx-auto sm:mt-3  text-center  text-primary focus:bg-white" onChange={handleCategory}>
+<option className='bg-white 'value=""><span className='bg-white hover:bg-white '>All</span></option>
     {
                catagorys.map(p=>
                     <option
-                    className=''
+                    className='text-black bg-white'
                     key={p._id}
                     >{p.catagory}</option>
                )
           }
     </select>
   </div>
-                  
-               </div>     </span> 
+               </div>
+               </span> 
                </div>
 <div class="flex gap-8 mt-5 sm:mt-0">
   <div class="relative  sm:block no-underline border-0">
@@ -365,7 +321,6 @@ const handleChangeuUnlimited=(e)=> {
         class="flex items-center gap-2 pb-1 text-gray-900 transition border-b border-gray-400 cursor-pointer hover:border-gray-600"
       >
         <span class="text-sm font-medium">Price Range </span>
-
         <span class="transition group-open:-rotate-180">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -383,13 +338,11 @@ const handleChangeuUnlimited=(e)=> {
           </svg>
         </span>
       </summary>
-
       <div
         class="z-50 group-open:absolute group-open:top-auto group-open:left-0 group-open:mt-2"
       >
+        {/* price range  */}
         <div class="bg-white border border-gray-200 rounded w-96">
-      
-
           <ul class="p-4 space-y-1 border-t border-gray-200">
             <li>
               <label for="FilterInStock" class="inline-flex items-center gap-2">
@@ -399,13 +352,11 @@ const handleChangeuUnlimited=(e)=> {
                   value="100"
                   class="w-5 h-5 border-gray-300 rounded"
                 />
-
                 <span class="text-sm font-medium text-gray-700">
                   0 to 1000
                 </span>
               </label>
             </li>
-
             <li>
               <label
                 for="FilterPreOrder"
@@ -469,7 +420,7 @@ const handleChangeuUnlimited=(e)=> {
 
 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-flow-col-6 2xl:grid-flow-col-8  gap-2 sm:gap-3 mx-5-2 sm:mx-0   bg-white 
 p-2'>
-
+{/* product loading with Skeletion  */}
  {
   productLoading?<>
 <>
@@ -545,23 +496,18 @@ p-2'>
         </>
  }
 </div>
-
+{/* load more button  */}
 {
   productCount.count===products.length|| products.length<30 || products.length===0?"":<div className='mx-auto text-center mt-5'>
   <button className='btn btn-primary w-64 btn-sm sm:btn-md' onClick={loadMore}>load more</button> 
   </div>
 }
-
  {
     products.length === 0 && <h1 className='text-3xl text-center justify-center mx-auto text-red-700 font-bold h-screen'>Not found</h1>
   }
-
 <TrustedCompanys/>
-     
     </div>
-   
     } 
-  
     </div>
      );
 };

@@ -33,7 +33,7 @@ const ProductDetails = () => {
     const useremail=user.email;
     const product=note;
      const NotesData={productQuentity,useremail,product};
-     await axios.post("http://localhost:5000/note",NotesData)
+     await axios.post("http://localhost:5000/addtocart",NotesData)
      toast.success('Added Successfully', {
        position: "top-right",
        autoClose: 1000,
