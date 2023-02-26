@@ -6,8 +6,8 @@ const HomePageCatagory = () => {
     }
   return (
     <div>
-      <div class="hidden sm:block ">
-  <div class="grid  grid-cols-3 px-2 sm:grid-cols-8 lg:grid-cols-8 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
+      <div className="hidden sm:block ">
+  <div className="grid  grid-cols-3 px-2 sm:grid-cols-8 lg:grid-cols-8 xl:grid-cols-10 mt-4 gap-4 bg-white py-2">
 
   <button value="Helth" onClick={searchByCatagory} className='cursor-pointer btn w-full h-full '>
         <div className="avatar">

@@ -5,7 +5,7 @@ const UserRole = ({user,refetch,index}) => {
      const makeAdmin=()=>{
           const proceed=window.confirm("Are you sure you want to make this user an admin?");
           if(proceed){
-               fetch(`http://localhost:5000/user/admin/${email}`,{
+               fetch(`https://test.freeimgcollection.com/user/admin/${email}`,{
                     method:"PUT",
                          headers:{
                               authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -27,7 +27,7 @@ const UserRole = ({user,refetch,index}) => {
      const removeAdmin=()=>{
           const proceed=window.confirm("Are you sure you want to remove a admin?");
           if(proceed){
-          fetch(`http://localhost:5000/userr/admin/${email}`,{
+          fetch(`https://test.freeimgcollection.com/userr/admin/${email}`,{
                method:"PUT",
                     headers:{
                          authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -48,7 +48,7 @@ const UserRole = ({user,refetch,index}) => {
      const makeWorker=()=>{
           const proceed=window.confirm("Are you sure you want to make this user a Worker?");
           if(proceed){
-          fetch(`http://localhost:5000/worker/admin/${email}`,{
+          fetch(`https://test.freeimgcollection.com/worker/admin/${email}`,{
                method:"PUT",
                     headers:{
                          authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -69,7 +69,7 @@ const UserRole = ({user,refetch,index}) => {
      const removeWorker=()=>{
           const proceed=window.confirm("Are you sure you want to remove a workder?");
           if(proceed){
-          fetch(`http://localhost:5000/workerr/admin/${email}`,{
+          fetch(`https://test.freeimgcollection.com/workerr/admin/${email}`,{
                method:"PUT",
                     headers:{
                          authorization:`Bearer ${localStorage.getItem('accessToken')}`

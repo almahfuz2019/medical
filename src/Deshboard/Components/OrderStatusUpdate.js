@@ -12,7 +12,7 @@ const OrderStatusUpdate = () => {
    const handleUpdateProduct = async(e) => {
      e.preventDefault();
     //  orderstatusupdate
-     const url = `http://localhost:5000/orderstatusupdate/${id}`;
+     const url = `https://test.freeimgcollection.com/orderstatusupdate/${id}`;
        const res=await axios.post(url,{status:item})
        toast.success("Changed success")
    } 

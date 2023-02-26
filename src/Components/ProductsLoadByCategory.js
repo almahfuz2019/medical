@@ -9,7 +9,7 @@ const ProductsLoadByCategory = () => {
      const[productLoading,setProductLoading]=useState(true);
      useEffect(()=>{
           setProductLoading(true)
-          fetch("http://localhost:5000/productsearchbycategorywithlimit?catagory=Beauty Care")
+          fetch("https://test.freeimgcollection.com/productsearchbycategorywithlimit?catagory=Beauty Care")
           .then(res=>res.json())
           .then(data=>setNewProducts(data))
           setProductLoading(false)

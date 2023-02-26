@@ -7,7 +7,7 @@ const CreateCategories = () => {
      event.preventDefault();
      const catagory=event.target.findClass.value;
      const catagoryData={catagory};
-      await axios.post("http://localhost:5000/catagory",catagoryData)
+      await axios.post("https://test.freeimgcollection.com/catagory",catagoryData)
       toast.success('Addedd Successfully', {
         position: "top-right",
         autoClose: 1000,

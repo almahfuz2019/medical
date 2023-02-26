@@ -11,10 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import "../css/ProductDetails.css";
 import { BsDash,  BsPlus} from "react-icons/bs";
-import { TbCurrencyTaka } from 'react-icons/tb';
 import Loading from './Loading';
-import { async } from '@firebase/util';
-import Footer from '../Shired/Footer';
 const ProductDetails = () => {
   const [newProducts,setNewProducts]=useState([])
   const[productLoading,setProductLoading]=useState(true);
@@ -31,9 +28,9 @@ const ProductDetails = () => {
     event.preventDefault();
     const productQuentity=event.target.productQuentity.value;
     const useremail=user.email;
-    const product=note;
+    const product=singleProductDetails;
      const NotesData={productQuentity,useremail,product};
-     await axios.post("http://localhost:5000/addtocart",NotesData)
+     await axios.post("https://test.freeimgcollection.com/addtocart",NotesData)
      toast.success('Added Successfully', {
        position: "top-right",
        autoClose: 1000,
@@ -47,30 +44,28 @@ const ProductDetails = () => {
       event.target.reset();
      }
      const { id } = useParams();
-     const [note, setNote] = useState({});
+     const [singleProductDetails, SetSingleProductDetails] = useState({});
+     console.log(singleProductDetails);
      const fatchcategory=(a)=>{
       setProductLoading(true)
-      const url= `http://localhost:5000/productsearchbycategorywithlimit?catagory=${a}`;
-    console.log(data);
-      console.log(url);
+      const url= `https://test.freeimgcollection.com/productsearchbycategorywithlimit?catagory=${a}`;
+   
       fetch(url)
       .then(res=>res.json())
       .then(data=>{
-        console.log(data);
         setNewProducts(data)})
         setProductLoading(false)
     }
      useEffect(() => {
       setProductLoading(true)
-         const url = `http://localhost:5000/product/${id}`;
+         const url = `https://test.freeimgcollection.com/product/${id}`;
          fetch(url)
              .then(res => res.json())
              .then(data =>{
-               setNote(data)
+               SetSingleProductDetails(data)
                setData(data)
                setProductLoading(false)
                fatchcategory(data.catagory);
-               console.log(data.catagory);
               });
      },[id]);
     if(productLoading){
@@ -88,19 +83,19 @@ const ProductDetails = () => {
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
-          src={note.image1}
+          src={singleProductDetails.image1}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
-          src={note.image2}
+          src={singleProductDetails.image2}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
         <div className='rounded-xl border border-primary border-opacity-30 '>
         <img
           alt="Les Paul"
-          src={note.image3}
+          src={singleProductDetails.image3}
           className="object-cover w-full aspect-square rounded-xl border border-primary border-opacity-30 "
         /></div>
             </Carousel>
@@ -120,22 +115,22 @@ const ProductDetails = () => {
           <div className="flex items-end gap-2">
             <span className="text-gray-800 text-xl md:text-2xl font-bold"> <div className='flex items-center justify-center'>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-4 mr-1 mt-0.5' alt="" />
-            <p className="text-center   ">{note.price}</p>  
+            <p className="text-center   ">{singleProductDetails.price}</p>  
               </div> </span>
             <span className="text-red-700 font-bold  line-through mb-0.5"> <div className='flex items-center justify-center'>
             <img src="https://i.ibb.co/MscTYwN/1200px-Taka-Bengali-letter-svg-2.png" className='h-3 mr-0.5 mt-0.5' alt="" />
-            <p className="text-center  ">{note.previcePrice}</p>  
+            <p className="text-center  ">{singleProductDetails.previcePrice}</p>  
               </div> </span>
           </div>
 
           <span className="text-gray-500 text-sm">incl. VAT</span>
         </div>
             <h1 className="text-xl sm:text-2xl font-bold">
-              {note.name}
+              {singleProductDetails.name}
             </h1>
             
 
-            <p className="mt-2 text-sm "><span className='bg-white p-1 rounded-l-none  rounded-lg font-semibold  px-1'>Brand Name: {note?.brand?<span className='text-primary font-bold '>{note.brand}</span>:<span className='text-primary font-bold'>Non Brand</span>}</span></p>
+            <p className="mt-2 text-sm "><span className='bg-white p-1 rounded-l-none  rounded-lg font-semibold  px-1'>Brand Name: {singleProductDetails?.brand?<span className='text-primary font-bold '>{singleProductDetails.brand}</span>:<span className='text-primary font-bold'>Non Brand</span>}</span></p>
             {/* <p>Status: In Stock</p> */}
             <div className="mt-2 -ml-0.5 flex">
               <svg
@@ -193,7 +188,7 @@ const ProductDetails = () => {
                   />
               </svg>
             </div>
-                  <p className='font-semibold'>Category: {note.catagory}</p>
+                  <p className='font-semibold'>Category: {singleProductDetails.catagory}</p>
           </div>
         </div>
 
@@ -204,7 +199,7 @@ const ProductDetails = () => {
             <div>
               <div className="prose max-w-none group-open:hidden">
                 <p>
-                  {note?.details?.slice(0,250)}
+                  {singleProductDetails?.details?.slice(0,250)}
                 </p>
               </div>
 
@@ -218,7 +213,7 @@ const ProductDetails = () => {
 
           <div className="pb-6 prose max-w-none">
             <span>
-            {note?.details?.slice(0,250000)}
+            {singleProductDetails?.details?.slice(0,250000)}
             </span>
           </div>
         </details>
@@ -233,7 +228,7 @@ const ProductDetails = () => {
         </div>
   
         {
-          note.status==="Unavailable"?
+          singleProductDetails.status==="Unavailable"?
           <div className="flex mt-8 items-center ">
             <div className='flex items-center border bg-white'>
               <label for="quantity" className="sr-only">Qty</label>
@@ -249,11 +244,11 @@ const ProductDetails = () => {
                <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber + 1)}><BsPlus/></Link>
             </div>
          {user? <button type='button'
-              className=" sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-gray-300  flex btn-sm sm:btn-md cursor-not-allowed"
+              className=" sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-primary flex btn-sm sm:btn-md cursor-not-allowed"
             >
               Add to cart<span className='ml-4 text-xl'> <FaCartPlus/></span>
             </button>: <Link to="/login" type='button'
-              className=" px-5 py-3 ml-3 text-xs font-medium text-white btn  flex bg-gray-300 cursor-not-allowed"
+              className=" sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-primary  flex btn-sm sm:btn-md cursor-not-allowed"
             >
               Add to cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
             </Link>}
@@ -276,11 +271,11 @@ const ProductDetails = () => {
                <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber + 1)}><BsPlus/></Link>
             </div>
          {user? <button  type='submit'
-              className="block sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md "
+              className="sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-primary hover:bg-primary  flex btn-sm sm:btn-md  "
             >
               Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
             </button>: <Link  to="/login" type='submit'
-              className="block px-5 py-3 ml-3 text-xs font-medium text-white btn btn-primary flex"
+              className="sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-primary hover:bg-primary flex btn-sm sm:btn-md "
             >
               Add to Cart <span className='ml-4 text-xl'> <FaCartPlus/></span>
             </Link>}
@@ -289,8 +284,8 @@ const ProductDetails = () => {
         </form>
             <br />
             {
-            note.status==="Unavailable"?
-            <Link to={`/single-order/${note._id}`}type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full">Order Now</Link>:<Link to={`/single-order/${note._id}`}type='btn'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</Link>
+            singleProductDetails.status==="Unavailable"?
+            <Link to={`/single-order/${singleProductDetails._id}`}type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full">Order Now</Link>:<Link to={`/single-order/${singleProductDetails._id}`}type='btn'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</Link>
             }
             
       

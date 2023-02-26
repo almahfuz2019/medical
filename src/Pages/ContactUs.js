@@ -10,7 +10,7 @@ const ContactUs = () => {
     const message=event.target.message.value;
     const dateAndTime=time;
     const contactInfo={email,message,dateAndTime};
-    await axios.post("http://localhost:5000/contact",contactInfo)
+    await axios.post("https://test.freeimgcollection.com/contact",contactInfo)
     toast.success('Submitted Successfully', {
       position: "top-right",
       autoClose: 1000,

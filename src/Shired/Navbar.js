@@ -39,7 +39,7 @@ const Navbar = () => {
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/qna">QNA</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/about">About US</NavLink></li>
     <li className='relative font-medium  before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-primary before:transition hover:before:scale-100'><NavLink  to="/contact">Contact US</NavLink></li>
-     
+   
      </>
      return (
           <div className='lg:sticky  lg:top-0 lg:z-20 hidden lg:block'>

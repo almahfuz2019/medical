@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
      const [catagorys,setCatagorys]=useState([]);
      const [category,setCategory]=useState("")
      useEffect(()=>{
-          fetch("http://localhost:5000/categories")
+          fetch("https://test.freeimgcollection.com/categories")
           .then(res=>res.json())
           .then(data=>setCatagorys(data))
      },[catagorys])
      const handleCatagoryDelete=async(id)=>{
           const proceed=window.confirm("are you sure you want to delete?");
           if(proceed){
-               await axios.delete(`http://localhost:5000/catagory/${id}`)
+               await axios.delete(`https://test.freeimgcollection.com/catagory/${id}`)
                .then(response=>{
                     if(response.data.deletedCount>0){
-                         console.log(response.data._id);
                          const deletedremaining=catagorys.filter(note=>note._id !==id);
                          setCatagorys(deletedremaining)
                     }
@@ -24,7 +23,6 @@ import { useEffect, useState } from "react";
      
      const handleCategory = (e) => {
           setCategory(e.target.value);
-          console.log(e.target.value);
         };
         const HealthCare = () => {
           setCategory("Health Care");

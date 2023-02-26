@@ -11,7 +11,7 @@ const BasicInfo = () => {
   const time= new Date().toLocaleString();
   // get all orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/allorders`,{
+    fetch(`https://test.freeimgcollection.com/allorders`,{
       headers: {
         'content-type': 'application/json',
           authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -52,49 +52,49 @@ const BasicInfo = () => {
   }
     // get all Orders "search by dateandtime" orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/productssearchbydateandtime?dateAndTime=${time}`)
+    fetch(`https://test.freeimgcollection.com/productssearchbydateandtime?dateAndTime=${time}`)
     .then(res=>res.json())
     .then(data=>setordersBydateandtime(data))
 
 },[])
   // get all "Shipment" status orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/orders?status=Shipment`)
+    fetch(`https://test.freeimgcollection.com/orders?status=Shipment`)
     .then(res=>res.json())
     .then(data=>setShipmentOrders(data))
 
 },[])
   // get all "Wating" status orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/orders?status=Wating`)
+    fetch(`https://test.freeimgcollection.com/orders?status=Wating`)
     .then(res=>res.json())
     .then(data=>setWatingOrders(data))
 
 },[])
   // get all "Done" status orders 
   useEffect(()=>{
-    fetch(`http://localhost:5000/orders?status=Done`)
+    fetch(`https://test.freeimgcollection.com/orders?status=Done`)
     .then(res=>res.json())
     .then(data=>setDoneOrders(data))
 
 },[])
   // get all "user contacts" count 
   useEffect(()=>{
-    fetch("http://localhost:5000/userscontactinfocount")
+    fetch("https://test.freeimgcollection.com/userscontactinfocount")
     .then(res=>res.json())
     .then(data=>setContactCount(data))
 
 },[])
   // get all "Orders" count 
   useEffect(()=>{
-    fetch("http://localhost:5000/orderscount")
+    fetch("https://test.freeimgcollection.com/orderscount")
     .then(res=>res.json())
     .then(data=>setOrders(data))
 
 },[])
   // get all "Products" count allproductscount
   useEffect(()=>{
-    fetch("http://localhost:5000/allproductscount")
+    fetch("https://test.freeimgcollection.com/allproductscount")
     .then(res=>res.json())
     .then(data=>setProducts(data))
 

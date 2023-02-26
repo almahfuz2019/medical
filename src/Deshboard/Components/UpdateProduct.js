@@ -8,12 +8,11 @@ const UpdateProduct = () => {
     const [firstImageUrl,setFirstImageUrl]=useState("")
     const [secondImageUrl,setsecondImageUrl]=useState("")
     const [thirdImageUrl,setThirdImageUrl]=useState("")
-    console.log(firstImageUrl,secondImageUrl,thirdImageUrl);
     const[productInfo,setProductInfo]=useState([]);
     // get single product by useParams
     const {id} = useParams();
     useEffect(()=>{
-     const url=`http://localhost:5000/product/${id}`
+     const url=`https://test.freeimgcollection.com/product/${id}`
      fetch(url)
      .then(res=>res.json())
      .then(data=>setProductInfo(data))
@@ -55,7 +54,7 @@ const UpdateProduct = () => {
     }
     const handleUpdateProduct = async(event) => {
       event.preventDefault();
-     const url = `http://localhost:5000/product/${id}`;
+     const url = `https://test.freeimgcollection.com/product/${id}`;
      await axios.put(url,productInfo)
           toast.success('Update Successfully', {
             position: "top-right",
@@ -70,7 +69,7 @@ const UpdateProduct = () => {
           event.target.reset();
     }   
     // image host key (imgbb) 
-    const imageHostKey ="beaf06de8045a9c2bdfcf2b3378e418e";
+    const imageHostKey =process.env.REACT_APP_IMAGEHOSTKEY;
   //  first Image 
     const uploadFirstImage=(e)=>{
       const image = e.target.files[0];

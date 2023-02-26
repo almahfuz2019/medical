@@ -20,7 +20,7 @@ const Home = () => {
   const[productLoading,setProductLoading]=useState(true);
   // all products count 
   useEffect(()=>{
-    fetch("http://localhost:5000/allproductscount")
+    fetch("https://test.freeimgcollection.com/allproductscount")
     .then(res=>res.json())
     .then(data=>setProductCount(data))
 },[])
@@ -46,7 +46,7 @@ const handleSearch = (e) => {
   const fetchProducts = async() => {
     try{
       setProductLoading(true);
-      const response=await axios.get(`http://localhost:5000/allproducts?page=${page}&size=${size}`);
+      const response=await axios.get(`https://test.freeimgcollection.com/allproducts?page=${page}&size=${size}`);
       setPageCount(Math.ceil(response.data.count/size));
           setProducts(response.data.products);
           setProductLoading(false);
@@ -64,8 +64,7 @@ const handleSearch = (e) => {
   }
   // search here
   useEffect(()=>{
-    const url=`http://localhost:5000/productsearch?name=${search}`;
-    console.log(url);
+    const url=`https://test.freeimgcollection.com/productsearch?name=${search}`;
     if(search!==""){
       setProductLoading(true)
       fetch(url)
@@ -81,8 +80,7 @@ const handleSearch = (e) => {
   },[search])
   // productsearchbycategory 
   useEffect(()=>{
-    const url=`http://localhost:5000/productsearchbycategory?catagory=${category}`;
-    console.log(url);
+    const url=`https://test.freeimgcollection.com/productsearchbycategory?catagory=${category}`;
     if(category!==""){
       setProductLoading(true)
       fetch(url)
@@ -122,13 +120,13 @@ const handleChangeuUnlimited=(e)=> {
       <div>{error?<><Notfound/></>: 
           <div className='mx-1 z-0'>
             <Discount/>
-            <div    class=" overflow-y-auto whitespace-nowrap  ">
+            <div    className=" overflow-y-auto whitespace-nowrap  ">
             <span className=' lg:hidden block' id="section-3"></span>  
    {/* for mobail  */}
    <span className='lg:hidden'>
-  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
+  <div   className=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
     {/* with tooltip  */}
-  <div className="tooltip tooltip-primary  tooltip-right" data-tip="Health Care">
+    <div className="tooltip tooltip-primary  tooltip-right" data-tip="Health Care">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
@@ -211,9 +209,9 @@ const handleChangeuUnlimited=(e)=> {
   </div></span>
    {/* for pc  */}
    <span className='lg:block hidden'>
-  <div   class=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
+  <div   className=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
    {/* without tooltip  */}
-  <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
+   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>
         <button onClick={HealthCare}>
           <img  className="rounded border border-primary border-opacity-50"  src="https://i.ibb.co/5FS08Jh/pexels-leandro-boogalu-1390403.jpg" alt='category Image' />
         </button>
@@ -314,21 +312,21 @@ const handleChangeuUnlimited=(e)=> {
                </div>
                </span> 
                </div>
-<div class="flex gap-8 mt-5 sm:mt-0">
-  <div class="relative  sm:block no-underline border-0">
-    <details class="group [&_summary::-webkit-details-marker]:hidden">
+<div className="flex gap-8 mt-5 sm:mt-0">
+  <div className="relative  sm:block no-underline border-0">
+    <details className="group [&_summary::-webkit-details-marker]:hidden">
       <summary
-        class="flex items-center gap-2 pb-1 text-gray-900 transition border-b border-gray-400 cursor-pointer hover:border-gray-600"
+        className="flex items-center gap-2 pb-1 text-gray-900 transition border-b border-gray-400 cursor-pointer hover:border-gray-600 ml-3"
       >
-        <span class="text-sm font-medium">Price Range </span>
-        <span class="transition group-open:-rotate-180">
+        <span className="text-sm font-medium ">Price Range </span>
+        <span className="transition group-open:-rotate-180">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-4 h-4"
+            className="w-4 h-4"
           >
             <path
               stroke-linecap="round"
@@ -339,20 +337,20 @@ const handleChangeuUnlimited=(e)=> {
         </span>
       </summary>
       <div
-        class="z-50 group-open:absolute group-open:top-auto group-open:left-0 group-open:mt-2"
+        className="z-50 group-open:absolute group-open:top-auto group-open:left-0 group-open:mt-2"
       >
         {/* price range  */}
-        <div class="bg-white border border-gray-200 rounded w-96">
-          <ul class="p-4 space-y-1 border-t border-gray-200">
+        <div className="bg-white border border-gray-200 rounded w-96">
+          <ul className="p-4 space-y-1 border-t border-gray-200">
             <li>
-              <label for="FilterInStock" class="inline-flex items-center gap-2">
+              <label for="FilterInStock" className="inline-flex items-center gap-2">
                 <input onClick={handleChange1000}
                   type="checkbox"
                   id="FilterInStock"
                   value="100"
-                  class="w-5 h-5 border-gray-300 rounded"
+                  className="w-5 h-5 border-gray-300 rounded"
                 />
-                <span class="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-gray-700">
                   0 to 1000
                 </span>
               </label>
@@ -360,16 +358,16 @@ const handleChangeuUnlimited=(e)=> {
             <li>
               <label
                 for="FilterPreOrder"
-                class="inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2"
               >
                 <input onClick={handleChange3000}
                   type="checkbox"
                   id="FilterPreOrder"
                   value="1001"
-                  class="w-5 h-5 border-gray-300 rounded"
+                  className="w-5 h-5 border-gray-300 rounded"
                 />
 
-                <span class="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-gray-700">
                   0 to 3000
                 </span>
               </label>
@@ -378,17 +376,17 @@ const handleChangeuUnlimited=(e)=> {
             <li>
               <label
                 for="FilterOutOfStock"
-                class="inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2"
               >
                 <input
                   type="checkbox"
                   onClick={handleChange5000}
                   value="3001"
                   id="FilterOutOfStock"
-                  class="w-5 h-5 border-gray-300 rounded"
+                  className="w-5 h-5 border-gray-300 rounded"
                 />
 
-                <span class="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-gray-700">
                   0 to 5000
                 </span>
               </label>
@@ -396,17 +394,17 @@ const handleChangeuUnlimited=(e)=> {
             <li>
               <label
                 for="FilterOutOfStock"
-                class="inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2"
               >
                 <input
                   type="checkbox"
                   onClick={handleChangeuUnlimited}
                   value="5001"
                   id="FilterOutOfStock"
-                  class="w-5 h-5 border-gray-300 rounded"
+                  className="w-5 h-5 border-gray-300 rounded"
                 />
 
-                <span class="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-gray-700">
                   0 to unlimited
                 </span>
               </label>

@@ -8,7 +8,7 @@ const OrderPDF = () => {
      const [singleUserOrder, setSingleUserOrder] = useState({});
      const { id } = useParams();
      useEffect(() => {
-          const url = `http://localhost:5000/itemorder/${id}`;
+          const url = `https://test.freeimgcollection.com/itemorder/${id}`;
           fetch(url)
           .then(res => res.json())
           .then(data => setSingleUserOrder(data));
@@ -23,11 +23,11 @@ const OrderPDF = () => {
           <div className='h-screen'>
               <div className='text-end mt-5'>
               <ReactToPrint trigger={()=>
-               <button className='cursor-pointer  '><FaFileDownload/></button>} content={()=>ref.current}/>
+               <button className='cursor-pointer   text-2xl mr-3'><FaFileDownload/></button>} content={()=>ref.current}/>
               </div>
                <div ref={ref}>
                <img className='h-12 w-28 text-center mx-auto my-4' src={logo} alt="logo" />
-               <div class="grid grid-cols-2 gap-4 px-10  border-t border-black mb-10">
+               <div className="grid grid-cols-2 gap-4 px-10  border-t border-black mb-10">
   <div>
     <h1 className='text-2xl font-bold'>Invoice</h1>
      <p className=''><span className='font-semibold'>Order Number</span> #{singleUserOrder.phone?.slice(3, 9)*2}</p>
@@ -49,7 +49,7 @@ const OrderPDF = () => {
    </h1>
   </div>
 </div>
-<table class="table-fixed  w-full text-center px-10">
+<table className="table-fixed  w-full text-center px-10">
   <thead className=' text-black fotn-semibold border-b  border-black '>
     <tr className=''>
       <th>Product</th><th></th>
@@ -80,7 +80,7 @@ const OrderPDF = () => {
   </tbody>
 </table>
 
-<table class="table-fixed  w-full text-center px-10">
+<table className="table-fixed  w-full text-center px-10">
   <thead className=' text-black fotn-semibold '>
     <tr className=''>
       <th></th>

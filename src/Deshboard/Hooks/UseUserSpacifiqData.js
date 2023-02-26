@@ -12,7 +12,7 @@ const UseUserSpacifiqData = () => {
     const fetchCarts  = async() => {
      try{
       setshoppingCartItemLoading(true);
-          const res = await axios.get(`http://localhost:5000/cartdata?useremail=${user?.email}`)
+          const res = await axios.get(`https://test.freeimgcollection.com/cartdata?useremail=${user?.email}`)
           setUsdata(res.data)
           setshoppingCartItemLoading(false)
         }catch(err){
@@ -24,7 +24,7 @@ const UseUserSpacifiqData = () => {
      const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
-             await axios.delete(`http://localhost:5000/cartdatadelete/${id}`)
+             await axios.delete(`https://test.freeimgcollection.com/cartdatadelete/${id}`)
              .then(response=>{
                if(response.data.deletedCount>0){
                     const deletedremaining=usdata.filter(note=>note._id !==id);
@@ -35,7 +35,7 @@ const UseUserSpacifiqData = () => {
         }
    }
    const { isLoading:productLoading, error, data:products } = useQuery( 'repoaData', () =>
-     fetch('http://localhost:5000/usercartdata').then(res =>
+     fetch('https://test.freeimgcollection.com/usercartdata').then(res =>
        res.json()
  )
    )

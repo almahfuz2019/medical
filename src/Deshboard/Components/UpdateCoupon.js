@@ -5,7 +5,7 @@ const UpdateCoupon = () => {
      const[item,setItem]=useState([]);
     const { id } = useParams();
 useEffect(()=>{
-     const url=`http://localhost:5000/coupon/${id}`
+     const url=`https://test.freeimgcollection.com/coupon/${id}`
      fetch(url)
      .then(res=>res.json())
      .then(data=>setItem(data))
@@ -18,7 +18,7 @@ const handleNameChange = e => {
      
  }
  const handleUpdateProduct = e => {
-     const url = `http://localhost:5000/coupon/${id}`;
+     const url = `https://test.freeimgcollection.com/coupon/${id}`;
      fetch(url, {
          method: 'PUT',
          headers: {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const UseCopen = () => {
      const [copone,setCopone]=useState([]);
      useEffect(()=>{
-          fetch("http://localhost:5000/copones")
+          fetch("https://test.freeimgcollection.com/copones")
           .then(res=>res.json())
           .then(data=>setCopone(data))
      },[])
@@ -11,7 +11,7 @@ const UseCopen = () => {
           const proceed=window.confirm("Are you sure you want to delete it?");
           if(proceed){
                
-               axios.delete(`http://localhost:5000/copone/${id}`)
+               axios.delete(`https://test.freeimgcollection.com/copone/${id}`)
                .then(response => {
                     if(response.data.deletedCount>0){
                          const remaining=copone.filter(cla=>cla._id !==id);

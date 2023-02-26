@@ -8,7 +8,7 @@ const Copen = () => {
      event.preventDefault();
      const category=event.target.findClass.value;
      const catagoryData={catagory: category};
-     fetch('http://localhost:5000/coupon', {
+     fetch('https://test.freeimgcollection.com/coupon', {
   method: 'POST', // or 'PUT'
   headers: {
     'Content-Type': 'application/json',

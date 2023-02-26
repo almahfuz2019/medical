@@ -42,7 +42,7 @@ const Checkout = () => {
     const dateAndTime=time;
     let status="Wating";
     const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
-  await axios.post("http://localhost:5000/itemorder",checkOut,{
+  await axios.post("https://test.freeimgcollection.com/itemorder",checkOut,{
     headers: {
       'content-type': 'application/json',
         authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -232,7 +232,7 @@ navigate("/deshboard")
 <p className='text-center  text-primary  text-xl mb-2 font-semibold'>Payment method</p>
 
 
-<div class=" items-center gap-8">
+<div className=" items-center gap-8">
     <label className='items-center flex'>
         <input
         className=' radio-sm radio-primary accent-primary'

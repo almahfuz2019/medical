@@ -13,7 +13,7 @@ const SingleItemOrder = () => {
      const { id } = useParams();
      const [order, setOrder] = useState({});
      useEffect(() => {
-         const url = `http://localhost:5000/product/${id}`;
+         const url = `https://test.freeimgcollection.com/product/${id}`;
          fetch(url)
              .then(res => res.json())
              .then(data => setOrder(data));
@@ -32,7 +32,6 @@ const SingleItemOrder = () => {
     };
      const cartItemQuentity = localStorage.getItem('productquenty');
      const cartParsedValue = JSON.parse(cartItemQuentity);
-     console.log(cartParsedValue);
      const product={_id:order._id,productQuentity:cartParsedValue,product:{name:order.name,price:order.price}};
      const zc=[product]
      const checkOut=async(event)=>{
@@ -51,7 +50,7 @@ const SingleItemOrder = () => {
           const dateAndTime=time;
           let status="Wating";
           const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,TotalPrice,status,bkishNumber,userData};
-        await axios.post("http://localhost:5000/itemorder",checkOut)
+        await axios.post("https://test.freeimgcollection.com/itemorder",checkOut)
         toast.success('Submitted Successfully', {
           position: "top-right",
           autoClose: 1000,
@@ -239,7 +238,7 @@ navigate("/deshboard")
 
 
 
-<div class=" items-center gap-8">
+<div className=" items-center gap-8">
     <label className='items-center flex'>
         <input
         className=' radio-sm radio-primary accent-primary'

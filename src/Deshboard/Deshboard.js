@@ -11,6 +11,7 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { CiShoppingBasket } from "react-icons/ci";
 import {  TbShoppingCartDiscount } from "react-icons/tb";
 import axios from 'axios';
+import { FaAlignLeft } from 'react-icons/fa';
 const Deshboard = () => {
     const [error,setError]=useState("");
     const [user]=useAuthState(auth);
@@ -24,7 +25,7 @@ const Deshboard = () => {
     const [userscount,setUserscount]=useState([]);
     const totalUserCount = async() => {
         try{
-            const response=await axios.get("http://localhost:5000/userscount")
+            const response=await axios.get("https://test.freeimgcollection.com/userscount")
             setUserscount(response.data)
         }catch(error){
             setError("something is wrong.Please try again")
@@ -35,31 +36,31 @@ const Deshboard = () => {
     },[])
 
     useEffect(()=>{
-        fetch("http://localhost:5000/coponecount")
+        fetch("https://test.freeimgcollection.com/coponecount")
         .then(res=>res.json())
         .then(data=>setCoponecount(data))
 
     },[coponecount])
     useEffect(()=>{
-        fetch("http://localhost:5000/userscontactinfocount")
+        fetch("https://test.freeimgcollection.com/userscontactinfocount")
         .then(res=>res.json())
         .then(data=>setContactcount(data))
 
     },[contactcount])
     useEffect(()=>{
-        fetch("http://localhost:5000/orderscount")
+        fetch("https://test.freeimgcollection.com/orderscount")
         .then(res=>res.json())
         .then(data=>setOrders(data))
 
     },[orders])
     useEffect(()=>{
-        fetch("http://localhost:5000/allproductscount")
+        fetch("https://test.freeimgcollection.com/allproductscount")
         .then(res=>res.json())
         .then(data=>setProducts(data))
 
     },[products])
     useEffect(()=>{
-        fetch("http://localhost:5000/catagoycount")
+        fetch("https://test.freeimgcollection.com/catagoycount")
         .then(res=>res.json())
         .then(data=>setCatagory(data))
 
@@ -72,8 +73,9 @@ const Deshboard = () => {
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content ">
    <div className=' text-end'>
-   <label htmlFor="my-drawer-2" tabIndex={0} className="btn btn-ghost lg:hidden mx-auto text-center ml-100">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mx-auto text-center ml-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      <label htmlFor="my-drawer-2" tabIndex={0} className="btn btn-ghost lg:hidden ">
+          <i className='font-bold'><FaAlignLeft className='text-2xl font-extrabold rotate-180'/></i>
+      
       </label>
    </div>
    <Outlet/>

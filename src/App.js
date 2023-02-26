@@ -41,14 +41,13 @@ import OrderStatusUpdate from './Deshboard/Components/OrderStatusUpdate';
 import UserContactinfo from './Deshboard/Components/UserContactinfo';
 import SingleItemOrder from './Components/SingleItemOrder';
 import BottomNavbar from './Components/BottomNavbar';
-import NabbarForMabail from './Shired/NabbarForMabail';
+import NavbarForMabail from './Shired/NavbarForMabail';
 import { useEffect } from 'react';
 function App() {
     const [user]=useAuthState(auth);
     const [admin]=UseAdmin(user);
     const ScrollToTop = () => {
         const { pathname } = useLocation();
-        console.log(pathname)
         useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
@@ -56,7 +55,7 @@ function App() {
       }
   return (
    <div className='md:px-6 bg-gray-100 scrollbar-container'>
-   <Navbar/><NabbarForMabail/>
+   <Navbar/><NavbarForMabail/>
     <ScrollToTop/>
 <Routes> 
     <Route path='/login' element={<Login/>}/>

@@ -6,7 +6,7 @@ const UpdateCategory = () => {
      const[category,setCategory]=useState([]);
     const { id } = useParams();
 useEffect(()=>{
-     const url=`http://localhost:5000/category/${id}`
+     const url=`https://test.freeimgcollection.com/category/${id}`
      fetch(url)
      .then(res=>res.json())
      .then(data=>setCategory(data))
@@ -20,7 +20,7 @@ const handleCatagoryNameChange = e => {
  }
  const handleUpdateCatagory = async(e) => {
   e.preventDefault()
-     const url = `http://localhost:5000/category/${id}`;
+     const url = `https://test.freeimgcollection.com/category/${id}`;
      await axios.put(url,category)
           toast.success('Update Successfully', {
             position: "top-right",

@@ -6,7 +6,7 @@ const UseOrder = () => {
    const handleOrderDelete=async(id)=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
-         await axios.delete(`http://localhost:5000/itemorderdelete/${id}`)
+         await axios.delete(`https://test.freeimgcollection.com/itemorderdelete/${id}`)
          .then(response=>{
           if(response.data.deletedCount>0){
                const deletedremaining=copone.filter(note=>note._id !==id);

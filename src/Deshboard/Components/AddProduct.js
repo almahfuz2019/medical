@@ -12,13 +12,13 @@ const AddProduct = () => {
     const { data: categories, isLoading } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
-          const res = await fetch('http://localhost:5000/categories');
+          const res = await fetch('https://test.freeimgcollection.com/categories');
           const data = await res.json();
           return data;
       }
   })
    // image host key (imgbb) 
-    const imageHostKey ="beaf06de8045a9c2bdfcf2b3378e418e";
+    const imageHostKey =process.env.REACT_APP_IMAGEHOSTKEY;
     // first image 
     const firstImageUpload = (event) => {
         const image2 = event.target.files[0];
@@ -33,7 +33,6 @@ const AddProduct = () => {
             setFirstImageUrl(res.data.data.display_url);
           })
           .catch((error) => {
-            console.log(error);
           });
       };
     // second image 
@@ -50,7 +49,6 @@ const AddProduct = () => {
             setsecondImageUrl(res.data.data.display_url);
           })
           .catch((error) => {
-            console.log(error);
           });
       };
     //   third image 
@@ -67,7 +65,6 @@ const AddProduct = () => {
             setThirdImageUrl(res.data.data.display_url);
           })
           .catch((error) => {
-            console.log(error);
           });
       };
     const handleAddProduct = data => {
@@ -83,7 +80,7 @@ const AddProduct = () => {
                     image2: secondImageUrl,
                     image3: thirdImageUrl,
                 }
-                fetch('http://localhost:5000/product', {
+                fetch('https://test.freeimgcollection.com/product', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 
@@ -93,7 +90,6 @@ const AddProduct = () => {
                 })
                 .then(res => res.json())
                 .then(result =>{
-                    console.log(result);
                     toast.success('Addedd Successfully', {
                             position: "top-right",
                             autoClose: 1000,

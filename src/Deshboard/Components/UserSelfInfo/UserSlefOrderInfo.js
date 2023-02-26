@@ -8,7 +8,7 @@ import auth from '../../../firebase.init';
 const UserSlefOrderInfo = () => {
      const [user]=useAuthState(auth);
      const { isLoading:productLoading, error, data:orders } = useQuery( 'userSelfOrder', () =>
-     fetch(`http://localhost:5000/userselforder?email=${user.email}`).then(res =>
+     fetch(`https://test.freeimgcollection.com/userselforder?email=${user.email}`).then(res =>
        res.json()
  )
    ) 

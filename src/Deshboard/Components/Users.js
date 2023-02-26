@@ -4,7 +4,7 @@ import Loading from '../../Components/Loading';
 import UserRole from './UserRole';
 const Users = () => {
      const { isLoading, error, data:usersInfo,refetch } = useQuery( 'users', () =>
-     fetch('http://localhost:5000/users',{
+     fetch('https://test.freeimgcollection.com/users',{
           method:"GET",
           headers: {
             'content-type': 'application/json',
