@@ -8,7 +8,7 @@ const OrderPDF = () => {
      const [singleUserOrder, setSingleUserOrder] = useState({});
      const { id } = useParams();
      useEffect(() => {
-          const url = `https://test.freeimgcollection.com/itemorder/${id}`;
+          const url = `https://server.chaayasurgical.com/itemorder/${id}`;
           fetch(url)
           .then(res => res.json())
           .then(data => setSingleUserOrder(data));

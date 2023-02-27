@@ -25,7 +25,7 @@ const Deshboard = () => {
     const [userscount,setUserscount]=useState([]);
     const totalUserCount = async() => {
         try{
-            const response=await axios.get("https://test.freeimgcollection.com/userscount")
+            const response=await axios.get("https://server.chaayasurgical.com/userscount")
             setUserscount(response.data)
         }catch(error){
             setError("something is wrong.Please try again")
@@ -36,31 +36,31 @@ const Deshboard = () => {
     },[])
 
     useEffect(()=>{
-        fetch("https://test.freeimgcollection.com/coponecount")
+        fetch("https://server.chaayasurgical.com/coponecount")
         .then(res=>res.json())
         .then(data=>setCoponecount(data))
 
     },[coponecount])
     useEffect(()=>{
-        fetch("https://test.freeimgcollection.com/userscontactinfocount")
+        fetch("https://server.chaayasurgical.com/userscontactinfocount")
         .then(res=>res.json())
         .then(data=>setContactcount(data))
 
     },[contactcount])
     useEffect(()=>{
-        fetch("https://test.freeimgcollection.com/orderscount")
+        fetch("https://server.chaayasurgical.com/orderscount")
         .then(res=>res.json())
         .then(data=>setOrders(data))
 
     },[orders])
     useEffect(()=>{
-        fetch("https://test.freeimgcollection.com/allproductscount")
+        fetch("https://server.chaayasurgical.com/allproductscount")
         .then(res=>res.json())
         .then(data=>setProducts(data))
 
     },[products])
     useEffect(()=>{
-        fetch("https://test.freeimgcollection.com/catagoycount")
+        fetch("https://server.chaayasurgical.com/catagoycount")
         .then(res=>res.json())
         .then(data=>setCatagory(data))
 

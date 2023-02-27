@@ -18,7 +18,7 @@ const[size,setSize]=useState(50);
     try{
       // productsorders
       setOrderLoading(true)
-      const response=await axios.get(`https://test.freeimgcollection.com/productsorders?page=${page}&size=${size}`,{
+      const response=await axios.get(`https://server.chaayasurgical.com/productsorders?page=${page}&size=${size}`,{
         headers: {
           'content-type': 'application/json',
             authorization:`Bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const[size,setSize]=useState(50);
   const handleOrderDelete=async(id)=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
-         await axios.delete(`https://test.freeimgcollection.com/itemorderdelete/${id}`)
+         await axios.delete(`https://server.chaayasurgical.com/itemorderdelete/${id}`)
          .then(response=>{
           if(response.data.deletedCount>0){
                const deletedremaining=orders.filter(note=>note._id !==id);
@@ -48,7 +48,7 @@ const[size,setSize]=useState(50);
     }
 }
   useEffect(()=>{
-    fetch("https://test.freeimgcollection.com/orderscount")
+    fetch("https://server.chaayasurgical.com/orderscount")
     .then(res=>res.json())
     .then(data=>setCount(data))
   },[count])
@@ -57,7 +57,7 @@ const[size,setSize]=useState(50);
     setSearch(e.target.value);
   };
   useEffect(()=>{
-    const url=`https://test.freeimgcollection.com/ordersearch?email=${search}`;
+    const url=`https://server.chaayasurgical.com/ordersearch?email=${search}`;
     
     if(search!==""){
     

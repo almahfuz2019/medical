@@ -10,7 +10,7 @@ import UseCatagory from '../Deshboard/Hooks/UseCatagory';
 const Home = () => {
   // categorys 
   const {catagorys,Hospital,Laboratory,Diagnostic,Dental,Surgical,FirstAid,BeautyCare,HealthCare,handleCategory,BabyCare,category}=UseCatagory();
-  const [search,setSearch]=useState("")
+  const [keywords,setKeywords]=useState("")
   const [error,setError]=useState("");
   const [productCount,setProductCount]=useState(0)
   const[page,setPage]=useState(0);
@@ -20,7 +20,7 @@ const Home = () => {
   const[productLoading,setProductLoading]=useState(true);
   // all products count 
   useEffect(()=>{
-    fetch("https://test.freeimgcollection.com/allproductscount")
+    fetch("https://server.chaayasurgical.com/allproductscount")
     .then(res=>res.json())
     .then(data=>setProductCount(data))
 },[])
@@ -40,13 +40,13 @@ const handleClickScrollforInput = () => {
   }
 }
 const handleSearch = (e) => {
-  setSearch(e.target.value);
+  setKeywords(e.target.value);
 };
 // load products 
   const fetchProducts = async() => {
     try{
       setProductLoading(true);
-      const response=await axios.get(`https://test.freeimgcollection.com/allproducts?page=${page}&size=${size}`);
+      const response=await axios.get(`https://server.chaayasurgical.com/allproducts?page=${page}&size=${size}`);
       setPageCount(Math.ceil(response.data.count/size));
           setProducts(response.data.products);
           setProductLoading(false);
@@ -64,8 +64,9 @@ const handleSearch = (e) => {
   }
   // search here
   useEffect(()=>{
-    const url=`https://test.freeimgcollection.com/productsearch?name=${search}`;
-    if(search!==""){
+    const url=`https://server.chaayasurgical.com/productsearch?keywords=${keywords}`;
+    console.log(url);
+    if(keywords!==""){
       setProductLoading(true)
       fetch(url)
       .then(res=>res.json())
@@ -74,13 +75,13 @@ const handleSearch = (e) => {
         setPageCount(Math.ceil(data.length/size))
         setProductLoading(false)
       })
-    }else if(search===""){
+    }else if(keywords===""){
       fetchProducts()
     }
-  },[search])
+  },[keywords])
   // productsearchbycategory 
   useEffect(()=>{
-    const url=`https://test.freeimgcollection.com/productsearchbycategory?catagory=${category}`;
+    const url=`https://server.chaayasurgical.com/productsearchbycategory?catagory=${category}`;
     if(category!==""){
       setProductLoading(true)
       fetch(url)
@@ -291,7 +292,7 @@ const handleChangeuUnlimited=(e)=> {
             <div className="text-center  mt-5 sm:mt-7   sticky">
             <span onClick={handleClickScrollforInput}>
               <div className="flex justify-center mx-2  ">
-              <input type="text" className="sm:w-1/2 py-2 pl-10 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here by product name"
+              <input type="text" className="sm:w-1/2 py-2 lg:pl-3 pr-4  bg-white border rounded-r-none rounded-md focus:border-primary focus:outline-none focus:ring-0 focus:ring-opacity-30 focus:ring-primary input input-bordered input-primary w-full input-sm sm:input-md " name='inputValue' placeholder="Search here "
       // value={search}
            onChange={handleSearch}/>
               

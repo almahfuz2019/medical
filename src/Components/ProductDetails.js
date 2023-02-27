@@ -30,7 +30,7 @@ const ProductDetails = () => {
     const useremail=user.email;
     const product=singleProductDetails;
      const NotesData={productQuentity,useremail,product};
-     await axios.post("https://test.freeimgcollection.com/addtocart",NotesData)
+     await axios.post("https://server.chaayasurgical.com/addtocart",NotesData)
      toast.success('Added Successfully', {
        position: "top-right",
        autoClose: 1000,
@@ -48,7 +48,7 @@ const ProductDetails = () => {
      console.log(singleProductDetails);
      const fatchcategory=(a)=>{
       setProductLoading(true)
-      const url= `https://test.freeimgcollection.com/productsearchbycategorywithlimit?catagory=${a}`;
+      const url= `https://server.chaayasurgical.com/productsearchbycategorywithlimit?catagory=${a}`;
    
       fetch(url)
       .then(res=>res.json())
@@ -58,7 +58,7 @@ const ProductDetails = () => {
     }
      useEffect(() => {
       setProductLoading(true)
-         const url = `https://test.freeimgcollection.com/product/${id}`;
+         const url = `https://server.chaayasurgical.com/product/${id}`;
          fetch(url)
              .then(res => res.json())
              .then(data =>{

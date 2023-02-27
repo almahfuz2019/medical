@@ -13,7 +13,7 @@ const SingleItemOrder = () => {
      const { id } = useParams();
      const [order, setOrder] = useState({});
      useEffect(() => {
-         const url = `https://test.freeimgcollection.com/product/${id}`;
+         const url = `https://server.chaayasurgical.com/product/${id}`;
          fetch(url)
              .then(res => res.json())
              .then(data => setOrder(data));
@@ -50,7 +50,7 @@ const SingleItemOrder = () => {
           const dateAndTime=time;
           let status="Wating";
           const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,TotalPrice,status,bkishNumber,userData};
-        await axios.post("https://test.freeimgcollection.com/itemorder",checkOut)
+        await axios.post("https://server.chaayasurgical.com/itemorder",checkOut)
         toast.success('Submitted Successfully', {
           position: "top-right",
           autoClose: 1000,

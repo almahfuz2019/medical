@@ -8,7 +8,7 @@ const NewProducts = () => {
      const[productLoading,setProductLoading]=useState(true);
      useEffect(()=>{
           setProductLoading(true)
-          fetch("https://test.freeimgcollection.com/newproducts")
+          fetch("https://server.chaayasurgical.com/newproducts")
           .then(res=>res.json())
           .then(data=>setNewProducts(data))
           setProductLoading(false)

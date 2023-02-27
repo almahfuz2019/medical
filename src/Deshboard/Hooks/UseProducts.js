@@ -7,7 +7,7 @@ const [products,setProducts]=useState([]);
 const[productLoading,setProductLoading]=useState(true);
 useEffect(()=>{
      setProductLoading(true)
-     fetch('https://test.freeimgcollection.com/products')
+     fetch('https://server.chaayasurgical.com/products')
      .then(res =>res.json())
      .then(data=>setProducts(data))
      setProductLoading(false)
@@ -15,7 +15,7 @@ useEffect(()=>{
    const handleProductDelete=async(id)=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
-    await axios.delete(`https://test.freeimgcollection.com/product/${id}`)
+    await axios.delete(`https://server.chaayasurgical.com/product/${id}`)
      .then(response=>{
           if(response.data.deletedCount>0){
                const deletedremaining=products.filter(note=>note._id !==id);

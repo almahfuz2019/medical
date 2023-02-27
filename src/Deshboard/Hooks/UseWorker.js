@@ -6,7 +6,7 @@ const UseWorker = (user) => {
      useEffect(()=>{
           const email=user?.email;
      if(email){
-          const url = `https://test.freeimgcollection.com/worker/${email}`;
+          const url = `https://server.chaayasurgical.com/worker/${email}`;
      fetch(url, {
          method: 'GET',
          headers: {

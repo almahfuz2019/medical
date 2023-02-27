@@ -5,7 +5,7 @@ const ContactDetailsInformation = () => {
      const [specificUserContactInfo, setSpecificUserContactInfo] = useState({});
      const { id } = useParams();
      useEffect(() => {
-          const url = `https://test.freeimgcollection.com/contact/${id}`;
+          const url = `https://server.chaayasurgical.com/contact/${id}`;
           fetch(url)
           .then(res => res.json())
           .then(data => setSpecificUserContactInfo(data));

@@ -9,7 +9,7 @@ const UseUserSpacifiqData = () => {
      const[userCartData,setUsdata]=useState([]);
     const fetchCarts  = async() => {
      try{
-          const res = await axios.get(`https://test.freeimgcollection.com/cartdata?useremail=${user.email}`)
+          const res = await axios.get(`https://server.chaayasurgical.com/cartdata?useremail=${user.email}`)
           setUsdata(res.data)
      }catch(err){
       }
@@ -21,7 +21,7 @@ const UseUserSpacifiqData = () => {
        try{
           const proceed=window.confirm("are you sure you want to delete?");
           if(proceed){
-               axios.delete(`https://test.freeimgcollection.com/cartdatadelete/${id}`)
+               axios.delete(`https://server.chaayasurgical.com/cartdatadelete/${id}`)
                .then(response=>{
                     if(response.data.deletedCount>0){
                          const remaining=userCartData.filter(note=>note._id !==id);
@@ -34,7 +34,7 @@ const UseUserSpacifiqData = () => {
       }
    }
    const { isLoading:productLoading, error, data:products } = useQuery( 'repoaData', () =>
-     fetch('https://test.freeimgcollection.com/usercartdata').then(res =>
+     fetch('https://server.chaayasurgical.com/usercartdata').then(res =>
        res.json()
  )
    )

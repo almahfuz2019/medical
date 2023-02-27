@@ -10,7 +10,7 @@ const ContactUs = () => {
     const message=event.target.message.value;
     const dateAndTime=time;
     const productData={email,message,dateAndTime};
-    await axios.post("https://test.freeimgcollection.com/contact",productData)
+    await axios.post("https://server.chaayasurgical.com/contact",productData)
     toast.success('Submitted Successfully', {
       position: "top-right",
       autoClose: 1000,

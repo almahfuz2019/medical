@@ -42,7 +42,7 @@ const Checkout = () => {
     const dateAndTime=time;
     let status="Wating";
     const checkOut={name,phone,email,village,union,thana,district,bkishID,dateAndTime,userData,TotalPrice,status,bkishNumber};
-  await axios.post("https://test.freeimgcollection.com/itemorder",checkOut,{
+  await axios.post("https://server.chaayasurgical.com/itemorder",checkOut,{
     headers: {
       'content-type': 'application/json',
         authorization:`Bearer ${localStorage.getItem('accessToken')}`

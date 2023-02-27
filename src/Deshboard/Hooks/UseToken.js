@@ -6,7 +6,7 @@ const UseToken = (user) => {
      const email=user?.user?.email;
      const currentUser={email:email};
      if(email){
-          const url = `https://test.freeimgcollection.com/user/${email}`;
+          const url = `https://server.chaayasurgical.com/user/${email}`;
      fetch(url, {
          method: 'PUT',
          headers: {

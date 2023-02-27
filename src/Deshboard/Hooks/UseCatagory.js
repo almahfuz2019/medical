@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
      const [catagorys,setCatagorys]=useState([]);
      const [category,setCategory]=useState("")
      useEffect(()=>{
-          fetch("https://test.freeimgcollection.com/categories")
+          fetch("https://server.chaayasurgical.com/categories")
           .then(res=>res.json())
           .then(data=>setCatagorys(data))
      },[catagorys])
      const handleCatagoryDelete=async(id)=>{
           const proceed=window.confirm("are you sure you want to delete?");
           if(proceed){
-               await axios.delete(`https://test.freeimgcollection.com/catagory/${id}`)
+               await axios.delete(`https://server.chaayasurgical.com/catagory/${id}`)
                .then(response=>{
                     if(response.data.deletedCount>0){
                          const deletedremaining=catagorys.filter(note=>note._id !==id);

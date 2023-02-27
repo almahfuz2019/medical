@@ -13,7 +13,7 @@ const UserContactinfo = () => {
        const[productLoading,setProductLoading]=useState(true);
        const fetchProducts = () => {
          setProductLoading(true)
-         fetch(`https://test.freeimgcollection.com/contact?page=${page}&size=${size}`)
+         fetch(`https://server.chaayasurgical.com/contact?page=${page}&size=${size}`)
          .then(res=>res.json())
          .then(data=>{
            setPageCount(Math.ceil(data.count/size))
@@ -30,7 +30,7 @@ const UserContactinfo = () => {
     setSearch(e.target.value);
   };
   useEffect(()=>{
-    const url=`https://test.freeimgcollection.com/contactinfosearch?email=${search}`;
+    const url=`https://server.chaayasurgical.com/contactinfosearch?email=${search}`;
     if(search!==""){
       fetch(url)
       .then(res=>res.json())
@@ -53,7 +53,7 @@ const UserContactinfo = () => {
           const proceed=window.confirm("Are you sure you want to delete it?");
           if(proceed){
                
-               await axios.delete(`https://test.freeimgcollection.com/contact/${id}`)
+               await axios.delete(`https://server.chaayasurgical.com/contact/${id}`)
                .then(response=>{
                 if(response.data.deletedCount>0){
                      const deletedremaining=products.filter(note=>note._id !==id);

@@ -12,49 +12,54 @@ const UpdateProduct = () => {
     // get single product by useParams
     const {id} = useParams();
     useEffect(()=>{
-     const url=`https://test.freeimgcollection.com/product/${id}`
+     const url=`https://server.chaayasurgical.com/product/${id}`
      fetch(url)
      .then(res=>res.json())
      .then(data=>setProductInfo(data))
 },[])
     const nameChange = e => {
         const getName = e.target.value;
-        const updateNewName = { name: getName,  price:productInfo.price,previcePrice:productInfo.previcePrice ,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand};
+        const updateNewName = { name: getName,  price:productInfo.price,previcePrice:productInfo.previcePrice ,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand,keywords:productInfo.keywords};
         setProductInfo(updateNewName);     
     }
     const priceChange = e => {
         const getPrice = e.target.value;
-        const updateNewPrice = { name: productInfo.name,previcePrice:productInfo.previcePrice, price: getPrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand}
+        const updateNewPrice = { name: productInfo.name,previcePrice:productInfo.previcePrice, price: getPrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand,keywords:productInfo.keywords}
         setProductInfo(updateNewPrice);
     }
     const previcePriceChange = e => {
         const getPrevicePrice = e.target.value;
-        const updateNewPrevicePrcie = { name: productInfo.name, price:productInfo.price,previcePrice:getPrevicePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand}
+        const updateNewPrevicePrcie = { name: productInfo.name, price:productInfo.price,previcePrice:getPrevicePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand,keywords:productInfo.keywords}
         setProductInfo(updateNewPrevicePrcie);
     }
     const brandNameChange = e => {
         const getBrandName = e.target.value;
-        const updateNewBrandName = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory,brand:getBrandName }
+        const updateNewBrandName = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory,brand:getBrandName,keywords:productInfo.keywords }
         setProductInfo(updateNewBrandName);
+    }
+    const keywordsNameChange = e => {
+        const getKeywordName = e.target.value;
+        const updateNewKeywordsName = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory,brand:productInfo.brand,keywords:getKeywordName }
+        setProductInfo(updateNewKeywordsName);
     }
     const categoryChange = e => {
         const getCategory = e.target.value;
-        const updateNewCategory = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:getCategory,details:productInfo.details,status:productInfo.status ,brand:productInfo.brand}
+        const updateNewCategory = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:getCategory,details:productInfo.details,status:productInfo.status ,brand:productInfo.brand,keywords:productInfo.keywords}
         setProductInfo(updateNewCategory);
     }
     const statusChange = e => {
         const getStatus = e.target.value;
-        const updateNewStatus = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory,details:productInfo.details,status:getStatus ,brand:productInfo.brand}
+        const updateNewStatus = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory,details:productInfo.details,status:getStatus ,brand:productInfo.brand,keywords:productInfo.keywords}
         setProductInfo(updateNewStatus);
     }
     const detailsChange = e => {
         const getDetails = e.target.value;
-        const updateNewDetails = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory ,details:getDetails,status:productInfo.status ,brand:productInfo.brand}
+        const updateNewDetails = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice, image1: productInfo.image1,image2: productInfo.image2,image3: productInfo.image3, catagory:productInfo.catagory ,details:getDetails,status:productInfo.status ,brand:productInfo.brand,keywords:productInfo.keywords}
         setProductInfo(updateNewDetails);
     }
     const handleUpdateProduct = async(event) => {
       event.preventDefault();
-     const url = `https://test.freeimgcollection.com/product/${id}`;
+     const url = `https://server.chaayasurgical.com/product/${id}`;
      await axios.put(url,productInfo)
           toast.success('Update Successfully', {
             position: "top-right",
@@ -84,7 +89,7 @@ const UpdateProduct = () => {
       .then(imgData => {
         setFirstImageUrl(imgData.data.url)
         if(imgData.success){
-            const updateImage = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: imgData.data.url,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,catagory:productInfo.catagory ,status:productInfo.status ,brand:productInfo.brand}
+            const updateImage = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1: imgData.data.url,image2: productInfo.image2,image3: productInfo.image3,details:productInfo.details,catagory:productInfo.catagory ,status:productInfo.status ,brand:productInfo.brand,keywords:productInfo.keywords}
             setProductInfo(updateImage);
           }
         })}
@@ -102,7 +107,7 @@ const UpdateProduct = () => {
       .then(imgData => {
         setsecondImageUrl(imgData.data.url)
           if(imgData.success){
-            const updateImage1 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2: imgData.data.url,image3:productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand}
+            const updateImage1 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2: imgData.data.url,image3:productInfo.image3,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory ,brand:productInfo.brand,keywords:productInfo.keywords}
             setProductInfo(updateImage1);
           }
         })}
@@ -120,7 +125,7 @@ const UpdateProduct = () => {
       .then(imgData => {
         setThirdImageUrl(imgData.data.url)
           if(imgData.success){
-            const updateImage3 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2:  productInfo.image2,image3: imgData.data.url,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory  ,brand:productInfo.brand}
+            const updateImage3 = { name: productInfo.name, price:productInfo.price,previcePrice:productInfo.previcePrice,image1:  productInfo.image1,image2:  productInfo.image2,image3: imgData.data.url,details:productInfo.details,status:productInfo.status,catagory:productInfo.catagory  ,brand:productInfo.brand,keywords:productInfo.keywords}
             setProductInfo(updateImage3);
           }
         })}
@@ -147,6 +152,10 @@ const UpdateProduct = () => {
       <div className="relative mb-4">
         <label  className="leading-7 text-sm text-gray-600">Product Brand Name</label>
         <input type="text" id="name" name="brand" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo?.brand} onChange={brandNameChange}/>
+      </div>
+      <div className="relative mb-4">
+        <label  className="leading-7 text-sm text-gray-600">Keywords</label>
+        <input type="text" id="name" name="keywords" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value={productInfo?.keywords} onChange={keywordsNameChange}/>
       </div>
       <div className="relative mb-4">
         <label  className="leading-7 text-sm text-gray-600">Change status</label>

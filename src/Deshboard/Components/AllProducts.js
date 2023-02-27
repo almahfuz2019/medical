@@ -12,7 +12,7 @@ const AllProducts = () => {
        const[productsLoading,setProductsLoading]=useState(true);
     const [productsCount,setProductsCount]=useState([]);
     useEffect(()=>{
-      fetch("https://test.freeimgcollection.com/allproductscount")
+      fetch("https://server.chaayasurgical.com/allproductscount")
       .then(res=>res.json())
       .then(data=>setProductsCount(data))
   },[products])
@@ -23,7 +23,7 @@ const AllProducts = () => {
   const handleProductDelete=async(id)=>{
     const proceed=window.confirm("are you sure you want to delete?");
     if(proceed){
-    await axios.delete(`https://test.freeimgcollection.com/product/${id}`)
+    await axios.delete(`https://server.chaayasurgical.com/product/${id}`)
      .then(response=>{
           if(response.data.deletedCount>0){
                const deletedremaining=products.filter(note=>note._id !==id);
@@ -36,7 +36,7 @@ const AllProducts = () => {
   //get allproducts 
        const fetchProducts = () => {
          setProductsLoading(true)
-         fetch(`https://test.freeimgcollection.com/allproducts?page=${page}&size=${size}`)
+         fetch(`https://server.chaayasurgical.com/allproducts?page=${page}&size=${size}`)
          .then(res=>res.json())
          .then(data=>{
            setPageCount(Math.ceil(data.count/size))
@@ -48,7 +48,7 @@ const AllProducts = () => {
     fetchProducts()
   },[page,size])
   useEffect(()=>{
-    const url=`https://test.freeimgcollection.com/productsearch?name=${search}`;
+    const url=`https://server.chaayasurgical.com/productsearch?name=${search}`;
     if(search!==""){
       fetch(url)
       .then(res=>res.json())

@@ -9,7 +9,7 @@ const ShopingCart = () => {
   const[quentity,setQuentity]=useState("");
 const {usdata,handleUserDelete,total,subTotal,shippingCharge,error}=UseUserSpacifiqData();
 const handleUpdateCatagory = async(id) => {
-     const url = `https://test.freeimgcollection.com/quentity/${id}`;
+     const url = `https://server.chaayasurgical.com/quentity/${id}`;
  
      await axios.put(url,quentity)
           toast.success('Update Successfully', {

@@ -12,7 +12,7 @@ const AddProduct = () => {
     const { data: categories, isLoading } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
-          const res = await fetch('https://test.freeimgcollection.com/categories');
+          const res = await fetch('https://server.chaayasurgical.com/categories');
           const data = await res.json();
           return data;
       }
@@ -76,11 +76,12 @@ const AddProduct = () => {
                     catagory: data.catagory,
                     status:data.status,
                     brand:data.brand,
+                    keywords:data.keywords,
                     image1: firstImageUrl,
                     image2: secondImageUrl,
                     image3: thirdImageUrl,
                 }
-                fetch('https://test.freeimgcollection.com/product', {
+                fetch('https://server.chaayasurgical.com/product', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 
@@ -140,6 +141,11 @@ const AddProduct = () => {
                 <div className="relative mb-4">
                     <label className="leading-7 text-sm text-gray-600"> Brand Name</label>
                     <input type="text" {...register("brand")} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" />
+                 
+                </div>
+                <div className="relative mb-4">
+                    <label className="leading-7 text-sm text-gray-600"> Keywords</label>
+                    <input type="text" {...register("keywords")} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" />
                  
                 </div>
                 <div className="relative mb-4">
