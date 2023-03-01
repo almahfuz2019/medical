@@ -473,7 +473,7 @@ p-2'>
               <span className="line-through decoration-gray-400    text-gray-800 ">
               <div className='flex items-center '>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-2 mr-0.5 ' alt="" />
-            <p className="text-center text-gray-800  ">{product.previcePrice}</p>  
+            <p className="text-center text-gray-800">{product.previcePrice}</p>  
               </div> </span><span className=' ml-1 '> {Math.ceil(((product.price-product.previcePrice)*100/product.price))}%</span> </span> 
             </p>
             </div>

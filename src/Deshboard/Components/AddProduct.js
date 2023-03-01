@@ -22,6 +22,10 @@ const AddProduct = () => {
     // first image 
     const firstImageUpload = (event) => {
         const image2 = event.target.files[0];
+        if(event.target.files[0].size > 262144){
+            alert("Your file size is greater than 250KB");
+            event.target.value = "";
+         };
         const formData = new FormData();
         formData.set("image", image2);
         axios
@@ -38,6 +42,10 @@ const AddProduct = () => {
     // second image 
     const secondImageUpload = (event) => {
         const image2 = event.target.files[0];
+        if(event.target.files[0].size > 262144){
+            alert("Your file size is greater than 250KB");
+            event.target.value = "";
+         };
         const formData = new FormData();
         formData.set("image", image2);
         axios
@@ -54,6 +62,10 @@ const AddProduct = () => {
     //   third image 
     const thirdImageUpload = (event) => {
         const image3 = event.target.files[0];
+        if(event.target.files[0].size > 262144){
+            alert("Your file size is greater than 250KB");
+            event.target.value = "";
+         };
         const formData = new FormData();
         formData.set("image", image3);
         axios

@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import UseUserSpacifiqData from '../Deshboard/Hooks/UseUserSpacifiqData';
 import Notfound from './Notfound';
-
 const ShopingCart = () => {
   const[quentity,setQuentity]=useState("");
 const {usdata,handleUserDelete,total,subTotal,shippingCharge,error}=UseUserSpacifiqData();
 const handleUpdateCatagory = async(id) => {
      const url = `https://server.chaayasurgical.com/quentity/${id}`;
- 
      await axios.put(url,quentity)
           toast.success('Update Successfully', {
             position: "top-right",
@@ -22,13 +20,11 @@ const handleUpdateCatagory = async(id) => {
             progress: undefined,
             theme: "colored",
             });  
-         
  } 
  const handleCatagoryNameChange = e => {
   const getQuentity = e.target.value;
   const quentityset = { productQuentity: getQuentity };
   setQuentity(quentityset);
-  
 }
      return (
           <div>

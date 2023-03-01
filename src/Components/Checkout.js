@@ -15,7 +15,6 @@ const Checkout = () => {
     setSelectedOption(event.target.value);
   };
   const [agree,setAgree]=useState(false);
-  const [agreeWithCashOnDelevery,setAgreeWithCashOnDelevery]=useState(false);
   const [user, loading, error] = useAuthState(auth);
   if(loading){
     return <Loading/>
@@ -25,7 +24,6 @@ const Checkout = () => {
   }
   const time= new Date().toLocaleString();
   const {usdata,total}=UseUserSpacifiqData();
-
   const checkOut=async(event)=>{
     event.preventDefault();
     const name=event.target.name.value;

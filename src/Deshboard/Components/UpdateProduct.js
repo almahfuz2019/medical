@@ -78,6 +78,10 @@ const UpdateProduct = () => {
   //  first Image 
     const uploadFirstImage=(e)=>{
       const image = e.target.files[0];
+      if(e.target.files[0].size > 262144){
+        alert("Your file size is greater than 250KB");
+        e.target.value = "";
+     };
       const formData = new FormData();
       formData.append('image', image);
       const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
@@ -96,6 +100,10 @@ const UpdateProduct = () => {
     // second Image 
     const uploadSecondImage=(e)=>{
       const image = e.target.files[0];
+      if(e.target.files[0].size > 262144){
+        alert("Your file size is greater than 250KB");
+        e.target.value = "";
+     };
       const formData = new FormData();
       formData.append('image', image);
       const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
@@ -114,6 +122,10 @@ const UpdateProduct = () => {
      // third Image 
     const uploadThirdImage=(e)=>{
       const image = e.target.files[0];
+      if(e.target.files[0].size > 262144){
+        alert("Your file size is greater than 250KB");
+        e.target.value = "";
+     };
       const formData = new FormData();
       formData.append('image', image);
       const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`

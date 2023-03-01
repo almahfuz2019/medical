@@ -28,7 +28,9 @@ const ProductDetails = () => {
     event.preventDefault();
     const productQuentity=event.target.productQuentity.value;
     const useremail=user.email;
-    const product=singleProductDetails;
+    // const product=singleProductDetails;
+    const product={name:singleProductDetails.name,price:singleProductDetails.price,image1:singleProductDetails.image1};
+    console.log(product);
      const NotesData={productQuentity,useremail,product};
      await axios.post("https://server.chaayasurgical.com/addtocart",NotesData)
      toast.success('Added Successfully', {
@@ -73,7 +75,7 @@ const ProductDetails = () => {
     }
      return (
           <div className='bg-gray-100 p-2'>
-               <a  href = "javascript:history.back()"><span className="ml-1 text-2xl  text-primary">
+               <a  href = "javascript:history.back()"><span className="ml-1 text-2xl lg:hidden  text-primary">
                 <FaArrowCircleLeft/></span></a>
                 <section>
   <div className="relative max-w-screen-xl px-4 py-8 mx-auto">
@@ -233,9 +235,7 @@ const ProductDetails = () => {
             <div className='flex items-center border bg-white'>
               <label for="quantity" className="sr-only">Qty</label>
               <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber - 1)}><BsDash/></Link>
-     
               <input
-                
                 min={1}
                 value={inputNumber} type="number"
                 className="w-12 sm:w-20 rounded border-primary  text-center font-semibold text-primary  border-3 input-sm sm:input-md border-opacity-30 bg-white  "
@@ -244,7 +244,7 @@ const ProductDetails = () => {
                <Link className='md:text-4xl text-primary text-2xl bg-white' onClick={() => setInputNumber(inputNumber + 1)}><BsPlus/></Link>
             </div>
          {user? <button type='button'
-              className=" sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-primary flex btn-sm sm:btn-md cursor-not-allowed"
+              className=" sm:px-5 sm:py-3 ml-3 text-xs sm:font-medium text-white btn bg-gray-300 flex btn-sm sm:btn-md cursor-not-allowed"
             >
               Add to cart<span className='ml-4 text-xl'> <FaCartPlus/></span>
             </button>: <Link to="/login" type='button'
@@ -285,11 +285,8 @@ const ProductDetails = () => {
             <br />
             {
             singleProductDetails.status==="Unavailable"?
-            <Link to={`/single-order/${singleProductDetails._id}`}type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full">Order Now</Link>:<Link to={`/single-order/${singleProductDetails._id}`}type='btn'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</Link>
+            <Link to=""type='submit'className="block sm:py-3  text-xs sm:font-medium text-white btn  bg-gray-300 cursor-not-allowed flex btn-sm sm:btn-md w-full ">Order Now</Link>:<Link to={`/single-order/${singleProductDetails._id}`}type='btn'className="block sm:py-3  text-xs sm:font-medium text-white btn btn-primary flex btn-sm sm:btn-md w-full">Order Now</Link>
             }
-            
-      
-  
       </div>
     </div>
   </div>
@@ -321,7 +318,7 @@ p-2'>
                       </div>  
                            <div className="p-2  items-center "> <p className="text-gray-600 font-light text-xs text-center">{product?.catagory}</p>
                            <div className='text-center'>
-                           <Link to={`/single/${product._id}`} className="text-gray-800 text-center mt-1 text-sm  font-bold hover:underline text-primary" >{(product.name).slice(0,20)}</Link>
+                           <Link to={`/single/${product._id}`} className="text-center mt-1 text-sm  font-bold text-primary hover:underline" >{(product.name).slice(0,20)}</Link>
                            </div>    <p className="text-center text-gray-800 mt-1"><div className='flex items-center justify-center'>
             <img src="https://i.ibb.co/DRrF0hc/1200px-Taka-Bengali-letter-svg.png" className='h-3 mr-0.5 mt-0.5' alt="" />
             <p className="text-center text-gray-800 mt-1 ">{product.price}</p>  

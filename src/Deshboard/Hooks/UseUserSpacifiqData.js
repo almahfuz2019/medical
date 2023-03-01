@@ -8,6 +8,7 @@ import Notfound from '../../Components/Notfound';
 const UseUserSpacifiqData = () => {
      const [user]=useAuthState(auth);
      const[usdata,setUsdata]=useState([]);
+     console.log(usdata);
      const[shoppingCartItemLoading,setshoppingCartItemLoading]=useState(true);
     const fetchCarts  = async() => {
      try{
@@ -20,7 +21,7 @@ const UseUserSpacifiqData = () => {
       }
       useEffect(()=>{
         fetchCarts() 
-     },[user,usdata])
+     },[user])
      const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){
@@ -39,7 +40,7 @@ const UseUserSpacifiqData = () => {
        res.json()
  )
    )
-   if(productLoading){
+   if(productLoading ){
      return <Loading/>
    }
    if(error){

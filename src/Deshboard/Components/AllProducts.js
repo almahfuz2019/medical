@@ -31,7 +31,6 @@ const AllProducts = () => {
           }
      })
 }
-
 }
   //get allproducts 
        const fetchProducts = () => {
