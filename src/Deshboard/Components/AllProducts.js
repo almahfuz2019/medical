@@ -68,7 +68,7 @@ const AllProducts = () => {
   }
   
      if(productsLoading){
-          return <Loading/>
+          return ;
      }
      return (
           <div>

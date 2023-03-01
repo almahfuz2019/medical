@@ -39,7 +39,7 @@ const BottomNavbar = () => {
     );
   }
   if (SignOutLoading ||  loading) {
-    return <Loading/>;
+    return ;
   }
      return (
       

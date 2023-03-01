@@ -14,7 +14,7 @@ const NewProducts = () => {
           setProductLoading(false)
      },[])
      if(productLoading){
-          return <Loading/>
+          return ;
      }
      return (
           <>

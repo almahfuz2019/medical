@@ -125,7 +125,7 @@ const handleChangeuUnlimited=(e)=> {
             <span className=' lg:hidden block' id="section-3"></span>  
    {/* for mobail  */}
    <span className='lg:hidden'>
-  <div   className=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white  " >
+  <div   className=" grid  grid-cols-9 p-2 sm:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10  mt-6 gap-x-2 md:gap-4 bg-white " >
     {/* with tooltip  */}
     <div className="tooltip tooltip-primary  tooltip-right" data-tip="Health Care">
   <button onClick={handleClickScroll} className='cursor-pointer  lg:p-1 md:w-full md:h-full h-9 w-9  hover:bg-primary border-opacity-30 border border-primary hover:text-white rounded-lg'>

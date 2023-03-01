@@ -21,7 +21,7 @@ const UseUserSpacifiqData = () => {
       }
       useEffect(()=>{
         fetchCarts() 
-     },[user])
+     },[user,usdata])
      const handleUserDelete=async(id)=>{
         const proceed=window.confirm("are you sure you want to delete?");
         if(proceed){

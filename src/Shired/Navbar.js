@@ -30,7 +30,7 @@ const Navbar = () => {
     );
   }
   if (SignOutLoading ||  loading) {
-    return <Loading/>;
+    return ;
   }
      let navItems=<>
      
